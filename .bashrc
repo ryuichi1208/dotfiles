@@ -2,11 +2,17 @@
 # $ cp -p .bashrc ~/
 # $ source ~/.bashrc
 
-# エイリアス
+# util command
 alias ls='ls -FG'
 alias ll='ls -alFG'
 alias cp='cp -i'
 alias sc='screen'
+alias chrome='open -a Google\ Chrome'
+alias shl='exec $SHELL -l'
+alias zhl='exec zsh -l'
+alias pg='ps aux | grep'
+alias pa='ps aux | tail -n +2| fzf'
+alias pk="pa | awk '{print \$2}' | xargs kill -9"
 
 # 環境変数
 export PS1='\[\033[01;32m\]\u@\H\[\033[01;34m\] \w \$\[\033[00m\]'
