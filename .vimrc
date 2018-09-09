@@ -26,6 +26,8 @@ set shiftwidth=4
 set matchpairs& matchpairs+=<:> " 対応括弧に'<'と'>'のペアを追加
 set backspace=indent,eol,start " バックスペースでなんでも消せるようにする
 
+set mouse-=a
+
 set nowritebackup
 set nobackup
 set noswapfile
