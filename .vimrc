@@ -1,9 +1,9 @@
 syntax on
 
 set ignorecase
-set smartcase           " 検索文字に大文字がある場合は大文字小文字を区別
-set incsearch           " インクリメンタルサーチ
-set hlsearch            " 検索マッチテキストをハイライト (2013-07-03 14:30 修正）
+set smartcase
+set incsearch
+set hlsearch
 set wrapscan
 
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
