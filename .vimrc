@@ -1,5 +1,4 @@
 syntax on
-colorscheme elflord
 
 set ignorecase
 set smartcase           " 検索文字に大文字がある場合は大文字小文字を区別
