@@ -5,8 +5,8 @@ set autoread
 set hidden
 set showcmd
 set title
-set visualbell
-set mouse=a
+"set visualbell
+"set mouse=a
 set autoindent
 set smartindent
 set laststatus=2
@@ -16,6 +16,7 @@ nmap <Esc><Esc> :nohlsearch<CR><Esc>
 " Appearance
 set number
 set cursorline
+"set cursorcolumn
 set showmatch
 set nolist
 syntax on
