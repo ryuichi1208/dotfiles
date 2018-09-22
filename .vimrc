@@ -14,6 +14,7 @@ set autoindent
 set smartindent
 set laststatus=2
 "set spell
+"set tabstop=4
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 noremap! <C-?> <C-h>
 
