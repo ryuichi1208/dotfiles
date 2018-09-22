@@ -10,8 +10,9 @@ set title
 set autoindent
 set smartindent
 set laststatus=2
-set spell
+"set spell
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+noremap! <C-?> <C-h>
 
 " Appearance
 set number
