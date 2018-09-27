@@ -4,6 +4,8 @@ set fileencoding=utf-8
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
 set ambiwidth=double
+highlight LineNr ctermfg=darkyellow
+colorscheme darkblue
 
 " Setting
 set nobackup
@@ -38,7 +40,7 @@ set hlsearch
 set wrapscan
 
 " insert mode
-imap <C-p> <Up>
+"imap <C-p> <Up>
 imap <C-n> <Down>
 imap <C-b> <Left>
 imap <C-f> <Right>
