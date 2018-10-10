@@ -7,8 +7,6 @@ set fileencoding=utf-8
 set fileencodings=ucs-boms,utf-8,euc-jp,cp932
 set fileformats=unix,dos,mac
 set ambiwidth=double
-highlight LineNr ctermfg=darkblue
-colorscheme darkblue
 set fileencoding=UTF-8
 set termencoding=UTF-8
 set fileencodings=ucs-bom,euc-jp,cp932,iso-2022-jp
@@ -23,7 +21,6 @@ set autoread
 "set iminsert=2
 set hidden
 "set visualbell
-set ruler
 "set mouse=a
 set autoindent
 "set smartindent
@@ -37,9 +34,9 @@ set wildmenu
 set ignorecase
 set smartcase
 set incsearch
-set hlsearch
 set wrapscan
 set gdefault
+set hlsearch
 "set backup
 "set backupdir=~/backup
 set showcmd
@@ -53,10 +50,13 @@ set number
 set cursorline
 "set cursorcolumn
 set nolist
+set runtimepath+=~/.vim_color
+colorscheme molokai
 syntax on
-autocmd ColorScheme * highlight LineNr ctermfg=210
+set ruler
+"autocmd ColorScheme * highlight LineNr ctermfg=210
 "autocmd highlight CursorLine ctermbg=230
-colorscheme darkblue
+"colorscheme darkblue
 "colorscheme default
 
 "#################
