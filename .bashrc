@@ -18,3 +18,11 @@ alias pk="pa | awk '{print \$2}' | xargs kill -9"
 export HISTSIZE=100000
 export LC_ALL='ja_JP.UTF-8'
 export LC_MESSAGES='ja_JP.UTF-8'
+alias ll='ls -alFG'
+alias ls='ls -FG'
+
+if [ $UID -eq 0 ]; then
+    PS1="\[\033[31m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
+else
+    PS1="\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
+fi
