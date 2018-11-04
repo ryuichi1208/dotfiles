@@ -8,3 +8,4 @@ Usage
 ###########
 
 $ ./install.sh
+vimrc learning
