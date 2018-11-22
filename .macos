@@ -118,3 +118,55 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 # 自動的に拡張機能を更新する
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
+
+
+###### Mail ######
+# 送信と返信のアニメーションを無効にする
+defaults write com.apple.mail DisableReplyAnimations -bool true
+defaults write com.apple.mail DisableSendAnimations -bool true
+# インライン添付ファイルの無効化
+defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
+# 自動スペルチェックを無効化
+defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
+
+
+###### Terminal ######
+# UTF-8のみを使用する
+defaults write com.apple.terminal StringEncodings -array 4
+# iTermのダークテーマをインストール
+open "${HOME}/init/Solarized Dark.itermcolors"
+# ターミナル終了時のプロンプトを非表示にする
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+
+###### App Store ######
+# WebKitデベロッパーツールを有効にする
+defaults write com.apple.appstore WebKitDeveloperExtras -bool true
+# デバッグメニューを有効にする
+defaults write com.apple.appstore ShowDebugMenu -bool true
+# 自動更新チェックを有効にする
+defaults write com.apple.SoftwareUpdate AutomaticCheckEnabled -bool true
+# 毎日アプリケーションのアップデートを確認する
+defaults write com.apple.SoftwareUpdate ScheduleFrequency -int 1
+# アプリケーションのアップデートをバックグラウンドでダウンロードする
+defaults write com.apple.SoftwareUpdate AutomaticDownload -int 1
+# システムデータファイルとセキュリティ更新プログラムをインストールする
+defaults write com.apple.SoftwareUpdate CriticalUpdateInstall -int 1
+# 他のMacで購入したアプリを自動的にダウンロードする
+defaults write com.apple.SoftwareUpdate ConfigDataInstall -int 1
+# アプリケーションの自動更新を有効化
+defaults write com.apple.commerce AutoUpdate -bool true
+# 再起動が必要なアプリケーションの場合自動で再起動を有効化する
+defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
+
+
+###### chrome ######
+# トラックパッドの感度の悪いバックスワイプをすべて無効にする
+defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
+defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
+# システム固有の印刷プレビューダイアログを使用する
+defaults write com.google.Chrome DisablePrintPreview -bool true
+defaults write com.google.Chrome.canary DisablePrintPreview -bool true
+# 既定で印刷ダイアログを展開する
+defaults write com.google.Chrome PMPrintingExpandedStateForPrint2 -bool true
+defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool true
