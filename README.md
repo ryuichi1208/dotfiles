@@ -1,11 +1,15 @@
 # dotfiles
-dotfiles
 
-Configuration files for bash, zsh, vim, etc.
+## My dotfiles for:
 
-############
-Usage
-###########
+* bash
+* zsh
+* tmux
+* vimrc
+* ctags
 
-$ ./install.sh
-vimrc learning
+## Install
+
+```
+git clone https://github.com/rednes/dotfiles.git
+```
