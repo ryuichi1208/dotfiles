@@ -6,37 +6,74 @@ if [ $(uname) != "Darwin" ] ; then
 fi
 
 ###### Base ######
-# ¥¹¥¿¥ó¥Ğ¥¤¤Ş¤Ç¤Î»ş´Ö¤ò24»ş´Ö¤ØÊÑ¹¹ (¥Ç¥Õ¥©¥ë¥È1»ş´Ö)
+# ã‚¹ã‚¿ãƒ³ãƒã‚¤ã¾ã§ã®æ™‚é–“ã‚’24æ™‚é–“ã¸å¤‰æ›´ (ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ1æ™‚é–“)
 sudo pmset -a standbydelay 86400
-# ¥Ö¡¼¥È»ş¤Î¥µ¥¦¥ó¥É¤ÎÌµ¸ú²½ (¼ä¤·¤¤µ¤¤â¤·¤Ş¤¹¤¬ÈÑ¤¤¤Î¤Ç¾Ã¤·¤Æ¤¤¤Ş¤¹)
+# ãƒ–ãƒ¼ãƒˆæ™‚ã®ã‚µã‚¦ãƒ³ãƒ‰ã®ç„¡åŠ¹åŒ– (å¯‚ã—ã„æ°—ã‚‚ã—ã¾ã™ãŒç…©ã„ã®ã§æ¶ˆã—ã¦ã„ã¾ã™)
 sudo nvram SystemAudioVolume=" "
-# ¥¹¥¯¥í¡¼¥ë¥Ğ¡¼¤Î¾ï»şÉ½¼¨
+# ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«ãƒãƒ¼ã®å¸¸æ™‚è¡¨ç¤º
 defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
-# ¥³¥ó¥½¡¼¥ë¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Î²èÌÌ¥µ¥¤¥ºÊÑ¹¹¤ò¹âÂ®¤Ë¤¹¤ë
+# ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ç”»é¢ã‚µã‚¤ã‚ºå¤‰æ›´ã‚’é«˜é€Ÿã«ã™ã‚‹
 defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
-# ¥Õ¥ê¡¼¥º¤¹¤ë¤È¼«Æ°Åª¤ËºÆµ¯Æ°
+# ãƒ•ãƒªãƒ¼ã‚ºã™ã‚‹ã¨è‡ªå‹•çš„ã«å†èµ·å‹•
 sudo systemsetup -setrestartfreeze on
-# ¥¹¥ê¡¼¥×¤µ¤»¤Ê¤¤
+# ã‚¹ãƒªãƒ¼ãƒ—ã•ã›ãªã„
 sudo systemsetup -setcomputersleep Off > /dev/null
-# ¼«Æ°ÂçÊ¸»ú¤ÎÌµ¸ú²½
+# è‡ªå‹•å¤§æ–‡å­—ã®ç„¡åŠ¹åŒ–
 defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
-# ¥¯¥é¥Ã¥·¥å¥ì¥İ¡¼¥È¤ÎÌµ¸ú²½
+# ã‚¯ãƒ©ãƒƒã‚·ãƒ¥ãƒ¬ãƒãƒ¼ãƒˆã®ç„¡åŠ¹åŒ–
 defaults write com.apple.CrashReporter DialogType -string "none"
-# »ş·×¥¢¥¤¥³¥ó¥¯¥ê¥Ã¥¯»ş¤ËOS¤ä¥Û¥¹¥ÈÌ¾ip¤òÉ½¼¨¤¹¤ë
+# æ™‚è¨ˆã‚¢ã‚¤ã‚³ãƒ³ã‚¯ãƒªãƒƒã‚¯æ™‚ã«OSã‚„ãƒ›ã‚¹ãƒˆåipã‚’è¡¨ç¤ºã™ã‚‹
 sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
-# Bluetooth¥Ø¥Ã¥É¥Õ¥©¥ó/¥Ø¥Ã¥É¥»¥Ã¥È¤Î²»¼Á¤ò¸ş¾å¤µ¤»¤ë
+# Bluetoothãƒ˜ãƒƒãƒ‰ãƒ•ã‚©ãƒ³/ãƒ˜ãƒƒãƒ‰ã‚»ãƒƒãƒˆã®éŸ³è³ªã‚’å‘ä¸Šã•ã›ã‚‹
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 ##### Dock ######
-# window¸ú²Ì¤ÎºÇÂç/ºÇ¾®¤òÊÑ¹¹
+# windowåŠ¹æœã®æœ€å¤§/æœ€å°ã‚’å¤‰æ›´
 defaults write com.apple.dock mineffect -string "scale"
-# Dock¤Ç³«¤¤¤Æ¤¤¤ë¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Î¥¤¥ó¥¸¥±¡¼¥¿¥é¥¤¥È¤òÉ½¼¨¤¹¤ë
+# Dockã§é–‹ã„ã¦ã„ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¤ãƒ³ã‚¸ã‚±ãƒ¼ã‚¿ãƒ©ã‚¤ãƒˆã‚’è¡¨ç¤ºã™ã‚‹
 defaults write com.apple.dock show-process-indicators -bool true
-# ³«¤¤¤Æ¤¤¤ë¥¢¥×¥ê¥±¡¼¥·¥ç¥ó¤Î¤ß¤òdock¤ËÉ½¼¨
+# é–‹ã„ã¦ã„ã‚‹ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã¿ã‚’dockã«è¡¨ç¤º
 defaults write com.apple.dock static-only -bool true
-# ¥¢¥×¥ê¥±¡¼¥·¥ç¥óµ¯Æ°»ş¤Î¥¢¥Ë¥á¡¼¥·¥ç¥ó¤òÌµ¸ú²½
+# ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³èµ·å‹•æ™‚ã®ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ç„¡åŠ¹åŒ–
 defaults write com.apple.dock launchanim -bool false
-# ¤¹¤Ù¤Æ¤Î¡Ê¥Ç¥Õ¥©¥ë¥È¤Î¡Ë¥¢¥×¥ê¥¢¥¤¥³¥ó¤òDock¤«¤é¾Ãµî¤¹¤ë
+# ã™ã¹ã¦ã®ï¼ˆãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®ï¼‰ã‚¢ãƒ—ãƒªã‚¢ã‚¤ã‚³ãƒ³ã‚’Dockã‹ã‚‰æ¶ˆå»ã™ã‚‹
 defaults write com.apple.dock persistent-apps -array
-# DashboardÌµ¸ú²½
+# Dashboardç„¡åŠ¹åŒ–
 defaults write com.apple.dashboard mcx-disabled -bool true
+
+###### Finde ######
+# ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã‚’ç„¡åŠ¹åŒ–ã™ã‚‹
+defaults write com.apple.finder DisableAllAnimations -bool true
+# ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§éš ã—ãƒ•ã‚¡ã‚¤ãƒ«ã‚’è¡¨ç¤ºã™ã‚‹
+defaults write com.apple.finder AppleShowAllFiles -bool true
+# ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤º
+defaults write com.apple.finder ShowStatusBar -bool true
+# ãƒ‘ã‚¹ãƒãƒ¼ã‚’è¡¨ç¤º
+defaults write com.apple.finder ShowPathbar -bool true
+# åå‰ã§ä¸¦ã¹æ›¿ãˆã‚’é¸æŠæ™‚ã«ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’å‰ã«ç½®ãã‚ˆã†ã«ã™ã‚‹
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# æ¤œç´¢æ™‚ã«ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã§ã‚«ãƒ¬ãƒ³ãƒˆãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã‚’æ¤œç´¢
+defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
+# æ‹¡å¼µå­å¤‰æ›´æ™‚ã®è­¦å‘Šã‚’ç„¡åŠ¹åŒ–
+defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
+# ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªã®ã‚¹ãƒ—ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰ã‚’æœ‰åŠ¹åŒ–
+defaults write NSGlobalDomain com.apple.springing.enabled -bool true
+# ã‚¹ãƒ—ãƒªãƒ³ã‚°ãƒ­ãƒ¼ãƒ‰é…å»¶ã‚’é™¤å»
+defaults write NSGlobalDomain com.apple.springing.delay -float 0
+# USBã‚„ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã‚¹ãƒˆãƒ¬ãƒ¼ã‚¸ã«.DS_Storeãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆã—ãªã„
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
+# ãƒ‡ã‚£ã‚¹ã‚¯æ¤œè¨¼ã‚’ç„¡åŠ¹åŒ–
+defaults write com.apple.frameworks.diskimages skip-verify -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
+defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
+# ãƒœãƒªãƒ¥ãƒ¼ãƒ ãƒã‚¦ãƒ³ãƒˆæ™‚ã«è‡ªå‹•çš„ã«Finderã‚’è¡¨ç¤º
+defaults write com.apple.frameworks.diskimages auto-open-ro-root -bool true
+defaults write com.apple.frameworks.diskimages auto-open-rw-root -bool true
+defaults write com.apple.finder OpenWindowForNewRemovableDisk -bool true
+# ã‚´ãƒŸç®±ã‚’ç©ºã«ã™ã‚‹å‰ã®è­¦å‘Šã®ç„¡åŠ¹åŒ–
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+# Show the ~/Library folder
+chflags nohidden ~/Library
+# Show the /Volumes folder
+sudo chflags nohidden /Volumes
