@@ -11,5 +11,6 @@
 ## Install
 
 ```
-git clone https://github.com/rednes/dotfiles.git
+$ git clone git@github.com:ryuichi1208/dotfiles.git
+$ cp -p {dotfiles} ~/
 ```
