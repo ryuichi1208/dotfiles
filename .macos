@@ -43,7 +43,7 @@ defaults write com.apple.dock persistent-apps -array
 defaults write com.apple.dashboard mcx-disabled -bool true
 
 
-###### Finde ######
+###### Finder ######
 # アニメーションを無効化する
 defaults write com.apple.finder DisableAllAnimations -bool true
 # デフォルトで隠しファイルを表示する
