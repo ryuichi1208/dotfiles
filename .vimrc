@@ -1,3 +1,18 @@
+" ACTIVE
+"Plug 'tpope/vim-surround'
+"Plug 'airblade/vim-gitgutter'
+"Plug 'sheerun/vim-polyglot'
+"Plug 'tpope/vim-fugitive'
+"Plug 'itchyny/lightline.vim'
+"Plug '~/.fzf'
+"Plug 'junegunn/fzf.vim'
+"Plug 'easymotion/vim-easymotion'
+"Plug 'srcery-colors/srcery-vim'
+"Plug 'junegunn/goyo.vim'
+"Plug 'tpope/vim-commentary'
+"Plug 'wellle/targets.vim'
+"Plug 'valloric/youcompleteme'
+
 "################
 " Character code
 "################
