@@ -98,3 +98,12 @@ augroup vimrcEx
     highlight EmSpace cterm=underline ctermfg=100
     match EmSpace /　/
 
+" nnoremap <leader>wh <C-W>h
+" nnoremap <leader>wl <C-W>l
+" nnoremap <leader>wj <C-W>j
+" nnoremap <leader>wk <C-W>k
+" nnoremap <leader>ws :sp<CR>
+" nnoremap <leader>wv :vsp<CR>
+" nnoremap <leader>wc :close<CR>
+" nnoremap <leader>wn :vne<CR>
+" nnoremap <leader>wo :only<CR>
