@@ -25,12 +25,17 @@ set hidden
 syntax on
 colorscheme molokai
 
+" ターミナル接続を高速化
+set ttyfast
 
 " 改行時自動インデント
 set smartindent
 
 " 行番号を表示
 set number
+
+" 不可視文字を表示
+"set list
 
 " インクリメントサーチを有効にする
 set incsearch
@@ -95,7 +100,7 @@ set wildmode=full
 set history=500
 
 " バックスペースキーの有効化
-set backspace=indent,eol,start
+"set backspace=indent,eol,start
 
 " 移動コマンドを使ったとき、行頭に移動しない
 set nostartofline
@@ -126,6 +131,9 @@ nnoremap <S-Left>  <C-w><<CR>
 nnoremap <S-Right> <C-w><CR>
 nnoremap <S-Up>    <C-w>-<CR>
 nnoremap <S-Down>  <C-w>+<CR>
+
+" w!! でスーパーユーザーとして保存
+cmap w!! w !sudo tee > /dev/null %
 
 " カーソルラインの位置を保存する
 if has("autocmd")
