@@ -121,4 +121,5 @@ augroup vimrcEx
 " nnoremap <leader>wv :vsp<CR>
 " nnoremap <leader>wc :close<CR>
 " nnoremap <leader>wn :vne<CR>
-" nnoremap <leader>wo :only<CR>
+" nnoremap <leader>wo :only<CR>"#
+"
