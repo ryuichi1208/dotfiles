@@ -5,7 +5,11 @@
 " 文字コードをUFT-8に設定
 set fenc=utf-8
 set encoding=utf-8
+scriptencoding utf-8
+" 改行コードの自動判別
 set fileformat=unix
+" □や○文字が崩れる問題を解決
+set ambiwidth=double
 
 " ========== Base Config ==========
 " バックアップファイルを作らない
@@ -45,6 +49,9 @@ set cursorline
 " ファイル更新で自動で読み直す
 "set autoread
 
+" 補完ウィンドウの設定
+set completeopt=menuone
+
 " ビープ音を可視化
 "set visualbell
 
@@ -52,7 +59,7 @@ set cursorline
 set showmatch
 
 " ステータスラインを常に表示
-set laststatus=1
+set laststatus=2
 
 " 検索時に最後まで行ったら最初に戻る
 set wrapscan
@@ -76,6 +83,13 @@ set cursorline
 " タイムアウト時間設定
 set timeout timeoutlen=1000 ttimeoutlen=50
 
+" wildmenuを有効にする
+set wildmenu
+set wildmode=full
+
+" 保存するコマンド履歴の数
+set history=500
+
 " ========== Key Map ==============
 
 " Escの2回押しでハイライト消去
@@ -86,3 +100,37 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+" カーソルラインの位置を保存する
+if has("autocmd")
+    autocmd BufReadPost *
+    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
+    \   exe "normal! g'\"" |
+    \ endif
+endif
+
+" 挿入モードでクリップボードからペーストする時に自動でインデントさせないようにする
+if &term =~ "xterm"
+    let &t_SI .= "\e[?2004h"
+    let &t_EI .= "\e[?2004l"
+    let &pastetoggle = "\e[201~"
+
+    function XTermPasteBegin(ret)
+        set paste
+        return a:ret
+    endfunction
+
+    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
+endif
+
+" マウスでカーソル移動とスクロール
+if has('mouse')
+    set mouse=a
+    if has('mouse_sgr')
+        set ttymouse=sgr
+    elseif v:version > 703 || v:version is 703 && has('patch632')
+        set ttymouse=sgr
+    else
+        set ttymouse=xterm2
+    endif
+endif
