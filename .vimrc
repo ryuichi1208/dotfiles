@@ -25,6 +25,7 @@ set hidden
 syntax on
 colorscheme molokai
 
+
 " 改行時自動インデント
 set smartindent
 
@@ -58,6 +59,9 @@ set completeopt=menuone
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
+" 対応括弧の表示秒数を3秒にする
+"set matchtime=3
+
 " ステータスラインを常に表示
 set laststatus=2
 
@@ -90,7 +94,16 @@ set wildmode=full
 " 保存するコマンド履歴の数
 set history=500
 
+" バックスペースキーの有効化
+set backspace=indent,eol,start
+
+" 移動コマンドを使ったとき、行頭に移動しない
+set nostartofline
+
 " ========== Key Map ==============
+
+" 入力モード中に素早くJJと入力した場合はESCとみなす
+inoremap jj <Esc>
 
 " Escの2回押しでハイライト消去
 nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
@@ -100,6 +113,19 @@ nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
+
+"インサートモードでも移動
+inoremap <c-d> <delete>
+inoremap <c-j> <down>
+inoremap <c-k> <up>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
+
+" Shift + 矢印でウィンドウサイズを変更
+nnoremap <S-Left>  <C-w><<CR>
+nnoremap <S-Right> <C-w><CR>
+nnoremap <S-Up>    <C-w>-<CR>
+nnoremap <S-Down>  <C-w>+<CR>
 
 " カーソルラインの位置を保存する
 if has("autocmd")
@@ -124,13 +150,13 @@ if &term =~ "xterm"
 endif
 
 " マウスでカーソル移動とスクロール
-if has('mouse')
-    set mouse=a
-    if has('mouse_sgr')
-        set ttymouse=sgr
-    elseif v:version > 703 || v:version is 703 && has('patch632')
-        set ttymouse=sgr
-    else
-        set ttymouse=xterm2
-    endif
-endif
+"if has('mouse')
+"    set mouse=a
+"    if has('mouse_sgr')
+"        set ttymouse=sgr
+"    elseif v:version > 703 || v:version is 703 && has('patch632')
+"        set ttymouse=sgr
+"    else
+"        set ttymouse=xterm2
+"    endif
+"endif
