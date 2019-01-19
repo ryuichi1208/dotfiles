@@ -1,125 +1,88 @@
-" ACTIVE
-"Plug 'tpope/vim-surround'
-"Plug 'airblade/vim-gitgutter'
-"Plug 'sheerun/vim-polyglot'
-"Plug 'tpope/vim-fugitive'
-"Plug 'itchyny/lightline.vim'
-"Plug '~/.fzf'
-"Plug 'junegunn/fzf.vim'
-"Plug 'easymotion/vim-easymotion'
-"Plug 'srcery-colors/srcery-vim'
-"Plug 'junegunn/goyo.vim'
-"Plug 'tpope/vim-commentary'
-"Plug 'wellle/targets.vim'
-"Plug 'valloric/youcompleteme'
+" ========== Plugin Setting =======
 
-"################
-" Character code
-"################
+
+" ========== Character code =======
+" 文字コードをUFT-8に設定
+set fenc=utf-8
 set encoding=utf-8
-scriptencoding utf-8
-set fileencoding=utf-8
-set fileencodings=ucs-boms,utf-8,euc-jp,cp932
-set fileformats=unix,dos,mac
-set ambiwidth=double
-set fileencoding=UTF-8
-set termencoding=UTF-8
-set fileencodings=ucs-bom,euc-jp,cp932,iso-2022-jp
-set fileencodings+=,ucs-2le,ucs-2,utf-8
+set fileformat=unix
 
-"################
-" Setting
-"################
+" ========== Base Config ==========
+" バックアップファイルを作らない
 set nobackup
+
+" スワップファイルを作らない
 set noswapfile
-set autoread
-"set iminsert=2
+
+" バッファが編集中でもその他のファイルを開けるように
 set hidden
-"set visualbell
-"set mouse=a
-set autoindent
-"set smartindent
-"set laststatus=2
-set ttyfast
-"set spell
-set list
-"set expandtab
-set history=100
-set wildmenu
-set ignorecase
-set smartcase
+
+" シンタックスを有効にする
+syntax on
+colorscheme molokai
+
+" 改行時自動インデント
+set smartindent
+
+" 行番号を表示
+set number
+
+" インクリメントサーチを有効にする
 set incsearch
-set wrapscan
-set gdefault
+
+" ハイライトサーチを有効にする
 set hlsearch
-"set backup
-"set backupdir=~/backup
-set showcmd
+
+" 検索時大文字小文字を区別しない
+set ignorecase
+
+" 検索時に大文字を入力した場合ignorecaseが無効になる
+set smartcase
+
+" カーソルラインを表示する
+set cursorline
+
+" ファイル更新で自動で読み直す
+"set autoread
+
+" ビープ音を可視化
+"set visualbell
+
+" 括弧入力時の対応する括弧を表示
 set showmatch
 
-"#################
-" Appearance
-"#################
-set title
-set number
-set cursorline
-"set cursorcolumn
-set nolist
-set runtimepath+=~/.vim_color
-colorscheme molokai
-syntax on
-set ruler
-"autocmd ColorScheme * highlight LineNr ctermfg=210
-"autocmd highlight CursorLine ctermbg=230
-"colorscheme darkblue
-"colorscheme default
+" ステータスラインを常に表示
+set laststatus=1
 
-"#################
-" key map
-"#################
-inoremap jj <Esc>
-nnoremap n nzz
-nnoremap N Nzz
-nnoremap * *zz
-nnoremap # #zz
-nnoremap g* g*zz
-nnoremap g# g#zz
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
-imap <C-k> <Up>
-imap <C-j> <Down>
-"imap <C-h> <Left>
-"imap <C-l> <Right>
-nnoremap + <C-a>
-nnoremap - <C-x>
-"nnoremap <c-j> <c-w>j
-"nnoremap <c-k> <c-w>k
-"nnoremap <c-l> <c-w>l
-"nnoremap <c-h> <c-w>h
+" 検索時に最後まで行ったら最初に戻る
+set wrapscan
+
+" タイトルを表示
+set title
+
+" カーソルの行数表示
+set cursorline
+
+" カーソルから相対的な行数を表示する
+""set relativenumber
+
+" マウス操作を有効にする
+""set mouse=a
+
+" 1 tab == 4 spaces
+""set shiftwidth=4
+""set tabstop=4
+
+" タイムアウト時間設定
+set timeout timeoutlen=1000 ttimeoutlen=50
+
+" ========== Key Map ==============
+
+" Escの2回押しでハイライト消去
+nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
+
+" 折り返しでも行単位で移動
 nnoremap j gj
 nnoremap k gk
 vnoremap j gj
 vnoremap k gk
-
-" The last position saved
-augroup vimrcEx
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-    \ exe "normal g`\"" | endif
-    augroup END
-
-    " Delete blank space at end of line
-    autocmd BufWritePre * :%s/\s\+$//ge
-
-    " Em Space Print
-    highlight EmSpace cterm=underline ctermfg=100
-    match EmSpace /　/
-
-" nnoremap <leader>wh <C-W>h
-" nnoremap <leader>wl <C-W>l
-" nnoremap <leader>wj <C-W>j
-" nnoremap <leader>wk <C-W>k
-" nnoremap <leader>ws :sp<CR>
-" nnoremap <leader>wv :vsp<CR>
-" nnoremap <leader>wc :close<CR>
-" nnoremap <leader>wn :vne<CR>
-" nnoremap <leader>wo :only<CR>"#
-"
