@@ -1,4 +1,40 @@
 " ========== Plugin Setting =======
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=/Users/Ryuichi/.vim/bundle/./repos/github.com/Shougo/dein.vim
+
+" Required:
+if dein#load_state('~/.vim/bundle/.')
+  call dein#begin('~/.vim/bundle/.')
+
+  " Let dein manage dein
+  " Required:
+  call dein#add('~/.vim/bundle/./repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here like this:
+  call dein#add('Shougo/neosnippet.vim')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('scrooloose/nerdtree')
+
+  " Required:
+  call dein#end()
+  call dein#save_state()
+endif
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
 
 
 " ========== Character code =======
@@ -131,6 +167,9 @@ nnoremap <S-Left>  <C-w><<CR>
 nnoremap <S-Right> <C-w><CR>
 nnoremap <S-Up>    <C-w>-<CR>
 nnoremap <S-Down>  <C-w>+<CR>
+
+" NERDTree用バインド 
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " w!! でスーパーユーザーとして保存
 cmap w!! w !sudo tee > /dev/null %
