@@ -11,7 +11,9 @@ alias sl='ls'
 alias c='clear'
 alias 644='chmod 644'
 alias 755='chmod 755'
-alias fo="open ."
+alias fo='open .'
+alias tailf='tail -f'
+#alias diff='colordiff'
 
 export LSCOLORS=gxfxcxdxbxegedabagacad
 export PAGER=less
