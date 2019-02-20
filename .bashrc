@@ -1,5 +1,5 @@
 if [ $UID -eq 0 ]; then
-    PS1="\[\033[31m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
+    PS1="\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
 else
     PS1="\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
 fi
@@ -41,8 +41,9 @@ TAB="$(echo -ne '\t')"
 ESC="$(echo -ne '\033')"
 
 alias psg='ps aux | grep'
-alias ll='ls -hlG'
-alias la='ls -hlaG'
+alias ls='ls --color=auto'
+alias ll='ls -hlG --color=auto'
+alias la='ls -hlaG --color=auto'
 alias sl='ls'
 alias c='clear'
 alias 644='chmod 644'
