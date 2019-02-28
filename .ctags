@@ -3,7 +3,7 @@
 
 --exclude=node_modules
 --exclude=.git
---exclude=build
+#--exclude=build
 --exclude=dist
 --exclude=public
 
