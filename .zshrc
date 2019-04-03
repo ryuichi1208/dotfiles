@@ -8,7 +8,7 @@ zstyle ':completion:*' menu select
 
 setopt correct
 
-PROMPT='%n@%m:%~# '
+PROMPT='%F{cyan}%n@%m%f:%~# '
 
 setopt HIST_IGNORE_DUPS
 
