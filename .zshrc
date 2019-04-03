@@ -1,19 +1,18 @@
+autoload colors
+colors
+
 autoload -Uz compinit
-export SHELL="$(which zsh)"
+compinit
 
-# zplug
-source $HOME/.zplug/init.zsh
+zstyle ':completion:*' menu select
 
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zsh-users/zsh-completions"
-zplug "zsh-users/zsh-history-substring-search"
+setopt correct
 
-zplug "mollifier/cd-gitroot"
-zplug "stedolan/jq", \
-  from:gh-r, \
-  as:command, \
-  rename-to:jq
-zplug "b4b4r07/emoji-cli", \
-  on:"stedolan/jq"
+PROMPT='%n@%m:%~# '
 
-zplug load
+setopt HIST_IGNORE_DUPS
+
+alias ls='ls --color=auto'
+alias ll='ls -hlG --color=auto'
+
+setopt auto_cd
