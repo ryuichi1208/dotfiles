@@ -1,7 +1,6 @@
 # -----------------------------
 # General
 # -----------------------------
-
 # 色を使用
 autoload -Uz colors ; colors
 
@@ -62,6 +61,15 @@ setopt print_exit_value
 # ファイル名の展開でディレクトリにマッチした場合 末尾に / を付加
 setopt mark_dirs
 
+# コマンドのスペルチェックをする
+setopt correct
+
+# コマンドライン全てのスペルチェックをする
+setopt correct_all
+
+# 上書きリダイレクトの禁止
+setopt no_clobber
+
 # その他
 umask 022
 ulimit -c 0
@@ -69,7 +77,6 @@ ulimit -c 0
 # -----------------------------
 # Complement
 # -----------------------------
-
 # 自動補完を有効にする
 autoload -Uz compinit ; compinit
 
@@ -99,6 +106,7 @@ zstyle ':completion::complete:*' use-cache true
 
 # 補完候補に色つける
 autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
+#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 
 # -----------------------------
 # History
@@ -166,6 +174,9 @@ alias ..='c ../'
 alias back='pushd'
 alias diff='diff -U1'
 
+alias tma='tmux attach'
+alias tml='tmux list-window'
+
 # -----------------------------
 # Plugin
 # -----------------------------
@@ -200,8 +211,6 @@ zplug load --verbose
 # -----------------------------
 # PATH
 # -----------------------------
-
-# Macports
 case "${OSTYPE}" in
   darwin*)
     export PATH=/opt/local/bin:/opt/local/sbin:$PATH
@@ -210,10 +219,17 @@ case "${OSTYPE}" in
 esac
 
 # -----------------------------
-# PATH
+# Python
 # -----------------------------
-
-# pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# -----------------------------
+# Golang
+# -----------------------------
+if which go > /dev/null 2>&1  ; then
+    export CGO_ENABLED=1
+    export GOPATH=$HOME/dev/go
+    export PATH=$PATH:$(go env GOROOT)/bin:$GOPATH/bin
+fi
