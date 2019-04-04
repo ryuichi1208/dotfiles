@@ -1,4 +1,10 @@
 # -----------------------------
+# Lang
+# -----------------------------
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+
+# -----------------------------
 # General
 # -----------------------------
 # 色を使用
@@ -9,9 +15,6 @@ PROMPT='%F{cyan}%n@%m%f:%~# '
 
 # エディタをvimに設定
 export EDITOR=vim
-
-# 文字コードをUTF-8に設定
-#export LANG=ja_JP.UTF-8
 
 # Ctrl+Dでログアウトしてしまうことを防ぐ
 #setopt IGNOREEOF
@@ -30,6 +33,9 @@ bindkey -e
 
 # viキーバインド
 #bindkey -v
+
+# フローコントロールを無効にする
+setopt no_flow_control
 
 # ワイルドカード展開を使用する
 setopt extended_glob
@@ -76,6 +82,13 @@ setopt no_clobber
 # その他
 umask 022
 ulimit -c 0
+
+# sudo の後ろでコマンド名を補完する
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
+                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
+
+# ps コマンドのプロセス名補完
+zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
 # -----------------------------
 # Complement
@@ -146,10 +159,12 @@ setopt hist_verify
 # historyコマンドは残さない
 #setopt hist_save_no_dups
 
+# ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
+#bindkey '^R' history-incremental-pattern-search-backward
+
 # -----------------------------
 # Alias
 # -----------------------------
-
 # グローバルエイリアス
 alias -g L='| less'
 alias -g H='| head'
@@ -182,7 +197,27 @@ alias tml='tmux list-window'
 # -----------------------------
 # Plugin
 # -----------------------------
+#function h {
+#  history
+#}
 
+#function g() {
+#    egrep -r "$1" .
+#}
+
+function t()
+{
+  tmux new-session -s $(pwd |sed -E 's!^.+/([^/]+/[^/]+)$!\1!g' | sed -e 's/\./-/g')
+}
+
+function psgrep() {
+        ps aux | grep -v grep | grep "USER.*COMMAND"
+        ps aux | grep -v grep | grep $1
+}
+
+# -----------------------------
+# Plugin
+# -----------------------------
 # zplugが無ければインストール
 if [[ ! -d ~/.zplug ]];then
   git clone https://github.com/zplug/zplug ~/.zplug
@@ -225,7 +260,8 @@ esac
 # -----------------------------
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+#eval "$(pyenv init -)"
+alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 
 # -----------------------------
 # Golang
