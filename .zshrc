@@ -79,16 +79,19 @@ setopt correct_all
 # 上書きリダイレクトの禁止
 setopt no_clobber
 
-# その他
-umask 022
-ulimit -c 0
-
 # sudo の後ろでコマンド名を補完する
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
                    /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
 
 # ps コマンドのプロセス名補完
 zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
+
+# パスの最後のスラッシュを削除しない
+setopt noautoremoveslash
+
+# その他
+umask 022
+ulimit -c 0
 
 # -----------------------------
 # Complement
