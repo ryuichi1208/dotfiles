@@ -46,6 +46,9 @@ setopt pushd_ignore_dups
 # ビープ音を鳴らさないようにする
 #setopt no_beep
 
+# カッコの対応などを自動的に補完する
+setopt auto_param_keys
+
 # ディレクトリ名の入力のみで移動する
 setopt auto_cd
 
@@ -111,7 +114,6 @@ autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
 # -----------------------------
 # History
 # -----------------------------
-
 # 基本設定
 HISTFILE=$HOME/.zsh-history
 HISTSIZE=100000
