@@ -62,6 +62,10 @@ setopt print_exit_value
 # ファイル名の展開でディレクトリにマッチした場合 末尾に / を付加
 setopt mark_dirs
 
+# その他
+umask 022
+ulimit -c 0
+
 # -----------------------------
 # Complement
 # -----------------------------
