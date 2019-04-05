@@ -10,9 +10,6 @@ export LESSCHARSET=utf-8
 # 色を使用
 autoload -Uz colors ; colors
 
-# プロンプトカスタマイズ
-PROMPT='%F{cyan}%n@%m%f:%~# '
-
 # エディタをvimに設定
 export EDITOR=vim
 
@@ -42,6 +39,9 @@ setopt extended_glob
 
 # cdコマンドを省略して、ディレクトリ名のみの入力で移動
 setopt auto_cd
+
+# コマンドラインがどのように展開され実行されたかを表示するようになる
+#setopt xtrace
 
 # 自動でpushdを実行
 setopt auto_pushd
@@ -89,9 +89,32 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 # パスの最後のスラッシュを削除しない
 setopt noautoremoveslash
 
+# 各コマンドが実行されるときにパスをハッシュに入れる
+#setopt hash_cmds
+
 # その他
 umask 022
 ulimit -c 0
+
+# -----------------------------
+# Prompt
+# -----------------------------
+# %M	ホスト名
+# %m	ホスト名
+# %d	カレントディレクトリ(フルパス)
+# %~	カレントディレクトリ(フルパス2)
+# %C	カレントディレクトリ(相対パス)
+# %c	カレントディレクトリ(相対パス)
+# %n	ユーザ名
+# %#	ユーザ種別
+# %?	直前のコマンドの戻り値
+# %D	日付(yy-mm-dd)
+# %W	日付(yy/mm/dd)
+# %w	日付(day dd)
+# %*	時間(hh:flag_mm:ss)
+# %T	時間(hh:mm)
+# %t	時間(hh:mm(am/pm))
+PROMPT='%F{cyan}%n@%m%f:%~# '
 
 # -----------------------------
 # Complement
@@ -164,6 +187,7 @@ setopt hist_verify
 
 # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
 #bindkey '^R' history-incremental-pattern-search-backward
+#bindkey "^S" history-incremental-search-forward
 
 # -----------------------------
 # Alias
@@ -197,6 +221,10 @@ alias diff='diff -U1'
 alias tma='tmux attach'
 alias tml='tmux list-window'
 
+alias dki="docker run -i -t -P"
+alias dex="docker exec -i -t"
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+
 # -----------------------------
 # Plugin
 # -----------------------------
@@ -216,6 +244,16 @@ function t()
 function psgrep() {
         ps aux | grep -v grep | grep "USER.*COMMAND"
         ps aux | grep -v grep | grep $1
+}
+
+function dstop() 
+{ 
+        docker stop $(docker ps -a -q); 
+}
+
+function drm() 
+{ 
+        docker rm $(docker ps -a -q);
 }
 
 # -----------------------------
