@@ -156,6 +156,9 @@ autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
 # 大文字・小文字を区別しない(大文字を入力した場合は区別する)
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
+# manの補完をセクション番号別に表示させる
+zstyle ':completion:*:manuals' separate-sections true
+
 # --prefix=/usr などの = 以降でも補完
 setopt magic_equal_subst
 
@@ -197,6 +200,10 @@ setopt hist_verify
 # ^R で履歴検索をするときに * でワイルドカードを使用出来るようにする
 #bindkey '^R' history-incremental-pattern-search-backward
 #bindkey "^S" history-incremental-search-forward
+
+# ^P,^Nを検索へ割り当て
+#bindkey "^P" history-beginning-search-backward-end
+#bindkey "^N" history-beginning-search-forward-end
 
 # -----------------------------
 # Alias
