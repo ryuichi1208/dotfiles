@@ -92,6 +92,9 @@ setopt noautoremoveslash
 # 各コマンドが実行されるときにパスをハッシュに入れる
 #setopt hash_cmds
 
+# rsysncでsshを使用する
+export RSYNC_RSH=ssh
+
 # その他
 umask 022
 ulimit -c 0
@@ -312,3 +315,27 @@ if which go > /dev/null 2>&1  ; then
     export GOPATH=$HOME/dev/go
     export PATH=$PATH:$(go env GOROOT)/bin:$GOPATH/bin
 fi
+
+# -----------------------------
+# Git
+# -----------------------------
+function gt() {
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -200'
+}
+
+function gr() {
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+  fzf-down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
+  cut -d$'\t' -f1
+}
+
+function gs() {
+  is_in_git_repo || return
+  git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
+  cut -d: -f1
+}
