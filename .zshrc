@@ -120,7 +120,7 @@ ulimit -c 0
 PROMPT='%F{cyan}%n@%m%f:%~# '
 
 # -----------------------------
-# Complement
+# Completion
 # -----------------------------
 # 自動補完を有効にする
 autoload -Uz compinit ; compinit
@@ -152,6 +152,12 @@ zstyle ':completion::complete:*' use-cache true
 # 補完候補に色つける
 autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
 #zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+
+# 大文字・小文字を区別しない(大文字を入力した場合は区別する)
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# --prefix=/usr などの = 以降でも補完
+setopt magic_equal_subst
 
 # -----------------------------
 # History
@@ -231,12 +237,18 @@ alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 # -----------------------------
 # Plugin
 # -----------------------------
+# root のコマンドはヒストリに追加しない
+#if [ $UID = 0 ]; then
+#  unset HISTFILE
+#  SAVEHIST=0
+#fi
+
 #function h {
 #  history
 #}
 
 #function g() {
-#    egrep -r "$1" .
+#  egrep -r "$1" .
 #}
 
 function t()
@@ -245,18 +257,18 @@ function t()
 }
 
 function psgrep() {
-        ps aux | grep -v grep | grep "USER.*COMMAND"
-        ps aux | grep -v grep | grep $1
+  ps aux | grep -v grep | grep "USER.*COMMAND"
+  ps aux | grep -v grep | grep $1
 }
 
 function dstop() 
 { 
-        docker stop $(docker ps -a -q); 
+  docker stop $(docker ps -a -q); 
 }
 
 function drm() 
 { 
-        docker rm $(docker ps -a -q);
+  docker rm $(docker ps -a -q);
 }
 
 # -----------------------------
@@ -280,10 +292,10 @@ zplug "b4b4r07/enhancd", use:init.sh
 
 # インストールしていないプラグインをインストール
 if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
+  printf "Install? [y/N]: "
+  if read -q; then
+      echo; zplug install
+  fi
 fi
 
 # コマンドをリンクして、PATH に追加し、プラグインは読み込む
@@ -311,9 +323,9 @@ alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xarg
 # Golang
 # -----------------------------
 if which go > /dev/null 2>&1  ; then
-    export CGO_ENABLED=1
-    export GOPATH=$HOME/dev/go
-    export PATH=$PATH:$(go env GOROOT)/bin:$GOPATH/bin
+  export CGO_ENABLED=1
+  export GOPATH=$HOME/dev/go
+  export PATH=$PATH:$(go env GOROOT)/bin:$GOPATH/bin
 fi
 
 # -----------------------------
