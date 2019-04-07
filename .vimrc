@@ -1,24 +1,27 @@
-" ========== Plugin Setting =======
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/Users/Ryuichi/.vim/bundle/./repos/github.com/Shougo/dein.vim
+set runtimepath+=/root/./repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('~/.vim/bundle/.')
-  call dein#begin('~/.vim/bundle/.')
+if dein#load_state('/root/.')
+  call dein#begin('/root/.')
 
   " Let dein manage dein
   " Required:
-  call dein#add('~/.vim/bundle/./repos/github.com/Shougo/dein.vim')
+  call dein#add('/root/./repos/github.com/Shougo/dein.vim')
+
   " Add or remove your plugins here like this:
+  "call dein#add('Shougo/neosnippet.vim')
+  "call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neocomplcache')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('scrooloose/nerdtree')
+  call dein#add('editorconfig/editorconfig-vim')
 
   " Required:
   call dein#end()
@@ -35,7 +38,6 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
-
 "----------------------------------------------------------
 " neocomplete・neosnippetの設定
 "----------------------------------------------------------
@@ -186,7 +188,7 @@ nnoremap <S-Right> <C-w><CR>
 nnoremap <S-Up>    <C-w>-<CR>
 nnoremap <S-Down>  <C-w>+<CR>
 
-" NERDTree用バインド 
+" NERDTree用バインド
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
 " w!! でスーパーユーザーとして保存
