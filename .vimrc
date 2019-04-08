@@ -188,6 +188,17 @@ nnoremap <S-Right> <C-w><CR>
 nnoremap <S-Up>    <C-w>-<CR>
 nnoremap <S-Down>  <C-w>+<CR>
 
+" タブ関連バインド
+"nnoremap <silent> [TABCMD]f :<c-u>tabfirst<cr>
+"nnoremap <silent> [TABCMD]l :<c-u>tablast<cr>
+"nnoremap <silent> [TABCMD]n :<c-u>tabnext<cr>
+"nnoremap <silent> [TABCMD]N :<c-u>tabNext<cr>
+"nnoremap <silent> [TABCMD]p :<c-u>tabprevious<cr>
+"nnoremap <silent> [TABCMD]e :<c-u>tabedit<cr>
+"nnoremap <silent> [TABCMD]c :<c-u>tabclose<cr>
+"nnoremap <silent> [TABCMD]o :<c-u>tabonly<cr>
+"nnoremap <silent> [TABCMD]s :<c-u>tabs<cr>
+
 " NERDTree用バインド
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
