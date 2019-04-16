@@ -250,12 +250,45 @@ alias -g H='| head'
 alias -g G='| grep'
 alias -g GI='| grep -ri'
 
-# エイリアス
+# ls
 alias lst='ls -ltr --color=auto'
 alias ls='ls --color=auto'
 alias la='ls -la --color=auto'
 alias ll='ls -l --color=auto'
 
+# tmux
+alias tma='tmux attach'
+alias tml='tmux list-window'
+
+# docker / k8s
+alias dki="docker run -i -t -P"
+alias dex="docker exec -i -t"
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+alias kc='kubectl'
+alias kclf='kubectl logs --tail=200  -f'
+alias kcgs='kubectl get service -o wide'
+alias kcgd='kubectl get deployment -o wide'
+alias kcgp='kubectl get pod -o wide'
+alias kcgn='kubectl get node -o wide'
+
+# git
+alias g='git'
+alias ga='git add'
+alias gd='git diff'
+alias gs='git status'
+alias gp='git push'
+alias gb='git branch'
+alias gst='git status'
+alias gco='git checkout'
+alias gf='git fetch'
+alias gc='git commit'
+
+# apt
+alias agi='sudo apt install'
+alias agr='sudo apt remove'
+alias agu='sudo apt update'
+
+# その他
 alias du="du -Th"
 alias df="df -Th"
 alias su="su -l"
@@ -269,13 +302,6 @@ alias mkdir='mkdir -p'
 alias ..='c ../'
 alias back='pushd'
 alias diff='diff -U1'
-
-alias tma='tmux attach'
-alias tml='tmux list-window'
-
-alias dki="docker run -i -t -P"
-alias dex="docker exec -i -t"
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
 # -----------------------------
 # Plugin
