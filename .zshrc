@@ -1,8 +1,8 @@
 # -----------------------------
 # Lang
 # -----------------------------
-export LANG=ja_JP.UTF-8
-export LESSCHARSET=utf-8
+#export LANG=ja_JP.UTF-8
+#export LESSCHARSET=utf-8
 
 # -----------------------------
 # General
@@ -102,22 +102,58 @@ ulimit -c 0
 # -----------------------------
 # Prompt
 # -----------------------------
-# %M	ホスト名
-# %m	ホスト名
-# %d	カレントディレクトリ(フルパス)
-# %~	カレントディレクトリ(フルパス2)
-# %C	カレントディレクトリ(相対パス)
-# %c	カレントディレクトリ(相対パス)
-# %n	ユーザ名
-# %#	ユーザ種別
-# %?	直前のコマンドの戻り値
-# %D	日付(yy-mm-dd)
-# %W	日付(yy/mm/dd)
-# %w	日付(day dd)
-# %*	時間(hh:flag_mm:ss)
-# %T	時間(hh:mm)
-# %t	時間(hh:mm(am/pm))
+# %M    ホスト名
+# %m    ホスト名
+# %d    カレントディレクトリ(フルパス)
+# %~    カレントディレクトリ(フルパス2)
+# %C    カレントディレクトリ(相対パス)
+# %c    カレントディレクトリ(相対パス)
+# %n    ユーザ名
+# %#    ユーザ種別
+# %?    直前のコマンドの戻り値
+# %D    日付(yy-mm-dd)
+# %W    日付(yy/mm/dd)
+# %w    日付(day dd)
+# %*    時間(hh:flag_mm:ss)
+# %T    時間(hh:mm)
+# %t    時間(hh:mm(am/pm))
 PROMPT='%F{cyan}%n@%m%f:%~# '
+
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:*' formats "%F{green}[%b %S](%s)"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+
+#autoload -Uz add-zsh-hook
+#autoload -Uz colors
+#colors
+#autoload -Uz vcs_info
+
+#zstyle ':vcs_info:*' enable git svn hg bzr
+#zstyle ':vcs_info:*' formats '(%s)-[%b]'
+#zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
+#zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
+#zstyle ':vcs_info:bzr:*' use-simple true
+
+#autoload -Uz is-at-least
+#if is-at-least 4.3.10; then
+#  # この check-for-changes が今回の設定するところ
+#  zstyle ':vcs_info:git:*' check-for-changes true
+#  zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
+#  zstyle ':vcs_info:git:*' unstagedstr "-"  # 適当の文字列に変更する
+#  zstyle ':vcs_info:git:*' formats '(%s)-[%b] %c%u'
+#  zstyle ':vcs_info:git:*' actionformats '(%s)-[%b|%a] %c%u'
+#fi
+
+#function _update_vcs_info_msg() {
+#    psvar=()
+#    LANG=en_US.UTF-8 vcs_info
+#    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
+#}
+#add-zsh-hook precmd _update_vcs_info_msg
+#RPROMPT="%1(v|%F{green}%1v%f|)"
 
 # -----------------------------
 # Completion
@@ -268,13 +304,13 @@ function psgrep() {
   ps aux | grep -v grep | grep $1
 }
 
-function dstop() 
-{ 
-  docker stop $(docker ps -a -q); 
+function dstop()
+{
+  docker stop $(docker ps -a -q);
 }
 
-function drm() 
-{ 
+function drm()
+{
   docker rm $(docker ps -a -q);
 }
 
