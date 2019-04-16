@@ -28,6 +28,8 @@ if dein#load_state('/root/.')
   call dein#add('airblade/vim-gitgutter')
   call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('ryanoasis/vim-devicons')
+  call dein#add('jiangmiao/auto-pairs')
+  call dein#add('sheerun/vim-polyglot')
 
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
@@ -52,14 +54,26 @@ endif
 "----------------------------------------------------------
 " neocomplete・neosnippet
 "----------------------------------------------------------
+" Vim起動時にneocompleteを有効にする
 let g:neocomplcache_enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplcache_min_keyword_length = 3
-let g:neocomplete#enable_auto_delimiter = 1
-let g:neocomplete#auto_completion_start_length = 1
-imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
+" smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
+let g:neocomplete#enable_smart_case = 1
+
+" 3文字以上の単語に対して補完を有効にする
+let g:neocomplcache_min_keyword_length = 3
+
+" 区切り文字まで補完する
+let g:neocomplete#enable_auto_delimiter = 1
+
+" 1文字目の入力から補完のポップアップを表示
+let g:neocomplete#auto_completion_start_length = 1
+
+" エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定
+imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+
+" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ
+imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
 
 "----------------------------------------------------------
@@ -78,7 +92,6 @@ let g:airline#extensions#ale#error_symbol = '? '
 let g:airline#extensions#ale#warning_symbol = '? '
 let g:airline#extensions#default#section_truncate_width = {}
 let g:airline#extensions#whitespace#enabled = 1
-
 
 
 "----------------------------------------------------------
@@ -110,12 +123,10 @@ call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 
 
-
 "----------------------------------------------------------
 " vim-table-mode
 "----------------------------------------------------------
 let g:table_mode_corner = '|'
-
 
 
 "----------------------------------------------------------
@@ -139,6 +150,8 @@ set hidden
 " シンタックスを有効にする
 syntax on
 colorscheme molokai
+"colorscheme koehler
+"set background=dark
 
 " ターミナル接続を高速化
 set ttyfast
@@ -223,7 +236,6 @@ set nostartofline
 set backspace=indent,eol,start
 
 
-
 "----------------------------------------------------------
 " Keymap
 "----------------------------------------------------------
@@ -233,3 +245,11 @@ inoremap <c-j> <down>
 inoremap <c-k> <up>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
+
+" 折り返し時に表示行単位での移動できるようにする
+nnoremap j gj
+nnoremap k gk
+
+" ESC連打でハイライト解除
+nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
