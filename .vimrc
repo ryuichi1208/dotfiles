@@ -1,6 +1,3 @@
-set encoding=utf-8
-scriptencoding utf-8
-
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
@@ -20,6 +17,7 @@ if dein#load_state('/root/.')
   call dein#add('Shougo/neocomplcache')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('scrooloose/nerdtree')
+  call dein#add('jistr/vim-nerdtree-tabs')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('w0rp/ale')
   call dein#add('vim-airline/vim-airline')
@@ -27,6 +25,9 @@ if dein#load_state('/root/.')
   call dein#add('tpope/vim-commentary')
   call dein#add('majutsushi/tagbar')
   call dein#add('tpope/vim-fugitive')
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('dhruvasagar/vim-table-mode')
+  call dein#add('ryanoasis/vim-devicons')
 
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
@@ -49,28 +50,80 @@ endif
 "End dein Scripts-------------------------
 
 "----------------------------------------------------------
-" neocomplete・neosnippetの設定
+" neocomplete・neosnippet
 "----------------------------------------------------------
-" Vim起動時にneocompleteを有効にする
 let g:neocomplcache_enable_at_startup = 1
-" smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
 let g:neocomplete#enable_smart_case = 1
-" 3文字以上の単語に対して補完を有効にする
 let g:neocomplcache_min_keyword_length = 3
-" 区切り文字まで補完する
 let g:neocomplete#enable_auto_delimiter = 1
-" 1文字目の入力から補完のポップアップを表示
 let g:neocomplete#auto_completion_start_length = 1
-
-" エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定・・・・・・②
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
-" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ・・・・・・③
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
-"Ctrl + eでNERDTREEを操作
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
+
+
+"----------------------------------------------------------
+" vim-airline
+"----------------------------------------------------------
+set laststatus=2
+let g:airline_theme = 'wombat'
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#wordcount#enabled = 0
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+let g:airline_section_c = '%t'
+let g:airline_section_x = '%{&filetype}'
+let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+let g:airline#extensions#ale#error_symbol = '? '
+let g:airline#extensions#ale#warning_symbol = '? '
+let g:airline#extensions#default#section_truncate_width = {}
+let g:airline#extensions#whitespace#enabled = 1
+
+
+
+"----------------------------------------------------------
+" NERDTree
+"----------------------------------------------------------
+let g:NERDTreeShowBookmarks=1
+let NERDTreeShowHidden = 1
+let g:nerdtree_tabs_open_on_console_startup=1
+
+nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
+autocmd vimenter * NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
+ exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
+ exec 'autocmd filetype nerdtree syn match ' . a:extension .' #^\s\+.*'. a:extension .'$#'
+endfunction
+call NERDTreeHighlightFile('py',     'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('md',     'blue',    'none', '#3366FF', '#151515')
+call NERDTreeHighlightFile('yml',    'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('config', 'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('conf',   'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('json',   'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('html',   'yellow',  'none', 'yellow',  '#151515')
+call NERDTreeHighlightFile('styl',   'cyan',    'none', 'cyan',    '#151515')
+call NERDTreeHighlightFile('css',    'cyan',    'none', 'cyan',    '#151515')
+call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     '#151515')
+call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
+call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
+
+
+
+"----------------------------------------------------------
+" vim-table-mode
+"----------------------------------------------------------
+let g:table_mode_corner = '|'
+
+
+
+"----------------------------------------------------------
+" basic
+"----------------------------------------------------------
 " 改行コードの自動判別
 set fileformat=unix
+
 " □や○文字が崩れる問題を解決
 set ambiwidth=double
 
@@ -169,6 +222,11 @@ set nostartofline
 
 set backspace=indent,eol,start
 
+
+
+"----------------------------------------------------------
+" Keymap
+"----------------------------------------------------------
 "インサートモードでも移動
 inoremap <c-d> <Del>
 inoremap <c-j> <down>
