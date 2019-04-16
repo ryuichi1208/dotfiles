@@ -1,3 +1,6 @@
+set encoding=utf-8
+scriptencoding utf-8
+
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
@@ -13,15 +16,21 @@ if dein#load_state('/root/.')
   " Let dein manage dein
   " Required:
   call dein#add('/root/./repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here like this:
-  "call dein#add('Shougo/neosnippet.vim')
-  "call dein#add('Shougo/neosnippet-snippets')
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neocomplcache')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('scrooloose/nerdtree')
   call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('w0rp/ale')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('tpope/vim-commentary')
+  call dein#add('majutsushi/tagbar')
+  call dein#add('tpope/vim-fugitive')
+
+  " Add or remove your plugins here like this:
+  "call dein#add('Shougo/neosnippet.vim')
+  "call dein#add('Shougo/neosnippet-snippets')
 
   " Required:
   call dein#end()
@@ -38,6 +47,7 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
+
 "----------------------------------------------------------
 " neocomplete・neosnippetの設定
 "----------------------------------------------------------
@@ -56,18 +66,14 @@ let g:neocomplete#auto_completion_start_length = 1
 imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
 " タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ・・・・・・③
 imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
+"Ctrl + eでNERDTREEを操作
+nnoremap <silent><C-e> :NERDTreeToggle<CR>
 
-" ========== Character code =======
-" 文字コードをUFT-8に設定
-set fenc=utf-8
-set encoding=utf-8
-scriptencoding utf-8
 " 改行コードの自動判別
 set fileformat=unix
 " □や○文字が崩れる問題を解決
 set ambiwidth=double
 
-" ========== Base Config ==========
 " バックアップファイルを作らない
 set nobackup
 
@@ -161,80 +167,11 @@ set history=500
 " 移動コマンドを使ったとき、行頭に移動しない
 set nostartofline
 
-" ========== Key Map ==============
-
-" 入力モード中に素早くJJと入力した場合はESCとみなす
-inoremap jj <Esc>
-
-" Escの2回押しでハイライト消去
-nnoremap <Esc><Esc> :nohlsearch<CR><ESC>
-
-" 折り返しでも行単位で移動
-nnoremap j gj
-nnoremap k gk
-vnoremap j gj
-vnoremap k gk
+set backspace=indent,eol,start
 
 "インサートモードでも移動
-inoremap <c-d> <delete>
+inoremap <c-d> <Del>
 inoremap <c-j> <down>
 inoremap <c-k> <up>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
-
-" Shift + 矢印でウィンドウサイズを変更
-nnoremap <S-Left>  <C-w><<CR>
-nnoremap <S-Right> <C-w><CR>
-nnoremap <S-Up>    <C-w>-<CR>
-nnoremap <S-Down>  <C-w>+<CR>
-
-" タブ関連バインド
-"nnoremap <silent> [TABCMD]f :<c-u>tabfirst<cr>
-"nnoremap <silent> [TABCMD]l :<c-u>tablast<cr>
-"nnoremap <silent> [TABCMD]n :<c-u>tabnext<cr>
-"nnoremap <silent> [TABCMD]N :<c-u>tabNext<cr>
-"nnoremap <silent> [TABCMD]p :<c-u>tabprevious<cr>
-"nnoremap <silent> [TABCMD]e :<c-u>tabedit<cr>
-"nnoremap <silent> [TABCMD]c :<c-u>tabclose<cr>
-"nnoremap <silent> [TABCMD]o :<c-u>tabonly<cr>
-"nnoremap <silent> [TABCMD]s :<c-u>tabs<cr>
-
-" NERDTree用バインド
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
-
-" w!! でスーパーユーザーとして保存
-cmap w!! w !sudo tee > /dev/null %
-
-" カーソルラインの位置を保存する
-if has("autocmd")
-    autocmd BufReadPost *
-    \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-    \   exe "normal! g'\"" |
-    \ endif
-endif
-
-" 挿入モードでクリップボードからペーストする時に自動でインデントさせないようにする
-if &term =~ "xterm"
-    let &t_SI .= "\e[?2004h"
-    let &t_EI .= "\e[?2004l"
-    let &pastetoggle = "\e[201~"
-
-    function XTermPasteBegin(ret)
-        set paste
-        return a:ret
-    endfunction
-
-    inoremap <special> <expr> <Esc>[200~ XTermPasteBegin("")
-endif
-
-" マウスでカーソル移動とスクロール
-"if has('mouse')
-"    set mouse=a
-"    if has('mouse_sgr')
-"        set ttymouse=sgr
-"    elseif v:version > 703 || v:version is 703 && has('patch632')
-"        set ttymouse=sgr
-"    else
-"        set ttymouse=xterm2
-"    endif
-"endif
