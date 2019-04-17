@@ -237,6 +237,12 @@ set nostartofline
 set backspace=indent,eol,start
 
 
+" 前回のカーソル位置へ戻る
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
 "----------------------------------------------------------
 " Keymap
 "----------------------------------------------------------
