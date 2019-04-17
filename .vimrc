@@ -30,6 +30,7 @@ if dein#load_state('/root/.')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('sheerun/vim-polyglot')
+  call dein#add('reireias/vim-cheatsheet')
 
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
@@ -95,15 +96,15 @@ let g:airline#extensions#whitespace#enabled = 1
 
 
 "----------------------------------------------------------
-" NERDTree
+" NEDTree
 "----------------------------------------------------------
-let g:NERDTreeShowBookmarks=1
-let NERDTreeShowHidden = 1
-let g:nerdtree_tabs_open_on_console_startup=1
+"let g:NERDTreeShowBookmarks=1
+"let NERDTreeShowHidden = 1
+"let g:nerdtree_tabs_open_on_console_startup=1
 
 nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
-autocmd vimenter * NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd vimenter * NERDTree
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -127,7 +128,7 @@ call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 " vim-table-mode
 "----------------------------------------------------------
 let g:table_mode_corner = '|'
-
+let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 
 "----------------------------------------------------------
 " basic
@@ -252,4 +253,3 @@ nnoremap k gk
 
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
-
