@@ -130,6 +130,15 @@ call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 let g:table_mode_corner = '|'
 let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 
+
+"----------------------------------------------------------
+" Gitgutter 
+"----------------------------------------------------------
+set updatetime=250
+let g:gitgutter_override_sign_column_highlight = 0
+highlight GitGutterAdd ctermfg=blue ctermbg=brown
+
+
 "----------------------------------------------------------
 " basic
 "----------------------------------------------------------
