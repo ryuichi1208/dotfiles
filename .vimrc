@@ -31,6 +31,8 @@ if dein#load_state('/root/.')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('sheerun/vim-polyglot')
   call dein#add('reireias/vim-cheatsheet')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('c9s/perlomni.vim')
 
   " Add or remove your plugins here like this:
   "call dein#add('Shougo/neosnippet.vim')
@@ -132,7 +134,7 @@ let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 
 
 "----------------------------------------------------------
-" Gitgutter 
+" Gitgutter
 "----------------------------------------------------------
 set updatetime=250
 let g:gitgutter_override_sign_column_highlight = 0
@@ -268,3 +270,6 @@ nnoremap k gk
 
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+
+" "\ + r"でスクリプト実行
+nmap <Leader>r <plug>(quickrun)
