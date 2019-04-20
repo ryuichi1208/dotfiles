@@ -267,5 +267,5 @@ nnoremap k gk
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
-" "\ + r"でスクリプト実行
+" "\ + r"でoerlスクリプト実行
 nmap <Leader>r <plug>(quickrun)
