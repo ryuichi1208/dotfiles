@@ -117,43 +117,43 @@ ulimit -c 0
 # %*    時間(hh:flag_mm:ss)
 # %T    時間(hh:mm)
 # %t    時間(hh:mm(am/pm))
-PROMPT='%F{cyan}%n@%m%f:%~# '
+#PROMPT='%F{cyan}%n@%m%f:%~# '
+
+#autoload -Uz vcs_info
+#setopt prompt_subst
+#zstyle ':vcs_info:*' formats "%F{green}[%r@%b][~/%S]"
+#zstyle ':vcs_info:*' actionformats '[%b|%a]'
+#precmd () { vcs_info }
+#RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
 autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:*' formats "%F{green}[%b %S](%s)"
+zstyle ':vcs_info:*' formats '[%r@%b]'
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+precmd () {
+  # 1行あける
+  print
+  # カレントディレクトリ
+  local left=' %{\e[38;5;2m%}(%~)%{\e[m%}'
+  # バージョン管理されてた場合、ブランチ名
+  vcs_info
+  local right="%{\e[38;5;32m%}${vcs_info_msg_0_}%{\e[m%}"
+  # スペースの長さを計算
+  # テキストを装飾する場合、エスケープシーケンスをカウントしないようにします
+  local invisible='%([BSUbfksu]|([FK]|){*})'
+  local leftwidth=${#${(S%%)left//$~invisible/}}
+  local rightwidth=${#${(S%%)right//$~invisible/}}
+  local padwidth=$(($COLUMNS - ($leftwidth + $rightwidth) % $COLUMNS))
 
-#autoload -Uz add-zsh-hook
-#autoload -Uz colors
-#colors
-#autoload -Uz vcs_info
-
-#zstyle ':vcs_info:*' enable git svn hg bzr
-#zstyle ':vcs_info:*' formats '(%s)-[%b]'
-#zstyle ':vcs_info:*' actionformats '(%s)-[%b|%a]'
-#zstyle ':vcs_info:(svn|bzr):*' branchformat '%b:r%r'
-#zstyle ':vcs_info:bzr:*' use-simple true
-
-#autoload -Uz is-at-least
-#if is-at-least 4.3.10; then
-#  # この check-for-changes が今回の設定するところ
-#  zstyle ':vcs_info:git:*' check-for-changes true
-#  zstyle ':vcs_info:git:*' stagedstr "+"    # 適当な文字列に変更する
-#  zstyle ':vcs_info:git:*' unstagedstr "-"  # 適当の文字列に変更する
-#  zstyle ':vcs_info:git:*' formats '(%s)-[%b] %c%u'
-#  zstyle ':vcs_info:git:*' actionformats '(%s)-[%b|%a] %c%u'
-#fi
-
-#function _update_vcs_info_msg() {
-#    psvar=()
-#    LANG=en_US.UTF-8 vcs_info
-#    [[ -n "$vcs_info_msg_0_" ]] && psvar[1]="$vcs_info_msg_0_"
-#}
-#add-zsh-hook precmd _update_vcs_info_msg
-#RPROMPT="%1(v|%F{green}%1v%f|)"
+  print -P $left${(r:$padwidth:: :)}$right
+}
+# ユーザ名@ホスト名
+PROMPT='%n@%m %# '
+# 現在時刻
+RPROMPT=$'%{\e[38;5;251m%}%D{%b %d}, %*%{\e[m%}'
+TMOUT=1
+TRAPALRM() {
+  zle reset-prompt
+}
 
 # -----------------------------
 # Completion
@@ -250,45 +250,12 @@ alias -g H='| head'
 alias -g G='| grep'
 alias -g GI='| grep -ri'
 
-# ls
+# エイリアス
 alias lst='ls -ltr --color=auto'
 alias ls='ls --color=auto'
 alias la='ls -la --color=auto'
 alias ll='ls -l --color=auto'
 
-# tmux
-alias tma='tmux attach'
-alias tml='tmux list-window'
-
-# docker / k8s
-alias dki="docker run -i -t -P"
-alias dex="docker exec -i -t"
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
-alias kc='kubectl'
-alias kclf='kubectl logs --tail=200  -f'
-alias kcgs='kubectl get service -o wide'
-alias kcgd='kubectl get deployment -o wide'
-alias kcgp='kubectl get pod -o wide'
-alias kcgn='kubectl get node -o wide'
-
-# git
-alias g='git'
-alias ga='git add'
-alias gd='git diff'
-alias gs='git status'
-alias gp='git push'
-alias gb='git branch'
-alias gst='git status'
-alias gco='git checkout'
-alias gf='git fetch'
-alias gc='git commit'
-
-# apt
-alias agi='sudo apt install'
-alias agr='sudo apt remove'
-alias agu='sudo apt update'
-
-# その他
 alias du="du -Th"
 alias df="df -Th"
 alias su="su -l"
@@ -302,6 +269,13 @@ alias mkdir='mkdir -p'
 alias ..='c ../'
 alias back='pushd'
 alias diff='diff -U1'
+
+alias tma='tmux attach'
+alias tml='tmux list-window'
+
+alias dki="docker run -i -t -P"
+alias dex="docker exec -i -t"
+alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
 
 # -----------------------------
 # Plugin
