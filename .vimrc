@@ -12,27 +12,31 @@ if dein#load_state('/root/.')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/root/./repos/github.com/Shougo/dein.vim')
-  call dein#add('airblade/vim-gitgutter')
-  call dein#add('c9s/perlomni.vim')
-  call dein#add('dhruvasagar/vim-table-mode')
-  call dein#add('editorconfig/editorconfig-vim')
-  call dein#add('jistr/vim-nerdtree-tabs')
-  call dein#add('jiangmiao/auto-pairs')
-  call dein#add('majutsushi/tagbar')
-  call dein#add('reireias/vim-cheatsheet')
-  call dein#add('ryanoasis/vim-devicons')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('sheerun/vim-polyglot')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neocomplcache')
-  call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('thinca/vim-quickrun')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('tpope/vim-commentary')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('w0rp/ale')
+  call dein#add('/root/./repos/github.com/Shougo/dein.vim')     "
+  call dein#add('airblade/vim-gitgutter')                       " 差分表示
+  call dein#add('c9s/perlomni.vim')                             " perl補完強化
+  call dein#add('chase/vim-ansible-yaml')                       "
+  call dein#add('davidhalter/jedi-vim')                         " Python補完強化
+  call dein#add('dhruvasagar/vim-table-mode')                   "
+  call dein#add('editorconfig/editorconfig-vim')                "
+  call dein#add('jistr/vim-nerdtree-tabs')                      "
+  call dein#add('jiangmiao/auto-pairs')                         " 対応する括弧を自動入力
+  "call dein#add('kevinw/pyflakes-vim')                         " python構文チェック
+  call dein#add('majutsushi/tagbar')                            "
+  call dein#add('reireias/vim-cheatsheet')                      " vim用チートシート
+  call dein#add('ryanoasis/vim-devicons')                       "
+  call dein#add('scrooloose/nerdtree')                          "
+  call dein#add('sheerun/vim-polyglot')                         "
+  call dein#add('Shougo/neocomplcache')                         " 入力補完機能
+  call dein#add('Shougo/neosnippet')                            "
+  call dein#add('Shougo/neosnippet-snippets')                   "
+  call dein#add('thinca/vim-quickrun')                          " バッファ上にあるコードを実行
+  call dein#add('tpope/vim-fugitive')                           "
+  call dein#add('tpope/vim-commentary')                         "
+  call dein#add('vim-airline/vim-airline')                      " ステータスバーをカスタム
+  call dein#add('vim-airline/vim-airline-themes')               " 上記のテーマ
+  call dein#add('vim-jp/vimdoc-ja')                             "
+  call dein#add('w0rp/ale')                                     "
 
   " Required:
   call dein#end()
@@ -78,20 +82,20 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 "----------------------------------------------------------
 " vim-airline
 "----------------------------------------------------------
-set laststatus=2
-let g:airline_theme = 'wombat'
-let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#wordcount#enabled = 0
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-let g:airline_section_c = '%t'
-let g:airline_section_x = '%{&filetype}'
-let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
-let g:airline#extensions#ale#error_symbol = '? '
-let g:airline#extensions#ale#warning_symbol = '? '
-let g:airline#extensions#default#section_truncate_width = {}
-let g:airline#extensions#whitespace#enabled = 1
-
+"set laststatus=2
+"let g:airline_theme = 'wombat'
+"let g:airline#extensions#branch#enabled = 1
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#wordcount#enabled = 0
+"let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
+"let g:airline_section_c = '%t'
+"let g:airline_section_x = '%{&filetype}'
+"let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
+"let g:airline#extensions#ale#error_symbol = '? '
+"let g:airline#extensions#ale#warning_symbol = '? '
+"let g:airline#extensions#default#section_truncate_width = {}
+"let g:airline#extensions#whitespace#enabled = 1
+let g:airline_theme = 'molokai'
 
 "----------------------------------------------------------
 " NEDTree
@@ -201,10 +205,10 @@ set completeopt=menuone
 set showmatch
 
 " 対応括弧の表示秒数を3秒にする
-"set matchtime=3
+set matchtime=5
 
 " ステータスラインを常に表示
-set laststatus=2
+"set laststatus=2
 
 " 検索時に最後まで行ったら最初に戻る
 set wrapscan
@@ -250,6 +254,9 @@ augroup vimrcEx
   \ exe "normal g`\"" | endif
 augroup END
 
+" 対応括弧に'<'と'>'のペアを追加
+set matchpairs& matchpairs+=<:>
+
 "----------------------------------------------------------
 " Keymap
 "----------------------------------------------------------
@@ -267,5 +274,33 @@ nnoremap k gk
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
+" 入力モード中に素早くjjと入力した場合はESCとみなす
+inoremap jj <Esc>
+
+" カーソル下の単語を * で検索
+vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
+
 " "\ + r"でoerlスクリプト実行
 nmap <Leader>r <plug>(quickrun)
+
+" 新規タブ
+nnoremap st :<C-u>tabnew<CR>
+
+" 垂直分割
+nnoremap sv :<C-u>vs<CR>
+
+" 水平分割
+nnoremap ss :<C-u>sp<CR>
+
+" 分割移動
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
+
+" TABにて対応ペアにジャンプ
+nnoremap <Tab> %
+vnoremap <Tab> %
+
+" w!! でスーパーユーザーとして保存
+cmap w!! w !sudo tee > /dev/null %
