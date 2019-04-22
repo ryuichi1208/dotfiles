@@ -97,6 +97,7 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 "let g:airline#extensions#whitespace#enabled = 1
 let g:airline_theme = 'molokai'
 
+
 "----------------------------------------------------------
 " NEDTree
 "----------------------------------------------------------
@@ -130,7 +131,6 @@ call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 " vim-table-mode
 "----------------------------------------------------------
 let g:table_mode_corner = '|'
-let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 
 
 "----------------------------------------------------------
@@ -140,6 +140,37 @@ set updatetime=250
 let g:gitgutter_override_sign_column_highlight = 0
 highlight GitGutterAdd ctermfg=blue ctermbg=brown
 
+
+"----------------------------------------------------------
+" vim-cheatsheet
+"----------------------------------------------------------
+let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
+
+
+"----------------------------------------------------------
+" quickrun.vim
+"----------------------------------------------------------
+nmap <Leader>r <plug>(quickrun)
+let g:quickrun_config={'*': {'split': ''}}
+set splitbelow
+
+
+"----------------------------------------------------------
+" ale
+"----------------------------------------------------------
+" 保存時のみ実行する
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+" 表示に関する設定
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '!!'
+let g:ale_sign_warning = '=='
+" エラー間移動
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
+let g:ale_open_list = 1
+" エラーと警告がなくなっても開いたままにする
+let g:ale_keep_list_window_open = 1
 
 "----------------------------------------------------------
 " basic
@@ -279,9 +310,6 @@ inoremap jj <Esc>
 
 " カーソル下の単語を * で検索
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
-
-" "\ + r"でoerlスクリプト実行
-nmap <Leader>r <plug>(quickrun)
 
 " 新規タブ
 nnoremap st :<C-u>tabnew<CR>
