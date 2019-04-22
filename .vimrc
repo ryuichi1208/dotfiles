@@ -25,6 +25,7 @@ if dein#load_state('/root/.')
   call dein#add('majutsushi/tagbar')                            "
   call dein#add('reireias/vim-cheatsheet')                      " vim用チートシート
   call dein#add('ryanoasis/vim-devicons')                       "
+  "call dein#add('prettier/vim-prettier')                        " コード自動成形
   call dein#add('scrooloose/nerdtree')                          "
   call dein#add('sheerun/vim-polyglot')                         "
   call dein#add('Shougo/neocomplcache')                         " 入力補完機能
@@ -171,6 +172,13 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_open_list = 1
 " エラーと警告がなくなっても開いたままにする
 let g:ale_keep_list_window_open = 1
+
+"----------------------------------------------------------
+" prettier/vim-prettier
+"----------------------------------------------------------
+" let g:ale_fix_on_save = 1
+" let g:ale_javascript_prettier_use_local_config = 1
+
 
 "----------------------------------------------------------
 " basic
