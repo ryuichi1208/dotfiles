@@ -16,7 +16,7 @@ if dein#load_state('/root/.')
   call dein#add('airblade/vim-gitgutter')                       " 差分表示
   call dein#add('c9s/perlomni.vim')                             " perl補完強化
   call dein#add('chase/vim-ansible-yaml')                       "
-  call dein#add('davidhalter/jedi-vim')                         " Python補完強化
+  "call dein#add('davidhalter/jedi-vim')                         " Python補完強化
   call dein#add('dhruvasagar/vim-table-mode')                   "
   call dein#add('editorconfig/editorconfig-vim')                "
   call dein#add('jistr/vim-nerdtree-tabs')                      "
