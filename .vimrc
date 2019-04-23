@@ -12,34 +12,6 @@ if dein#load_state('/root/.')
 
   " Let dein manage dein
   " Required:
-<<<<<<< HEAD
-  call dein#add('/root/./repos/github.com/Shougo/dein.vim')	" 
-  call dein#add('airblade/vim-gitgutter')			" 差分表示
-  call dein#add('c9s/perlomni.vim')				" perl補完強化
-  call dein#add('chase/vim-ansible-yaml')			" 
-  "call dein#add('davidhalter/jedi-vim') 			" Python補完強化	
-  call dein#add('dhruvasagar/vim-table-mode')			" 
-  call dein#add('editorconfig/editorconfig-vim')		" 
-  call dein#add('jistr/vim-nerdtree-tabs')			" 
-  call dein#add('jiangmiao/auto-pairs')				" 対応する括弧を自動入力 
-  "call dein#add('kevinw/pyflakes-vim')				" python構文チェック
-  call dein#add('majutsushi/tagbar')				" 
-  call dein#add('reireias/vim-cheatsheet')			" vim用チートシート 
-  call dein#add('ryanoasis/vim-devicons')			" 
-  call dein#add('prettier/vim-prettier')                        " コード自動成形
-  call dein#add('scrooloose/nerdtree')				" 
-  call dein#add('sheerun/vim-polyglot')				" 
-  call dein#add('Shougo/neocomplcache')				" 入力補完機能
-  call dein#add('Shougo/neosnippet')				" 
-  call dein#add('Shougo/neosnippet-snippets')			" 
-  call dein#add('thinca/vim-quickrun')				" バッファ上にあるコードを実行
-  call dein#add('tpope/vim-fugitive')				" 
-  call dein#add('tpope/vim-commentary')				" 
-  call dein#add('vim-airline/vim-airline')			" ステータスバーをカスタム
-  call dein#add('vim-airline/vim-airline-themes')		" 上記のテーマ
-  call dein#add('vim-jp/vimdoc-ja')				" 
-  call dein#add('w0rp/ale')					" 
-=======
   call dein#add('/root/./repos/github.com/Shougo/dein.vim')     "
   call dein#add('airblade/vim-gitgutter')                       " 差分表示
   call dein#add('c9s/perlomni.vim')                             " perl補完強化
@@ -66,7 +38,6 @@ if dein#load_state('/root/.')
   call dein#add('vim-airline/vim-airline-themes')               " 上記のテーマ
   call dein#add('vim-jp/vimdoc-ja')                             "
   call dein#add('w0rp/ale')                                     "
->>>>>>> 824a5cd4cbbd13d0b9caf71bc519de07a2ecc316
 
   " Required:
   call dein#end()
@@ -205,18 +176,13 @@ let g:ale_keep_list_window_open = 1
 "----------------------------------------------------------
 " prettier/vim-prettier
 "----------------------------------------------------------
-<<<<<<< HEAD
 let g:ale_fixers = {
       \ 'javascript': ['prettier'],
       \ 'python': ['prettier']
       \ }
 
-let g:ale_fix_on_save = 1
-let g:ale_javascript_prettier_use_local_config = 1
-=======
-" let g:ale_fix_on_save = 1
-" let g:ale_javascript_prettier_use_local_config = 1
->>>>>>> 824a5cd4cbbd13d0b9caf71bc519de07a2ecc316
+"let g:ale_fix_on_save = 1
+"let g:ale_javascript_prettier_use_local_config = 1
 
 
 "----------------------------------------------------------

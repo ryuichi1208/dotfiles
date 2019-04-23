@@ -132,18 +132,6 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-#autoload -Uz add-zsh-hook
-#autoload -Uz colors
-#colors
-#PROMPT='%F{cyan}%n@%m%f:%~# '
-
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:*' formats "%F{green}[%r@%b][~/%S]"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
-
 #autoload -Uz vcs_info
 #zstyle ':vcs_info:*' formats '[%r@%b]'
 #zstyle ':vcs_info:*' actionformats '[%b|%a]'
