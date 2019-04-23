@@ -117,11 +117,17 @@ ulimit -c 0
 # %*    時間(hh:flag_mm:ss)
 # %T    時間(hh:mm)
 # %t    時間(hh:mm(am/pm))
-PROMPT='%F{cyan}%n@%m%f:%~# '
+
+#PROMPT='%F{cyan}%n@%m%f:%~# '
+PROMPT="
+ %{${fg[yellow]}%}%~%{${reset_color}%} 
+%F{cyan}%n@%m# "
+
+PROMPT2='[%n]> ' 
 
 autoload -Uz vcs_info
 setopt prompt_subst
-zstyle ':vcs_info:*' formats "%F{green}[%b %S](%s)"
+zstyle ':vcs_info:*' formats "%F{green}[%r@%b][%S]"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
