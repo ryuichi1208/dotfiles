@@ -50,7 +50,7 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 
 # ビープ音を鳴らさないようにする
-#setopt no_beep
+setopt no_beep
 
 # カッコの対応などを自動的に補完する
 setopt auto_param_keys
@@ -119,11 +119,6 @@ ulimit -c 0
 # %t    時間(hh:mm(am/pm))
 
 #PROMPT='%F{cyan}%n@%m%f:%~# '
-PROMPT="
- %{${fg[yellow]}%}%~%{${reset_color}%} 
-%F{cyan}%n@%m# "
-
-PROMPT2='[%n]> ' 
 
 autoload -Uz vcs_info
 setopt prompt_subst
@@ -132,34 +127,10 @@ zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
-#autoload -Uz vcs_info
-#zstyle ':vcs_info:*' formats '[%r@%b]'
-#zstyle ':vcs_info:*' actionformats '[%b|%a]'
-#precmd () {
-#  # 1行あける
-#  print
-#  # カレントディレクトリ
-#  local left=' %{\e[38;5;2m%}(%~)%{\e[m%}'
-#  # バージョン管理されてた場合、ブランチ名
-#  vcs_info
-#  local right="%{\e[38;5;32m%}${vcs_info_msg_0_}%{\e[m%}"
-#  # スペースの長さを計算
-  # テキストを装飾する場合、エスケープシーケンスをカウントしないようにします
-#  local invisible='%([BSUbfksu]|([FK]|){*})'
-#  local leftwidth=${#${(S%%)left//$~invisible/}}
-#  local rightwidth=${#${(S%%)right//$~invisible/}}
-#  local padwidth=$(($COLUMNS - ($leftwidth + $rightwidth) % $COLUMNS))
+PROMPT="
+%{%D:%*${fg[yellow]}%} %~%{${reset_color}%}
+%F{cyan}%n@%m# "
 
-#  print -P $left${(r:$padwidth:: :)}$right
-#}
-# ユーザ名@ホスト名
-#PROMPT='%n@%m %# '
-# 現在時刻
-#RPROMPT=$'%{\e[38;5;251m%}%D{%b %d}, %*%{\e[m%}'
-#TMOUT=1
-#TRAPALRM() {
-#  zle reset-prompt
-#}
 
 # -----------------------------
 # Completion
@@ -168,7 +139,7 @@ RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 autoload -Uz compinit ; compinit
 
 # 単語の入力途中でもTab補完を有効化
-#setopt complete_in_word
+setopt complete_in_word
 
 # コマンドミスを修正
 setopt correct
