@@ -16,7 +16,7 @@ if dein#load_state('/root/.')
   call dein#add('airblade/vim-gitgutter')                       " 差分表示
   call dein#add('c9s/perlomni.vim')                             " perl補完強化
   call dein#add('chase/vim-ansible-yaml')                       "
-  call dein#add('davidhalter/jedi-vim')                         " Python補完強化
+  "call dein#add('davidhalter/jedi-vim')                         " Python補完強化
   call dein#add('dhruvasagar/vim-table-mode')                   "
   call dein#add('editorconfig/editorconfig-vim')                "
   call dein#add('jistr/vim-nerdtree-tabs')                      "
@@ -176,8 +176,13 @@ let g:ale_keep_list_window_open = 1
 "----------------------------------------------------------
 " prettier/vim-prettier
 "----------------------------------------------------------
-" let g:ale_fix_on_save = 1
-" let g:ale_javascript_prettier_use_local_config = 1
+let g:ale_fixers = {
+      \ 'javascript': ['prettier'],
+      \ 'python': ['prettier']
+      \ }
+
+"let g:ale_fix_on_save = 1
+"let g:ale_javascript_prettier_use_local_config = 1
 
 
 "----------------------------------------------------------
