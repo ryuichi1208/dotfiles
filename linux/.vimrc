@@ -1,10 +1,30 @@
-"dein Scripts-----------------------------
+" release autogroup in MyAutoCmd
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
+"----------------------------------------------------------
+" Plugin dein.vim
+"----------------------------------------------------------
+" プラグインが実際にインストールされるディレクトリ
+let s:dein_dir = expand('/.cache/dein')
+" dein.vim 本体
+let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+
+" dein.vim がなければ github から落としてくる
+if &runtimepath !~# '/dein.vim'
+  if !isdirectory(s:dein_repo_dir)
+    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+  endif
+  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
+endif
+
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=/root/./repos/github.com/Shougo/dein.vim
+set runtimepath+=~/repos/github.com/Shougo/dein.vim
 
 " Required:
 if dein#load_state('/root/.')
@@ -12,7 +32,6 @@ if dein#load_state('/root/.')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/root/./repos/github.com/Shougo/dein.vim')     "
   call dein#add('airblade/vim-gitgutter')                       " 差分表示
   call dein#add('c9s/perlomni.vim')                             " perl補完強化
   call dein#add('chase/vim-ansible-yaml')                       "
@@ -53,49 +72,47 @@ if dein#check_install()
   call dein#install()
 endif
 
-"End dein Scripts-------------------------
 
 "----------------------------------------------------------
 " neocomplete・neosnippet
 "----------------------------------------------------------
 " Vim起動時にneocompleteを有効にする
 let g:neocomplcache_enable_at_startup = 1
-
 " smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
 let g:neocomplete#enable_smart_case = 1
-
 " 3文字以上の単語に対して補完を有効にする
 let g:neocomplcache_min_keyword_length = 3
-
 " 区切り文字まで補完する
 let g:neocomplete#enable_auto_delimiter = 1
-
 " 1文字目の入力から補完のポップアップを表示
 let g:neocomplete#auto_completion_start_length = 1
+" Plugin key-mappings.
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+"set snippet file dir
+let g:neosnippet#snippets_directory='~/.vim/snippets'
 
-" エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定
-imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-k>     <Plug>(neosnippet_expand_target)
+" SuperTab like snippets behavior.
+"Note: It must be "imap" and "smap".  It uses <Plug> mappings.
+"imap <expr><TAB>
+" \ pumvisible() ? "\<C-n>" :
+" \ neosnippet#expandable_or_jumpable() ?
+" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ
-imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
-
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
 
 "----------------------------------------------------------
 " vim-airline
 "----------------------------------------------------------
-"set laststatus=2
-"let g:airline_theme = 'wombat'
-"let g:airline#extensions#branch#enabled = 1
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#wordcount#enabled = 0
-"let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z']]
-"let g:airline_section_c = '%t'
-"let g:airline_section_x = '%{&filetype}'
-"let g:airline_section_z = '%3l:%2v %{airline#extensions#ale#get_warning()} %{airline#extensions#ale#get_error()}'
-"let g:airline#extensions#ale#error_symbol = '? '
-"let g:airline#extensions#ale#warning_symbol = '? '
-"let g:airline#extensions#default#section_truncate_width = {}
-"let g:airline#extensions#whitespace#enabled = 1
 let g:airline_theme = 'molokai'
 
 
@@ -153,6 +170,9 @@ let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
 "----------------------------------------------------------
 nmap <Leader>r <plug>(quickrun)
 let g:quickrun_config={'*': {'split': ''}}
+let g:quickrun_config._ = {
+\   'outputter/buffer/split': '10'
+\ }
 set splitbelow
 
 
@@ -172,6 +192,7 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 let g:ale_open_list = 1
 " エラーと警告がなくなっても開いたままにする
 let g:ale_keep_list_window_open = 1
+
 
 "----------------------------------------------------------
 " prettier/vim-prettier
@@ -221,6 +242,9 @@ set number
 " 不可視文字を表示
 "set list
 
+" マルチバイト文字があってもカーソルがずれないようにする
+set ambiwidth=double
+
 " インクリメントサーチを有効にする
 set incsearch
 
@@ -237,7 +261,7 @@ set smartcase
 set cursorline
 
 " ファイル更新で自動で読み直す
-"set autoread
+set autoread
 
 " 補完ウィンドウの設定
 set completeopt=menuone
@@ -262,16 +286,19 @@ set title
 
 " カーソルの行数表示
 set cursorline
+"set cursorcolumn
+
+" Show column
+"set colorcolumn=80
 
 " カーソルから相対的な行数を表示する
-""set relativenumber
+"set relativenumber
+
+" 改行コードの自動認識
+set fileformats=unix,mac,dos
 
 " マウス操作を有効にする
-""set mouse=a
-
-" 1 tab == 4 spaces
-""set shiftwidth=4
-""set tabstop=4
+"set mouse=a
 
 " タイムアウト時間設定
 set timeout timeoutlen=1000 ttimeoutlen=50
@@ -284,13 +311,23 @@ set wildmode=full
 set history=500
 
 " バックスペースキーの有効化
-"set backspace=indent,eol,start
+set backspace=indent,eol,start
 
 " 移動コマンドを使ったとき、行頭に移動しない
 set nostartofline
 
-set backspace=indent,eol,start
+" スクリーンベルを無効化
+set t_vb=
+set novisualbell
 
+" 対応括弧に'<'と'>'のペアを追加
+set matchpairs& matchpairs+=<:>
+
+" QuickFixおよびHelpでは q でバッファを閉じる
+autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
+
+" Auto comment out disable
+autocmd Filetype * set formatoptions-=r
 
 " 前回のカーソル位置へ戻る
 augroup vimrcEx
@@ -298,10 +335,46 @@ augroup vimrcEx
   \ exe "normal g`\"" | endif
 augroup END
 
-" 対応括弧に'<'と'>'のペアを追加
-set matchpairs& matchpairs+=<:>
+" INDENT
+augroup fileTypeIndent
+  autocmd!
+  autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType go         setlocal sw=8 sts=8 ts=8 et
+  autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType javascript setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType markdown   setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType perl       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType python     setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType rust       setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType zsh        setlocal sw=2 sts=2 ts=2 et
 
-"----------------------------------------------------------
+  autocmd FileType perl,cgi   compiler perl
+  autocmd FileType python     setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
+  autocmd FileType ruby       compiler ruby
+  autocmd FileType go         setlocal noexpandtab
+augroup END
+
+" 行末のスペースをハイライト
+augroup HighlightTrailingSpaces
+  autocmd!
+  autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
+  autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
+augroup END
+
+" Auto close quickfix
+augroup QfAutoCommands
+  autocmd!
+  autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
+augroup END
+
+" ----------------------------------------------------------
 " Keymap
 "----------------------------------------------------------
 "インサートモードでも移動
@@ -345,3 +418,28 @@ vnoremap <Tab> %
 
 " w!! でスーパーユーザーとして保存
 cmap w!! w !sudo tee > /dev/null %
+
+" 検索後にジャンプした際に検索単語を画面中央に持ってくる
+nnoremap n nzz
+nnoremap N Nzz
+nnoremap * *zz
+nnoremap # #zz
+nnoremap g* g*zz
+nnoremap g# g#zz
+
+" quickfix
+nnoremap [q :cprevious<CR>   " 前へ
+nnoremap ]q :cnext<CR>       " 次へ
+nnoremap [Q :<C-u>cfirst<CR> " 最初へ
+nnoremap ]Q :<C-u>clast<CR>  " 最後へ
+autocmd QuickFixCmdPost *grep* cwindow
+
+" Leader
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>t gt
+nnoremap <Leader>T gT
+nnoremap <Leader>h ^
+nnoremap <Leader>l $
+
