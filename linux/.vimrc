@@ -73,7 +73,10 @@ if dein#check_install()
   call dein#install()
 endif
 
-set laststatus=2
+
+"----------------------------------------------------------
+" Lokaltog/vim-powerline
+"----------------------------------------------------------
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#buffer_idx_mode = 1
@@ -121,8 +124,9 @@ let g:airline_right_alt_sep = '⮃'
 " let g:airline_symbols.readonly = '⭤'
 " let g:airline_symbols.linenr = '⭡'
 
+
 "----------------------------------------------------------
-" neocomplete・neosnippet
+" Shougo/neocomplcache
 "----------------------------------------------------------
 " Vim起動時にneocompleteを有効にする
 let g:neocomplcache_enable_at_startup = 1
@@ -158,6 +162,7 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 
+
 "----------------------------------------------------------
 " vim-airline
 "----------------------------------------------------------
@@ -169,7 +174,7 @@ nmap <C-n> <Plug>AirlineSelectNextTab
 
 
 "----------------------------------------------------------
-" NEDTree
+" jistr/vim-nerdtree-tabs
 "----------------------------------------------------------
 "let g:NERDTreeShowBookmarks=1
 "let NERDTreeShowHidden = 1
