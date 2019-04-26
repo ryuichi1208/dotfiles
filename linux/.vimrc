@@ -41,6 +41,7 @@ if dein#load_state('/root/.')
   call dein#add('jistr/vim-nerdtree-tabs')                      "
   call dein#add('jiangmiao/auto-pairs')                         " 対応する括弧を自動入力
   "call dein#add('kevinw/pyflakes-vim')                         " python構文チェック
+  call dein#add('Lokaltog/vim-powerline')
   call dein#add('majutsushi/tagbar')                            "
   call dein#add('reireias/vim-cheatsheet')                      " vim用チートシート
   call dein#add('ryanoasis/vim-devicons')                       "
@@ -72,6 +73,53 @@ if dein#check_install()
   call dein#install()
 endif
 
+set laststatus=2
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#whitespace#mixed_indent_algo = 1
+let g:airline_theme = 'papercolor'
+
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
+let g:airline_symbols.crypt = '🔒'
+let g:airline_symbols.linenr = '␊'
+let g:airline_symbols.linenr = '␤'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.maxlinenr = '☰'
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '∥'
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = 'Ξ'
+
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_symbols.branch = ''
+let g:airline_symbols.readonly = ''
+let g:airline_symbols.linenr = ''
+
+" old vim-powerline symbols
+" let g:airline_left_sep = '⮀'
+" let g:airline_left_alt_sep = '⮁'
+let g:airline_right_sep = '⮂'
+let g:airline_right_alt_sep = '⮃'
+" let g:airline_symbols.branch = '⭠'
+" let g:airline_symbols.readonly = '⭤'
+" let g:airline_symbols.linenr = '⭡'
 
 "----------------------------------------------------------
 " neocomplete・neosnippet
@@ -114,6 +162,10 @@ endif
 " vim-airline
 "----------------------------------------------------------
 let g:airline_theme = 'molokai'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+nmap <C-p> <Plug>AirlineSelectPrevTab
+nmap <C-n> <Plug>AirlineSelectNextTab
 
 
 "----------------------------------------------------------
@@ -374,6 +426,7 @@ augroup QfAutoCommands
   autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 
+
 " ----------------------------------------------------------
 " Keymap
 "----------------------------------------------------------
@@ -442,4 +495,3 @@ nnoremap <Leader>t gt
 nnoremap <Leader>T gT
 nnoremap <Leader>h ^
 nnoremap <Leader>l $
-
