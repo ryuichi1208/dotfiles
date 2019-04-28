@@ -274,9 +274,11 @@ set ambiwidth=double
 
 " バックアップファイルを作らない
 set nobackup
+"set backupdir=~/.vim/backup/
 
 " スワップファイルを作らない
 set noswapfile
+"set directory=~/.vim/swap/
 
 " バッファが編集中でもその他のファイルを開けるように
 set hidden
@@ -500,3 +502,27 @@ nnoremap <Leader>t gt
 nnoremap <Leader>T gT
 nnoremap <Leader>h ^
 nnoremap <Leader>l $
+
+" 全角を半角へ
+inoremap 　 <Space>
+inoremap ｜ \|
+inoremap ＜ <
+inoremap ＞ >
+inoremap ＊ *
+inoremap ＠ @
+inoremap ％ %
+inoremap ＃ #
+inoremap ” "
+inoremap ’ '
+inoremap ＋ +
+inoremap ～ ~
+inoremap ０ 0
+inoremap １ 1
+inoremap ２ 2
+inoremap ３ 3
+inoremap ４ 4
+inoremap ５ 5
+inoremap ６ 6
+inoremap ７ 7
+inoremap ８ 8
+inoremap ９ 9
