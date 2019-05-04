@@ -382,6 +382,9 @@ set novisualbell
 " 対応括弧に'<'と'>'のペアを追加
 set matchpairs& matchpairs+=<:>
 
+" コメント文の色を変更
+"highlight Comment ctermfg=DarkCyan
+
 " QuickFixおよびHelpでは q でバッファを閉じる
 autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 
@@ -437,6 +440,10 @@ augroup END
 " ----------------------------------------------------------
 " Keymap
 "----------------------------------------------------------
+" inoremap インサートモード
+" vnoremap ビジュアルモード
+" nnoremap normalモード
+
 "インサートモードでも移動
 inoremap <c-d> <Del>
 inoremap <c-j> <down>
@@ -494,15 +501,6 @@ nnoremap [Q :<C-u>cfirst<CR> " 最初へ
 nnoremap ]Q :<C-u>clast<CR>  " 最後へ
 autocmd QuickFixCmdPost *grep* cwindow
 
-" Leader
-let mapleader = "\<Space>"
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>t gt
-nnoremap <Leader>T gT
-nnoremap <Leader>h ^
-nnoremap <Leader>l $
-
 " 全角を半角へ
 inoremap 　 <Space>
 inoremap ｜ \|
@@ -526,3 +524,12 @@ inoremap ６ 6
 inoremap ７ 7
 inoremap ８ 8
 inoremap ９ 9
+
+" Leader
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>t gt
+nnoremap <Leader>T gT
+nnoremap <Leader>h ^
+nnoremap <Leader>l $
