@@ -9,7 +9,7 @@ augroup END
 " プラグインが実際にインストールされるディレクトリ
 let s:dein_dir = expand('/.cache/dein')
 " dein.vim 本体
-let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
+let s:dein_repo_dir = s:dein_dir . '/.repos/github.com/Shougo/dein.vim'
 
 " dein.vim がなければ github から落としてくる
 if &runtimepath !~# '/dein.vim'
@@ -24,7 +24,7 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=~/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.repos/github.com/Shougo/dein.vim
 
 " Required:
 if dein#load_state('~/.')
@@ -32,32 +32,33 @@ if dein#load_state('~/.')
 
   " Let dein manage dein
   " Required:
-  call dein#add('airblade/vim-gitgutter')                       " 差分表示
-  call dein#add('c9s/perlomni.vim')                             " perl補完強化
-  call dein#add('chase/vim-ansible-yaml')                       "
-  "call dein#add('davidhalter/jedi-vim')                         " Python補完強化
-  call dein#add('dhruvasagar/vim-table-mode')                   "
-  call dein#add('editorconfig/editorconfig-vim')                "
-  call dein#add('jistr/vim-nerdtree-tabs')                      "
-  call dein#add('jiangmiao/auto-pairs')                         " 対応する括弧を自動入力
-  "call dein#add('kevinw/pyflakes-vim')                         " python構文チェック
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('c9s/perlomni.vim')
+  call dein#add('chase/vim-ansible-yaml')
+  "call dein#add('davidhalter/jedi-vim')
+  call dein#add('dhruvasagar/vim-table-mode')
+  call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('itchyny/lightline.vim')
+  call dein#add('jistr/vim-nerdtree-tabs')
+  call dein#add('jiangmiao/auto-pairs')
+  "call dein#add('kevinw/pyflakes-vim')
   call dein#add('Lokaltog/vim-powerline')
-  call dein#add('majutsushi/tagbar')                            "
-  call dein#add('reireias/vim-cheatsheet')                      " vim用チートシート
-  call dein#add('ryanoasis/vim-devicons')                       "
-  "call dein#add('prettier/vim-prettier')                        " コード自動成形
-  call dein#add('scrooloose/nerdtree')                          "
-  call dein#add('sheerun/vim-polyglot')                         "
-  call dein#add('Shougo/neocomplcache')                         " 入力補完機能
-  call dein#add('Shougo/neosnippet')                            "
-  call dein#add('Shougo/neosnippet-snippets')                   "
-  call dein#add('thinca/vim-quickrun')                          " バッファ上にあるコードを実行
-  call dein#add('tpope/vim-fugitive')                           "
-  call dein#add('tpope/vim-commentary')                         "
-  call dein#add('vim-airline/vim-airline')                      " ステータスバーをカスタム
-  call dein#add('vim-airline/vim-airline-themes')               " 上記のテーマ
-  call dein#add('vim-jp/vimdoc-ja')                             "
-  call dein#add('w0rp/ale')                                     "
+  call dein#add('majutsushi/tagbar')
+  call dein#add('reireias/vim-cheatsheet')
+  call dein#add('ryanoasis/vim-devicons')
+  "call dein#add('prettier/vim-prettier')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('sheerun/vim-polyglot')
+  call dein#add('Shougo/neocomplcache')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('thinca/vim-quickrun')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-commentary')
+  call dein#add('vim-jp/vimdoc-ja')
+  "call dein#add('vim-airline/vim-airline')
+  "call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('w0rp/ale')
 
   " Required:
   call dein#end()
@@ -68,7 +69,7 @@ endif
 filetype plugin indent on
 syntax enable
 
-" If you want to install not installed plugins on startup.
+" If you want to jnstall not installed plugins on startup.
 if dein#check_install()
   call dein#install()
 endif
@@ -77,52 +78,71 @@ endif
 "----------------------------------------------------------
 " Lokaltog/vim-powerline
 "----------------------------------------------------------
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-let g:airline#extensions#whitespace#mixed_indent_algo = 1
-let g:airline_theme = 'papercolor'
+set laststatus=2
+set showtabline=2
+set noshowmode
+set t_Co=256
+set guioptions-=e
 
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
+let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ,
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'LightlineModified',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'mode': 'LightlineMode'
+        \ }
+        \ }
 
-" unicode symbols
-let g:airline_left_sep = '»'
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '«'
-let g:airline_right_sep = '◀'
-let g:airline_symbols.crypt = '🔒'
-let g:airline_symbols.linenr = '␊'
-let g:airline_symbols.linenr = '␤'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.maxlinenr = '☰'
-let g:airline_symbols.maxlinenr = ''
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.paste = 'Þ'
-let g:airline_symbols.paste = '∥'
-let g:airline_symbols.spell = 'Ꞩ'
-let g:airline_symbols.notexists = '∄'
-let g:airline_symbols.whitespace = 'Ξ'
+function! LightlineModified()
+  return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
+endfunction
 
-" powerline symbols
-let g:airline_left_sep = ''
-let g:airline_left_alt_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
-let g:airline_symbols.branch = ''
-let g:airline_symbols.readonly = ''
-let g:airline_symbols.linenr = ''
+function! LightlineReadonly()
+  return &ft !~? 'help\|vimfiler\|gundo' && &readonly ? 'x' : ''
+endfunction
 
-" old vim-powerline symbols
-" let g:airline_left_sep = '⮀'
-" let g:airline_left_alt_sep = '⮁'
-let g:airline_right_sep = '⮂'
-let g:airline_right_alt_sep = '⮃'
-" let g:airline_symbols.branch = '⭠'
-" let g:airline_symbols.readonly = '⭤'
-" let g:airline_symbols.linenr = '⭡'
+function! LightlineFilename()
+  return ('' != LightlineReadonly() ? LightlineReadonly() . ' ' : '') .
+        \ (&ft == 'vimfiler' ? vimfiler#get_status_string() :
+        \  &ft == 'unite' ? unite#get_status_string() :
+        \  &ft == 'vimshell' ? vimshell#get_status_string() :
+        \ '' != expand('%:t') ? expand('%:t') : '[No Name]') .
+        \ ('' != LightlineModified() ? ' ' . LightlineModified() : '')
+endfunction
+
+function! LightlineFugitive()
+  if &ft !~? 'vimfiler\|gundo' && exists('*fugitive#head')
+    return fugitive#head()
+  else
+    return ''
+  endif
+endfunction
+
+function! LightlineFileformat()
+  return winwidth(0) > 70 ? &fileformat : ''
+endfunction
+
+function! LightlineFiletype()
+  return winwidth(0) > 70 ? (&filetype !=# '' ? &filetype : 'no ft') : ''
+endfunction
+
+function! LightlineFileencoding()
+  return winwidth(0) > 70 ? (&fenc !=# '' ? &fenc : &enc) : ''
+endfunction
+
+function! LightlineMode()
+  return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
 
 
 "----------------------------------------------------------
@@ -166,11 +186,11 @@ endif
 "----------------------------------------------------------
 " vim-airline
 "----------------------------------------------------------
-let g:airline_theme = 'molokai'
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#buffer_idx_mode = 1
-nmap <C-p> <Plug>AirlineSelectPrevTab
-nmap <C-n> <Plug>AirlineSelectNextTab
+"let g:airline_theme = 'molokai'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#buffer_idx_mode = 1
+"nmap <C-p> <Plug>AirlineSelectPrevTab
+"nmap <C-n> <Plug>AirlineSelectNextTab
 
 
 "----------------------------------------------------------
@@ -219,7 +239,7 @@ highlight GitGutterAdd ctermfg=blue ctermbg=brown
 "----------------------------------------------------------
 " vim-cheatsheet
 "----------------------------------------------------------
-let g:cheatsheet#cheat_file = '~/.cheatsheet.md'
+let g:cheatsheet#cheat_file = '~/.vim/.cheatsheet.md'
 
 
 "----------------------------------------------------------
@@ -333,9 +353,6 @@ set showmatch
 
 " 対応括弧の表示秒数を3秒にする
 set matchtime=5
-
-" ステータスラインを常に表示
-"set laststatus=2
 
 " 検索時に最後まで行ったら最初に戻る
 set wrapscan
