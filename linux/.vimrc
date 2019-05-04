@@ -27,8 +27,8 @@ endif
 set runtimepath+=~/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/root/.')
-  call dein#begin('/root/.')
+if dein#load_state('~/.')
+  call dein#begin('~/.')
 
   " Let dein manage dein
   " Required:
