@@ -1,4 +1,15 @@
+"----------------------------------------------------------
+" Encoding
+"----------------------------------------------------------
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=ucs-boms,utf-8,euc-jp,cp932
+scriptencoding utf-8
+
+
+"----------------------------------------------------------
 " release autogroup in MyAutoCmd
+"----------------------------------------------------------
 augroup MyAutoCmd
   autocmd!
 augroup END
@@ -41,6 +52,7 @@ if dein#load_state('~/.')
   call dein#add('itchyny/lightline.vim')
   call dein#add('jistr/vim-nerdtree-tabs')
   call dein#add('jiangmiao/auto-pairs')
+  call dein#add('kien/ctrlp.vim')
   "call dein#add('kevinw/pyflakes-vim')
   call dein#add('Lokaltog/vim-powerline')
   call dein#add('majutsushi/tagbar')
@@ -48,6 +60,7 @@ if dein#load_state('~/.')
   call dein#add('ryanoasis/vim-devicons')
   "call dein#add('prettier/vim-prettier')
   call dein#add('scrooloose/nerdtree')
+  "call dein#add('scrooloose/syntastic')
   call dein#add('sheerun/vim-polyglot')
   call dein#add('Shougo/neocomplcache')
   call dein#add('Shougo/neosnippet')
@@ -56,6 +69,7 @@ if dein#load_state('~/.')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-commentary')
   call dein#add('vim-jp/vimdoc-ja')
+  call dein#add('vim-perl/vim-perl')
   "call dein#add('vim-airline/vim-airline')
   "call dein#add('vim-airline/vim-airline-themes')
   call dein#add('w0rp/ale')
@@ -231,7 +245,11 @@ let g:table_mode_corner = '|'
 "----------------------------------------------------------
 " Gitgutter
 "----------------------------------------------------------
-set updatetime=250
+" タイピング停止時から反映されるまでの時間
+set updatetime=200
+" 最初から表示領域を確保
+set signcolumn=yes
+" 記号表示領域の背景色
 let g:gitgutter_override_sign_column_highlight = 0
 highlight GitGutterAdd ctermfg=blue ctermbg=brown
 
@@ -245,16 +263,16 @@ let g:cheatsheet#cheat_file = '~/.vim/.cheatsheet.md'
 "----------------------------------------------------------
 " quickrun.vim
 "----------------------------------------------------------
+set splitbelow
 nmap <Leader>r <plug>(quickrun)
 let g:quickrun_config={'*': {'split': ''}}
 let g:quickrun_config._ = {
 \   'outputter/buffer/split': '10'
 \ }
-set splitbelow
 
 
 "----------------------------------------------------------
-" ale
+" w0rp/ale 
 "----------------------------------------------------------
 " 保存時のみ実行する
 let g:ale_lint_on_save = 1
@@ -281,6 +299,31 @@ let g:ale_fixers = {
 
 "let g:ale_fix_on_save = 1
 "let g:ale_javascript_prettier_use_local_config = 1
+
+
+"----------------------------------------------------------
+" scrooloose/syntastic
+"----------------------------------------------------------
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+
+
+"----------------------------------------------------------
+" vim-perl/vim-perl
+"----------------------------------------------------------
+augroup filetypedetect
+    au BufNewFile,BufRead *.psgi    setf perl
+    au BufNewFile,BufRead *.t       setf perl
+    au BufNewFile,BufRead *.tt      setf tt2html
+    au BufNewFile,BufRead *.tt2     setf tt2html
+    au BufNewFile,BufRead cpanfile  setf perl
+augroup END
 
 
 "----------------------------------------------------------
@@ -464,7 +507,7 @@ augroup END
 "インサートモードでも移動
 inoremap <c-d> <Del>
 inoremap <c-j> <down>
-inoremap <c-k> <up>
+"inoremap <c-k> <up>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
 
