@@ -62,9 +62,12 @@ if dein#load_state('~/.')
   call dein#add('scrooloose/nerdtree')
   "call dein#add('scrooloose/syntastic')
   call dein#add('sheerun/vim-polyglot')
-  call dein#add('Shougo/neocomplcache')
+  "call dein#add('Shougo/neocomplcache')
+  call dein#add('Shougo/neoinclude.vim')
+  call dein#add('Shougo/neocomplete.vim')
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('skanehira/translate.vim')
   call dein#add('thinca/vim-quickrun')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-commentary')
@@ -73,6 +76,7 @@ if dein#load_state('~/.')
   "call dein#add('vim-airline/vim-airline')
   "call dein#add('vim-airline/vim-airline-themes')
   call dein#add('w0rp/ale')
+  call dein#add('justmao945/vim-clang')
 
   " Required:
   call dein#end()
@@ -160,42 +164,45 @@ endfunction
 
 
 "----------------------------------------------------------
-" Shougo/neocomplcache
+" Shougo/neocomplete.vim
 "----------------------------------------------------------
 " Vim起動時にneocompleteを有効にする
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 " smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
 let g:neocomplete#enable_smart_case = 1
 " 3文字以上の単語に対して補完を有効にする
-let g:neocomplcache_min_keyword_length = 3
+let g:neocomplete#min_keyword_length = 3
 " 区切り文字まで補完する
 let g:neocomplete#enable_auto_delimiter = 1
 " 1文字目の入力から補完のポップアップを表示
 let g:neocomplete#auto_completion_start_length = 1
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-"set snippet file dir
-let g:neosnippet#snippets_directory='~/.vim/snippets'
+" エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定
+imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ
+imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-"Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+"----------------------------------------------------------
+" justmao945/vim-clang
+"----------------------------------------------------------
+let g:clang_auto = 0
+let g:clang_complete_auto = 0
+let g:clang_auto_select = 0
+let g:clang_use_library = 1
 
+" default 'longest' can not work with neocomplete
+let g:clang_c_completeopt   = 'menuone'
+let g:clang_cpp_completeopt = 'menuone'
+
+let g:clang_exec = 'clang'
+let g:clang_format_exec = 'clang-format'
+
+let g:clang_c_options = '-std=c11'
+let g:clang_cpp_options = '
+  \ -std=c++1z 
+  \ -stdlib=libc++ 
+  \ -pedantic-errors
+  \ '
 
 "----------------------------------------------------------
 " vim-airline
@@ -327,6 +334,14 @@ augroup END
 
 
 "----------------------------------------------------------
+" skanehira/translate.vim
+"----------------------------------------------------------
+let g:translate_source = "en"
+let g:translate_target = "ja"
+let g:translate_winsize = 10
+
+
+"----------------------------------------------------------
 " basic
 "----------------------------------------------------------
 " 改行コードの自動判別
@@ -444,6 +459,9 @@ set matchpairs& matchpairs+=<:>
 
 " コメント文の色を変更
 "highlight Comment ctermfg=DarkCyan
+
+" 検索位置が何番目かを表示
+set shortmess-=S
 
 " QuickFixおよびHelpでは q でバッファを閉じる
 autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
