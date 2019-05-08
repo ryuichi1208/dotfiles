@@ -44,39 +44,53 @@ if dein#load_state('~/.')
   " Let dein manage dein
   " Required:
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('c9s/perlomni.vim')
   call dein#add('chase/vim-ansible-yaml')
-  "call dein#add('davidhalter/jedi-vim')
   call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('jistr/vim-nerdtree-tabs')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('kien/ctrlp.vim')
-  "call dein#add('kevinw/pyflakes-vim')
   call dein#add('Lokaltog/vim-powerline')
   call dein#add('majutsushi/tagbar')
   call dein#add('reireias/vim-cheatsheet')
   call dein#add('ryanoasis/vim-devicons')
-  "call dein#add('prettier/vim-prettier')
   call dein#add('scrooloose/nerdtree')
-  "call dein#add('scrooloose/syntastic')
   call dein#add('sheerun/vim-polyglot')
-  "call dein#add('Shougo/neocomplcache')
-  call dein#add('Shougo/neoinclude.vim')
-  call dein#add('Shougo/neocomplete.vim')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
   call dein#add('skanehira/translate.vim')
   call dein#add('thinca/vim-quickrun')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-commentary')
-  call dein#add('vim-jp/vimdoc-ja')
+  call dein#add('w0rp/ale')
+
+  " C/C++
+  call dein#add('justmao945/vim-clang')
+  call dein#add('Shougo/neoinclude.vim')
+
+  " Perl
+  call dein#add('c9s/perlomni.vim')
   call dein#add('vim-perl/vim-perl')
+
+  " 補完/スニペット
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+
+  " LSP関連
+  call dein#add('prabirshrestha/async.vim')
+  call dein#add('prabirshrestha/vim-lsp')
+
+  " ドキュメント系
+  call dein#add('vim-jp/vimdoc-ja')
+
+  " 未使用
+  "call dein#add('davidhalter/jedi-vim')
+  "call dein#add('kevinw/pyflakes-vim')
+  "call dein#add('prettier/vim-prettier')
+  "call dein#add('scrooloose/syntastic')
+  "call dein#add('Shougo/neocomplcache')
   "call dein#add('vim-airline/vim-airline')
   "call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('w0rp/ale')
-  call dein#add('justmao945/vim-clang')
 
   " Required:
   call dein#end()
@@ -185,24 +199,24 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 "----------------------------------------------------------
 " justmao945/vim-clang
 "----------------------------------------------------------
-let g:clang_auto = 0
-let g:clang_complete_auto = 0
-let g:clang_auto_select = 0
-let g:clang_use_library = 1
+"let g:clang_auto = 0
+"let g:clang_complete_auto = 0
+"let g:clang_auto_select = 0
+"let g:clang_use_library = 1
 
 " default 'longest' can not work with neocomplete
-let g:clang_c_completeopt   = 'menuone'
-let g:clang_cpp_completeopt = 'menuone'
+"let g:clang_c_completeopt   = 'menuone'
+"let g:clang_cpp_completeopt = 'menuone'
 
-let g:clang_exec = 'clang'
-let g:clang_format_exec = 'clang-format'
+"let g:clang_exec = 'clang'
+"let g:clang_format_exec = 'clang-format'
 
-let g:clang_c_options = '-std=c11'
-let g:clang_cpp_options = '
-  \ -std=c++1z 
-  \ -stdlib=libc++ 
-  \ -pedantic-errors
-  \ '
+"let g:clang_c_options = '-std=c11'
+"let g:clang_cpp_options = '
+"  \ -std=c++1z 
+"  \ -stdlib=libc++ 
+"  \ -pedantic-errors
+"  \ '
 
 "----------------------------------------------------------
 " vim-airline
@@ -279,7 +293,7 @@ let g:quickrun_config._ = {
 
 
 "----------------------------------------------------------
-" w0rp/ale 
+" w0rp/ale
 "----------------------------------------------------------
 " 保存時のみ実行する
 let g:ale_lint_on_save = 1
@@ -339,6 +353,45 @@ augroup END
 let g:translate_source = "en"
 let g:translate_target = "ja"
 let g:translate_winsize = 10
+
+
+"----------------------------------------------------------
+" prabirshrestha/vim-lsp
+"----------------------------------------------------------
+" デバッグ用設定
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/.cache/tmp/vim-lsp.log')
+
+" 言語用Serverの設定
+augroup MyLsp
+  autocmd!
+  " pip install python-language-server
+  if executable('pyls')
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': { server_info -> ['pyls'] },
+        \ 'whitelist': ['python'],
+        \ 'workspace_config': {'pyls': {'plugins': {
+        \   'pycodestyle': {'enabled': v:false},
+        \   'jedi_definition': {'follow_imports': v:true, 'follow_builtin_imports': v:true},}}}
+        \})
+    autocmd FileType python call s:configure_lsp()
+  endif
+augroup END
+function! s:configure_lsp() abort
+  setlocal omnifunc=lsp#complete
+  nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gd :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gD :<C-u>LspReferences<CR>
+  nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
+  nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
+  nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
+  vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
+  nnoremap <buffer> K :<C-u>LspHover<CR>
+  nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
+  nnoremap <buffer> <F2> :<C-u>LspRename<CR>
+endfunction
+let g:lsp_diagnostics_enabled = 0
 
 
 "----------------------------------------------------------
