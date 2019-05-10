@@ -44,25 +44,29 @@ if dein#load_state('~/.')
 
   " Let dein manage dein
   " Required:
-  call dein#add('airblade/vim-gitgutter')
+  call dein#add('basyura/TweetVim')
   call dein#add('chase/vim-ansible-yaml')
   call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('itchyny/lightline.vim')
-  call dein#add('jistr/vim-nerdtree-tabs')
   call dein#add('jiangmiao/auto-pairs')
+  call dein#add('junegunn/vim-easy-align')
   call dein#add('kien/ctrlp.vim')
   call dein#add('Lokaltog/vim-powerline')
   call dein#add('majutsushi/tagbar')
-  call dein#add('reireias/vim-cheatsheet')
   call dein#add('ryanoasis/vim-devicons')
-  call dein#add('scrooloose/nerdtree')
   call dein#add('sheerun/vim-polyglot')
-  call dein#add('skanehira/translate.vim')
   call dein#add('thinca/vim-quickrun')
-  call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-commentary')
   call dein#add('w0rp/ale')
+
+  " NERDTree
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('jistr/vim-nerdtree-tabs')
+
+  " Git
+  call dein#add('airblade/vim-gitgutter')
+  call dein#add('tpope/vim-fugitive')
 
   " C/C++
   call dein#add('justmao945/vim-clang')
@@ -71,6 +75,10 @@ if dein#load_state('~/.')
   " Perl
   call dein#add('c9s/perlomni.vim')
   call dein#add('vim-perl/vim-perl')
+
+  " Markdorwn
+  call dein#add('godlygeek/tabular')
+  call dein#add('plasticboy/vim-markdown')
 
   " 補完/スニペット
   call dein#add('Shougo/neocomplete.vim')
@@ -82,6 +90,8 @@ if dein#load_state('~/.')
   call dein#add('prabirshrestha/vim-lsp')
 
   " ドキュメント系
+  call dein#add('reireias/vim-cheatsheet')
+  call dein#add('skanehira/translate.vim')
   call dein#add('vim-jp/vimdoc-ja')
 
   " 未使用
@@ -214,15 +224,42 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 
 "let g:clang_c_options = '-std=c11'
 "let g:clang_cpp_options = '
-<<<<<<< HEAD
-"  \ -std=c++1z 
-"  \ -stdlib=libc++ 
-=======
 "  \ -std=c++1z
 "  \ -stdlib=libc++
->>>>>>> 192481c4e6fb6e13d8fb1c497fa6cf837125e7e4
 "  \ -pedantic-errors
 "  \ '
+
+
+"----------------------------------------------------------
+" vim-airline
+"----------------------------------------------------------
+" 1 ページあたりのツイート取得件数
+let g:tweetvim_tweet_per_page = 50
+" 表示内容をキャッシュしておく数(バッファを戻る、進むに使用)
+let g:tweetvim_cache_size     = 10
+" 設定情報を保存するディレクトリ
+let g:tweetvim_config_dir     = expand('~/.tweetvim')
+" タイムラインにリツイートを含める
+let g:tweetvim_include_rts    = 1
+" source(クライアント名) を表示するオプション
+let g:tweetvim_display_source = 1
+" ツイート時間の表示・非表示設定 (少しでも表示時間を速くしたい場合)"
+let g:tweetvim_display_time   = 1
+" タイムラインを開く際のコマンドを指定 (edit/split/vsplit)"
+let g:tweetvim_open_buffer_cmd = 'edit!'
+" 発言用のバッファを開く際のコマンドを指定
+let g:tweetvim_open_say_cmd = 'botright split'
+" アイコン表示 (ImageMagick が必要)
+let g:tweetvim_display_icon = 1
+" tweetvim_say バッファを開いた際にフッタ(メッセージ)を表示する
+let g:tweetvim_footer = ''
+" tweetvim_say バッファにアカウント名を差し込む
+let g:tweetvim_display_separator = 1
+" 空文字セパレータを表示
+let g:tweetvim_empty_separator = 0
+" To modify the tweet length do:
+let g:tweetvim_tweet_limit = 280
+
 
 "----------------------------------------------------------
 " vim-airline
@@ -232,6 +269,14 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 "let g:airline#extensions#tabline#buffer_idx_mode = 1
 "nmap <C-p> <Plug>AirlineSelectPrevTab
 "nmap <C-n> <Plug>AirlineSelectNextTab
+
+
+"----------------------------------------------------------
+" junegunn/vim-easy-align
+"----------------------------------------------------------
+" EasyAlignを開始
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 
 "----------------------------------------------------------
@@ -306,6 +351,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
 " 表示に関する設定
 let g:ale_sign_column_always = 1
+" シンボルの変更
 let g:ale_sign_error = '!!'
 let g:ale_sign_warning = '=='
 " エラー間移動
@@ -577,9 +623,15 @@ augroup END
 " ----------------------------------------------------------
 " Keymap
 "----------------------------------------------------------
-" inoremap インサートモード
-" vnoremap ビジュアルモード
-" nnoremap normalモード
+" :map   :noremap  :unmap     ノーマル、ビジュアル、選択、オペレータ待機
+" :nmap  :nnoremap :nunmap    ノーマル
+" :vmap  :vnoremap :vunmap    ビジュアル、選択
+" :smap  :snoremap :sunmap    選択
+" :xmap  :xnoremap :xunmap    ビジュアル
+" :map!  :noremap! :unmap!    挿入、コマンドライン
+" :imap  :inoremap :iunmap    挿入
+" :lmap  :lnoremap :lunmap    挿入、コマンドライン、Lang-Arg
+" :cmap  :cnoremap :cunmap    コマンドライン
 
 "インサートモードでも移動
 inoremap <c-d> <Del>
