@@ -14,6 +14,7 @@ augroup MyAutoCmd
   autocmd!
 augroup END
 
+
 "----------------------------------------------------------
 " Plugin dein.vim
 "----------------------------------------------------------
@@ -213,8 +214,13 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 
 "let g:clang_c_options = '-std=c11'
 "let g:clang_cpp_options = '
+<<<<<<< HEAD
 "  \ -std=c++1z 
 "  \ -stdlib=libc++ 
+=======
+"  \ -std=c++1z
+"  \ -stdlib=libc++
+>>>>>>> 192481c4e6fb6e13d8fb1c497fa6cf837125e7e4
 "  \ -pedantic-errors
 "  \ '
 
