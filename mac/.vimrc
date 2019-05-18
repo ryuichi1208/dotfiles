@@ -18,25 +18,13 @@ augroup END
 "----------------------------------------------------------
 " Plugin dein.vim
 "----------------------------------------------------------
-" プラグインが実際にインストールされるディレクトリ
-let s:dein_dir = expand('/.cache/dein')
-" dein.vim 本体
-let s:dein_repo_dir = s:dein_dir . '/.repos/github.com/Shougo/dein.vim'
-
-" dein.vim がなければ github から落としてくる
-if &runtimepath !~# '/dein.vim'
-  if !isdirectory(s:dein_repo_dir)
-    execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-  endif
-  execute 'set runtimepath^=' . fnamemodify(s:dein_repo_dir, ':p')
-endif
-
+"dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved
 endif
 
 " Required:
-set runtimepath+=~/.repos/github.com/Shougo/dein.vim
+set runtimepath+=~//./repos/github.com/Shougo/dein.vim
 
 " Required:
 if dein#load_state('~/.')
@@ -44,7 +32,9 @@ if dein#load_state('~/.')
 
   " Let dein manage dein
   " Required:
-  call dein#add('airblade/vim-gitgutter')
+  call dein#add('~/./repos/github.com/Shougo/dein.vim')
+
+  " Add or remove your plugins here like this:
   call dein#add('basyura/TweetVim')
   call dein#add('chase/vim-ansible-yaml')
   call dein#add('dhruvasagar/vim-table-mode')
@@ -56,9 +46,6 @@ if dein#load_state('~/.')
   call dein#add('Lokaltog/vim-powerline')
   call dein#add('majutsushi/tagbar')
   call dein#add('ryanoasis/vim-devicons')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('sheerun/vim-polyglot')
-  call dein#add('skanehira/translate.vim')
   call dein#add('sheerun/vim-polyglot')
   call dein#add('thinca/vim-quickrun')
   call dein#add('tpope/vim-commentary')
@@ -80,34 +67,19 @@ if dein#load_state('~/.')
   call dein#add('c9s/perlomni.vim')
   call dein#add('vim-perl/vim-perl')
 
-  " 補完/スニペット
   " Markdorwn
   call dein#add('godlygeek/tabular')
   call dein#add('plasticboy/vim-markdown')
 
   " 補完/スニペット
-  call dein#add('scrooloose/nerdcommenter')
   call dein#add('Shougo/neocomplete.vim')
   call dein#add('Shougo/neosnippet')
   call dein#add('Shougo/neosnippet-snippets')
-
-  " LSP関連
-  call dein#add('prabirshrestha/async.vim')
-  call dein#add('prabirshrestha/vim-lsp')
 
   " ドキュメント系
   call dein#add('reireias/vim-cheatsheet')
   call dein#add('skanehira/translate.vim')
   call dein#add('vim-jp/vimdoc-ja')
-
-  " 未使用
-  "call dein#add('davidhalter/jedi-vim')
-  "call dein#add('kevinw/pyflakes-vim')
-  "call dein#add('prettier/vim-prettier')
-  "call dein#add('scrooloose/syntastic')
-  "call dein#add('Shougo/neocomplcache')
-  "call dein#add('vim-airline/vim-airline')
-  "call dein#add('vim-airline/vim-airline-themes')
 
   " Required:
   call dein#end()
@@ -118,10 +90,12 @@ endif
 filetype plugin indent on
 syntax enable
 
-" If you want to jnstall not installed plugins on startup.
+"If you want to install not installed plugins on startup.
 if dein#check_install()
-  call dein#install()
+call dein#install()
 endif
+
+"End dein Scripts-------------------------
 
 
 "----------------------------------------------------------
@@ -214,26 +188,6 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 
 
 "----------------------------------------------------------
-" justmao945/vim-clang
-"----------------------------------------------------------
-"let g:clang_auto = 0
-"let g:clang_complete_auto = 0
-"let g:clang_auto_select = 0
-"let g:clang_use_library = 1
-" default 'longest' can not work with neocomplete
-"let g:clang_c_completeopt   = 'menuone'
-"let g:clang_cpp_completeopt = 'menuone'
-"let g:clang_exec = 'clang'
-"let g:clang_format_exec = 'clang-format'
-"let g:clang_c_options = '-std=c11'
-"let g:clang_cpp_options = '
-"  \ -std=c++1z
-"  \ -stdlib=libc++
-"  \ -pedantic-errors
-"  \ '
-
-
-"----------------------------------------------------------
 " vim-airline
 "----------------------------------------------------------
 " 1 ページあたりのツイート取得件数
@@ -262,21 +216,6 @@ let g:tweetvim_display_separator = 1
 let g:tweetvim_empty_separator = 0
 " To modify the tweet length do:
 let g:tweetvim_tweet_limit = 280
-"let g:clang_c_options = '-std=c11'
-"let g:clang_cpp_options = '
-"  \ -std=c++1z
-"  \ -stdlib=libc++
-"  \ -pedantic-errors
-"  \ '
-
-"----------------------------------------------------------
-" vim-airline
-"----------------------------------------------------------
-"let g:airline_theme = 'molokai'
-"let g:airline#extensions#tabline#enabled = 1
-"let g:airline#extensions#tabline#buffer_idx_mode = 1
-"nmap <C-p> <Plug>AirlineSelectPrevTab
-"nmap <C-n> <Plug>AirlineSelectNextTab
 
 
 "----------------------------------------------------------
@@ -288,7 +227,7 @@ nmap ga <Plug>(EasyAlign)
 
 
 "----------------------------------------------------------
-" jistr/vim-nerdtree-tabs
+" jistr/vim-rerdtree-tabs
 "----------------------------------------------------------
 "let g:NERDTreeShowBookmarks=1
 "let NERDTreeShowHidden = 1
@@ -341,27 +280,6 @@ let g:cheatsheet#cheat_file = '~/.vim/.cheatsheet.md'
 
 
 "----------------------------------------------------------
-" scrooloose/nerdcommenter
-"----------------------------------------------------------
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
-" Align line-wise comment delimiters flush left instead of following code indentation
-let g:NERDDefaultAlign = 'left'
-" Set a language to use its alternate delimiters by default
-let g:NERDAltDelims_java = 1
-" Add your own custom formats or override the defaults
-let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
-" Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
-" Enable trimming of trailing whitespace when uncommenting
-let g:NERDTrimTrailingWhitespace = 1
-" Enable NERDCommenterToggle to check all selected lines is commented or not 
-let g:NERDToggleCheckAllLines = 1
-
-
-"----------------------------------------------------------
 " quickrun.vim
 "----------------------------------------------------------
 set splitbelow
@@ -404,19 +322,6 @@ let g:ale_fixers = {
 
 
 "----------------------------------------------------------
-" scrooloose/syntastic
-"----------------------------------------------------------
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_auto_loc_list = 1
-"let g:syntastic_check_on_open = 1
-"let g:syntastic_check_on_wq = 0
-
-
-"----------------------------------------------------------
 " vim-perl/vim-perl
 "----------------------------------------------------------
 augroup filetypedetect
@@ -434,45 +339,6 @@ augroup END
 let g:translate_source = "en"
 let g:translate_target = "ja"
 let g:translate_winsize = 10
-
-
-"----------------------------------------------------------
-" prabirshrestha/vim-lsp
-"----------------------------------------------------------
-" デバッグ用設定
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/.cache/tmp/vim-lsp.log')
-
-" 言語用Serverの設定
-augroup MyLsp
-  autocmd!
-  " pip install python-language-server
-  if executable('pyls')
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': { server_info -> ['pyls'] },
-        \ 'whitelist': ['python'],
-        \ 'workspace_config': {'pyls': {'plugins': {
-        \   'pycodestyle': {'enabled': v:false},
-        \   'jedi_definition': {'follow_imports': v:true, 'follow_builtin_imports': v:true},}}}
-        \})
-    autocmd FileType python call s:configure_lsp()
-  endif
-augroup END
-function! s:configure_lsp() abort
-  setlocal omnifunc=lsp#complete
-  nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>
-  nnoremap <buffer> gd :<C-u>LspDefinition<CR>
-  nnoremap <buffer> gD :<C-u>LspReferences<CR>
-  nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
-  nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
-  nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
-  vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
-  nnoremap <buffer> K :<C-u>LspHover<CR>
-  nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
-  nnoremap <buffer> <F2> :<C-u>LspRename<CR>
-endfunction
-let g:lsp_diagnostics_enabled = 0
 
 
 "----------------------------------------------------------
@@ -556,17 +422,8 @@ set title
 set cursorline
 "set cursorcolumn
 
-" Show column
-"set colorcolumn=80
-
-" カーソルから相対的な行数を表示する
-"set relativenumber
-
 " 改行コードの自動認識
 set fileformats=unix,mac,dos
-
-" マウス操作を有効にする
-"set mouse=a
 
 " タイムアウト時間設定
 set timeout timeoutlen=1000 ttimeoutlen=50
@@ -590,9 +447,6 @@ set novisualbell
 
 " 対応括弧に'<'と'>'のペアを追加
 set matchpairs& matchpairs+=<:>
-
-" コメント文の色を変更
-"highlight Comment ctermfg=DarkCyan
 
 " 検索位置が何番目かを表示
 set shortmess-=S
@@ -682,8 +536,6 @@ inoremap jj <Esc>
 " カーソル下の単語を * で検索
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
 
-" 新規タブ
-nnoremap st :<C-u>tabnew<CR>
 
 " 垂直分割
 nnoremap sv :<C-u>vs<CR>
@@ -703,6 +555,10 @@ vnoremap <Tab> %
 
 " w!! でスーパーユーザーとして保存
 cmap w!! w !sudo tee > /dev/null %
+
+" タブ関連
+nnoremap st :<C-u>tabnew<CR>
+nnoremap qt :<C-u>tabc<CR>
 
 " 検索後にジャンプした際に検索単語を画面中央に持ってくる
 nnoremap n nzz
