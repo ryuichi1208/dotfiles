@@ -45,35 +45,53 @@ if dein#load_state('~/.')
   " Let dein manage dein
   " Required:
   call dein#add('airblade/vim-gitgutter')
-  call dein#add('c9s/perlomni.vim')
   call dein#add('chase/vim-ansible-yaml')
-  "call dein#add('davidhalter/jedi-vim')
   call dein#add('dhruvasagar/vim-table-mode')
   call dein#add('editorconfig/editorconfig-vim')
   call dein#add('itchyny/lightline.vim')
   call dein#add('jistr/vim-nerdtree-tabs')
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('kien/ctrlp.vim')
-  "call dein#add('kevinw/pyflakes-vim')
   call dein#add('Lokaltog/vim-powerline')
   call dein#add('majutsushi/tagbar')
   call dein#add('reireias/vim-cheatsheet')
   call dein#add('ryanoasis/vim-devicons')
-  "call dein#add('prettier/vim-prettier')
   call dein#add('scrooloose/nerdtree')
-  "call dein#add('scrooloose/syntastic')
   call dein#add('sheerun/vim-polyglot')
-  call dein#add('Shougo/neocomplcache')
-  call dein#add('Shougo/neosnippet')
-  call dein#add('Shougo/neosnippet-snippets')
+  call dein#add('skanehira/translate.vim')
   call dein#add('thinca/vim-quickrun')
   call dein#add('tpope/vim-fugitive')
   call dein#add('tpope/vim-commentary')
-  call dein#add('vim-jp/vimdoc-ja')
+  call dein#add('w0rp/ale')
+
+  " C/C++
+  call dein#add('justmao945/vim-clang')
+  call dein#add('Shougo/neoinclude.vim')
+
+  " Perl
+  call dein#add('c9s/perlomni.vim')
   call dein#add('vim-perl/vim-perl')
+
+  " 補完/スニペット
+  call dein#add('Shougo/neocomplete.vim')
+  call dein#add('Shougo/neosnippet')
+  call dein#add('Shougo/neosnippet-snippets')
+
+  " LSP関連
+  call dein#add('prabirshrestha/async.vim')
+  call dein#add('prabirshrestha/vim-lsp')
+
+  " ドキュメント系
+  call dein#add('vim-jp/vimdoc-ja')
+
+  " 未使用
+  "call dein#add('davidhalter/jedi-vim')
+  "call dein#add('kevinw/pyflakes-vim')
+  "call dein#add('prettier/vim-prettier')
+  "call dein#add('scrooloose/syntastic')
+  "call dein#add('Shougo/neocomplcache')
   "call dein#add('vim-airline/vim-airline')
   "call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('w0rp/ale')
 
   " Required:
   call dein#end()
@@ -161,42 +179,45 @@ endfunction
 
 
 "----------------------------------------------------------
-" Shougo/neocomplcache
+" Shougo/neocomplete.vim
 "----------------------------------------------------------
 " Vim起動時にneocompleteを有効にする
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 " smartcase有効化. 大文字が入力されるまで大文字小文字の区別を無視する
 let g:neocomplete#enable_smart_case = 1
 " 3文字以上の単語に対して補完を有効にする
-let g:neocomplcache_min_keyword_length = 3
+let g:neocomplete#min_keyword_length = 3
 " 区切り文字まで補完する
 let g:neocomplete#enable_auto_delimiter = 1
 " 1文字目の入力から補完のポップアップを表示
 let g:neocomplete#auto_completion_start_length = 1
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-"set snippet file dir
-let g:neosnippet#snippets_directory='~/.vim/snippets'
+" エンターキーで補完候補の確定. スニペットの展開もエンターキーで確定
+imap <expr><CR> neosnippet#expandable() ? "<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "<C-y>" : "<CR>"
+" タブキーで補完候補の選択. スニペット内のジャンプもタブキーでジャンプ
+imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosnippet_expand_or_jump)" : "<TAB>"
 
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-"Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+"----------------------------------------------------------
+" justmao945/vim-clang
+"----------------------------------------------------------
+"let g:clang_auto = 0
+"let g:clang_complete_auto = 0
+"let g:clang_auto_select = 0
+"let g:clang_use_library = 1
 
+" default 'longest' can not work with neocomplete
+"let g:clang_c_completeopt   = 'menuone'
+"let g:clang_cpp_completeopt = 'menuone'
+
+"let g:clang_exec = 'clang'
+"let g:clang_format_exec = 'clang-format'
+
+"let g:clang_c_options = '-std=c11'
+"let g:clang_cpp_options = '
+"  \ -std=c++1z
+"  \ -stdlib=libc++
+"  \ -pedantic-errors
+"  \ '
 
 "----------------------------------------------------------
 " vim-airline
@@ -273,7 +294,7 @@ let g:quickrun_config._ = {
 
 
 "----------------------------------------------------------
-" w0rp/ale 
+" w0rp/ale
 "----------------------------------------------------------
 " 保存時のみ実行する
 let g:ale_lint_on_save = 1
@@ -325,6 +346,53 @@ augroup filetypedetect
     au BufNewFile,BufRead *.tt2     setf tt2html
     au BufNewFile,BufRead cpanfile  setf perl
 augroup END
+
+
+"----------------------------------------------------------
+" skanehira/translate.vim
+"----------------------------------------------------------
+let g:translate_source = "en"
+let g:translate_target = "ja"
+let g:translate_winsize = 10
+
+
+"----------------------------------------------------------
+" prabirshrestha/vim-lsp
+"----------------------------------------------------------
+" デバッグ用設定
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/.cache/tmp/vim-lsp.log')
+
+" 言語用Serverの設定
+augroup MyLsp
+  autocmd!
+  " pip install python-language-server
+  if executable('pyls')
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': { server_info -> ['pyls'] },
+        \ 'whitelist': ['python'],
+        \ 'workspace_config': {'pyls': {'plugins': {
+        \   'pycodestyle': {'enabled': v:false},
+        \   'jedi_definition': {'follow_imports': v:true, 'follow_builtin_imports': v:true},}}}
+        \})
+    autocmd FileType python call s:configure_lsp()
+  endif
+augroup END
+function! s:configure_lsp() abort
+  setlocal omnifunc=lsp#complete
+  nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gd :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gD :<C-u>LspReferences<CR>
+  nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
+  nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
+  nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
+  vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
+  nnoremap <buffer> K :<C-u>LspHover<CR>
+  nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
+  nnoremap <buffer> <F2> :<C-u>LspRename<CR>
+endfunction
+let g:lsp_diagnostics_enabled = 0
 
 
 "----------------------------------------------------------
@@ -445,6 +513,9 @@ set matchpairs& matchpairs+=<:>
 
 " コメント文の色を変更
 "highlight Comment ctermfg=DarkCyan
+
+" 検索位置が何番目かを表示
+set shortmess-=S
 
 " QuickFixおよびHelpでは q でバッファを閉じる
 autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
