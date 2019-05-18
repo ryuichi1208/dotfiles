@@ -44,6 +44,7 @@ if dein#load_state('~/.')
 
   " Let dein manage dein
   " Required:
+  call dein#add('airblade/vim-gitgutter')
   call dein#add('basyura/TweetVim')
   call dein#add('chase/vim-ansible-yaml')
   call dein#add('dhruvasagar/vim-table-mode')
@@ -55,6 +56,9 @@ if dein#load_state('~/.')
   call dein#add('Lokaltog/vim-powerline')
   call dein#add('majutsushi/tagbar')
   call dein#add('ryanoasis/vim-devicons')
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('sheerun/vim-polyglot')
+  call dein#add('skanehira/translate.vim')
   call dein#add('sheerun/vim-polyglot')
   call dein#add('thinca/vim-quickrun')
   call dein#add('tpope/vim-commentary')
@@ -76,6 +80,7 @@ if dein#load_state('~/.')
   call dein#add('c9s/perlomni.vim')
   call dein#add('vim-perl/vim-perl')
 
+  " 補完/スニペット
   " Markdorwn
   call dein#add('godlygeek/tabular')
   call dein#add('plasticboy/vim-markdown')
@@ -215,14 +220,11 @@ imap <expr><TAB> pumvisible() ? "<C-n>" : neosnippet#jumpable() ? "<Plug>(neosni
 "let g:clang_complete_auto = 0
 "let g:clang_auto_select = 0
 "let g:clang_use_library = 1
-
 " default 'longest' can not work with neocomplete
 "let g:clang_c_completeopt   = 'menuone'
 "let g:clang_cpp_completeopt = 'menuone'
-
 "let g:clang_exec = 'clang'
 "let g:clang_format_exec = 'clang-format'
-
 "let g:clang_c_options = '-std=c11'
 "let g:clang_cpp_options = '
 "  \ -std=c++1z
@@ -260,7 +262,12 @@ let g:tweetvim_display_separator = 1
 let g:tweetvim_empty_separator = 0
 " To modify the tweet length do:
 let g:tweetvim_tweet_limit = 280
-
+"let g:clang_c_options = '-std=c11'
+"let g:clang_cpp_options = '
+"  \ -std=c++1z
+"  \ -stdlib=libc++
+"  \ -pedantic-errors
+"  \ '
 
 "----------------------------------------------------------
 " vim-airline
