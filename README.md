@@ -8,7 +8,7 @@
 * vimrc
 * ctags
 
-## Install
+## Install use
 
 ```
 $ git clone git@github.com:ryuichi1208/dotfiles.git
