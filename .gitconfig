@@ -1,0 +1,58 @@
+[user]
+  name = ryuihi1208
+  email = ryucrosskey@gmail.com 
+
+[core]
+  pager = less -R
+  excludesfile = ~/.gitignore
+
+[alias]
+  a = add
+  b = branch
+  c = commit
+  d = diff
+  f = fetch --prune
+  h = help
+  l = log
+  s = status
+  co = checkout
+  pom = push origin master
+
+  graph = log --graph --all --oneline --decorate
+
+  branches = branch -a
+  tags = tag
+  stashes = stash list
+  remotes = remote -v
+
+  interactive = add -p
+  edit = rebase -i
+
+  unstage = reset HEAD --
+  discard = checkout --
+  discardall = reset --hard
+  uncommit = reset HEAD~
+
+  newbranch = checkout -b
+
+  deletetracking = branch -d -r --
+
+  overwrite = push --force-with-lease
+
+[commit]
+  template = ~/.gitmessage.md
+
+[color]
+  pager = true
+  status = auto
+  branch = auto
+  diff = auto
+
+[merge]
+  ff = false
+
+[diff]
+  renames = true
+
+[pager]
+  branch = false
