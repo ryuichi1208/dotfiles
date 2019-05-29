@@ -35,6 +35,7 @@ if dein#load_state('~/.')
   call dein#add('~/./repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here like this:
+  call dein#add ('skanehira/translate.vim')
   call dein#add('basyura/TweetVim')
   call dein#add('chase/vim-ansible-yaml')
   call dein#add('dhruvasagar/vim-table-mode')
@@ -47,6 +48,7 @@ if dein#load_state('~/.')
   call dein#add('majutsushi/tagbar')
   call dein#add('ryanoasis/vim-devicons')
   call dein#add('sheerun/vim-polyglot')
+  call dein#add('scrooloose/nerdcommenter')
   call dein#add('thinca/vim-quickrun')
   call dein#add('tpope/vim-commentary')
   call dein#add('w0rp/ale')
@@ -78,8 +80,12 @@ if dein#load_state('~/.')
 
   " ドキュメント系
   call dein#add('reireias/vim-cheatsheet')
-  call dein#add('skanehira/translate.vim')
   call dein#add('vim-jp/vimdoc-ja')
+
+  " マークダウン関連
+  call dein#add('plasticboy/vim-markdown')
+  call dein#add('kannokanno/previm')
+  call dein#add('tyru/open-browser.vim')
 
   " Required:
   call dein#end()
@@ -334,12 +340,53 @@ augroup END
 
 
 "----------------------------------------------------------
-" skanehira/translate.vim
+" reireias/vim-cheatsheet
 "----------------------------------------------------------
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+
+
+"----------------------------------------------------------
+" kannokanno/previm
+"----------------------------------------------------------
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+let g:previm_open_cmd = 'open -a Google\ Chrome'
+" ctrl pでプレビュー
+"nnoremap <silent><C-m> :PrevimOpen<CR>
+
+
+"----------------------------------------------------------
+" tyru/open-browser.vim
+"----------------------------------------------------------
+let g:netrw_nogx = 1 " disable netrw's gx mapping.
+nmap gx <Plug>(openbrowser-smart-search)
+vmap gx <Plug>(openbrowser-smart-search)
+
+
+"----------------------------------------------------------
+" scrooloose/nerdcommenter
+"----------------------------------------------------------
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1
+
 let g:translate_source = "en"
 let g:translate_target = "ja"
 let g:translate_winsize = 10
-
 
 "----------------------------------------------------------
 " basic
@@ -352,7 +399,6 @@ set ambiwidth=double
 
 " バックアップファイルを作らない
 set nobackup
-"set backupdir=~/.vim/backup/
 
 " スワップファイルを作らない
 set noswapfile
@@ -364,8 +410,6 @@ set hidden
 " シンタックスを有効にする
 syntax on
 colorscheme molokai
-"colorscheme koehler
-"set background=dark
 
 " ターミナル接続を高速化
 set ttyfast
@@ -375,9 +419,6 @@ set smartindent
 
 " 行番号を表示
 set number
-
-" 不可視文字を表示
-"set list
 
 " マルチバイト文字があってもカーソルがずれないようにする
 set ambiwidth=double
@@ -403,9 +444,6 @@ set autoread
 " 補完ウィンドウの設定
 set completeopt=menuone
 
-" ビープ音を可視化
-"set visualbell
-
 " 括弧入力時の対応する括弧を表示
 set showmatch
 
@@ -420,7 +458,6 @@ set title
 
 " カーソルの行数表示
 set cursorline
-"set cursorcolumn
 
 " 改行コードの自動認識
 set fileformats=unix,mac,dos
@@ -482,6 +519,7 @@ augroup fileTypeIndent
   autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
   autocmd FileType zsh        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType json       setlocal sw=2 sts=2 ts=2 et
 
   autocmd FileType perl,cgi   compiler perl
   autocmd FileType python     setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
@@ -519,7 +557,6 @@ augroup END
 "インサートモードでも移動
 inoremap <c-d> <Del>
 inoremap <c-j> <down>
-"inoremap <c-k> <up>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
 
