@@ -5,7 +5,9 @@ if [ $(uname) != "Darwin" ] ; then
 	exit 1
 fi
 
-###### Base ######
+#----------------------------------------------------------
+# Base
+#----------------------------------------------------------
 # スタンバイまでの時間を24時間へ変更 (デフォルト1時間)
 sudo pmset -a standbydelay 86400
 # ブート時のサウンドの無効化 (寂しい気もしますが煩いので消しています)
@@ -28,7 +30,9 @@ sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo Hos
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 
-##### Dock ######
+#----------------------------------------------------------
+# Dock
+#----------------------------------------------------------
 # window効果の最大/最小を変更
 defaults write com.apple.dock mineffect -string "scale"
 # Dockで開いているアプリケーションのインジケータライトを表示する
@@ -81,7 +85,9 @@ chflags nohidden ~/Library
 sudo chflags nohidden /Volumes
 
 
-###### Safari ######
+#----------------------------------------------------------
+# Safari
+#----------------------------------------------------------
 # 検索クエリをAppleへ送信しない
 defaults write com.apple.Safari UniversalSearchEnabled -bool false
 defaults write com.apple.Safari SuppressSearchSuggestions -bool true
@@ -120,7 +126,9 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
 
-###### Mail ######
+#----------------------------------------------------------
+# Mail
+#----------------------------------------------------------
 # 送信と返信のアニメーションを無効にする
 defaults write com.apple.mail DisableReplyAnimations -bool true
 defaults write com.apple.mail DisableSendAnimations -bool true
@@ -130,7 +138,9 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled"
 
 
-###### Terminal ######
+#----------------------------------------------------------
+# Terminal
+#----------------------------------------------------------
 # UTF-8のみを使用する
 defaults write com.apple.terminal StringEncodings -array 4
 # iTermのダークテーマをインストール
@@ -139,7 +149,9 @@ open "${HOME}/init/Solarized Dark.itermcolors"
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 
-###### App Store ######
+#----------------------------------------------------------
+# App Store
+#----------------------------------------------------------
 # WebKitデベロッパーツールを有効にする
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
 # デバッグメニューを有効にする
@@ -160,7 +172,9 @@ defaults write com.apple.commerce AutoUpdate -bool true
 defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 
 
-###### chrome ######
+#----------------------------------------------------------
+# Chrome
+#----------------------------------------------------------
 # トラックパッドの感度の悪いバックスワイプをすべて無効にする
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
 defaults write com.google.Chrome.canary AppleEnableSwipeNavigateWithScrolls -bool false
