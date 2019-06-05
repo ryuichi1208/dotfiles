@@ -30,6 +30,7 @@ repo = 'tpope/vim-fugitive'
 repo = 'Shougo/deoplete.nvim'
 hook_add = '''
 let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/usr/bin/python3.6'
 '''
 
 [[plugins]]
