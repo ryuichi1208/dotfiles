@@ -1,0 +1,182 @@
+#----------------------------------------------------------
+# Plugin manager
+#----------------------------------------------------------
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+#----------------------------------------------------------
+# Theme
+#----------------------------------------------------------
+[[plugins]]
+repo = 'tomasr/molokai'
+
+#----------------------------------------------------------
+# Git
+#----------------------------------------------------------
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+let g:gitgutter_override_sign_column_highlight = 0
+highlight GitGutterAdd ctermfg=blue ctermbg=brown
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+#----------------------------------------------------------
+# 補完
+#----------------------------------------------------------
+[[plugins]]
+repo = 'Shougo/deoplete.nvim'
+hook_add = '''
+let g:deoplete#enable_at_startup = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neco-vim'
+
+[[plugins]]
+repo = 'Shougo/neco-syntax'
+
+[[plugins]]
+repo = 'ujihisa/neco-look'
+
+[[plugins]]
+repo = 'alvan/vim-closetag'
+hook_add = '''
+let g:closetag_filenames = '*.html,*.vue'
+'''
+
+[[plugins]]
+repo = 'Townk/vim-autoclose'
+
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
+
+[[plugins]]
+repo = 'mattn/sonictemplate-vim'
+hook_add = '''
+let g:sonictemplate_vim_template_dir = [ '~/.config/nvim/plugins' ]
+'''
+
+#----------------------------------------------------------
+# ステータスライン
+#----------------------------------------------------------
+[[plugins]]
+repo = 'Lokaltog/vim-powerline'
+hook_add = '''
+let g:lightline = {
+        \ 'colorscheme': 'wombat',
+        \ 'mode_map': {'c': 'NORMAL'},
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ,
+        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]]
+        \ },
+        \ 'component_function': {
+        \   'modified': 'LightlineModified',
+        \   'readonly': 'LightlineReadonly',
+        \   'fugitive': 'LightlineFugitive',
+        \   'filename': 'LightlineFilename',
+        \   'fileformat': 'LightlineFileformat',
+        \   'filetype': 'LightlineFiletype',
+        \   'fileencoding': 'LightlineFileencoding',
+        \   'mode': 'LightlineMode'
+        \ }
+        \ }
+'''
+
+[[plugins]]
+repo = 'osyo-manga/vim-anzu'
+
+#----------------------------------------------------------
+# Document
+#----------------------------------------------------------
+[[plugins]]
+repo = 'reireias/vim-cheatsheet'
+hook_add = '''
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_auto_insert_bullets = 0
+let g:vim_markdown_new_list_item_indent = 0
+let g:cheatsheet#cheat_file = '~/.config/nvim/plugins/.cheatsheet.md'
+'''
+
+[[plugins]]
+repo = 'vim-jp/vimdoc-ja'
+
+#----------------------------------------------------------
+# Markdown
+#----------------------------------------------------------
+[[plugins]]
+repo = 'iamcco/markdown-preview.vim'
+
+#----------------------------------------------------------
+# lint/prettier
+#----------------------------------------------------------
+[[plugins]]
+repo = 'w0rp/ale'
+hook_add = '''
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 0
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '!!'
+let g:ale_sign_warning = '=='
+'''
+
+[[plugins]]
+repo = 'prettier/vim-prettier'
+build = 'npm install'
+on_ft    = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown', 'python']
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo = 'sheerun/vim-polyglot'
+
+[[plugins]]
+repo = 'chase/vim-ansible-yaml'
+
+#----------------------------------------------------------
+# LSP
+#----------------------------------------------------------
+[[plugins]]
+repo = 'prabirshrestha/async.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+#----------------------------------------------------------
+# fzf
+#----------------------------------------------------------
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --bin'
+merged = '0'
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+depends = 'fzf'
+
+#----------------------------------------------------------
+# Other
+#----------------------------------------------------------
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_add = '''
+let g:quickrun_config={'*': {'split': ''}}
+let g:quickrun_config._ = {
+\   'outputter/buffer/split': '10'
+\ }
+'''
+
+[[plugins]]
+repo = 'kien/ctrlp.vim'
+
+[[plugins]]
+repo = 'skanehira/translate.vim'
