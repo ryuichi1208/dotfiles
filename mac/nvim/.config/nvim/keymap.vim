@@ -123,3 +123,8 @@ nmap <Leader>r <plug>(quickrun)
 
 " Nerd
 nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
+
+noremap ZZ <Nop>
+noremap ZQ <Nop>
+noremap <C-z> <Nop>
+noremap <F1> <Nop>
