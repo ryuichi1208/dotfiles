@@ -92,14 +92,6 @@ inoremap ７ 7
 inoremap ８ 8
 inoremap ９ 9
 
-" Leader
-let mapleader = "\<Space>"
-nnoremap <Leader>w :w<CR>
-nnoremap <Leader>q :q<CR>
-nnoremap <Leader>t gt
-nnoremap <Leader>T gT
-nnoremap <Leader>h ^
-nnoremap <Leader>l $
 
 " gitgutter
 nnoremap [gitgutter] <Nop>
@@ -118,9 +110,6 @@ nmap # <Plug>(anzu-sharp)
 inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
 inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
 
-" quickrun
-nmap <Leader>r <plug>(quickrun)
-
 " Nerd
 nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
 
@@ -128,3 +117,23 @@ noremap ZZ <Nop>
 noremap ZQ <Nop>
 noremap <C-z> <Nop>
 noremap <F1> <Nop>
+
+
+" Leader
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>t gt
+nnoremap <Leader>T gT
+nnoremap <Leader>h ^
+nnoremap <Leader>l $
+
+" fzf
+nnoremap <silent><C-p> :Files<CR>
+nnoremap <silent><Leader>b :Buffers<CR>
+nnoremap <silent><Leader>t :BTags<CR>
+nnoremap <silent><Leader>m :History<CR>
+nnoremap <silent><Leader>g :GFiles?<CR>
+
+" quickrun
+nmap <Leader>r <plug>(quickrun)

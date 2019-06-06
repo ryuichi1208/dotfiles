@@ -163,6 +163,9 @@ merged = '0'
 [[plugins]]
 repo = 'junegunn/fzf.vim'
 depends = 'fzf'
+hook_add = '''
+let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+'''
 
 #----------------------------------------------------------
 # Other
