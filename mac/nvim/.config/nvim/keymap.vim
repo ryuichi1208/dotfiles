@@ -46,10 +46,6 @@ nnoremap sk <C-w>k
 nnoremap sl <C-w>l
 nnoremap sh <C-w>h
 
-" TABにて対応ペアにジャンプ
-nnoremap <Tab> %
-vnoremap <Tab> %
-
 " w!! でスーパーユーザーとして保存
 cmap w!! w !sudo tee > /dev/null %
 
@@ -92,7 +88,6 @@ inoremap ７ 7
 inoremap ８ 8
 inoremap ９ 9
 
-
 " gitgutter
 nnoremap [gitgutter] <Nop>
 nmap <C-h> [gitgutter]
@@ -118,7 +113,6 @@ noremap ZQ <Nop>
 noremap <C-z> <Nop>
 noremap <F1> <Nop>
 
-
 " Leader
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
@@ -137,3 +131,14 @@ nnoremap <silent><Leader>g :GFiles?<CR>
 
 " quickrun
 nmap <Leader>r <plug>(quickrun)
+
+nnoremap    [Tag]   <Nop>
+nmap    t [Tag]
+for n in range(1, 9)
+  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+endfor
+
+map <silent> [Tag]c :tablast <bar> tabnew<CR>
+map <silent> [Tag]x :tabclose<CR>
+map <silent> [Tag]n :tabnext<CR>
+map <silent> [Tag]p :tabprevious<CR>
