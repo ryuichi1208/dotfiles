@@ -12,3 +12,7 @@
   - 起動時に読み込む必要のないplugin
 - plugin/
   - プラグインで使用するファイルや設定など
+
+#### 見た目
+
+![見た目](https://github.com/ryuichi1208/work/blob/master/screen%20shot.png)
