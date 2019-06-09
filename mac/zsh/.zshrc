@@ -195,6 +195,11 @@ setopt hist_ignore_all_dups
 # historyに日付を表示
 alias h='fc -lt '%F %T' 1'
 
+# nvim
+alias vim='nvim'
+
+alias c='cd ~/'
+
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
 
@@ -229,7 +234,7 @@ alias -g GI='| grep -ri'
 
 # エイリアス
 alias lst='ls -lt'
-alias ls='ls'
+alias ls='ls -G'
 alias la='ls -laG'
 alias ll='ls -lG'
 
@@ -239,7 +244,6 @@ alias su="su -l"
 alias so='source'
 alias vi='vim'
 alias vz='vim ~/.zshrc'
-alias c='cdr'
 alias cp='cp -i'
 alias rm='rm -i'
 alias mkdir='mkdir -p'
