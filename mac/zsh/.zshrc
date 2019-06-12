@@ -1,7 +1,7 @@
 # -----------------------------
 # Lang
 # -----------------------------
-#export LANG=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
 #export LESSCHARSET=utf-8
 
 # -----------------------------
@@ -192,14 +192,6 @@ setopt share_history
 # すでにhistoryにあるコマンドは残さない
 setopt hist_ignore_all_dups
 
-# historyに日付を表示
-alias h='fc -lt '%F %T' 1'
-
-# nvim
-alias vim='nvim'
-
-alias c='cd ~/'
-
 # ヒストリに保存するときに余分なスペースを削除する
 setopt hist_reduce_blanks
 
@@ -232,31 +224,32 @@ alias -g H='| head'
 alias -g G='| grep'
 alias -g GI='| grep -ri'
 
-# エイリアス
-alias lst='ls -lt'
+# 固有
+alias nvim="~/nvim-osx64/bin/nvim"
+alias vim="nvim"
+
+# ls
 alias ls='ls -G'
-alias la='ls -laG'
-alias ll='ls -lG'
+alias la='ls -la -G'
+alias ll='ls -l -G'
+alias lt='ls -lrt -G'
+alias lc='clear && ll'
 
-alias du="du -Th"
-alias df="df -Th"
-alias su="su -l"
-alias so='source'
-alias vi='vim'
+# cd
+alias c='cd ~/'
+alias ..='cd ..'
+
+# dotfiles
 alias vz='vim ~/.zshrc'
-alias cp='cp -i'
-alias rm='rm -i'
-alias mkdir='mkdir -p'
-alias ..='c ../'
-alias back='pushd'
-alias diff='diff -U1'
+alias vn='vim ~/.config/nvim/dein.toml'
 
-alias tma='tmux attach'
-alias tml='tmux list-window'
+# Git
+alias gs='git status'
+alias gd='git diff'
 
-alias dki="docker run -i -t -P"
-alias dex="docker exec -i -t"
-alias drmf='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
+# Docker
+alias d='docker'
+alias dc='docker-compose'
 
 # -----------------------------
 # Plugin
@@ -397,7 +390,6 @@ function gs() {
   git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
   cut -d: -f1
 }
-
 
 # -----------------------------
 # fzf
