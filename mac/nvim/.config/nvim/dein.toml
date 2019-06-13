@@ -140,8 +140,8 @@ repo = 'tpope/vim-commentary'
 [[plugins]]
 repo = 'sheerun/vim-polyglot'
 
-[[plugins]]
-repo = 'chase/vim-ansible-yaml'
+#[[plugins]]
+#repo = 'chase/vim-ansible-yaml'
 
 #----------------------------------------------------------
 # LSP

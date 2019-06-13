@@ -95,10 +95,10 @@ ulimit -c 0
 # -----------------------------
 autoload -Uz vcs_info
 setopt prompt_subst
-zstyle ':vcs_info:*' formats "%F{green}[%r@%b]"
+zstyle ':vcs_info:*' formats "%F{black}%r:%b"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+#RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
 
 # -----------------------------
 # Completion

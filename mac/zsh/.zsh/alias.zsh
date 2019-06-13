@@ -9,7 +9,6 @@ alias -g G='| grep'
 alias -g GI='| grep -ri'
 
 # 固有
-alias nvim="~/nvim-osx64/bin/nvim"
 alias vim="nvim"
 
 # ls
