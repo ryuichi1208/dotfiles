@@ -129,6 +129,7 @@ augroup END
 augroup fileTypeIndent
   autocmd!
   autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
+  autocmd FileType bash       setlocal sw=4 sts=4 ts=4 et
   autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType go         setlocal sw=8 sts=8 ts=8 et
@@ -144,6 +145,7 @@ augroup fileTypeIndent
   autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
   autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
   autocmd FileType zsh        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType sh         setlocal sw=2 sts=2 ts=2 et
   autocmd FileType json       setlocal sw=2 sts=2 ts=2 et
 
   autocmd FileType perl,cgi   compiler perl

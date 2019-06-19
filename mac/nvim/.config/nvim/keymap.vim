@@ -131,6 +131,7 @@ nnoremap <silent><Leader>g :GFiles?<CR>
 
 " quickrun
 nmap <Leader>e <plug>(quickrun)
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
 
 nnoremap    [Tag]   <Nop>
 nmap    t [Tag]
