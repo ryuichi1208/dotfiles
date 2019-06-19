@@ -130,7 +130,7 @@ nnoremap <silent><Leader>m :History<CR>
 nnoremap <silent><Leader>g :GFiles?<CR>
 
 " quickrun
-nmap <Leader>r <plug>(quickrun)
+nmap <Leader>e <plug>(quickrun)
 
 nnoremap    [Tag]   <Nop>
 nmap    t [Tag]
@@ -142,3 +142,4 @@ map <silent> [Tag]c :tablast <bar> tabnew<CR>
 map <silent> [Tag]x :tabclose<CR>
 map <silent> [Tag]n :tabnext<CR>
 map <silent> [Tag]p :tabprevious<CR>
+au FileType qf nnoremap <silent><buffer>q :quit<CR>

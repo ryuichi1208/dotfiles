@@ -63,6 +63,13 @@ hook_add = '''
 let g:sonictemplate_vim_template_dir = [ '~/.config/nvim/plugins' ]
 '''
 
+[[plugins]]
+repo = 'davidhalter/jedi-vim'
+on_ft = 'python3'
+
+#[[plugins]]
+#repo = 'ervandew/supertab'
+
 #----------------------------------------------------------
 # ステータスライン
 #----------------------------------------------------------
@@ -173,7 +180,10 @@ let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 [[plugins]]
 repo = 'thinca/vim-quickrun'
 hook_add = '''
-let g:quickrun_config={'*': {'split': ''}}
+let g:quickrun_config = {
+\	'*': { 'split': '' },
+\       'python': { 'command': 'python3' },
+\ }
 let g:quickrun_config._ = {
 \   'outputter/buffer/split': '10'
 \ }
