@@ -17,6 +17,10 @@ zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "b4b4r07/enhancd", use:init.sh
 #zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf
 
+fpath=(~/.zsh/completion $fpath)
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
+
 # インストールしていないプラグインをインストール
 if ! zplug check --verbose; then
   printf "Install? [y/N]: "
