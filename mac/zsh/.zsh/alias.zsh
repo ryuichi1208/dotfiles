@@ -21,6 +21,7 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias vim='nvim'
 alias vi='vim'
+alias op='open'
 
 # Dotfiles
 alias vz='vim ~/.zshrc'
