@@ -25,6 +25,7 @@ alias op='open'
 
 # Dotfiles
 alias vz='vim ~/.zshrc'
+alias vza='vim ~/.zsh/alias.zsh'
 alias vn='vim ~/.config/nvim/init.vim'
 
 # Git
@@ -45,10 +46,12 @@ alias dc='docker-compose'
 alias dcnt='docker container'
 alias dcur='docker container ls -f status=running -l -q'
 alias dexec='docker container exec -it $(dcur)'
-alias dimg='docker image'
+alias dimg='docker images'
 alias drun='docker container run --rm -d'
 alias drunit='docker container run --rm -it'
 alias dstop='docker container stop $(dcur)'
+alias drm='docker rm $(docker ps -aq)'
+alias drmimg='docker rmi `docker images -aq`'
 
 # Kubernetes
 alias k='kubectl'
