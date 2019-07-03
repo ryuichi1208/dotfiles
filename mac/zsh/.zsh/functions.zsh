@@ -47,6 +47,14 @@ function drm()
   docker rm $(docker ps -a -q);
 }
 
+function docker-rmi()
+{
+    docker images \
+        | fzf-tmux --reverse --header-lines=1 --multi --ansi \
+        | awk '{print $3}' \
+        | xargs docker rmi ${1+"$@"}
+}
+
 # -----------------------------
 # PATH
 # -----------------------------

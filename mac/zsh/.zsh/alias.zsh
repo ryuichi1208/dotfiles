@@ -2,7 +2,7 @@
 # Alias
 # -----------------------------
 
-# Global
+### Global
 alias -g A='| awk'
 alias -g C='| pbcopy' # copy
 alias -g C='| wc -l' # count
@@ -11,7 +11,7 @@ alias -g H='| head' # 当然tailもね
 alias -g L='| less -R'
 alias -g X='| xargs'
 
-# Base
+### Base
 alias ls='ls -G'
 alias ll='ls -lG'
 alias la='ls -laG'
@@ -24,12 +24,12 @@ alias vi='vim'
 alias op='open'
 alias sshk='ssh-keygen -t rsa'
 
-# Dotfiles
+### Dotfiles
 alias vz='vim ~/.zshrc'
 alias vza='vim ~/.zsh/alias.zsh'
 alias vn='vim ~/.config/nvim/init.vim'
 
-# Git
+### Git
 alias g='git'
 alias ga='git add'
 alias gd='git diff'
@@ -41,7 +41,7 @@ alias gco='git checkout'
 alias gf='git fetch'
 alias gc='git commit'
 
-# Docker
+### Docker
 alias d='docker'
 alias dc='docker-compose'
 alias dcnt='docker container'
@@ -54,7 +54,7 @@ alias dstop='docker container stop $(dcur)'
 alias drm='docker rm $(docker ps -aq)'
 alias drmimg='docker rmi `docker images -aq`'
 
-# Kubernetes
+### Kubernetes
 alias k='kubectl'
 alias kg='kubectl get'
 alias kgpo='kubectl get pod'
@@ -78,3 +78,9 @@ alias nr='npm run'
 alias ya='yarn add'
 alias yr='yarn remove'
 alias yi='yarn install'
+
+### lazy
+alias lg='lazygit'
+alias lzd='lazydocker'
+;q
+:q
