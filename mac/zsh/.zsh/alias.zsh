@@ -22,6 +22,7 @@ alias cp='cp -i'
 alias vim='nvim'
 alias vi='vim'
 alias op='open'
+alias sshk='ssh-keygen -t rsa'
 
 # Dotfiles
 alias vz='vim ~/.zshrc'
@@ -67,3 +68,13 @@ alias kgsvcoyaml='kubectl get service -o=yaml'
 alias kgsvcwn='watch kubectl get service --namespace'
 alias kgsvcslwn='watch kubectl get service --show-labels --namespace'
 alias kgwf='watch kubectl get -f'
+
+### npm
+alias ni='npm install'
+alias nu='npm uninstall'
+alias nr='npm run'
+
+### yarn
+alias ya='yarn add'
+alias yr='yarn remove'
+alias yi='yarn install'
