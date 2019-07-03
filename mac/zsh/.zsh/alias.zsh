@@ -23,10 +23,12 @@ alias vim='nvim'
 alias vi='vim'
 alias op='open'
 alias sshk='ssh-keygen -t rsa'
+alias cdu='cd-gitroot'
 
 ### Dotfiles
 alias vz='vim ~/.zshrc'
 alias vza='vim ~/.zsh/alias.zsh'
+alias vzf='vim ~/.zsh/functions.zsh'
 alias vn='vim ~/.config/nvim/init.vim'
 
 ### Git
@@ -50,7 +52,6 @@ alias dexec='docker container exec -it $(dcur)'
 alias dimg='docker images'
 alias drun='docker container run --rm -d'
 alias drunit='docker container run --rm -it'
-alias dstop='docker container stop $(dcur)'
 alias drm='docker rm $(docker ps -aq)'
 alias drmimg='docker rmi `docker images -aq`'
 
@@ -82,5 +83,3 @@ alias yi='yarn install'
 ### lazy
 alias lg='lazygit'
 alias lzd='lazydocker'
-;q
-:q
