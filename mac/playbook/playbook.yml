@@ -1,0 +1,59 @@
+- hosts: localhost
+  connection: local
+  vars:
+    homebrew_taps:
+      - caskroom/cask
+      - caskroom/versions
+      - homebrew/dupes
+      - homebrew/versions
+      - homebrew/boneyard
+      - homebrew/binary
+
+    homebrew_cask_packages:
+      - name: alfred
+      - name: appcleaner
+      - name: virtualbox
+      - name: vagrant
+      - name: atom
+      - name: bartender
+      - name: blisk
+      - name: google-chrome
+      - name: firefox
+      - name: slack
+
+    homebrew_packages:
+      - name: awscli
+      - name: ansible
+      - name: direnv
+      - name: fzf
+      - name: git
+      - name: python
+      - name: python3
+      - name: terraform
+      - name: the_silver_searcher
+      - name: tig
+      - name: tmux
+      - name: zsh
+
+  tasks:
+    - name: homebrew update
+      homebrew:
+        update_homebrew: yes
+    - name: homebrew tap
+      homebrew_tap:
+        name: '{{ item }}'
+        state: present
+      with_items: '{{ homebrew_taps }}'
+
+    - name: homebrew cask packages install
+      homebrew_cask: name={{ item.name }} state=installed
+      environment:
+        HOMEBREW_CASK_OPTS: "--appdir=/Applications"
+      with_items: '{{ homebrew_cask_packages }}'
+
+    - name: homebrew packages install
+      homebrew:
+        name: '{{ item.name }}'
+        state: '{{ item.state | default("present") }}'
+      with_items: '{{ homebrew_packages }}'
+

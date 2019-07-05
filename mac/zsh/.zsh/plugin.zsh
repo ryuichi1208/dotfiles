@@ -10,13 +10,12 @@ fi
 source ~/.zplug/init.zsh
 
 # プラグインList
-# zplug "ユーザー名/リポジトリ名", タグ
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "b4b4r07/enhancd", use:init.sh
 zplug "mollifier/cd-gitroot"
-#zplug "junegunn/fzf-bin", as:command, from:gh-r, file:fzf
+zplug "adrieanKhisbe/diractions"
 
 fpath=(~/.zsh/completion $fpath)
 zstyle ':completion:*:*:docker:*' option-stacking yes

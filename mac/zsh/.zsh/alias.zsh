@@ -29,6 +29,8 @@ alias cdu='cd-gitroot'
 alias vz='vim ~/.zshrc'
 alias vza='vim ~/.zsh/alias.zsh'
 alias vzf='vim ~/.zsh/functions.zsh'
+alias vzs='vim ~/.zsh/setopt.zsh'
+alias vzp='vim ~/.zsh/plugin.zsh'
 alias vn='vim ~/.config/nvim/init.vim'
 
 ### Git
@@ -54,6 +56,7 @@ alias drun='docker container run --rm -d'
 alias drunit='docker container run --rm -it'
 alias drm='docker rm $(docker ps -aq)'
 alias drmimg='docker rmi `docker images -aq`'
+alias drmimgf='docker rmi -f `docker images -aq`'
 
 ### Kubernetes
 alias k='kubectl'
