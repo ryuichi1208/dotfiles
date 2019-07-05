@@ -6,10 +6,3 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
-
-#----------------------------------------------------------
-# syntax
-#----------------------------------------------------------
-[[plugins]]
-repo = 'chase/vim-ansible-yaml'
-on_ft = ['yaml']
