@@ -12,6 +12,7 @@ autoload -Uz colors ; colors
 
 # エディタをvimに設定
 export EDITOR=vim
+export VISUAL='vim'
 
 # Ctrl+Dでログアウトしてしまうことを防ぐ
 #setopt IGNOREEOF
