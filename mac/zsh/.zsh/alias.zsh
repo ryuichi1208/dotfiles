@@ -48,6 +48,7 @@ alias gc='git commit'
 
 ### Docker
 alias d='docker'
+alias dcl='docker container ls'
 alias dc='docker-compose'
 alias dcnt='docker container'
 alias dcur='docker container ls -f status=running -l -q'

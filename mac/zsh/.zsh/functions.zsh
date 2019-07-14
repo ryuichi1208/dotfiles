@@ -49,10 +49,40 @@ function drm()
 
 function docker-rmi()
 {
-    docker images \
-        | fzf-tmux --reverse --header-lines=1 --multi --ansi \
-        | awk '{print $3}' \
-        | xargs docker rmi ${1+"$@"}
+  docker images \
+    | fzf-tmux --reverse --header-lines=1 --multi --ansi \
+    | awk '{print $3}' \
+    | xargs docker rmi ${1+"$@"}
+}
+
+function dtcpdump()
+{
+  if [ $# -ne 2 ]; then
+    echo "Usage: dtcpdump [containe ID|container NAME] PORTNUM"
+    exit(1)
+  fi
+
+  local _cid=$1
+  local _port=$2
+
+  echo 'FROM alpine\nRUN apk add --no-cache tcpdump' \
+    | docker build -t debug -f - . \
+    && docker run -it --rm --net container:${_cid} debug tcpdump -nn -X port ${_port}
+}
+
+function dstrace()
+{
+  if [ $# -ne 2 ]; then
+    echo "Usage: dstrace [containe ID|container NAME] PID"
+    exit(1)
+  fi
+
+  local _cid=$1
+  local _pid=$2
+
+  echo 'FROM alpine\nRUN apk add --no-cache strace' \
+    | docker build -t debug -f - . \
+    && docker run -it --rm --pid container:${_cid} --cap-add sys_ptrace debug strace -fp ${_pid}
 }
 
 # -----------------------------
