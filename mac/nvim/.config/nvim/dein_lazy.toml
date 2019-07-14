@@ -3,6 +3,8 @@
 #----------------------------------------------------------
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+hook_add = '''
+'''
 
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'

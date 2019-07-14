@@ -194,3 +194,6 @@ repo = 'kien/ctrlp.vim'
 
 [[plugins]]
 repo = 'skanehira/translate.vim'
+
+[[plugins]]
+repo = 'Shougo/denite.nvim'
