@@ -1,7 +1,8 @@
 # -----------------------------
 # Util
 # -----------------------------
-function gp() {
+function gp()
+{
   FLG=0
   func=$1
   PACKAGE=$2
@@ -103,6 +104,11 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 #eval "$(pyenv init -)"
 alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 
+function pipfreeze()
+{
+  pip3 freeze -l > ./requirements.txt
+}
+
 # -----------------------------
 # Golang
 # -----------------------------
@@ -115,14 +121,16 @@ fi
 # -----------------------------
 # Git
 # -----------------------------
-function gt() {
+function gt()
+{
   is_in_git_repo || return
   git tag --sort -version:refname |
   fzf-down --multi --preview-window right:70% \
     --preview 'git show --color=always {} | head -200'
 }
 
-function gr() {
+function gr()
+{
   is_in_git_repo || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |
   fzf-down --tac \
@@ -130,7 +138,8 @@ function gr() {
   cut -d$'\t' -f1
 }
 
-function gs() {
+function gs()
+{
   is_in_git_repo || return
   git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
   cut -d: -f1
@@ -144,7 +153,8 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
 
 # fbr - checkout git branch
-fbr() {
+fbr()
+{
   local branches branch
   branches=$(git branch -vv) &&
   branch=$(echo "$branches" | fzf +m) &&
@@ -152,7 +162,8 @@ fbr() {
 }
 
 # fshow - git commit browser
-fshow() {
+fshow()
+{
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
   fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
@@ -164,7 +175,8 @@ FZF-EOF"
 }
 
 # fd - cd to selected directory
-fd() {
+fd()
+{
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
