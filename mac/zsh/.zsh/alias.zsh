@@ -88,3 +88,6 @@ alias yi='yarn install'
 ### lazy
 alias lg='lazygit'
 alias lzd='lazydocker'
+
+### Python
+alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"

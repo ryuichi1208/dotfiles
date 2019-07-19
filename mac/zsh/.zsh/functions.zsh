@@ -87,36 +87,12 @@ function dstrace()
 }
 
 # -----------------------------
-# PATH
-# -----------------------------
-case "${OSTYPE}" in
-  darwin*)
-    export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-    export MANPATH=/opt/local/share/man:/opt/local/man:$MANPATH
-  ;;
-esac
-
-# -----------------------------
 # Python
 # -----------------------------
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-#eval "$(pyenv init -)"
-alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
-
 function pipfreeze()
 {
   pip3 freeze -l > ./requirements.txt
 }
-
-# -----------------------------
-# Golang
-# -----------------------------
-if which go > /dev/null 2>&1  ; then
-  export CGO_ENABLED=1
-  export GOPATH=$HOME/dev/go
-  export PATH=$PATH:$(go env GOROOT)/bin:$GOPATH/bin
-fi
 
 # -----------------------------
 # Git
@@ -148,12 +124,8 @@ function gs()
 # -----------------------------
 # fzf
 # -----------------------------
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
-
 # fbr - checkout git branch
-fbr()
+function fbr()
 {
   local branches branch
   branches=$(git branch -vv) &&
@@ -162,7 +134,7 @@ fbr()
 }
 
 # fshow - git commit browser
-fshow()
+function fshow()
 {
   git log --graph --color=always \
       --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
@@ -175,7 +147,7 @@ FZF-EOF"
 }
 
 # fd - cd to selected directory
-fd()
+function fd()
 {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \

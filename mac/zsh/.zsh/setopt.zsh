@@ -5,20 +5,56 @@ export LANG=ja_JP.UTF-8
 #export LESSCHARSET=utf-8
 
 # -----------------------------
+# Environment variable
+# -----------------------------
+# エディタをvimに設定
+export EDITOR=vim
+export VISUAL='vim'
+
+# パスを追加したい場合
+export PATH="$HOME/bin:$PATH"
+
+# rsysncでsshを使用する
+export RSYNC_RSH=ssh
+
+# コンテナのビルダーを指定
+export DOCKER_BUILDKIT=1
+
+# 色の設定
+export LSCOLORS=Exfxcxdxbxegedabagacad
+
+# 補完時の色設定
+export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+
+# python関連
+export PATH="$PYENV_ROOT/bin:$PATH"
+export PYTHONDONTWRITEBYTECODE=1
+export PYENV_ROOT="$HOME/.pyenv"
+
+# Go関連
+if which go > /dev/null 2>&1  ; then
+  export CGO_ENABLED=1
+  export GOPATH=$HOME/dev/go
+  export PATH=$PATH:$(go env GOROOT)/bin:$GOPATH/bin
+fi
+
+#fzf関連
+if [ -f ~/.fzf.zsh ] ; then
+  source ~/.fzf.zsh
+  export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+  export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+  export FZF_LEGACY_KEYBINDINGS=0
+
+fi
+
+# -----------------------------
 # General
 # -----------------------------
 # 色を使用
 autoload -Uz colors ; colors
 
-# エディタをvimに設定
-export EDITOR=vim
-export VISUAL='vim'
-
 # Ctrl+Dでログアウトしてしまうことを防ぐ
 #setopt IGNOREEOF
-
-# パスを追加したい場合
-export PATH="$HOME/bin:$PATH"
 
 # cdした際のディレクトリをディレクトリスタックへ自動追加
 setopt auto_pushd
@@ -84,9 +120,6 @@ setopt noautoremoveslash
 # 各コマンドが実行されるときにパスをハッシュに入れる
 #setopt hash_cmds
 
-# rsysncでsshを使用する
-export RSYNC_RSH=ssh
-
 # その他
 umask 022
 ulimit -c 0
@@ -100,9 +133,6 @@ zstyle ':vcs_info:*' formats "%F{black}%r:%b"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
 #RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
-
-# コンテナのビルダーを指定
-export DOCKER_BUILDKIT=1
 
 # -----------------------------
 # Completion
@@ -125,12 +155,6 @@ setopt list_packed
 # 補完候補にファイルの種類も表示する
 #setopt list_types
 
-# 色の設定
-export LSCOLORS=Exfxcxdxbxegedabagacad
-
-# 補完時の色設定
-export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-
 # キャッシュの利用による補完の高速化
 zstyle ':completion::complete:*' use-cache true
 
@@ -146,4 +170,3 @@ zstyle ':completion:*:manuals' separate-sections true
 
 # --prefix=/usr などの = 以降でも補完
 setopt magic_equal_subst
-
