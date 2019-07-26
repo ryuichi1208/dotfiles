@@ -2,54 +2,83 @@
   connection: local
   vars:
     homebrew_taps:
-      - caskroom/cask
-      - caskroom/versions
-      - homebrew/dupes
-      - homebrew/versions
-      - homebrew/boneyard
-      - homebrew/binary
-
-    homebrew_cask_packages:
-      - name: alfred
-      - name: appcleaner
-      - name: virtualbox
-      - name: vagrant
-      - name: atom
-      - name: bartender
-      - name: blisk
-      - name: google-chrome
-      - name: firefox
-      - name: slack
+      - homebrew/core
+      - jesseduffield/lazydocker
+      - sanemat/font
 
     homebrew_packages:
-      - name: awscli
       - name: ansible
-      - name: direnv
-      - name: fzf
-      - name: git
+      - name: autoconf
+      - name: automake
+      - name: bash
+      - name: cairo
+      - name: circleci
+      - name: ctags
+      - name: figlet
+      - name: fontconfig
+      - name: fontforge
+      - name: freetype
+      - name: fribidi
+      - name: gdbm
+      - name: gettext
+      - name: giflib
+      - name: glib
+      - name: go
+      - name: graphite2
+      - name: hadolint
+      - name: harfbuzz
+      - name: htop
+      - name: icu4c
+      - name: jemalloc
+      - name: jpeg
+      - name: jq
+      - name: lazydocker
+      - name: lazygit
+      - name: libffi
+      - name: libpng
+      - name: libspiro
+      - name: libtermkey
+      - name: libtiff
+      - name: libtool
+      - name: libuninameslist
+      - name: libuv
+      - name: libvterm
+      - name: libyaml
+      - name: luajit
+      - name: lzo
+      - name: msgpack
+      - name: ncurses
+      - name: neovim
+      - name: oniguruma
+      - name: openssl
+      - name: pango
+      - name: pcre
+      - name: pixman
+      - name: pkg-config
       - name: python
-      - name: python3
-      - name: terraform
-      - name: the_silver_searcher
-      - name: tig
-      - name: tmux
+      - name: python@2
+      - name: readline
+      - name: ricty
+      - name: sqlite
+      - name: tree
+      - name: unibilium
+      - name: xz
       - name: zsh
 
   tasks:
     - name: homebrew update
       homebrew:
         update_homebrew: yes
+
+    - name: homebrew upgrade
+      homebrew:
+        upgrade_all: yes
+
     - name: homebrew tap
       homebrew_tap:
         name: '{{ item }}'
         state: present
       with_items: '{{ homebrew_taps }}'
-
-    - name: homebrew cask packages install
-      homebrew_cask: name={{ item.name }} state=installed
-      environment:
-        HOMEBREW_CASK_OPTS: "--appdir=/Applications"
-      with_items: '{{ homebrew_cask_packages }}'
 
     - name: homebrew packages install
       homebrew:
