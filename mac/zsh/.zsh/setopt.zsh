@@ -2,7 +2,14 @@
 #Lang
 # -----------------------------
 export LANG=ja_JP.UTF-8
-#export LESSCHARSET=utf-8
+
+# -----------------------------
+# history
+# -----------------------------
+HISTFILE=$HOME/.zsh-history
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt share_history
 
 # -----------------------------
 # Environment variable
@@ -53,9 +60,6 @@ fi
 # 色を使用
 autoload -Uz colors ; colors
 
-# Ctrl+Dでログアウトしてしまうことを防ぐ
-#setopt IGNOREEOF
-
 # cdした際のディレクトリをディレクトリスタックへ自動追加
 setopt auto_pushd
 
@@ -64,9 +68,6 @@ setopt pushd_ignore_dups
 
 # emacsキーバインド
 bindkey -e
-
-# viキーバインド
-#bindkey -v
 
 # フローコントロールを無効にする
 setopt no_flow_control
@@ -107,22 +108,8 @@ setopt correct_all
 # 上書きリダイレクトの禁止
 setopt no_clobber
 
-# sudo の後ろでコマンド名を補完する
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin \
-                   /usr/sbin /usr/bin /sbin /bin /usr/X11R6/bin
-
-# ps コマンドのプロセス名補完
-zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
-
 # パスの最後のスラッシュを削除しない
 setopt noautoremoveslash
-
-# 各コマンドが実行されるときにパスをハッシュに入れる
-#setopt hash_cmds
-
-# その他
-umask 022
-ulimit -c 0
 
 # -----------------------------
 # Prompt
@@ -132,41 +119,3 @@ setopt prompt_subst
 zstyle ':vcs_info:*' formats "%F{black}%r:%b"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
-#RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
-
-# -----------------------------
-# Completion
-# -----------------------------
-# 自動補完を有効にする
-autoload -Uz compinit ; compinit
-
-# 単語の入力途中でもTab補完を有効化
-setopt complete_in_word
-
-# コマンドミスを修正
-setopt correct
-
-# 補完の選択を楽にする
-zstyle ':completion:*' menu select
-
-# 補完候補をできるだけ詰めて表示する
-setopt list_packed
-
-# 補完候補にファイルの種類も表示する
-#setopt list_types
-
-# キャッシュの利用による補完の高速化
-zstyle ':completion::complete:*' use-cache true
-
-# 補完候補に色つける
-autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
-#zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
-
-# 大文字・小文字を区別しない(大文字を入力した場合は区別する)
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-
-# manの補完をセクション番号別に表示させる
-zstyle ':completion:*:manuals' separate-sections true
-
-# --prefix=/usr などの = 以降でも補完
-setopt magic_equal_subst

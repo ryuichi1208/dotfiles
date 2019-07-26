@@ -10,16 +10,16 @@ fi
 source ~/.zplug/init.zsh
 
 # プラグインList
+zplug "adrieanKhisbe/diractions"
+zplug "b4b4r07/enhancd", use:init.sh
+zplug "b4b4r07/zsh-gomi"
+zplug "mollifier/anyframe"
+zplug "mollifier/cd-gitroot"
+zplug "nnao45/zsh-kubectl-completion"
 zplug "zsh-users/zsh-completions"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
-zplug "b4b4r07/enhancd", use:init.sh
-zplug "mollifier/cd-gitroot"
-zplug "adrieanKhisbe/diractions"
-
-fpath=(~/.zsh/completion $fpath)
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
+zplug "zsh-users/zsh-history-substring-search", defer:3
 
 # インストールしていないプラグインをインストール
 if ! zplug check --verbose; then

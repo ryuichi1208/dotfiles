@@ -129,3 +129,34 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
 endfunction
 
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/.cache/tmp/vim-lsp.log')
+
+augroup MyLsp
+  autocmd!
+  if executable('pyls')
+    autocmd User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': { server_info -> ['pyls'] },
+        \ 'whitelist': ['python'],
+        \ 'workspace_config': {'pyls': {'plugins': {
+        \   'pycodestyle': {'enabled': v:false},
+        \   'jedi_definition': {'follow_imports': v:true, 'follow_builtin_imports': v:true},}}}
+        \})
+    autocmd FileType python call s:configure_lsp()
+  endif
+augroup END
+function! s:configure_lsp() abort
+  setlocal omnifunc=lsp#complete
+  nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gd :<C-u>LspDefinition<CR>
+  nnoremap <buffer> gD :<C-u>LspReferences<CR>
+  nnoremap <buffer> gs :<C-u>LspDocumentSymbol<CR>
+  nnoremap <buffer> gS :<C-u>LspWorkspaceSymbol<CR>
+  nnoremap <buffer> gQ :<C-u>LspDocumentFormat<CR>
+  vnoremap <buffer> gQ :LspDocumentRangeFormat<CR>
+  nnoremap <buffer> K :<C-u>LspHover<CR>
+  nnoremap <buffer> <F1> :<C-u>LspImplementation<CR>
+  nnoremap <buffer> <F2> :<C-u>LspRename<CR>
+endfunction
+let g:lsp_diagnostics_enabled = 0
