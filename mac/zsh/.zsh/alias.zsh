@@ -12,10 +12,6 @@ alias -g L='| less -R'
 alias -g X='| xargs'
 
 ### Base
-alias ls='ls -G'
-alias ll='ls -lG'
-alias la='ls -laG'
-alias lt='ls -lartG'
 alias c='clear'
 alias mv='mv -i'
 alias cp='cp -i'
@@ -24,6 +20,13 @@ alias vi='vim'
 alias op='open'
 alias sshk='ssh-keygen -t rsa'
 alias cdu='cd-gitroot'
+
+### ls
+alias l='ls -CF'
+alias ls='ls -G'
+alias ll='ls -lG'
+alias la='ls -laG'
+alias lt='ls -lartG'
 
 ### Dotfiles
 alias vz='vim ~/.zshrc'
@@ -36,6 +39,12 @@ alias vnd='vim ~/.config/nvim/dein.toml'
 alias vnf='vim ~/.config/nvim/functions.vim'
 alias vnp='vim ~/.config/nvim/keymap.vim'
 alias vno='vim ~/.config/nvim/options.vim'
+
+### diff
+alias='difff = diff --name-only'
+alias='diffs = diff --cached'
+alias='dp = diff --no-prefix'
+alias='dsp = diff --cached --no-prefix'
 
 ### Git
 alias g='git'
