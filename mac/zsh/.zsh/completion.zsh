@@ -1,6 +1,8 @@
 # -----------------------------
 # Completion
 # -----------------------------
+fpath=(~/.zsh/completion $fpath)
+
 # 自動補完を有効にする
 autoload -Uz compinit ; compinit
 
@@ -15,9 +17,6 @@ zstyle ':completion:*' menu select
 
 # 補完候補をできるだけ詰めて表示する
 setopt list_packed
-
-# 補完候補にファイルの種類も表示する
-#setopt list_types
 
 # キャッシュの利用による補完の高速化
 zstyle ':completion::complete:*' use-cache true
@@ -53,7 +52,3 @@ function _pip_completion {
 }
 compctl -K _pip_completion pip
 compctl -K _pip_completion pip3
-
-# Docker
-zstyle ':completion:*:*:docker:*' option-stacking yes
-zstyle ':completion:*:*:docker-*:*' option-stacking yes
