@@ -9,6 +9,7 @@ if [[ -d "${ZDOTDIR:-$HOME/.zsh}" ]]; then
   source "${ZDOTDIR:-$HOME/.zsh/functions.zsh}"
   source "${ZDOTDIR:-$HOME/.zsh/plugin.zsh}"
   source "${ZDOTDIR:-$HOME/.zsh/setopt.zsh}"
+  source "${ZDOTDIR:-$HOME/.zsh/completion.zsh}"
 fi
 
 # pip zsh completion start
