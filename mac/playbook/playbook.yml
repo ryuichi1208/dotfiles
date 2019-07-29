@@ -6,73 +6,92 @@
       - jesseduffield/lazydocker
       - sanemat/font
 
+    brew_cask_apps:
+      - alfred
+      - clipy
+      - docker
+      - firefox
+      - google-chrome
+      - google-japanese-ime
+      - google-hangouts
+      - iterm2
+      - licecap
+      - snip
+      - visual-studio-code
+
     homebrew_packages:
-      - name: ansible
-      - name: autoconf
-      - name: automake
-      - name: bash
-      - name: cairo
-      - name: circleci
-      - name: ctags
-      - name: figlet
-      - name: fontconfig
-      - name: fontforge
-      - name: freetype
-      - name: fribidi
-      - name: gdbm
-      - name: gettext
-      - name: giflib
-      - name: glib
-      - name: go
-      - name: graphite2
-      - name: hadolint
-      - name: harfbuzz
-      - name: htop
-      - name: icu4c
-      - name: jemalloc
-      - name: jpeg
-      - name: jq
-      - name: lazydocker
-      - name: lazygit
-      - name: libffi
-      - name: libpng
-      - name: libspiro
-      - name: libtermkey
-      - name: libtiff
-      - name: libtool
-      - name: libuninameslist
-      - name: libuv
-      - name: libvterm
-      - name: libyaml
-      - name: luajit
-      - name: lzo
-      - name: msgpack
-      - name: ncurses
-      - name: neovim
-      - name: oniguruma
-      - name: openssl
-      - name: pango
-      - name: pcre
-      - name: pixman
-      - name: pkg-config
-      - name: python
-      - name: python@2
-      - name: readline
-      - name: ricty
-      - name: sqlite
-      - name: tree
-      - name: unibilium
-      - name: xz
-      - name: zsh
+      - ansible
+      - autoconf
+      - automake
+      - bash
+      - cairo
+      - circleci
+      - ctags
+      - figlet
+      - fontconfig
+      - fontforge
+      - freetype
+      - fribidi
+      - gdbm
+      - gettext
+      - giflib
+      - glib
+      - go
+      - graphite2
+      - hadolint
+      - harfbuzz
+      - htop
+      - icu4c
+      - jemalloc
+      - jpeg
+      - jq
+      - lazydocker
+      - lazygit
+      - libffi
+      - libpng
+      - libspiro
+      - libtermkey
+      - libtiff
+      - libtool
+      - libuninameslist
+      - libuv
+      - libvterm
+      - libyaml
+      - luajit
+      - lzo
+      - msgpack
+      - ncurses
+      - neovim
+      - oniguruma
+      - openssl
+      - pango
+      - pcre
+      - pixman
+      - pkg-config
+      - python
+      - python@2
+      - readline
+      - ricty
+      - sqlite
+      - tree
+      - unibilium
+      - xz
+      - zsh
 
   tasks:
     - name: homebrew update
       homebrew:
         update_homebrew: yes
 
-    - name: homebrew upgrade
-      homebrew:
-        upgrade_all: yes
+    #- name: homebrew upgrade
+    - name: Install Homebrew Cask Packages
+      homebrew_cask:
+        name: "{{ item }}"
+        state: "present"
+        install_options: "appdir=/Applications"
+        accept_external_apps: yes
+      with_items: "{{ brew_cask_apps }}"
+       # upgrade_all: yes
 
     - name: homebrew tap
       homebrew_tap:
