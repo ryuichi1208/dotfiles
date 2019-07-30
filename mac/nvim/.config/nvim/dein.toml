@@ -67,6 +67,21 @@ let g:sonictemplate_vim_template_dir = [ '~/.config/nvim/plugins' ]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python3'
 
+[[plugins]]
+repo = 'fatih/vim-go'
+hook_add = '''
+let g:go_fmt_command = "goimports"
+'''
+
+[[plugins]]
+repo = 'SirVer/ultisnips'
+hook_add = '''
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
+'''
+
 #[[plugins]]
 #repo = 'ervandew/supertab'
 

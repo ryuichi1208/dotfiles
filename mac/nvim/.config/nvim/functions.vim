@@ -98,14 +98,6 @@ function! FloatingFZF()
   let buf = nvim_create_buf(v:false, v:true)
   call setbufvar(buf, '&signcolumn', 'no')
 
-  let opts = {
-        \ 'relative': 'editor',
-        \ 'row': &lines / 4,
-        \ 'col': float2nr(round((&columns - (&columns / 1.2)) / 2)),
-        \ 'width': float2nr(&columns / 1.2),
-        \ 'height': &lines / 2
-        \ }
-
   let win = nvim_open_win(buf, v:true, opts)
   call nvim_win_set_option(win, 'winhl', 'Normal:FzfCustomHighlight')
   call nvim_win_set_option(win, 'number', v:false)
