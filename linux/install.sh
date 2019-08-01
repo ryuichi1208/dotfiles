@@ -2,6 +2,7 @@
 
 FILES=(.zshrc
        .inputrc
+       .vimrc
       )
 
 for item in ${FILES[@]}; do
