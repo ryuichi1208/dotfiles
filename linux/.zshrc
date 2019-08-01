@@ -371,3 +371,5 @@ function gs() {
   git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
   cut -d: -f1
 }
+
+fpath=(~/.zsh/completion $fpath)

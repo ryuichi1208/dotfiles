@@ -4,6 +4,7 @@ else
     PS1="\[\033[36m\]\u@\h\[\033[00m\]:\[\033[01m\]\w\[\033[00m\]\\$ "
 fi
 
+
 # Normal Colors
 Black='\033[0;30m'        # Black
 Red='\033[0;31m'          # Red
