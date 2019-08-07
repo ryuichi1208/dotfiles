@@ -212,3 +212,6 @@ repo = 'skanehira/translate.vim'
 
 [[plugins]]
 repo = 'Shougo/denite.nvim'
+
+[[plugins]]
+repo = 'machakann/vim-swap'

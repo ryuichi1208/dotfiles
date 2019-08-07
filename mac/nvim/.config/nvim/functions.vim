@@ -138,6 +138,7 @@ augroup MyLsp
     autocmd FileType python call s:configure_lsp()
   endif
 augroup END
+
 function! s:configure_lsp() abort
   setlocal omnifunc=lsp#complete
   nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>

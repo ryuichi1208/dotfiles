@@ -14,7 +14,6 @@
 "インサートモードでも移動
 inoremap <c-d> <Del>
 inoremap <c-j> <down>
-"inoremap <c-k> <up>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
 
@@ -31,21 +30,6 @@ inoremap jj <Esc>
 " カーソル下の単語を * で検索
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
 
-" 新規タブ
-nnoremap st :<C-u>tabnew<CR>
-
-" 垂直分割
-nnoremap sv :<C-u>vs<CR>
-
-" 水平分割
-nnoremap ss :<C-u>sp<CR>
-
-" 分割移動
-nnoremap sj <C-w>j
-nnoremap sk <C-w>k
-nnoremap sl <C-w>l
-nnoremap sh <C-w>h
-
 " w!! でスーパーユーザーとして保存
 cmap w!! w !sudo tee > /dev/null %
 
@@ -56,13 +40,6 @@ nnoremap * *zz
 nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
-
-" quickfix
-nnoremap [q :cprevious<CR>   " 前へ
-nnoremap ]q :cnext<CR>       " 次へ
-nnoremap [Q :<C-u>cfirst<CR> " 最初へ
-nnoremap ]Q :<C-u>clast<CR>  " 最後へ
-autocmd QuickFixCmdPost *grep* cwindow
 
 " 全角を半角へ
 inoremap 　 <Space>
@@ -88,50 +65,42 @@ inoremap ７ 7
 inoremap ８ 8
 inoremap ９ 9
 
-" gitgutter
-nnoremap [gitgutter] <Nop>
-nmap <C-h> [gitgutter]
-nmap [gitgutter]j <Plug>GitGutterNextHunk
-nmap [gitgutter]k <Plug>GitGutterPrevHunk
-nmap [gitgutter]u <Plug>GitGutterUndoHunk
-
-" anzu
-nmap n <Plug>(anzu-n-with-echo)
-nmap N <Plug>(anzu-N-with-echo)
-nmap * <Plug>(anzu-star)
-nmap # <Plug>(anzu-sharp)
-
-" pumvisible
-inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
-inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
-
-" Nerd
-nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
-
+" ========================
+" Delete mapping
+" ========================
 noremap ZZ <Nop>
 noremap ZQ <Nop>
 noremap <C-z> <Nop>
 noremap <F1> <Nop>
 
-" Leader
+
+" ========================
+" Pumvisible
+" ========================
+inoremap <expr><Tab> pumvisible() ? "\<DOWN>" : "\<Tab>"
+inoremap <expr><S-Tab> pumvisible() ? "\<UP>" : "\<S-Tab>"
+
+
+" ========================
+" Leader config
+" ========================
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :q<CR>
-nnoremap <Leader>t gt
-nnoremap <Leader>T gT
+nnoremap <Leader>t gT
 nnoremap <Leader>h ^
 nnoremap <Leader>l $
 
-" fzf
-nnoremap <silent><C-p> :Files<CR>
-nnoremap <silent><Leader>b :Buffers<CR>
-nnoremap <silent><Leader>t :BTags<CR>
-nnoremap <silent><Leader>m :History<CR>
-nnoremap <silent><Leader>g :GFiles?<CR>
 
-" quickrun
-nmap <Leader>e <plug>(quickrun)
-au FileType qf nnoremap <silent><buffer>q :quit<CR>
+" ========================
+" Tab config
+" ========================
+" 分割移動
+nnoremap ss :<C-u>sp<CR>
+nnoremap sj <C-w>j
+nnoremap sk <C-w>k
+nnoremap sl <C-w>l
+nnoremap sh <C-w>h
 
 nnoremap    [Tag]   <Nop>
 nmap    t [Tag]
@@ -145,6 +114,33 @@ map <silent> [Tag]n :tabnext<CR>
 map <silent> [Tag]p :tabprevious<CR>
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 
+
+" ========================
+" scrooloose/nerdtree
+" ========================
+nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
+
+
+" ========================
+" thinca/vim-quickrun
+" ========================
+nmap <Leader>e <plug>(quickrun)
+au FileType qf nnoremap <silent><buffer>q :quit<CR>
+
+
+" ========================
+" junegunn/fzf
+" ========================
+nnoremap <silent><C-p> :Files<CR>
+nnoremap <silent><Leader>b :Buffers<CR>
+nnoremap <silent><Leader>t :BTags<CR>
+nnoremap <silent><Leader>m :History<CR>
+nnoremap <silent><Leader>g :GFiles?<CR>
+
+
+" ========================
+" fatih/vim-go
+" ========================
 augroup go
   autocmd!
   autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
@@ -159,3 +155,40 @@ augroup go
   autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
   autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
 augroup END
+
+
+" ========================
+" machakann/vim-swap
+" ========================
+nmap <Leader>o <Plug>(swap-interactive)
+nmap g< <Plug>(swap-prev)
+nmap g> <Plug>(swap-next)
+
+
+" ========================
+" osyo-manga/vim-anzu
+" ========================
+nmap n <Plug>(anzu-n-with-echo)
+nmap N <Plug>(anzu-N-with-echo)
+nmap * <Plug>(anzu-star)
+nmap # <Plug>(anzu-sharp)
+
+
+" ========================
+" quickfix
+" ========================
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :<C-u>cfirst<CR>
+nnoremap ]Q :<C-u>clast<CR>
+autocmd QuickFixCmdPost *grep* cwindow
+
+
+" ========================
+" airblade/vim-gitgutter
+" ========================
+nnoremap [gitgutter] <Nop>
+nmap <C-h> [gitgutter]
+nmap [gitgutter]j <Plug>GitGutterNextHunk
+nmap [gitgutter]k <Plug>GitGutterPrevHunk
+nmap [gitgutter]u <Plug>GitGutterUndoHunk
