@@ -65,6 +65,7 @@ inoremap ７ 7
 inoremap ８ 8
 inoremap ９ 9
 
+
 " ========================
 " Delete mapping
 " ========================
@@ -116,9 +117,19 @@ au FileType qf nnoremap <silent><buffer>q :quit<CR>
 
 
 " ========================
+" quickfix
+" ========================
+nnoremap [q :cprevious<CR>
+nnoremap ]q :cnext<CR>
+nnoremap [Q :<C-u>cfirst<CR>
+nnoremap ]Q :<C-u>clast<CR>
+autocmd QuickFixCmdPost *grep* cwindow
+
+
+" ========================
 " scrooloose/nerdtree
 " ========================
-nnoremap <silent><C-e> :NERDTreeTabsToggle<CR>
+nnoremap <silent><C-t> :NERDTreeTabsToggle<CR>
 
 
 " ========================
@@ -175,16 +186,6 @@ nmap # <Plug>(anzu-sharp)
 
 
 " ========================
-" quickfix
-" ========================
-nnoremap [q :cprevious<CR>
-nnoremap ]q :cnext<CR>
-nnoremap [Q :<C-u>cfirst<CR>
-nnoremap ]Q :<C-u>clast<CR>
-autocmd QuickFixCmdPost *grep* cwindow
-
-
-" ========================
 " airblade/vim-gitgutter
 " ========================
 nnoremap [gitgutter] <Nop>
@@ -192,3 +193,15 @@ nmap <C-h> [gitgutter]
 nmap [gitgutter]j <Plug>GitGutterNextHunk
 nmap [gitgutter]k <Plug>GitGutterPrevHunk
 nmap [gitgutter]u <Plug>GitGutterUndoHunk
+
+
+" ========================
+" rhysd/vim-clang-format
+" ========================
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>

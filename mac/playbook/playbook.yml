@@ -5,6 +5,7 @@
       - homebrew/core
       - jesseduffield/lazydocker
       - sanemat/font
+      - heroku/brew
 
     brew_cask_apps:
       - alfred
@@ -27,6 +28,7 @@
       - cairo
       - circleci
       - ctags
+      - clang-format
       - figlet
       - fontconfig
       - fontforge
@@ -40,6 +42,7 @@
       - graphite2
       - hadolint
       - harfbuzz
+      - heroku
       - htop
       - icu4c
       - jemalloc
@@ -83,14 +86,13 @@
       homebrew:
         update_homebrew: yes
 
-    #- name: homebrew upgrade
-    - name: Install Homebrew Cask Packages
-      homebrew_cask:
-        name: "{{ item }}"
-        state: "present"
-        install_options: "appdir=/Applications"
-        accept_external_apps: yes
-      with_items: "{{ brew_cask_apps }}"
+    # - name: Install Homebrew Cask Packages
+      # homebrew_cask:
+        # name: "{{ item }}"
+        # state: "present"
+        # install_options: "appdir=/Applications"
+        # accept_external_apps: yes
+      # with_items: "{{ brew_cask_apps }}"
        # upgrade_all: yes
 
     - name: homebrew tap
@@ -101,7 +103,6 @@
 
     - name: homebrew packages install
       homebrew:
-        name: '{{ item.name }}'
-        state: '{{ item.state | default("present") }}'
+        name: '{{ item }}'
+        state: present
       with_items: '{{ homebrew_packages }}'
-

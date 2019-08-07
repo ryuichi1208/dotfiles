@@ -215,3 +215,13 @@ repo = 'Shougo/denite.nvim'
 
 [[plugins]]
 repo = 'machakann/vim-swap'
+
+[[plugins]]
+repo = 'rhysd/vim-clang-format'
+hook_add = '''
+let g:clang_format#style_options = {
+            \ "AccessModifierOffset" : -4,
+            \ "AllowShortIfStatementsOnASingleLine" : "true",
+            \ "AlwaysBreakTemplateDeclarations" : "true",
+            \ "Standard" : "C++11"}
+'''
