@@ -1,0 +1,10 @@
+@startuml
+
+actor admin as A
+admin -> batch : Run on cron schedule
+batch -> db : Get of record \n to be deleted
+batch -> batch : Check images \nto be deleted
+batch -> STF : HTTP delete execution
+batch -> CDN : "Purge script" execution
+
+@enduml
