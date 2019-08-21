@@ -142,12 +142,12 @@ au FileType qf nnoremap <silent><buffer>q :quit<CR>
 " ========================
 " junegunn/fzf
 " ========================
-nnoremap <silent><C-p> :Files<CR>
-nnoremap <silent><Leader>b :Buffers<CR>
-nnoremap <silent><Leader>t :BTags<CR>
-nnoremap <silent><Leader>m :History<CR>
-nnoremap <silent><Leader>g :GFiles?<CR>
-
+nnoremap <silent> ,f :GFiles<CR>
+nnoremap <silent> ,F :GFiles?<CR>
+nnoremap <silent> ,b :Buffers<CR>
+nnoremap <silent> ,l :BLines<CR>
+nnoremap <silent> ,h :History<CR>
+nnoremap <silent> ,m :Mark<CR>
 
 " ========================
 " fatih/vim-go
