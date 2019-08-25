@@ -1,6 +1,25 @@
 # -----------------------------
 # Util
 # -----------------------------
+function buu()
+{
+  brew update && brew upgrade
+}
+
+function gaa()
+{
+  MSG=$1
+
+  if [ -z ${MSG} ]; then
+    echo "please commit message input!!"
+    exit 1
+  fi
+
+  git add .
+  git commit -m ${MSG}
+  git push
+}
+
 function gp()
 {
   FLG=0
