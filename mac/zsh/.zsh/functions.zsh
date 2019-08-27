@@ -48,6 +48,17 @@ function t()
   tmux new-session -s $(pwd |sed -E 's!^.+/([^/]+/[^/]+)$!\1!g' | sed -e 's/\./-/g')
 }
 
+function show_uptime ()
+{
+  uptime | awk '{ print "Uptime:", $3, $4, $5 }' | sed 's/,//g'
+  return;
+}
+
+function cdl()
+{
+  builtin cd "$@" && ls -AGF;
+}
+
 function psgrep() {
   ps aux | grep -v grep | grep "USER.*COMMAND"
   ps aux | grep -v grep | grep $1
