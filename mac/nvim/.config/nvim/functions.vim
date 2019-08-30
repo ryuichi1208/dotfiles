@@ -124,20 +124,9 @@ endfunction
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('~/.cache/tmp/vim-lsp.log')
 
-augroup MyLsp
-  autocmd!
-  if executable('pyls')
-    autocmd User lsp_setup call lsp#register_server({
-        \ 'name': 'pyls',
-        \ 'cmd': { server_info -> ['pyls'] },
-        \ 'whitelist': ['python'],
-        \ 'workspace_config': {'pyls': {'plugins': {
-        \   'pycodestyle': {'enabled': v:false},
-        \   'jedi_definition': {'follow_imports': v:true, 'follow_builtin_imports': v:true},}}}
-        \})
-    autocmd FileType python call s:configure_lsp()
-  endif
-augroup END
+let g:LanguageClient_serverCommands = {
+  \ 'python': ['pyls'],
+  \ }
 
 function! s:configure_lsp() abort
   setlocal omnifunc=lsp#complete
