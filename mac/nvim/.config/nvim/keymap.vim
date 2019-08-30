@@ -21,6 +21,16 @@ inoremap <c-l> <right>
 nnoremap j gj
 nnoremap k gk
 
+"インサートモードでも移動
+inoremap <C-d> <Del>
+inoremap <C-h> <left>
+inoremap <C-j> <down>
+inoremap <C-k> <up>
+inoremap <C-l> <right>
+
+" 括弧の補完追加
+inoremap < <><LEFT>
+
 " ESC連打でハイライト解除
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 
@@ -154,17 +164,22 @@ nnoremap <silent> ,m :Mark<CR>
 " ========================
 augroup go
   autocmd!
-  autocmd FileType go nmap <silent> <Leader>v <Plug>(go-def-vertical)
-  autocmd FileType go nmap <silent> <Leader>s <Plug>(go-def-split)
-  autocmd FileType go nmap <silent> <Leader>d <Plug>(go-def-tab)
-  autocmd FileType go nmap <silent> <Leader>x <Plug>(go-doc-vertical)
-  autocmd FileType go nmap <silent> <Leader>i <Plug>(go-info)
-  autocmd FileType go nmap <silent> <Leader>l <Plug>(go-metalinter)
-  autocmd FileType go nmap <silent> <leader>b :<C-u>call <SID>build_go_files()<CR>
-  autocmd FileType go nmap <silent> <leader>t  <Plug>(go-test)
-  autocmd FileType go nmap <silent> <leader>r  <Plug>(go-run)
-  autocmd FileType go nmap <silent> <leader>e  <Plug>(go-install)
-  autocmd FileType go nmap <silent> <Leader>c <Plug>(go-coverage-toggle)
+  autocmd FileType go nmap <silent> <Leader>d   <Plug>(go-def-tab)
+  autocmd FileType go nmap <silent> <Leader>x   <Plug>(go-doc-vertical)
+  autocmd FileType go nmap <silent> <Leader>i   <Plug>(go-info)
+  autocmd FileType go nmap <silent> <Leader>L   <Plug>(go-metalinter)
+  autocmd FileType go nmap <silent> <leader>t   <Plug>(go-test)
+  autocmd FileType go nmap <silent> <leader>I   <Plug>(go-install)
+  autocmd FileType go nmap <silent> <Leader>c   <Plug>(go-coverage-toggle)
+
+  autocmd FileType go nmap <silent> <leader>[   :GoDef<CR>
+  autocmd FileType go nmap <silent> <leader>t   :GoDefPop<CR>
+  autocmd FileType go nmap <silent> <leader>R   :GoReferrers<CR>
+  autocmd FileType go nmap <silent> <leader>fs  :GoFillStruct<CR>
+  autocmd FileType go nmap <silent> <leader>ei  :GoIfErr<CR>
+  autocmd FileType go nmap <silent> <leader>ki  :GoKeyify<CR>
+  autocmd FileType go nmap <silent> <leader>dd  :GoDeclsDir<CR>
+  autocmd FileType go nmap <silent> <leader>ip  :GoImpl<CR>
 augroup END
 
 
