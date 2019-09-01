@@ -1,13 +1,22 @@
-credential.helper=osxkeychain
-core.repositoryformatversion=0
-core.filemode=true
-core.bare=false
-core.logallrefupdates=true
-core.ignorecase=true
-core.precomposeunicode=true
-remote.origin.url=https://github.com/ryuichi1208/scraping_py.git
-remote.origin.fetch=+refs/heads/*:refs/remotes/origin/*
-branch.master.remote=origin
-branch.master.merge=refs/heads/master
-user.name=ryuichi1208
-user.email=ryucrosskey@gmail.com
+[user]
+  name = ryuichi1208
+  email = ryucrosskey@gmail.com
+[color]
+  ui = auto
+[gui]
+  encoding = utf-8
+[receive]
+  denyNonFastforwards = false
+[core]
+  #quotepath = false
+  filemode = false
+  editor = vim
+  excludefile = ~/.gitignore_global
+[merge]
+  tool = vimdiff
+[alias]
+  st = status
+  co = checkout
+  br = branch
+  up = rebase
+  ci = commit
