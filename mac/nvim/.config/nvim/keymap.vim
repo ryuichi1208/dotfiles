@@ -133,7 +133,7 @@ autocmd QuickFixCmdPost *grep* cwindow
 " ========================
 " scrooloose/nerdtree
 " ========================
-nnoremap <silent><C-t> :NERDTreeTabsToggle<CR>
+nnoremap <silent><C-n> :NERDTreeTabsToggle<CR>
 
 
 " ========================
@@ -162,12 +162,11 @@ augroup go
   autocmd FileType go nmap <silent> <Leader>x   <Plug>(go-doc-vertical)
   autocmd FileType go nmap <silent> <Leader>i   <Plug>(go-info)
   autocmd FileType go nmap <silent> <Leader>L   <Plug>(go-metalinter)
-  autocmd FileType go nmap <silent> <leader>t   <Plug>(go-test)
+  autocmd FileType go nmap <silent> <leader>T   <Plug>(go-test)
   autocmd FileType go nmap <silent> <leader>I   <Plug>(go-install)
   autocmd FileType go nmap <silent> <Leader>c   <Plug>(go-coverage-toggle)
 
   autocmd FileType go nmap <silent> <leader>[   :GoDef<CR>
-  autocmd FileType go nmap <silent> <leader>t   :GoDefPop<CR>
   autocmd FileType go nmap <silent> <leader>R   :GoReferrers<CR>
   autocmd FileType go nmap <silent> <leader>fs  :GoFillStruct<CR>
   autocmd FileType go nmap <silent> <leader>ei  :GoIfErr<CR>
