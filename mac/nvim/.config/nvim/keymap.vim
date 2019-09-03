@@ -11,6 +11,12 @@
 " :lmap  :lnoremap :lunmap    挿入、コマンドライン、Lang-Arg
 " :cmap  :cnoremap :cunmap    コマンドライン
 
+"インサートモードでも移動
+inoremap <c-k> <up>
+inoremap <c-j> <down>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
+
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk

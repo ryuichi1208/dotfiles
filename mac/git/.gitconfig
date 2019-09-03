@@ -1,0 +1,22 @@
+[user]
+  name = ryuichi1208
+  email = ryucrosskey@gmail.com
+[color]
+  ui = auto
+[gui]
+  encoding = utf-8
+[receive]
+  denyNonFastforwards = false
+[core]
+  #quotepath = false
+  filemode = false
+  editor = vim
+  excludefile = ~/.gitignore_global
+[merge]
+  tool = vimdiff
+[alias]
+  st = status
+  co = checkout
+  br = branch
+  up = rebase
+  ci = commit
