@@ -95,27 +95,21 @@ let g:UltiSnipsEditSplit="vertical"
 # ステータスライン
 #----------------------------------------------------------
 [[plugins]]
-repo = 'Lokaltog/vim-powerline'
+repo = 'itchyny/lightline.vim'
 hook_add = '''
 let g:lightline = {
-        \ 'colorscheme': 'wombat',
+        \ 'colorscheme': 'one',
         \ 'mode_map': {'c': 'NORMAL'},
         \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ,
-        \             [ 'gitbranch', 'readonly', 'filename', 'modified' ]]
+	\   'left': [ [ 'mode', 'paste' ],
+        \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
         \ },
         \ 'component_function': {
-        \   'modified': 'LightlineModified',
-        \   'readonly': 'LightlineReadonly',
-        \   'fugitive': 'LightlineFugitive',
-        \   'filename': 'LightlineFilename',
-        \   'fileformat': 'LightlineFileformat',
-        \   'filetype': 'LightlineFiletype',
-        \   'fileencoding': 'LightlineFileencoding',
-        \   'mode': 'LightlineMode'
+	\   'gitbranch': 'fugitive#head'
         \ }
         \ }
 '''
+
 
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
@@ -215,9 +209,6 @@ repo = 'kien/ctrlp.vim'
 
 [[plugins]]
 repo = 'skanehira/translate.vim'
-
-[[plugins]]
-repo = 'Shougo/denite.nvim'
 
 [[plugins]]
 repo = 'machakann/vim-swap'
