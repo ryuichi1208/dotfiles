@@ -128,6 +128,14 @@ let g:LanguageClient_serverCommands = {
   \ 'python': ['pyls'],
   \ }
 
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
+
 function! s:configure_lsp() abort
   setlocal omnifunc=lsp#complete
   nnoremap <buffer> <C-]> :<C-u>LspDefinition<CR>
