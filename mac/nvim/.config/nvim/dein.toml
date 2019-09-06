@@ -27,16 +27,6 @@ repo = 'tpope/vim-fugitive'
 # 補完
 #----------------------------------------------------------
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/usr/local/bin/python3.7'
-'''
-
-[[plugins]]
-repo = 'Shougo/neco-vim'
-
-[[plugins]]
 repo = 'Shougo/neco-syntax'
 
 [[plugins]]
@@ -64,16 +54,14 @@ let g:sonictemplate_vim_template_dir = [ '~/.config/nvim/plugins' ]
 '''
 
 [[plugins]]
-repo = 'davidhalter/jedi-vim'
-on_ft = 'python3'
-
-[[plugins]]
 repo = 'fatih/vim-go'
 hook_add = '''
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_fmt_command = "goimports"
+let g:go_def_mapping_enabled = 0
+let g:go_doc_keywordprg_enabled = 0
 
 autocmd FileType go :highlight goErr cterm=bold ctermfg=214
 autocmd FileType go :match goErr /\<err\>/
@@ -138,7 +126,6 @@ repo = 'iamcco/markdown-preview.vim'
 #----------------------------------------------------------
 # lint/prettier
 #----------------------------------------------------------
-[[plugins]]
 repo = 'w0rp/ale'
 hook_add = '''
 let g:ale_lint_on_save = 1
@@ -169,23 +156,8 @@ repo = 'pearofducks/ansible-vim'
 # LSP
 #----------------------------------------------------------
 [[plugins]]
-repo = 'prabirshrestha/async.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/vim-lsp'
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete.vim'
-
-[[plugins]]
-repo = 'prabirshrestha/asyncomplete-lsp.vim'
-hook_add = '''
-let g:lsp_diagnostics_enabled = 0
-" debug
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
-let g:asyncomplete_log_file = expand('~/asyncomplete.log')
-'''
+repo = 'neoclide/coc.nvim'
+build = './install.sh nightly'
 
 #----------------------------------------------------------
 # fzf

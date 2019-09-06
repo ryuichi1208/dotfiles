@@ -12,3 +12,5 @@ if [[ -d "${ZDOTDIR:-$HOME/.zsh}" ]]; then
   source "${ZDOTDIR:-$HOME/.zsh/completion.zsh}"
 fi
 
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
