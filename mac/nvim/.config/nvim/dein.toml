@@ -4,11 +4,13 @@
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
+
 #----------------------------------------------------------
 # Theme
 #----------------------------------------------------------
 [[plugins]]
 repo = 'tomasr/molokai'
+
 
 #----------------------------------------------------------
 # Git
@@ -22,6 +24,7 @@ highlight GitGutterAdd ctermfg=blue ctermbg=brown
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
+
 
 #----------------------------------------------------------
 # 補完
@@ -102,6 +105,7 @@ let g:lightline = {
 [[plugins]]
 repo = 'osyo-manga/vim-anzu'
 
+
 #----------------------------------------------------------
 # Document
 #----------------------------------------------------------
@@ -117,11 +121,13 @@ let g:cheatsheet#cheat_file = '~/.config/nvim/plugins/.cheatsheet.md'
 [[plugins]]
 repo = 'vim-jp/vimdoc-ja'
 
+
 #----------------------------------------------------------
 # Markdown
 #----------------------------------------------------------
 [[plugins]]
 repo = 'iamcco/markdown-preview.vim'
+
 
 #----------------------------------------------------------
 # lint/prettier
@@ -144,13 +150,11 @@ on_ft    = ['javascript', 'typescript', 'vue', 'css', 'scss', 'json', 'markdown'
 repo = 'tpope/vim-surround'
 
 [[plugins]]
-repo = 'tpope/vim-commentary'
-
-[[plugins]]
 repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
 repo = 'pearofducks/ansible-vim'
+
 
 #----------------------------------------------------------
 # LSP
@@ -158,6 +162,7 @@ repo = 'pearofducks/ansible-vim'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 build = './install.sh nightly'
+
 
 #----------------------------------------------------------
 # fzf
@@ -174,6 +179,23 @@ hook_add = '''
 let g:fzf_layout = { 'window': 'call FloatingFZF()' }
 '''
 
+
+#----------------------------------------------------------
+# Editor
+#----------------------------------------------------------
+[[plugins]]
+repo = 'machakann/vim-swap'
+
+[[plugins]]
+repo = 'machakann/vim-sandwich'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+
 #----------------------------------------------------------
 # Other
 #----------------------------------------------------------
@@ -189,14 +211,6 @@ let g:quickrun_config._ = {
 \ }
 '''
 
-[[plugins]]
-repo = 'kien/ctrlp.vim'
-
-[[plugins]]
-repo = 'skanehira/translate.vim'
-
-[[plugins]]
-repo = 'machakann/vim-swap'
 
 [[plugins]]
 repo = 'rhysd/vim-clang-format'
@@ -207,6 +221,3 @@ let g:clang_format#style_options = {
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11"}
 '''
-
-[[plugins]]
-repo = 'machakann/vim-sandwich'

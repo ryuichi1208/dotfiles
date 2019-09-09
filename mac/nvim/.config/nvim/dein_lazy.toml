@@ -8,3 +8,13 @@ hook_add = '''
 
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
+
+
+#----------------------------------------------------------
+# Other
+#----------------------------------------------------------
+[[plugins]]
+repo = 'kien/ctrlp.vim'
+
+[[plugins]]
+repo = 'skanehira/translate.vim'

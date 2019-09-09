@@ -219,3 +219,18 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
+
+
+" ========================
+" neoclide/coc.nvim
+" ========================
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)

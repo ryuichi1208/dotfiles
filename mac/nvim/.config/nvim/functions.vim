@@ -1,5 +1,5 @@
 "----------------------------------------------------------
-" Lightline
+" vim tab
 "----------------------------------------------------------
 " Anywhere SID.
 function! s:SID_PREFIX()
@@ -27,8 +27,9 @@ function! s:my_tabline()  "{{{
 endfunction "}}}
 let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
 
+
 "----------------------------------------------------------
-" Lightline
+" itchyny/lightline.vim
 "----------------------------------------------------------
 function! LightlineModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
@@ -71,8 +72,9 @@ function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
+
 "----------------------------------------------------------
-" NERDTree
+" scrooloose/nerdtree
 "----------------------------------------------------------
 function! NERDTreeHighlightFile(extension, fg, bg, guifg, guibg)
  exec 'autocmd filetype nerdtree highlight ' . a:extension .' ctermbg='. a:bg .' ctermfg='. a:fg .' guibg='. a:guibg .' guifg='. a:guifg
@@ -91,20 +93,24 @@ call NERDTreeHighlightFile('rb',     'Red',     'none', 'red',     '#151515')
 call NERDTreeHighlightFile('js',     'Red',     'none', '#ffa500', '#151515')
 call NERDTreeHighlightFile('php',    'Magenta', 'none', '#ff00ff', '#151515')
 
+
 "----------------------------------------------------------
-" fzf
+" junegunn/fzf
 "----------------------------------------------------------
-function! FloatingFZF()
+function! FloatingFZf()
   let buf = nvim_create_buf(v:false, v:true)
   call setbufvar(buf, '&signcolumn', 'no')
 
   let win = nvim_open_win(buf, v:true, opts)
-  call nvim_win_set_option(win, 'winhl', 'Normal:FzfCustomHighlight')
+  call nvim_win_set_option(win, 'winhl', 'normal:FzfCustomHighlight')
   call nvim_win_set_option(win, 'number', v:false)
   call nvim_win_set_option(win, 'relativenumber', v:false)
 endfunction
 
 
+"----------------------------------------------------------
+" Shougo/denite.nvim
+"----------------------------------------------------------
 autocmd FileType denite call s:denite_my_settings()
 function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <CR>
@@ -121,6 +127,10 @@ function! s:denite_my_settings() abort
   \ denite#do_map('toggle_select').'j'
 endfunction
 
+
+"----------------------------------------------------------
+" prabirshrestha/vim-lsp
+"----------------------------------------------------------
 let g:lsp_log_verbose = 1
 let g:lsp_log_file = expand('~/.cache/tmp/vim-lsp.log')
 
@@ -136,6 +146,10 @@ if executable('pyls')
         \ })
 endif
 
+
+" ========================
+" fatih/vim-go
+" ========================
 if executable('golsp')
   augroup LspGo
     au!
@@ -162,3 +176,15 @@ function! s:configure_lsp() abort
   nnoremap <buffer> <F2> :<C-u>LspRename<CR>
 endfunction
 let g:lsp_diagnostics_enabled = 0
+
+
+" ========================
+" neoclide/coc.nvim
+" ========================
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
