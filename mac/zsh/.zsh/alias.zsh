@@ -17,9 +17,10 @@ alias mv='mv -i'
 alias cp='cp -i'
 alias vim='nvim'
 alias vi='vim'
+alias v='vim'
 alias op='open'
 alias sshk='ssh-keygen -t rsa'
-alias cdu='cd-gitroot'
+alias cdr='cd-gitroot'
 
 ### ls
 alias l='ls -CF'
