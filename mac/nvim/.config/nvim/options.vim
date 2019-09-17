@@ -116,6 +116,10 @@ set splitbelow
 " QuickFixおよびHelpでは q でバッファを閉じる
 autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 
+" 正規表現
+nnoremap / /\v
+nnoremap ? ?\v
+
 " Auto comment out disable
 autocmd Filetype * set formatoptions-=r
 

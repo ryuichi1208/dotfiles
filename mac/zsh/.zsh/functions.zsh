@@ -4,6 +4,7 @@
 function buu()
 {
   brew update && brew upgrade
+  pip3 list | awk '{print $1}' | xargs -L 1 pip3 install -U
 }
 
 function gaa()
