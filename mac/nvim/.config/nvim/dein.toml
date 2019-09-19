@@ -82,6 +82,7 @@ let g:UltiSnipsEditSplit="vertical"
 #[[plugins]]
 #repo = 'ervandew/supertab'
 
+
 #----------------------------------------------------------
 # ステータスライン
 #----------------------------------------------------------
@@ -154,6 +155,10 @@ repo = 'sheerun/vim-polyglot'
 
 [[plugins]]
 repo = 'pearofducks/ansible-vim'
+
+[[plugins]]
+repo = 'Vimjas/vim-python-pep8-indent'
+on_ft = 'python'
 
 
 #----------------------------------------------------------
