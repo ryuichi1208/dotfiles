@@ -1,0 +1,13 @@
+% one-liner
+
+echo "1 2 3" | awk '{print $NF}'
+echo "1 2 3" | awk '{print $1+$2+$3}'
+echo "1 2 3" | awk '{print $1, $(NF-1), $NF}'
+
+echo -e "1\n2\n3\n4\n" | awk 'NR==2, NR==4'
+
+for i in {1..10}; do echo ${i} ; done
+tail -f file | while read; do echo "$(date +%T.%N) $REPLY"; done
+grep -v '^\s*#' filename |grep -v '^\s*$'
+find . -name "*.pl" -type f -print | xargs -L 1 grep ${REGEX}
+cat test.log | awk '/^B\s.*$/{sum+=$2} END {print sum}'

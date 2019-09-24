@@ -1,0 +1,6 @@
+% docker
+
+docker containe run --name ${NAME} --rm -it --hostname ${HOSTNAME} --mount type=volume,src=$(pwd),dst=/app ${IMAGE_NAME} /bin/bash
+docker image tag ${IMAGE_NAME} ${TAG_NAME}:${VERSION}
+docker-compose down --rmi all
+docker-compuse up -d --build

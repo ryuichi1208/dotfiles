@@ -21,6 +21,7 @@ alias v='vim'
 alias op='open'
 alias sshk='ssh-keygen -t rsa'
 alias cdr='cd-gitroot'
+alias nvp='navi --print'
 
 ### ls
 alias l='ls -CF'
