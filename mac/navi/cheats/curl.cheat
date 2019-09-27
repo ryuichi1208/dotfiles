@@ -6,3 +6,4 @@ curl -LI ${URL} -o /dev/null -w "%{http_code}\n" -s
 curl -sL ${URL} -o /dev/null -w "%{time_starttransfer}\n" ; done
 curl -X POST -H "Content-Type: application/json" -d '{"Name":"ryuichi1208", "Age":"25"}' localhost:8080/api/v1/users
 curl ${URL} -H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36'
+curl -s https://ipvigilante.com/$(curl -s https://ipinfo.io/ip) | jq .

@@ -4,7 +4,14 @@
 function buu()
 {
   brew update && brew upgrade
-  pip3 list | awk '{print $1}' | xargs -L 1 pip3 install -U
+  zplug self-update && zplug update
+
+  sudo pip3 install -U pip
+  pip3 list \
+      | grep -v -e "^-" -e "^Package" \
+      | awk '{print $1}'\
+      | xargs -L1 sudo pip3 install -U \
+      | grep -v --line-buffered --no-messages -e "Requirement already"
 }
 
 function gaa()

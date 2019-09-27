@@ -54,6 +54,38 @@ if [ -f ~/.fzf.zsh ] ; then
 
 fi
 
+: << EOF
+DIRACTION_EDITOR=vi
+DIRACTION_DEF_FILE=/Users/JPZ2046/.diractions
+DIRACTION_BROWSER=
+DIRACTION_AUTO_CONFIG=true
+ENHANCD_DIR=/Users/JPZ2046/.enhancd
+ENHANCD_DISABLE_DOT=0
+ENHANCD_DISABLE_HYPHEN=0
+ENHANCD_DISABLE_HOME=0
+ENHANCD_DOT_ARG=..
+ENHANCD_HYPHEN_ARG=-
+ENHANCD_HYPHEN_NUM=10
+ENHANCD_HOME_ARG=
+ENHANCD_DOT_SHOW_FULLPATH=0
+ENHANCD_USE_FUZZY_MATCH=1
+ENHANCD_ROOT=/Users/JPZ2046/.zplug/repos/b4b4r07/enhancd
+ENHANCD_COMMAND=cd
+ENHANCD_FILTER=fzy:fzf-tmux:fzf:peco:percol:gof:pick:icepick:sentaku:selecta
+ENHANCD_AWK=awk
+EDITOR=vim
+VISUAL=vim
+RSYNC_RSH=ssh
+DOCKER_BUILDKIT=1
+PYTHONDONTWRITEBYTECODE=1
+PYENV_ROOT=/Users/JPZ2046/.pyenv
+CGO_ENABLED=1
+GOPATH=/Users/JPZ2046/dev/go
+FZF_DEFAULT_COMMAND=rg --files --hidden --glob "!.git"
+FZF_DEFAULT_OPTS=--height 40% --reverse --border
+FZF_LEGACY_KEYBINDINGS=0
+EOF
+
 # -----------------------------
 # General
 # -----------------------------
