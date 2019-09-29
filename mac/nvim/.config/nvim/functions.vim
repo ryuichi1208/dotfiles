@@ -188,3 +188,5 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+call map(dein#check_clean(), "delete(v:val, 'rf')")
