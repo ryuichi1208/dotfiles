@@ -1,16 +1,26 @@
-# dotfiles
+## Overview
 
-## My dotfiles for:
+dotfiles
 
-* bash
-* zsh
-* tmux
-* vimrc
-* ctags
-
-## Install
+## Directory tree
 
 ```
-$ git clone git@github.com:ryuichi1208/dotfiles.git
-$ cp -p {dotfiles} ~/
+.
+├── Dockerfile
+├── LICENSE
+├── Makefile
+├── README.md
+├── linux
+│   └── install.sh
+├── mac
+│   ├── bash
+│   ├── git
+│   ├── macos
+│   ├── navi
+│   ├── nvim
+│   ├── playbook
+│   ├── vim
+│   └── zsh
+└── windows
+    └── README
 ```
