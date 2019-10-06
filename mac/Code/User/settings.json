@@ -1,0 +1,4 @@
+{
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "git.autofetch": true
+}
