@@ -51,6 +51,16 @@ function gp()
   fi
 }
 
+function dcode()
+{
+  echo $#
+  if [ $# -eq 2 ]; then
+    echo $2 | nkf -WwMQ | tr = %
+  else
+    echo $1 | nkf --url-input
+  fi
+}
+
 function t()
 {
   tmux new-session -s $(pwd |sed -E 's!^.+/([^/]+/[^/]+)$!\1!g' | sed -e 's/\./-/g')
