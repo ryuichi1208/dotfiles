@@ -133,14 +133,14 @@ repo = 'iamcco/markdown-preview.vim'
 #----------------------------------------------------------
 # lint/prettier
 #----------------------------------------------------------
-repo = 'w0rp/ale'
-hook_add = '''
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '!!'
-let g:ale_sign_warning = '=='
-'''
+# repo = 'w0rp/ale'
+# hook_add = '''
+# let g:ale_lint_on_save = 1
+# let g:ale_lint_on_text_changed = 0
+# let g:ale_sign_column_always = 1
+# let g:ale_sign_error = '!!'
+# let g:ale_sign_warning = '=='
+# '''
 
 [[plugins]]
 repo = 'prettier/vim-prettier'

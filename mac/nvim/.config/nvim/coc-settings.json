@@ -11,6 +11,27 @@
       "command": "clangd",
       "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
       "filetypes": ["c", "cpp", "objc", "objcpp"]
+    },
+    "python": {
+      "command": "python3",
+      "filetypes": ["python", "py"],
+      "settings": {
+        "pyls": {
+          "enable": true
+        },
+        "plugins": {
+          "jedi_completion": {
+           "enabled": false
+          },
+          "jedi_hover": {
+            "enabled": true
+          }
+        }
+      }
     }
-	}
+  },
+  "python.jediEnabled": false,
+  "python.linting.enabled": true,
+  "python.linting.pep8Path": "pep8",
+  "python.formatting.blackPath": "black"
 }
