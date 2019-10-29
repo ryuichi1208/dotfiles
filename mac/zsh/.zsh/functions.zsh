@@ -3,9 +3,19 @@
 # -----------------------------
 function buu()
 {
-  brew update && brew upgrade
+  # brew
+  brew update && brew upgrade && brew cleanup
+
+  # zplug
   zplug self-update && zplug update
 
+  # npm
+  npm update -g npm && npm update -g
+
+  # yarn
+  yarn upgrade
+
+  # pip
   sudo pip3 install -U pip
   pip3 list \
       | grep -v -e "^-" -e "^Package" \
