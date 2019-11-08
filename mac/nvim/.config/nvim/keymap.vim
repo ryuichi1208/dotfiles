@@ -1,4 +1,4 @@
-" ----------------------------------------------------------
+" ---------------------------------------------------------
 " Keymap
 "----------------------------------------------------------
 " :map   :noremap  :unmap     ノーマル、ビジュアル、選択、オペレータ待機
@@ -12,6 +12,7 @@
 " :cmap  :cnoremap :cunmap    コマンドライン
 
 "インサートモードでも移動
+inoremap <C-d> <Del>
 inoremap <c-k> <up>
 inoremap <c-j> <down>
 inoremap <c-h> <left>
@@ -20,13 +21,6 @@ inoremap <c-l> <right>
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
-
-"インサートモードでも移動
-inoremap <C-d> <Del>
-inoremap <C-h> <left>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
-inoremap <C-l> <right>
 
 " 括弧の補完追加
 inoremap < <><LEFT>
