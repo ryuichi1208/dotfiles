@@ -30,7 +30,6 @@
       }
     }
   },
-  "python.jediEnabled": false,
   "python.linting.enabled": true,
   "python.linting.pep8Path": "pep8",
   "python.formatting.blackPath": "black"
