@@ -14,14 +14,6 @@ function buu()
 
   # yarn
   yarn upgrade
-
-  # pip
-  sudo pip3 install -U pip
-  pip3 list \
-      | grep -v -e "^-" -e "^Package" \
-      | awk '{print $1}'\
-      | xargs -L1 sudo pip3 install -U \
-      | grep -v --line-buffered --no-messages -e "Requirement already"
 }
 
 function gaa()
@@ -75,6 +67,7 @@ function t()
 {
   tmux new-session -s $(pwd |sed -E 's!^.+/([^/]+/[^/]+)$!\1!g' | sed -e 's/\./-/g')
 }
+
 
 function show_uptime ()
 {
