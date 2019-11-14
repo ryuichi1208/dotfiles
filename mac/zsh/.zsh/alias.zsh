@@ -26,6 +26,7 @@ alias sshk='ssh-keygen -t rsa'
 alias cdr='cd-gitroot'
 alias nvp='navi --print'
 alias cdg='cd-gitroot'
+alias bash='/usr/local/bin/bash'
 
 ### ls
 alias l='ls -CF'
