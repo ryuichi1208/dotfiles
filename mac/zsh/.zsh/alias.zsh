@@ -74,9 +74,12 @@ alias de='docker exec'
 alias dh='docker history'
 alias dn='docekr network'
 alias dv='docker volume'
+alias di='docker image'
 alias drm='docker rm $(docker ps -aq)'
 alias drmimg='docker rmi `docker images -aq`'
 alias drmimgf='docker rmi -f `docker images -aq`'
+alias dcr='docker container run -it --rm'
+alias dib='docker image build --rm'
 
 ### Kubernetes
 alias k='kubectl'
@@ -85,6 +88,9 @@ alias kl='kubectl logs -f'
 alias kp='kubectl proxy'
 alias kg='kubectl get'
 alias krm='kubectl delete'
+alias kgsvcoyaml='kubectl get service -o=yaml'
+alias kgsvcwn='watch kubectl get service --namespace'
+alias kgsvcslwn='watch kubectl get service --show-labels --namespace'
 
 ### npm
 alias ni='npm install'
