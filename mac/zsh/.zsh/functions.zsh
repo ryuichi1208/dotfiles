@@ -16,6 +16,11 @@ function buu()
   yarn upgrade
 }
 
+function urlencode
+{
+  echo "$1" | nkf -WwMQ | sed 's/=$//g' | tr = % | tr -d '\n'
+}
+
 function gaa()
 {
   MSG=$1
@@ -184,6 +189,15 @@ function fbr()
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
+function fbrr()
+{
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
 # fshow - git commit browser
 function fshow()
 {
@@ -206,7 +220,8 @@ function fd()
   cd "$dir"
 }
 
-function fkill() {
+function fkill()
+{
     local pid
     if [ "$UID" != "0" ]; then
         pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
@@ -220,7 +235,8 @@ function fkill() {
     fi
 }
 
-function fcoc() {
+function fcoc()
+{
   local commits commit
   commits=$(git log --pretty=oneline --abbrev-commit --reverse) &&
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
