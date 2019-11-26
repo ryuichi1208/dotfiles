@@ -1,4 +1,18 @@
 {
-    "java.errors.incompleteClasspath.severity": "ignore",
-    "git.autofetch": true
+    "C_Cpp.updateChannel": "Insiders",
+    "workbench.iconTheme": "vscode-icons",
+
+    // エディター設定
+    "editor.fontSize":12,
+    "terminal.integrated.fontSize": 9,
+    "editor.wordWrap": "on",
+    "files.trimTrailingWhitespace": true,
+    "editor.minimap.enabled": false,
+    "bookmarks.treeview.visible": true,
+    "editor.formatOnType": true,
+    "editor.renderControlCharacters": true,
+    "editor.insertSpaces": true,
+    "editor.renderLineHighlight": "all",
+    "emmet.includeLanguages": {"twig": "html", "vue-html": "html"}
 }
+
