@@ -2,6 +2,7 @@
   // plugin
   "C_Cpp.updateChannel": "Insiders",
   "workbench.iconTheme": "vscode-icons",
+  "diffEditor.renderSideBySide": false,
 
   // Editor
   "bookmarks.treeview.visible": true,
@@ -9,7 +10,11 @@
   "editor.wordWrap": "on",
   "editor.minimap.enabled": false,
   "editor.formatOnType": true,
+  "editor.formatOnPaste": true, // ペースト時に自動でフォーマット
+  "editor.formatOnSave": true,
+  "editor.wordWrap": "on",
   "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "all",
   "editor.renderLineHighlight": "all",
   "emmet.includeLanguages": {"twig": "html", "vue-html": "html"},
   "files.trimTrailingWhitespace": true,
