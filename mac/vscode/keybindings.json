@@ -1,0 +1,326 @@
+[
+    //----------------------------------------------------------
+    // エディターにフォーカスしている時の設定 (editor->editorへの移動)
+    //----------------------------------------------------------
+    // 実装箇所にコードジャンプ
+    {
+        "key": "ctrl+u ctrl+i",
+        "command": "editor.action.goToImplementation",
+        "when": "editorFocus"
+    },
+    // 宣言箇所に移動
+    {
+        "key": "ctrl+u ctrl+d",
+        "command": "editor.action.goToDeclaration",
+        "when": "editorFocus"
+    },
+    // 手前のエディターに移動
+    {
+        "key": "ctrl+w ctrl+h",
+        "command": "workbench.action.previousEditor",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+w ctrl+l",
+        "command": "workbench.action.nextEditor",
+        "when": "editorFocus && vim.mode == 'Normal'"
+    },
+
+    //----------------------------------------------------------
+    // エディターにフォーカスしている時の設定(editor<->sidebarへの移動)
+    //----------------------------------------------------------
+    // サイドバーへの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
+    {
+        "key": "ctrl+w h",
+        "command": "workbench.action.focusSideBar",
+        "when": "editorFocus"
+    },
+    // サイドバーからの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
+    {
+        "key": "ctrl+w ctrl+l",
+        "command": "workbench.action.focusFirstEditorGroup",
+        "when": "!editorFocus"
+    },
+    // サイドバーからの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
+    {
+        "key": "ctrl+w ctrl+l",
+        "command": "workbench.action.navigateEditorGroups",
+        "when": "!editorFocus"
+    },
+
+    //----------------------------------------------------------
+    // 検索関連(* -> 検索UI)
+    //----------------------------------------------------------
+    // grep検索に入る
+    {
+        "key": "ctrl+u ctrl+g",
+        "command": "workbench.action.findInFiles",
+        "when": "!searchInputBoxFocus"
+    },
+    // 検索実行後の候補への移動
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.interactivePlayground.arrowDown",
+        "when": "interactivePlaygroundFocus && !editorTextFocus"
+    },
+    // ファイルの検索に入る
+    {
+        "key": "ctrl+u ctrl+u",
+        "command": "workbench.action.quickOpen"
+    },
+
+    //----------------------------------------------------------
+    // カーソル移動(editor(ui移動はなし))
+    //----------------------------------------------------------
+    //入力モードでカーソルをみぎにずらす
+    {
+        "key": "ctrl+l",
+        "command": "cursorRight",
+        "when": "editorTextFocus && !editorReadOnly"
+    },
+
+    //----------------------------------------------------------
+    // サジェストの選択(ui移動はなし)
+    //----------------------------------------------------------
+    // サジェストの選択
+    {
+        "key": "ctrl+k",
+        "command": "acceptSelectedSuggestion"
+    },
+    // 候補のフォーカスを下へ移動
+    {
+        "key": "ctrl+n",
+        "command": "selectNextSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    // 候補のフォーカスを上へ移動
+    {
+        "key": "ctrl+p",
+        "command": "selectPrevSuggestion",
+        "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible"
+    },
+    // ヒントサジェストを下へ移動
+    {
+        "key": "ctrl+n",
+        "command": "showNextParameterHint",
+        "when": "editorTextFocus && parameterHintsMultipleSignatures && parameterHintsVisible"
+    },
+    // リスト系の選択のフォーカスを下へ移動
+    {
+        "key": "ctrl+n",
+        "command": "list.focusDown",
+        "when": "listFocus"
+    },
+    // 検索画面の選択のフォーカスを下へ移動
+    {
+        "key": "ctrl+n",
+        "command": "search.focus.nextInputBox",
+        "when": "inputBoxFocus && searchViewletVisible"
+    },
+    // サジェストのキャンセル
+    {
+        "key": "ctrl+[",
+        "command": "search.action.cancel",
+        "when": "listFocus && searchViewletVisible"
+    },
+
+    //----------------------------------------------------------
+    // 設定画面のみ有効なサジェストの選択(ui移動はなし)
+    //----------------------------------------------------------
+    // 候補のフォーカスを下へ移動
+    {
+        "key": "ctrl+n",
+        "command": "settings.action.focusSettingsFile",
+        "when": "inSettingsSearch"
+    },
+    // 候補のフォーカスを下へ移動
+    {
+        "key": "ctrl+n",
+        "command": "keybindings.editor.focusKeybindings",
+        "when": "inKeybindings && inKeybindingsSearch"
+    },
+    // サジェストのキャンセル
+    {
+        "key": "ctrl+[",
+        "command": "settings.action.clearSearchResults",
+        "when": "inSettingsSearch"
+    },
+    // サジェストのキャンセル
+    {
+        "key": "ctrl+[",
+        "command": "keybindings.editor.clearSearchResults",
+        "when": "inKeybindings && inKeybindingsSearch"
+    },
+    //----------------------------------------------------------
+    // emmetのサジェストの挙動(ui移動はなし)
+    //----------------------------------------------------------
+    // スニペットの選択
+    {
+        "key": "ctrl+k",
+        "command": "insertSnippet",
+        "when": "editorTextFocus && hasSnippetCompletions && !editorTabMovesFocus && !inSnippetMode"
+    },
+    // スニペットのプレースホルダー移動
+    {
+        "key": "ctrl+k",
+        "command": "jumpToNextSnippetPlaceholder",
+        "when": "editorTextFocus && hasNextTabstop && inSnippetMode"
+    },
+    // スニペットのプレースホルダー戻る
+    {
+        "key": "ctrl+h",
+        "command": "jumpToPrevSnippetPlaceholder",
+        "when": "editorTextFocus && hasPrevTabstop && inSnippetMode"
+    },
+
+    //----------------------------------------------------------
+    // workbenchのクイックオープンの挙動(ui移動はなし)
+    //----------------------------------------------------------
+    {
+        "key": "ctrl+[",
+        "command": "workbench.action.closeQuickOpen",
+        "when": "inQuickOpen"
+    },
+    {
+        "key": "ctrl+[",
+        "command": "workbench.action.closeQuickOpen",
+        "when": "inQuickOpen"
+    },
+
+    //----------------------------------------------------------
+    // サイドバーでのファイル名編集(ui移動はなし)
+    //----------------------------------------------------------
+    {
+        "key": "ctrl+r",
+        "command": "renameFile",
+        "when": "explorerViewletVisible && filesExplorerFocus"
+    },
+    {
+        "key": "Enter",
+        "command": "explorer.openToSide",
+        "when": "explorerViewletVisible && filesExplorerFocus"
+    },
+    //----------------------------------------------------------
+    // サイドバーのファイルをエディターで開く(サイドバー -> エディター)
+    //----------------------------------------------------------
+    {
+        "key": "ctrl+l",
+        "command": "explorer.openToSide",
+        "when": "explorerViewletFocus && explorerViewletVisible"
+    },
+    //----------------------------------------------------------
+    // デバッグモードUI(*->デバッグモードへの移動)
+    //----------------------------------------------------------
+    {
+        "key": "ctrl+o ctrl+d",
+        "command": "workbench.view.debug"
+    },
+    {
+        "key": "ctrl+o d",
+        "command": "workbench.view.debug"
+    },
+
+    //----------------------------------------------------------
+    // バージョン管理UI(*->バージョン管理UIへの移動)
+    //----------------------------------------------------------
+    {
+        "key": "ctrl+o ctrl+g",
+        "command": "workbench.view.scm"
+    },
+    {
+        "key": "ctrl+o g",
+        "command": "workbench.view.scm"
+    },
+    //----------------------------------------------------------
+    // サイドバーのトグル(*->サイドバーへの移動)
+    //----------------------------------------------------------
+    {
+        "key": "[IntlYen] v",
+        "command": "workbench.view.explorer",
+        "when": "!explorerViewletVisible && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
+    },
+    {
+        "key": "[IntlYen] v",
+        "command": "workbench.action.toggleSidebarVisibility",
+        "when": "explorerViewletVisible && !searchViewletVisible && !inDebugMode && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
+    },
+    //----------------------------------------------------------
+    // コマンドパレットオープン(*->コマンドパレット)
+    //----------------------------------------------------------
+    {
+        "key": "ctrl+o ctrl+o",
+        "command": "workbench.action.showCommands"
+    },
+    {
+        "key": "ctrl+o o",
+        "command": "workbench.action.showCommands"
+    },
+
+    //----------------------------------------------------------
+    // vscodeのviewを選択(*->*)
+    //----------------------------------------------------------
+    {
+        "key": "ctrl+o ctrl+v",
+        "command": "workbench.action.quickOpenView"
+    },
+    {
+        "key": "ctrl+o v",
+        "command": "workbench.action.quickOpenView"
+    },
+
+    //----------------------------------------------------------
+    // vscodeのviewを選択(*->*)
+    //----------------------------------------------------------
+    {
+        "key": "tab",
+        "command": "editor.emmet.action.expandAbbreviation",
+        // "when": "explorerViewletVisible && !searchViewletVisible && !inDebugMode && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
+        "when": "explorerViewletVisible && !inDebugMode && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
+    },
+
+    //----------------------------------------------------------
+    // vscodeのterminalのトグル(*->terminal)
+    //----------------------------------------------------------
+    {
+        "key": "[IntlYen] t",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "!terminalFocus && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
+    },
+    {
+        "key": "[IntlYen] t",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminalFocus && vim.mode != 'SearchInProgressMode' && vim.mode != 'Insert'"
+    },
+
+    //----------------------------------------------------------
+    // sidebarの検索キャンセル(*->terminal)
+    //----------------------------------------------------------
+    {
+        "key": "Escape",
+        "command": "list.toggleKeyboardNavigation",
+        "when": "listFocus && listSupportsKeyboardNavigation"
+    },
+    {
+        "key": "ctrl+[",
+        "command": "list.toggleKeyboardNavigation",
+        "when": "listFocus && listSupportsKeyboardNavigation"
+    },
+    //----------------------------------------------------------
+    // gitの操作系(uiの移動なし)
+    //----------------------------------------------------------
+    {
+        "key": "g c",
+        "command": "git.commit",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "g a",
+        "command": "git.stage",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+    {
+        "key": "g g",
+        "command": "cursorTop",
+        "when": "editorTextFocus && vim.mode == 'Normal'"
+    },
+]
