@@ -49,7 +49,7 @@ fi
 if [ -f ~/.fzf.zsh ] ; then
   source ~/.fzf.zsh
   export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-  export FZF_DEFAULT_OPTS='--height 40% --reverse --border'
+  export FZF_DEFAULT_OPTS="--height 40% --reverse --border --preview 'bat --color=always --style=header,grid --line-range :100 {}'"
   export FZF_LEGACY_KEYBINDINGS=0
 
 fi

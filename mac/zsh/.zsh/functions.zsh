@@ -242,3 +242,13 @@ function fcoc()
   commit=$(echo "$commits" | fzf --tac +s +m -e) &&
   git checkout $(echo "$commit" | sed "s/ .*//")
 }
+
+
+function gmsg()
+{
+  BRANCH_LIST=$(git branch -a | sed s/\*//| awk '{print $1}')
+  for i in ${BRANCH_LIST[@]}; do
+    git checkout ${i} > /dev/null
+    git log -1 --oneline
+  done
+}
