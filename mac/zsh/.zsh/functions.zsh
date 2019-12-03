@@ -252,3 +252,10 @@ function gmsg()
     git log -1 --oneline
   done
 }
+
+function fb()
+{
+  FZF_DEFAULT_OPTS="--height 40% --reverse --border --preview \
+    'bat --color=always --style=header,grid --line-range :100 {}'" \
+    fzf
+}

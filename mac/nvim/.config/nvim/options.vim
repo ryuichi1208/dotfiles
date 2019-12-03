@@ -207,3 +207,9 @@ augroup ansible_vim_fthosts
   autocmd!
   autocmd BufNewFile,BufRead hosts setfiletype yaml.ansible
 augroup END
+
+if has('persistent_undo')
+	let undo_path = expand('~/.vim/undo')
+	exe 'set undodir=' .. undo_path
+	set undofile
+endif
