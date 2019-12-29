@@ -1,0 +1,3 @@
+prefix=${HOME}/.npm
+tmp=/tmp
+init.license=Zlib

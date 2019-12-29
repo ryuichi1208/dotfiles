@@ -1,0 +1,54 @@
+# Options
+set-option -g status-keys vi
+set-option -g default-terminal screen-256color
+
+set-option -g status-left-length 20
+set-option -g status-right '%Y/%m/%d %H:%M'
+set-option -g visual-bell on
+set-option -g history-limit 32768
+set-option -g mouse on
+set-option -g set-titles on
+set-option -g set-titles-string "#W #{session_alerts}"
+set-option -g base-index 1
+set-option -g renumber-windows on
+set-option -g detach-on-destroy off
+
+set-window-option -g automatic-rename off
+set-window-option -g allow-rename on
+set-window-option -g mode-keys vi
+
+set-option -g display-time 3000
+
+set-option -g escape-time 1
+
+# update-environment SSH_CLIENT
+
+# Colors
+set-option -g status-bg white
+set-window-option -g window-status-current-style "bg=cyan"
+
+# Keys
+## Prefix key
+set-option -g prefix C-z
+unbind-key C-b
+bind-key C-z send-prefix
+
+bind-key . source-file $HOME/.tmux.conf
+
+# Open a new window at the right of current window instead of at the rightest
+bind-key c new-window -a
+bind-key < swap-window -t -
+bind-key > swap-window -t +
+bind-key T break-pane
+bind-key S command-prompt -p "(new-session)" "new-session -s \"%%%\""
+bind-key L choose-tree -w "link-window -s '%%'"
+
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+
+if-shell '[[ -x ~/.go/bin/lemonade ]]' \
+  'bind-key ] run-shell "~/.go/bin/lemonade paste | tmux load-buffer -" \; paste-buffer ; \
+   bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "~/.go/bin/lemonade copy"'
+if-shell '[[ "$(uname)" == "Darwin" ]]' 'source-file ~/.tmux.mac.conf'
+
+# vim: ft=tmux

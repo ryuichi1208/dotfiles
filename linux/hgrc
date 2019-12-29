@@ -1,0 +1,4 @@
+[ui]
+username = thinca <thinca@gmail.com>
+ignore = ~/.hgignore
+editor = vim
