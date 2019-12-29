@@ -1,0 +1,8 @@
+defencoding utf-8
+
+escape ^Tt
+
+vbell on
+
+startup_message on
+autodetach on
