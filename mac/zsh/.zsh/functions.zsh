@@ -11,9 +11,6 @@ function buu()
 
   # npm
   npm update -g npm && npm update -g
-
-  # yarn
-  yarn upgrade
 }
 
 function urlencode

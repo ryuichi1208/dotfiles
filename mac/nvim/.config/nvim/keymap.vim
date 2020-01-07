@@ -234,7 +234,7 @@ nmap <leader>rn <Plug>(coc-rename)
 " tpope/vim-fugitive
 " ========================
 nnoremap [fugitive]  <Nop>
-nmap <space>g [fugitive]
+nmap <space>f [fugitive]
 nnoremap <silent> [fugitive]s :Gstatus<CR><C-w>T
 nnoremap <silent> [fugitive]a :Gwrite<CR>
 nnoremap <silent> [fugitive]c :Gcommit-v<CR>
