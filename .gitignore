@@ -1,0 +1,19 @@
+  
+*.swp
+*~
+.DS_Store
+
+.bundle/cache
+.config/*
+
+# whitelist
+!.config/nvim
+!.config/pt
+!.config/git
+!.config/composer
+.config/composer/vendor
+.config/composer/auth.json
+!.config/yarn
+.config/yarn/link
+.config/yarn/global/node_modules
+!.config/alacritty
