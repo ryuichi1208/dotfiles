@@ -10,7 +10,7 @@ function buu()
   zplug self-update && zplug update
 
   # npm
-  npm update -g npm && npm update -g
+  # npm update -g npm && npm update -g
 }
 
 function urlencode
