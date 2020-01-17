@@ -152,7 +152,7 @@ au FileType qf nnoremap <silent><buffer>q :quit<CR>
 " ========================
 " junegunn/fzf
 " ========================
-nnoremap <silent> ,f :GFiles<CR>
+nnoremap <silent> z :Files<CR>
 nnoremap <silent> ,F :GFiles?<CR>
 nnoremap <silent> ,b :Buffers<CR>
 nnoremap <silent> ,l :BLines<CR>
@@ -258,3 +258,6 @@ map <Leader> <Plug>(easymotion-prefix)
 nmap s <Plug>(easymotion-overwin-f2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+nmap <Leader>m <Plug>(easymotion-sn)
+xmap <Leader>m <Plug>(easymotion-sn)
+omap <Leader>m <Plug>(easymotion-tn)

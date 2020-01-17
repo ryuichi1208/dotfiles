@@ -234,3 +234,6 @@ let g:clang_format#style_options = {
 
 [[plugins]]
 repo = 'easymotion/vim-easymotion'
+
+[[plugins]]
+repo = 'rking/ag.vim'
