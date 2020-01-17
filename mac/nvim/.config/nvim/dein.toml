@@ -170,18 +170,25 @@ build = './install.sh nightly'
 #----------------------------------------------------------
 # fzf
 #----------------------------------------------------------
-[[plugins]]
-repo = 'junegunn/fzf'
-build = './install --bin'
-merged = '0'
+# [[plugins]]
+# repo = 'junegunn/fzf'
+# build = './install --bin'
+# merged = '0'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
-depends = 'fzf'
 hook_add = '''
-let g:fzf_layout = { 'window': 'call FloatingFZF()' }
+set rtp+=/usr/local/opt/fzf
+" dotファイルを含める&プレビュー
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, fzf#vim#with_preview({'source': 'ag --hidden --ignore .git -g ""'}), <bang>0)
+command! -bang -nargs=* Ag
+  \ call fzf#vim#grep(
+  \   'ag --column --color --hidden --ignore .git '.shellescape(<q-args>), 0,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%', '?'),
+  \   <bang>0)
 '''
-
 
 #----------------------------------------------------------
 # Editor
@@ -224,3 +231,6 @@ let g:clang_format#style_options = {
             \ "AlwaysBreakTemplateDeclarations" : "true",
             \ "Standard" : "C++11"}
 '''
+
+[[plugins]]
+repo = 'easymotion/vim-easymotion'

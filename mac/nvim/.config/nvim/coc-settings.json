@@ -2,6 +2,7 @@
   "suggest.noselect":false,
 	"suggest.preferCompleteThanJumpPlaceholder":true,
 	"languageserver": {
+
     "intelephense": {
       "command": "intelephense",
       "args": ["--stdio"],
@@ -10,16 +11,24 @@
         "storagePath": "/tmp/intelephense"
       }
     },
+
     "golang": {
       "command": "gopls",
       "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
       "filetypes": ["go"]
 		},
+
     "clangd": {
       "command": "clangd",
       "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     },
+
+    "lua": {
+      "command": "lua-lsp",
+      "filetypes": ["lua"]
+    },
+
     "python": {
       "command": "python3",
       "filetypes": ["python", "py"],
@@ -37,6 +46,7 @@
         }
       }
     }
+
   },
   "python.linting.enabled": true,
   "python.linting.pep8Path": "pep8",

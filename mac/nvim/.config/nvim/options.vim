@@ -53,6 +53,7 @@ set smartcase
 
 " カーソルラインを表示する
 set cursorline
+set cursorcolumn
 
 " ファイル更新で自動で読み直す
 set autoread
