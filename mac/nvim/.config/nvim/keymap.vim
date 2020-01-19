@@ -37,6 +37,10 @@ vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<C
 " w!! でスーパーユーザーとして保存
 cmap w!! w !sudo tee > /dev/null %
 
+" 正規表現
+nnoremap / /\v
+nnoremap ? ?\v
+
 " 検索後にジャンプした際に検索単語を画面中央に持ってくる
 nnoremap n nzz
 nnoremap N Nzz

@@ -237,3 +237,12 @@ repo = 'easymotion/vim-easymotion'
 
 [[plugins]]
 repo = 'rking/ag.vim'
+
+[[plugins]]
+repo = 'Yggdroot/indentLine'
+hook_add = '''
+let g:indentLine_enabled = 0
+let g:indentLine_setColors = 1
+let g:indentLine_color_term = 111
+
+'''

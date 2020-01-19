@@ -25,7 +25,13 @@ set hidden
 
 " シンタックスを有効にする
 syntax on
-colorscheme molokai
+  colorscheme molokai
+hi Comment ctermfg=138
+
+if &term == "xterm-256color"
+    " hi Comment ctermfg=102
+    " hi Visual  ctermbg=236
+endif
 
 " ターミナル接続を高速化
 set ttyfast
@@ -114,12 +120,11 @@ set signcolumn=yes
 " ウィンドウを開く方向を指定
 set splitbelow
 
+" 開業などをみやすく
+set list listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:-
+
 " QuickFixおよびHelpでは q でバッファを閉じる
 autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
-
-" 正規表現
-nnoremap / /\v
-nnoremap ? ?\v
 
 " Auto comment out disable
 autocmd Filetype * set formatoptions-=r
