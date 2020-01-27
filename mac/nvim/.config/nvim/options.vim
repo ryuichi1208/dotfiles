@@ -121,7 +121,7 @@ set signcolumn=yes
 set splitbelow
 
 " 開業などをみやすく
-set list listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%,space:-
+set list listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
 " QuickFixおよびHelpでは q でバッファを閉じる
 autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
