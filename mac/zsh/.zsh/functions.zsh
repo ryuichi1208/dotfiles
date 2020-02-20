@@ -315,3 +315,13 @@ function fb()
     'bat --color=always --style=header,grid --line-range :100 {}'" \
     fzf | xargs -L1 bat
 }
+
+function peco-vim()
+{
+    local src=$(git ls-files | peco --query "$LBUFFER" --prompt "vim>")
+    if [ -n "$src" ]; then
+        BUFFER="vim $src"
+        zle accept-line
+    fi
+    zle -R -c
+}
