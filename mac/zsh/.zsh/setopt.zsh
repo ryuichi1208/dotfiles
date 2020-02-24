@@ -39,10 +39,15 @@ export PYTHONDONTWRITEBYTECODE=1
 export PYENV_ROOT="$HOME/.pyenv"
 
 # Go関連
-if which go > /dev/null 2>&1  ; then
+if which go > /dev/null 2>&1; then
   export CGO_ENABLED=1
   export GOPATH=$HOME/dev/go
   export PATH=$PATH:$(go env GOROOT)/bin:$GOPATH/bin
+fi
+
+# Docker関連
+if which docker-compose > /dev/null 2>&1; then
+  export COMPOSE_DOCKER_CLI_BUILD=1
 fi
 
 #fzf関連
