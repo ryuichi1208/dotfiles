@@ -17,6 +17,7 @@ function chpwd()
 {
     ls_abbrev
 }
+
 function ls_abbrev()
 {
   if [[ ! -r $PWD ]]; then
@@ -72,11 +73,6 @@ function do_enter() {
     return 0
 }
 
-function urlencode
-{
-  echo "$1" | nkf -WwMQ | sed 's/=$//g' | tr = % | tr -d '\n'
-}
-
 function gaa()
 {
   MSG=$1
@@ -114,14 +110,33 @@ function gp()
   fi
 }
 
+function encode()
+{
+  echo "$1" | nkf -WwMQ | sed 's/=$//g' | tr = % | tr -d '\n'
+}
+
 function dcode()
 {
-  echo $#
   if [ $# -eq 2 ]; then
     echo $2 | nkf -WwMQ | tr = %
   else
     echo $1 | nkf --url-input
   fi
+}
+
+function fcurl()
+{
+  curl -o /dev/null -vsLS -w \
+    "
+      time_appconnect: %{time_appconnect}\n \
+     time_connect: %{time_connect}\n \
+     time_namelookup: %{time_namelookup}\n \
+     time_pretransfer: %{time_pretransfer}\n \
+     time_redirect: %{time_redirect}\n \
+     time_starttransfer: %{time_starttransfer}\n \
+     time_total: %{time_total}\n
+    " \
+     ${1}
 }
 
 function t()
