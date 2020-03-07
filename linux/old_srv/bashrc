@@ -1,0 +1,50 @@
+## インタラクティブに実行しない場合は何もしない
+[[ $- != *i* ]] && return
+
+
+## 色
+# Normal Colors
+Black='\033[0;30m'        # Black
+Red='\033[0;31m'          # Red
+Green='\033[0;32m'        # Green
+Yellow='\033[0;33m'       # Yellow
+Blue='\033[0;34m'         # Blue
+Purple='\033[0;35m'       # Purple
+Cyan='\033[0;36m'         # Cyan
+White='\033[0;37m'        # White
+
+
+## シェルオプション
+umask 022
+ulimit -c 0
+set -o noclobber
+shopt -u cdspell
+shopt -s checkwinsize
+shopt -s direxpand
+shopt -s histappend
+
+
+## 環境変数
+export PATH=~/bin:"$PATH"
+export PAGER=less
+export EDITOR=vim
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export MYHISTFILE=~/.bash_myhistory
+export HISTCONTROL=ignoreboth:erasedups
+export HISTTIMEFORMAT="%Y/%m/%d %H:%M:%S:   "
+export HISTSIZE=50000
+export HISTFILESIZE=50000
+
+
+## alias
+alias ll='ls -l'
+alias la='ls -la'
+alias lr='ls -lR'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+alias du='du -h'
+alias job='jobs -l'
+
+## 関数
