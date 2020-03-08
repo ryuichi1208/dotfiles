@@ -46,8 +46,13 @@
           }
         }
       }
-    }
+    },
 
+    "metals": {
+      "command": "metals-vim",
+      "rootPatterns": ["build.sbt"],
+      "filetypes": ["scala", "sbt"]
+    }
   },
   "python.linting.enabled": true,
   "python.linting.pep8Path": "pep8",

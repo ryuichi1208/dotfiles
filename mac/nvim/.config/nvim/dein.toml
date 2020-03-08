@@ -166,6 +166,9 @@ repo = 'pearofducks/ansible-vim'
 repo = 'neoclide/coc.nvim'
 build = './install.sh nightly'
 
+[[plugins]]
+repo = 'derekwyatt/vim-scala'
+
 
 #----------------------------------------------------------
 # fzf
