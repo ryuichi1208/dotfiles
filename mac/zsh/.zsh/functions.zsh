@@ -139,10 +139,10 @@ function fcurl()
      ${1}
 }
 
-function t()
-{
-  tmux new-session -s $(pwd |sed -E 's!^.+/([^/]+/[^/]+)$!\1!g' | sed -e 's/\./-/g')
-}
+# function t()
+# {
+#   tmux new-session -s $(pwd |sed -E 's!^.+/([^/]+/[^/]+)$!\1!g' | sed -e 's/\./-/g')
+# }
 
 
 function show_uptime ()
