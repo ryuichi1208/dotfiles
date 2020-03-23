@@ -159,6 +159,9 @@ repo = 'pearofducks/ansible-vim'
 #[[plugins]]
 #repo = 'davidhalter/jedi-vim'
 
+[[plugins]]
+repo = 'chr4/nginx.vim'
+
 #----------------------------------------------------------
 # LSP
 #----------------------------------------------------------
