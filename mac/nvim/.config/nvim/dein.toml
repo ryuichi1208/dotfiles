@@ -11,6 +11,12 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'tomasr/molokai'
 
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
+repo = 'joshdick/onedark.vim'
+
 
 #----------------------------------------------------------
 # Git
