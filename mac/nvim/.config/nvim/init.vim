@@ -49,6 +49,7 @@ endif
 runtime! ./options.vim
 runtime! ./keymap.vim
 runtime! ./functions.vim
+runtime! ./indent.vim
 
 let g:python_host_prog="/usr/local/bin/python"
 let g:python3_host_prog="/usr/local/bin/python3"

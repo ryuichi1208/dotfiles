@@ -25,7 +25,8 @@ set hidden
 
 " シンタックスを有効にする
 syntax on
-  colorscheme molokai
+"colorscheme molokai
+colorscheme molokai
 hi Comment ctermfg=138
 
 if &term == "xterm-256color"
@@ -78,9 +79,6 @@ set wrapscan
 
 " タイトルを表示
 set title
-
-" カーソルの行数表示
-set cursorline
 
 " 改行コードの自動認識
 set fileformats=unix,mac,dos
@@ -135,36 +133,6 @@ augroup vimrcEx
   \ exe "normal g`\"" | endif
 augroup END
 
-" INDENT
-augroup fileTypeIndent
-  autocmd!
-  autocmd FileType c          setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType bash       setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType cpp        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType php        setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType css        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType go         setlocal sw=8 sts=8 ts=8 et
-  autocmd FileType html       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType java       setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType javascript setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType markdown   setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType perl       setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType python     setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType ruby       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType rust       setlocal sw=4 sts=4 ts=4 et
-  autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType zsh        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType sh         setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType json       setlocal sw=2 sts=2 ts=2 et
-
-  autocmd FileType perl,cgi   compiler perl
-  autocmd FileType python     setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class
-  autocmd FileType ruby       compiler ruby
-  autocmd FileType go         setlocal noexpandtab
-augroup END
-
 " 行末のスペースをハイライト
 augroup HighlightTrailingSpaces
   autocmd!
@@ -178,6 +146,9 @@ augroup QfAutoCommands
   autocmd WinEnter * if (winnr('$') == 1) && (getbufvar(winbufnr(0), '&buftype')) == 'quickfix' | quit | endif
 augroup END
 
+
+" CursorLine
+hi clear CursorLine
 augroup vimrc-auto-cursorline
   autocmd!
   autocmd CursorMoved,CursorMovedI * call s:auto_cursorline('CursorMoved')
@@ -185,24 +156,31 @@ augroup vimrc-auto-cursorline
   autocmd WinEnter * call s:auto_cursorline('WinEnter')
   autocmd WinLeave * call s:auto_cursorline('WinLeave')
 
+  setlocal cursorline
+  hi clear CursorLine
+
   let s:cursorline_lock = 0
   function! s:auto_cursorline(event)
     if a:event ==# 'WinEnter'
       setlocal cursorline
+      hi CursorLine term=underline cterm=underline guibg=Grey90 " ADD
       let s:cursorline_lock = 2
     elseif a:event ==# 'WinLeave'
       setlocal nocursorline
+      hi clear CursorLine " ADD
     elseif a:event ==# 'CursorMoved'
       if s:cursorline_lock
         if 1 < s:cursorline_lock
           let s:cursorline_lock = 1
         else
-          setlocal nocursorline
+          " setlocal nocursorline
+          hi clear CursorLine " ADD
           let s:cursorline_lock = 0
         endif
       endif
     elseif a:event ==# 'CursorHold'
-      setlocal cursorline
+      " setlocal cursorline
+      hi CursorLine term=underline cterm=underline guibg=Grey90 " ADD
       let s:cursorline_lock = 1
     endif
   endfunction

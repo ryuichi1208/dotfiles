@@ -17,6 +17,9 @@ repo = 'morhetz/gruvbox'
 [[plugins]]
 repo = 'joshdick/onedark.vim'
 
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+
 
 #----------------------------------------------------------
 # Git
