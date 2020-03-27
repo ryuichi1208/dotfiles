@@ -20,9 +20,10 @@ augroup fileTypeIndent
   autocmd FileType rust       setlocal sw=4 sts=4 ts=4 et
   autocmd FileType scala      setlocal sw=2 sts=2 ts=2 et
   autocmd FileType sh         setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
+  autocmd FileType xml        setlocal sw=4 sts=4 ts=4 et
   autocmd FileType yaml       setlocal sw=2 sts=2 ts=2 et
   autocmd FileType zsh        setlocal sw=2 sts=2 ts=2 et
-  autocmd FileType vim        setlocal sw=2 sts=2 ts=2 et
 
   autocmd FileType perl,cgi   compiler perl
   autocmd FileType python     setlocal cinwords=if,elif,else,for,while,try,except,finally,def,class

@@ -26,7 +26,7 @@ set hidden
 " シンタックスを有効にする
 syntax on
 "colorscheme molokai
-colorscheme molokai
+colorscheme tender
 hi Comment ctermfg=138
 
 if &term == "xterm-256color"
@@ -42,6 +42,7 @@ set smartindent
 
 " 行番号を表示
 set number
+set relativenumber
 
 " マルチバイト文字があってもカーソルがずれないようにする
 set ambiwidth=double
