@@ -13,6 +13,7 @@ alias -g X='| xargs'
 
 ### Base
 alias c='clear'
+alias h='history | grep'
 alias mv='mv -i'
 alias cp='cp -i'
 alias awk='gawk'
@@ -27,6 +28,7 @@ alias cdr='cd-gitroot'
 alias nvp='navi --print'
 alias cdg='cd-gitroot'
 alias bash='/usr/local/bin/bash'
+alias pwdc='pwd | tr -d "\n" | pbcopy'
 
 ### ls
 alias l='ls -CF'
