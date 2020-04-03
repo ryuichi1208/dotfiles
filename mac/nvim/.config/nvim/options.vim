@@ -25,8 +25,8 @@ set hidden
 
 " シンタックスを有効にする
 syntax on
-"colorscheme molokai
-colorscheme tender
+colorscheme molokai
+" colorscheme tender
 hi Comment ctermfg=138
 
 if &term == "xterm-256color"
