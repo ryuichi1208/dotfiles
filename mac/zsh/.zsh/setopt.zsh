@@ -41,7 +41,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 # Go関連
 if which go > /dev/null 2>&1; then
   export CGO_ENABLED=1
-  export GOPATH=$HOME/dev/go
+  export GOPATH=$HOME/go
+  export GO111MODULE=on
   export PATH=$PATH:$(go env GOROOT)/bin:$GOPATH/bin
 fi
 
