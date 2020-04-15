@@ -105,7 +105,7 @@ set t_vb=
 set novisualbell
 
 " 対応括弧に'<'と'>'のペアを追加
-set matchpairs& matchpairs+=<:>
+"set matchpairs& matchpairs+=<:>
 
 " 検索位置が何番目かを表示
 set shortmess-=S
