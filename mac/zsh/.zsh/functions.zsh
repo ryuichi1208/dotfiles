@@ -282,6 +282,12 @@ function fshow()
 FZF-EOF"
 }
 
+function fga() {
+  modified_files=$(git status --short | awk '{print $2}') &&
+  selected_files=$(echo "$modified_files" | fzf -m --preview 'git diff {}') &&
+  git add $selected_files
+}
+
 # fd - cd to selected directory
 function fd()
 {
@@ -339,4 +345,10 @@ function peco-vim()
         zle accept-line
     fi
     zle -R -c
+}
+
+function fvim() {
+  files=$(git ls-files) &&
+  selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
+  vim $selected_files
 }
