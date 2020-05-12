@@ -347,8 +347,8 @@ function peco-vim()
     zle -R -c
 }
 
-function fvim() {
+function fv() {
   files=$(git ls-files) &&
-  selected_files=$(echo "$files" | fzf -m --preview 'head -100 {}') &&
+  selected_files=$(echo "$files" | fzf -m --preview 'head -200 {}') &&
   vim $selected_files
 }
