@@ -1,3 +1,5 @@
 prefix=${HOME}/.npm
 tmp=/tmp
 init.license=Zlib
+init-license=MIT
+init-version=0.1.0
