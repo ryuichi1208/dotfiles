@@ -20,6 +20,11 @@ repo = 'joshdick/onedark.vim'
 [[plugins]]
 repo = 'jacoborus/tender.vim'
 
+[[plugins]]
+repo = 'ayu-theme/ayu-vim'
+hook_add = '''
+let ayucolor="dark"
+'''
 
 #----------------------------------------------------------
 # Git

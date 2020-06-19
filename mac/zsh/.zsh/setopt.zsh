@@ -27,6 +27,9 @@ export RSYNC_RSH=ssh
 # コンテナのビルダーを指定
 export DOCKER_BUILDKIT=1
 
+# コンテンツのイメージへの署名
+export DOCKER_CONTENT_TRUST=1
+
 # 色の設定
 export LSCOLORS=Exfxcxdxbxegedabagacad
 
@@ -56,7 +59,7 @@ fi
 if [ -f ~/.fzf.zsh ] ; then
   source ~/.fzf.zsh
   export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-  export FZF_DEFAULT_OPTS="--height 40% --reverse --border --preview 'ls -la {}'"
+  export FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'ls -la {}'"
   export FZF_LEGACY_KEYBINDINGS=0
 
 fi

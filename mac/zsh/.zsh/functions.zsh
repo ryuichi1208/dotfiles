@@ -348,7 +348,7 @@ function peco-vim()
 }
 
 function fv() {
-  files=$(git ls-files) &&
-  selected_files=$(echo "$files" | fzf -m --preview 'head -200 {}') &&
+  FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'bat --color=always {}'"
+  files=$(git ls-files) && selected_files=$(echo "$files" | fzf ) &&
   vim $selected_files
 }
