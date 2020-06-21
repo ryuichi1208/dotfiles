@@ -186,14 +186,17 @@ build = './install.sh nightly'
 [[plugins]]
 repo = 'derekwyatt/vim-scala'
 
+[[plugins]]
+repo = 'antoinemadec/coc-fzf'
+
 
 #----------------------------------------------------------
 # fzf
 #----------------------------------------------------------
-# [[plugins]]
-# repo = 'junegunn/fzf'
-# build = './install --bin'
-# merged = '0'
+[[plugins]]
+repo = 'junegunn/fzf'
+build = './install --bin'
+merged = '0'
 
 [[plugins]]
 repo = 'junegunn/fzf.vim'
