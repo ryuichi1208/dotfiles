@@ -72,6 +72,8 @@ function! LightlineMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
+let root = fnamemodify(get(b:, 'gitbranch_path'), ':h:h')
+
 
 "----------------------------------------------------------
 " scrooloose/nerdtree
