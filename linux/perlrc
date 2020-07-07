@@ -1,0 +1,6 @@
+# perldb - Perl debugger configuration
+#
+
+#use Term::ReadLine;
+&parse_options("HistFile=$ENV{HOME}/.perldb_history");
+#Term::ReadLine::Gnu::read_init_file();
