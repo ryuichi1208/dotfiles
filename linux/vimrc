@@ -32,6 +32,28 @@ set title
 nnoremap j gj
 nnoremap k gk
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
+inoremap 　 <Space>
+inoremap ｜ \|
+inoremap ＜ <
+inoremap ＞ >
+inoremap ＊ *
+inoremap ＠ @
+inoremap ％ %
+inoremap ＃ #
+inoremap ” "
+inoremap ’ '
+inoremap ＋ +
+inoremap ～ ~
+inoremap ０ 0
+inoremap １ 1
+inoremap ２ 2
+inoremap ３ 3
+inoremap ４ 4
+inoremap ５ 5
+inoremap ６ 6
+inoremap ７ 7
+inoremap ８ 8
+inoremap ９ 9
 
 
 "#######################
@@ -75,7 +97,7 @@ let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \             [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'FugitiveHead'
