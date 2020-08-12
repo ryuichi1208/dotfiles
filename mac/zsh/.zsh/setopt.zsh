@@ -52,6 +52,7 @@ fi
 
 # Docker関連
 if which docker-compose > /dev/null 2>&1; then
+  export DOCKER_CONTENT_TRUST=0
   export COMPOSE_DOCKER_CLI_BUILD=1
 fi
 
