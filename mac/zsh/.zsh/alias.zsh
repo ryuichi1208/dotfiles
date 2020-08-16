@@ -29,6 +29,7 @@ alias nvp='navi --print'
 alias cdg='cd-gitroot'
 alias bash='/usr/local/bin/bash'
 alias pwdc='pwd | tr -d "\n" | pbcopy'
+alias t='tmux'
 
 ### ls
 alias l='ls -CF'
