@@ -18,6 +18,8 @@ setopt share_history
 export EDITOR=vim
 export VISUAL='vim'
 
+export ANSIBLE_STDOUT_CALLBACK=yaml
+
 # パスを追加したい場合
 export PATH="$HOME/bin:$PATH"
 
