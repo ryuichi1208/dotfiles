@@ -218,7 +218,9 @@ function dstrace()
 # -----------------------------
 function pipfreeze()
 {
-  pip3 freeze -l > ./requirements.txt
+  if type pip3 > /dev/null 2>&1; then
+    pip3 freeze -l > ./requirements.txt
+  fi
 }
 
 # -----------------------------

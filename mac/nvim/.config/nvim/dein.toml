@@ -190,6 +190,9 @@ repo = 'derekwyatt/vim-scala'
 [[plugins]]
 repo = 'antoinemadec/coc-fzf'
 
+[[plugins]]
+repo = 'ryuta69/coc-perl'
+
 
 #----------------------------------------------------------
 # fzf
