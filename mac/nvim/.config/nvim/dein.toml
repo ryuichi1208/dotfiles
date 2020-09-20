@@ -192,6 +192,11 @@ repo = 'antoinemadec/coc-fzf'
 
 [[plugins]]
 repo = 'ryuta69/coc-perl'
+hook_add = '''
+let g:coc_global_extensions = [
+      \ 'coc-perl',
+\ ]
+'''
 
 
 #----------------------------------------------------------
