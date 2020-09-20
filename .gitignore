@@ -18,3 +18,4 @@
 .config/yarn/global/node_modules
 !.config/alacritty
 *.db
+.vscode
