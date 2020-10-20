@@ -21,6 +21,12 @@ repo = 'joshdick/onedark.vim'
 repo = 'jacoborus/tender.vim'
 
 [[plugins]]
+repo = 'altercation/solarized'
+
+[[plugins]]
+repo = 'altercation/vim-colors-solarized'
+
+[[plugins]]
 repo = 'ayu-theme/ayu-vim'
 hook_add = '''
 let ayucolor="dark"
