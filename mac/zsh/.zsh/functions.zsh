@@ -10,12 +10,12 @@ function buu()
   zplug self-update && zplug update
 
   # npm
-  # npm update -g npm && npm update -g
+  npm update -g npm && npm update -g
 }
 
 function chpwd()
 {
-    ls_abbrev
+  ls_abbrev
 }
 
 function ls_abbrev()
@@ -30,14 +30,14 @@ function ls_abbrev()
   local -a opt_ls
   opt_ls=('-aCF' '--color=always')
   case "${OSTYPE}" in
-      freebsd*|darwin*)
-          if type gls > /dev/null 2>&1; then
-              cmd_ls='gls'
-          else
-              # -G : Enable colorized output.
-              opt_ls=('-aCFG')
-          fi
-          ;;
+    freebsd*|darwin*)
+      if type gls > /dev/null 2>&1; then
+          cmd_ls='gls'
+      else
+        # -G : Enable colorized output.
+        opt_ls=('-aCFG')
+      fi
+      ;;
   esac
 
   local ls_result
@@ -46,31 +46,31 @@ function ls_abbrev()
   local ls_lines=$(echo "$ls_result" | wc -l | tr -d ' ')
 
   if [ $ls_lines -gt 10 ]; then
-      echo "$ls_result" | head -n 5
-      echo '...'
-      echo "$ls_result" | tail -n 5
-      echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
+    echo "$ls_result" | head -n 5
+    echo '...'
+    echo "$ls_result" | tail -n 5
+    echo "$(command ls -1 -A | wc -l | tr -d ' ') files exist"
   else
       echo "$ls_result"
   fi
 }
 
 function do_enter() {
-    if [ -n "$BUFFER" ]; then
-        zle accept-line
-        return 0
-    fi
-    echo
-    ls
-    # ↓おすすめ
-    # ls_abbrev
-    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-        echo
-        echo -e "\e[0;33m--- git status ---\e[0m"
-        git status -sb
-    fi
-    zle reset-prompt
+  if [ -n "$BUFFER" ]; then
+    zle accept-line
     return 0
+  fi
+  echo
+  ls
+  # ↓おすすめ
+  # ls_abbrev
+  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
+      echo
+      echo -e "\e[0;33m--- git status ---\e[0m"
+      git status -sb
+  fi
+  zle reset-prompt
+  return 0
 }
 
 function gaa()
@@ -301,17 +301,17 @@ function fd()
 
 function fkill()
 {
-    local pid
-    if [ "$UID" != "0" ]; then
-        pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
-    else
-        pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
-    fi
+  local pid
+  if [ "$UID" != "0" ]; then
+    pid=$(ps -f -u $UID | sed 1d | fzf -m | awk '{print $2}')
+  else
+    pid=$(ps -ef | sed 1d | fzf -m | awk '{print $2}')
+  fi
 
-    if [ "x$pid" != "x" ]
-    then
-        echo $pid | xargs kill -${1:-9}
-    fi
+  if [ "x$pid" != "x" ]
+  then
+    echo $pid | xargs kill -${1:-9}
+  fi
 }
 
 function fcoc()
@@ -341,16 +341,30 @@ function fb()
 
 function peco-vim()
 {
-    local src=$(git ls-files | peco --query "$LBUFFER" --prompt "vim>")
-    if [ -n "$src" ]; then
-        BUFFER="vim $src"
-        zle accept-line
-    fi
-    zle -R -c
+  local src=$(git ls-files | peco --query "$LBUFFER" --prompt "vim>")
+  if [ -n "$src" ]; then
+      BUFFER="vim $src"
+      zle accept-line
+  fi
+  zle -R -c
 }
 
 function fv() {
   FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'bat --color=always {}'"
   files=$(git ls-files) && selected_files=$(echo "$files" | fzf ) &&
   vim $selected_files
+}
+
+function euc() {
+  for i in "$@"; do
+    nkf -e -Lu $i >! /tmp/euc.$$
+    mv -f /tmp/euc.$$ $i
+  done
+}
+
+function sjis() {
+  for i in "$@"; do
+    nkf -s -Lw $i >! /tmp/euc.$$
+    mv -f /tmp/euc.$$ $i
+  done
 }
