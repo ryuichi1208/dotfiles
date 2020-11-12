@@ -1,5 +1,20 @@
 local json = { _version = "0.1.0" }
 
+let s:save_cpo = &cpo
+set cpo&vim
+
+function! s:_vital_loaded(V) abort
+  let s:V    = a:V
+  let s:http = s:V.import('Web.HTTP')
+  let s:date = s:V.import('DateTime')
+  let s:asynchttp = s:V.import('Async.HTTP')
+endfunction
+
+function! s:_vital_depends() abort
+  return [ 'Web.HTTP', 'DateTime', 'Async.HTTP' ]
+endfunction
+
+
 -------------------------------------------------------------------------------
 -- Encode
 -------------------------------------------------------------------------------
