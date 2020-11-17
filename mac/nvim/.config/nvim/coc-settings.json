@@ -49,6 +49,9 @@
           }
         }
       }
+    },
+    {
+      "eslint.filetypes": ["javascript", "vue"]
     }
   },
   "python.linting.enabled": true,
