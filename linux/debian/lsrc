@@ -1,0 +1,26 @@
+#!/bin/bash
+
+show_dir() {
+  local dir="$1"
+  local dest_dir="$2"
+  local dotfiles_dir="$3"
+  local dotfiles_subdir="$4"
+  local dotted=$5
+  local exclude_file_globs="$6"
+  local include_file_globs="$7"
+  local symlink_dirs_file_globs="$8"
+  local mk_dirs_file_globs="$9"
+  local dest_path="$(build_path "$dest_dir" "$dir" $dotted)"
+
+  $DEBUG "show_dir $1 $2 $3 $4 $5 $6 $7 $8 $9"
+
+  $VERBOSE "recurring on $dest_path"
+
+  pushdir "$dir"
+  for f in *; do
+    $DEBUG "handling the file $f"
+    next_dir="$(file_join "$dotfiles_subdir" "$dir")"
+    handle_file "$f" "$dest_path" "$dotfiles_dir" "$next_dir" 1 "$exclude_file_globs" "$include_file_globs" "$symlink_dirs_file_globs" "$mk_dirs_file_globs"
+  done
+  popdir
+}
