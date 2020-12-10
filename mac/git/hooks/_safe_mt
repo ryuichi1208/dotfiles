@@ -1,0 +1,15 @@
+#!/bin/bash
+
+GIT_DIR_="$(git rev-parse --git-dir)"
+BRANCH="$(git rev-parse --symbolic --abbrev-ref $(git symbolic-ref HEAD))"
+
+PRE_Push="$GIT_DIR_/hooks/pre-Push"
+POST_Push="$GIT_DIR_/hooks/post-Push"
+
+test -x "$PRE_Push" &&
+    exec "$PRE_Push" "$BRANCH" "$@"
+
+git Push "$@"
+
+test $? -eq 0 && test -x "$POST_Push" &&
+    exec "$POST_Push" "$BRANCH" "$@"
