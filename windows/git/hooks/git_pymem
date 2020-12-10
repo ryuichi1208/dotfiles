@@ -1,10 +1,8 @@
-
 #!/usr/bin/env python
-# Copyright 2015 The Chromium Authors. All rights reserved.
-# Use of this source code is governed by a BSD-style license that can be
-# found in the LICENSE file.
+
 import sys
 import subprocess
+
 """Detect forced pushes (on the client) and prompt the user before going on."""
 def read_from_tty():
   try:
@@ -13,6 +11,7 @@ def read_from_tty():
       return tty_fd.readline().strip()
   except:
     return None
+
 def Main():
   # Allow force pushes in repos forked elsewhere (e.g. googlesource).
   remote_url = sys.argv[2] if len(sys.argv) >= 2 else ''
@@ -37,5 +36,6 @@ def Main():
     if read_from_tty() != 'y':
       return 1
   return 0
+
 if __name__ == '__main__':
   sys.exit(Main())
