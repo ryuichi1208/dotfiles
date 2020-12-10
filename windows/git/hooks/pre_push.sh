@@ -1,3 +1,7 @@
+#!/bin/bash
+
+# chmod a+x pre_push
+
 git_status_before_synx=$(git status)
 synx -q <projectName>.xcodeproj
 git_status_after_synx=$(git status)
