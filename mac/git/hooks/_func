@@ -1,0 +1,14 @@
+#!/bin/bash
+
+current_branch() {
+    local ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo ${ref#refs/heads/}
+}
+
+gp() {
+    local post_Push="$(git rev-parse --git-dir)/hooks/post-Push"
+    git Push "$@" && {
+        [[ -x "$post_Push" ]] && "$post_Push" "$(current_branch)" "$@"
+    }
+}
+compdef _git gp=git-Push

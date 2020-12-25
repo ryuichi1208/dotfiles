@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+# 基本機能
+setopt auto_cd
+setopt auto_pushd
+setopt pushd_ignore_dups
+export HISTFILE=${HOME}/.zsh_history
+export HISTSIZE=1000
+export SAVEHIST=100000
+setopt hist_ignore_dups
+setopt EXTENDED_HISTORY
+
+# completion
+autoload -U compinit; compinit
+zstyle ':completion:*:default' menu select=1
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# kubernetes
+source <(kubectl completion zsh)
+alias k=kubectl
+source ~/.kube-ps1/kube-ps1.sh
+function get_cluster_short() {
+  echo "$1" | cut -d . -f1
+}
+KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+KUBE_PS1_SUFFIX=') '
+PS1='$(kube_ps1)'$PS1
+
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
