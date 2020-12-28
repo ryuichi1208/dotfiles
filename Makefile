@@ -11,3 +11,5 @@ mkdir:
 link:
 	[ -f ~/.vimrc ] || ln -s $(pwd)/mac/vim/.vimrc ~/.vimrc
 	[ -f ~/.bashrc ] || ln -s $(pwd)/mac/bashrc ~/.bashrc
+
+
