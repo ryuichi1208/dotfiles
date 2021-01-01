@@ -103,3 +103,29 @@ let g:lightline = {
       \   'gitbranch': 'FugitiveHead'
       \ },
       \ }
+
+function! themis#run(paths, ...) abort
+  let s:current_runner = themis#runner#new()
+  try
+    let options = get(a:000, 0, themis#option#empty_options())
+    return s:current_runner.start(a:paths, options)
+  finally
+    unlet! s:current_runner
+  endtry
+endfunction
+
+" -- Utilities for test
+
+function! s:runner() abort
+  if !exists('s:current_runner')
+    throw 'themis: Test is not running.'
+  endif
+  return s:current_runner
+endfunction
+
+function! s:base_bundle() abort
+  if !exists('s:base_bundle')
+    throw 'themis: Does not ready the base bundle.'
+  endif
+  return s:base_bundle
+endfunction
