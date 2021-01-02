@@ -15,3 +15,5 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:/usr/local/lib/python3.7/site-packages:$PATH"
 source <(kubectl completion zsh)
+# source <(helm completion zsh)
+#source <(kubesec completion zsh)
