@@ -160,3 +160,29 @@ if !v:vim_did_enter
       \ escape($HOME, '\') .. '/vimfiles', escape($HOME, '\') .. '/.vim', 'g')
   endif
 endif
+
+" Move the cursor not complete list.
+cnoremap <Left> <Space><BS><Left>
+cnoremap <Right> <Space><BS><Right>
+
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <Up> <C-p>
+cnoremap <Down> <C-n>
+
+nnoremap <Space> <Nop>
+" Quick save and quit.
+nnoremap <silent> <Space>w :<C-u>update<CR>
+nnoremap <silent> <Space>W :<C-u>update!<CR>
+nnoremap <silent> <Space>q :<C-u>quit<CR>
+nnoremap <silent> <Space>Q :<C-u>quit!<CR>
+
+" Change encodings and formats.
+nnoremap <Space>e <Nop>
+nnoremap <silent> <Space>es :<C-u>setlocal fenc=cp932<CR>
+nnoremap <silent> <Space>ee :<C-u>setlocal fenc=euc-jp<CR>
+nnoremap <silent> <Space>eu :<C-u>setlocal fenc=utf-8<CR>
+nnoremap <silent> <Space>ej :<C-u>setlocal fenc=iso-2022-jp<CR>
+nnoremap <silent> <Space>ed :<C-u>setlocal ff=dos<CR>
+nnoremap <silent> <Space>ex :<C-u>setlocal ff=unix<CR>
+
