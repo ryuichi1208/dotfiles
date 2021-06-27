@@ -79,19 +79,19 @@ hook_add = '''
 let g:sonictemplate_vim_template_dir = [ '~/.config/nvim/plugins' ]
 '''
 
-[[plugins]]
-repo = 'fatih/vim-go'
-hook_add = '''
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_fmt_command = "goimports"
-let g:go_def_mapping_enabled = 0
-let g:go_doc_keywordprg_enabled = 0
+# [[plugins]]
+# repo = 'fatih/vim-go'
+# hook_add = '''
+# let g:go_highlight_functions = 1
+# let g:go_highlight_methods = 1
+# let g:go_highlight_structs = 1
+# let g:go_fmt_command = "goimports"
+# let g:go_def_mapping_enabled = 0
+# let g:go_doc_keywordprg_enabled = 0
 
-autocmd FileType go :highlight goErr cterm=bold ctermfg=214
-autocmd FileType go :match goErr /\<err\>/
-'''
+# autocmd FileType go :highlight goErr cterm=bold ctermfg=214
+# autocmd FileType go :match goErr /\<err\>/
+# '''
 
 [[plugins]]
 repo = 'SirVer/ultisnips'
@@ -104,6 +104,24 @@ let g:UltiSnipsEditSplit="vertical"
 
 #[[plugins]]
 #repo = 'ervandew/supertab'
+
+ # [[plugins]]
+ # repo = 'prabirshrestha/async.vim'
+
+# [[plugins]]
+# repo = 'prabirshrestha/asyncomplete.vim'
+
+ # [[plugins]]
+ # repo = 'prabirshrestha/asyncomplete-lsp.vim'
+
+[[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'mattn/vim-goimports'
 
 
 #----------------------------------------------------------
@@ -202,6 +220,9 @@ repo = 'antoinemadec/coc-fzf'
 #----------------------------------------------------------
 # fzf
 #----------------------------------------------------------
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
 [[plugins]]
 repo = 'junegunn/fzf'
 build = './install --bin'

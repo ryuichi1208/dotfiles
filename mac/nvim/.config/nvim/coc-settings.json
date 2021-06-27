@@ -12,15 +12,6 @@
       }
     },
 
-    "golang": {
-      "command": "gopls",
-      "rootPatterns": ["go.mod", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["go"],
-      "initializationOptions": {
-        "usePlaceholders": true
-      }
-    },
-
     "clangd": {
       "command": "clangd",
       "args": ["--background-index"],
