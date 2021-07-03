@@ -1,0 +1,31 @@
+#----------------------------------------------------------
+# Theme
+#----------------------------------------------------------
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+#----------------------------------------------------------
+# Git
+#----------------------------------------------------------
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+let g:gitgutter_override_sign_column_highlight = 0
+highlight GitGutterAdd ctermfg=blue ctermbg=brown
+'''
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+
+#----------------------------------------------------------
+# NERD
+#----------------------------------------------------------
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
