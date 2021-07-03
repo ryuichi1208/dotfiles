@@ -7,6 +7,8 @@ export PATH="$HOME/bin:$PATH"
 export EDITOR=vim
 export RSYNC_RSH=ssh
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
+export PYENV_ROOT="$HOME/.pyenv/shims"
+export PATH="$PYENV_ROOT:$PATH"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'ls -la {}'"
 export FZF_LEGACY_KEYBINDINGS=0
@@ -389,6 +391,7 @@ alias lzd='lazydocker'
 
 ### Python
 alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
+eval "$(pyenv init -)"
 
 ### ansible
 alias ap='ansible-playbook'

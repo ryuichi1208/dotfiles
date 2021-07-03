@@ -1,0 +1,13 @@
+{
+    "suggest.noselect": true,
+    "suggest.preferCompleteThanJumpPlaceholder": true,
+    "languageserver": {
+        "dockerfile": {
+            "command": "docker-langserver",
+            "filetypes": ["dockerfile"],
+            "args": ["--stdio"]
+        }
+    },
+    "python.jediEnabled": true,
+    "python.jediPath": "~/.pyenv/versions/neovim3/lib/python3.6/site-packages/"
+}

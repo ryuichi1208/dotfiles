@@ -50,3 +50,24 @@ rev = 'release'
 on_i = 1
 merged = '0'
 hook_source = 'call coil398#init#coc#hook_source()'
+
+#----------------------------------------------------------
+# Editor
+#----------------------------------------------------------
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'
+
+#----------------------------------------------------------
+# Statu Line
+#----------------------------------------------------------
+[[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
+hook_add = '''
+let g:airline_theme='ayu_dark'
+'''
