@@ -8,7 +8,8 @@ export EDITOR=vim
 export RSYNC_RSH=ssh
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 export PYENV_ROOT="$HOME/.pyenv/shims"
-export PATH="$PYENV_ROOT:$PATH"
+export RBENV_ROOT="$HOME/.rbenv/shims"
+export PATH="$PYENV_ROOT:$RBENV_ROOT:$PATH"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'ls -la {}'"
 export FZF_LEGACY_KEYBINDINGS=0
@@ -431,4 +432,65 @@ function fd()
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
+}
+
+function fv() {
+  FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'bat --color=always {}'"
+  files=$(git ls-files) && selected_files=$(echo "$files" | fzf ) &&
+  vim $selected_files
+}
+
+function fbr()
+{
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+function fbrr()
+{
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+function gt()
+{
+  is_in_git_repo || return
+  git tag --sort -version:refname |
+  fzf-down --multi --preview-window right:70% \
+    --preview 'git show --color=always {} | head -200'
+}
+
+function gr()
+{
+  is_in_git_repo || return
+  git remote -v | awk '{print $1 "\t" $2}' | uniq |
+  fzf-down --tac \
+    --preview 'git log --oneline --graph --date=short --pretty="format:%C(auto)%cd %h%d %s" {1} | head -200' |
+  cut -d$'\t' -f1
+}
+
+function gs()
+{
+  is_in_git_repo || return
+  git stash list | fzf-down --reverse -d: --preview 'git show --color=always {1}' |
+  cut -d: -f1
+}
+
+function encode()
+{
+  echo "$1" | nkf -WwMQ | sed 's/=$//g' | tr = % | tr -d '\n'
+}
+
+function dcode()
+{
+  if [ $# -eq 2 ]; then
+    echo $2 | nkf -WwMQ | tr = %
+  else
+    echo $1 | nkf --url-input
+  fi
 }
