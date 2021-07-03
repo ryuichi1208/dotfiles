@@ -1,23 +1,20 @@
 # -----------------------------
-# Lang
+# env
 # -----------------------------
-#export LANG=ja_JP.UTF-8
-#export LESSCHARSET=utf-8
+export LANG=ja_JP.UTF-8
+export LESSCHARSET=utf-8
+export PATH="$HOME/bin:$PATH"
+export EDITOR=vim
+export RSYNC_RSH=ssh
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'ls -la {}'"
+export FZF_LEGACY_KEYBINDINGS=0
 
 # -----------------------------
 # General
 # -----------------------------
 # 色を使用
 autoload -Uz colors ; colors
-
-# エディタをvimに設定
-export EDITOR=vim
-
-# Ctrl+Dでログアウトしてしまうことを防ぐ
-#setopt IGNOREEOF
-
-# パスを追加したい場合
-export PATH="$HOME/bin:$PATH"
 
 # cdした際のディレクトリをディレクトリスタックへ自動追加
 setopt auto_pushd
@@ -27,9 +24,6 @@ setopt pushd_ignore_dups
 
 # emacsキーバインド
 bindkey -e
-
-# viキーバインド
-#bindkey -v
 
 # フローコントロールを無効にする
 setopt no_flow_control
@@ -88,12 +82,6 @@ zstyle ':completion:*:processes' command 'ps x -o pid,s,args'
 
 # パスの最後のスラッシュを削除しない
 setopt noautoremoveslash
-
-# 各コマンドが実行されるときにパスをハッシュに入れる
-#setopt hash_cmds
-
-# rsysncでsshを使用する
-export RSYNC_RSH=ssh
 
 # その他
 umask 022
@@ -422,10 +410,9 @@ alias agalogin='ansible-galaxy login'
 alias agar='ansible-galaxy remove'
 alias agas='ansible-galaxy search'
 
-export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
-export FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'ls -la {}'"
-export FZF_LEGACY_KEYBINDINGS=0
-
+# -----------------------------
+# functions
+# -----------------------------
 function fb()
 {
   FZF_DEFAULT_OPTS="--height 40% --reverse --border --preview \
