@@ -20,7 +20,6 @@ highlight GitGutterAdd ctermfg=blue ctermbg=brown
 [[plugins]]
 repo = 'tpope/vim-fugitive'
 
-
 #----------------------------------------------------------
 # NERD
 #----------------------------------------------------------
@@ -29,3 +28,25 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'jistr/vim-nerdtree-tabs'
+
+#----------------------------------------------------------
+# fzf
+#----------------------------------------------------------
+[[plugins]]
+repo = 'junegunn/fzf'
+build_on = '''
+./install -all
+'''
+
+[[plugins]]
+repo = 'junegunn/fzf.vim'
+
+#----------------------------------------------------------
+# coc
+#----------------------------------------------------------
+[[plugins]]
+repo = 'neoclide/coc.nvim'
+rev = 'release'
+on_i = 1
+merged = '0'
+hook_source = 'call coil398#init#coc#hook_source()'

@@ -6,6 +6,7 @@ export LESSCHARSET=utf-8
 export PATH="$HOME/bin:$PATH"
 export EDITOR=vim
 export RSYNC_RSH=ssh
+export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
 export FZF_DEFAULT_OPTS="--height 60% --reverse --border --preview 'ls -la {}'"
 export FZF_LEGACY_KEYBINDINGS=0
@@ -306,6 +307,7 @@ alias cdg='cd-gitroot'
 alias bash='/usr/local/bin/bash'
 alias pwdc='pwd | tr -d "\n" | pbcopy'
 alias t='tmux'
+alias vim='nvim'
 
 ### ls
 alias l='ls -CF'

@@ -16,6 +16,8 @@ augroup END
 "----------------------------------------------------------
 " basic
 "----------------------------------------------------------
+let g:python_host_prog="/usr/bin/python"
+let g:python3_host_prog="/usr/local/bin/python3"
 set laststatus=2
 set showtabline=2
 set noshowmode
@@ -287,3 +289,17 @@ nnoremap <silent> [fugitive]b :Gblame<CR>
 nnoremap <silent> [fugitive]d :Gdiff<CR>
 nnoremap <silent> [fugitive]m :Gmerge<CR>
 
+" ========================
+" neoclide/coc.nvim
+" ========================
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gn <Plug>(coc-rename)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
