@@ -394,6 +394,9 @@ alias lzd='lazydocker'
 alias pipallupgrade="pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs pip install -U"
 eval "$(pyenv init -)"
 
+### ruby
+eval "$(rbenv init -)"
+
 ### ansible
 alias ap='ansible-playbook'
 alias apc='ansible-playbook --check'
