@@ -12,6 +12,7 @@ yum install -y \
     make \
     net-tools \
     pcre-devel \
+    telnet \
     vim \
     wget \
     xz-devel \
