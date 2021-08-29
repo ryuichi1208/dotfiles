@@ -10,7 +10,7 @@ yum install -y \
     make \
     pcre-devel \
     vim \
-    wget 
+    wget \
     xz-devel \ 
     zlib-devel \
     zsh
