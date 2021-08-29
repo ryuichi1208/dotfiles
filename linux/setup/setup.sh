@@ -29,7 +29,7 @@ wget https://github.com/ggreer/the_silver_searcher/archive/refs/tags/2.2.0.tar.g
 tar -xvf 2.2.0.tar.gz && ./the_silver_searcher-2.2.0/build.sh && mv the_silver_searcher-2.2.0/ag /usr/local/bin
 
 curl -fsSL https://rpm.nodesource.com/setup_16.x | bash -
-yum install -y node
+yum install -y nodejs
 
 systemctl stop firewalld
 setenforce 0
