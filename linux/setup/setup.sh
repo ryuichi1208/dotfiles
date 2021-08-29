@@ -4,14 +4,17 @@ yum update -y
 yum install -y \
     automake \
     ctags \
-    curl \ 
+    curl \
+    dstat \
     gcc \
     git \
+    htop \
     make \
+    net-tools \
     pcre-devel \
     vim \
     wget \
-    xz-devel \ 
+    xz-devel \
     zlib-devel \
     zsh
 
@@ -23,3 +26,6 @@ wget https://github.com/junegunn/fzf/releases/download/0.27.2/fzf-0.27.2-linux_a
 tar -xvf fzf-0.27.2-linux_amd64.tar.gz && mv fzf /usr/local/bin/
 wget https://github.com/ggreer/the_silver_searcher/archive/refs/tags/2.2.0.tar.gz
 tar -xvf 2.2.0.tar.gz && ./the_silver_searcher-2.2.0/build.sh && mv mv the_silver_searcher-2.2.0/ag /usr/local/bin
+
+systemctl stop firewalld
+setenforce 0
