@@ -7,4 +7,5 @@ yum install -y \
     curl \
     zsh
 
+chsh -s $(which zsh)
 curl -so ~/.vimrc https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/vimrc
