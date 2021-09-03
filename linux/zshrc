@@ -9,6 +9,7 @@ export RSYNC_RSH=ssh
 export HISTFILE=$HOME/.zsh-history
 export HISTSIZE=100000
 export SAVEHIST=1000000
+export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>' 
 
 # -----------------------------
 # General
