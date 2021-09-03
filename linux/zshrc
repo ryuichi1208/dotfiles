@@ -10,6 +10,9 @@ export HISTFILE=$HOME/.zsh-history
 export HISTSIZE=100000
 export SAVEHIST=1000000
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>' 
+export LSCOLORS=Exfxcxdxbxegedabagacad
+export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+
 
 # -----------------------------
 # General
@@ -25,7 +28,14 @@ setopt histignorealldups
 setopt share_history
 setopt hist_ignore_all_dups
 setopt inc_append_history
-autoload -Uz compinit && compinit -u
-zstyle ':completion:*' menu select interactive
 setopt menu_complete
 PROMPT='%F{magenta}%B%n%b%f@%F{blue}%U%m%u%f %F{green}[%~]%f %# '
+autoload -Uz compinit ; compinit
+setopt correct
+zstyle ':completion:*' menu select
+setopt list_packed
+zstyle ':completion::complete:*' use-cache true
+autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*:manuals' separate-sections true
+setopt magic_equal_subst
