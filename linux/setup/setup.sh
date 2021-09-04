@@ -7,19 +7,25 @@ yum install -y \
     ctags \
     curl \
     dstat \
+    epel-release \
     gcc \
     git \
     htop \
+    iftop \
+    kernel-devel \
+    lua-devel \
     make \
     net-tools \
     openssl-devel \
     pcre-devel \
     readline-devel \
     strace \
+    tcpdump \
     telnet \
     vim \
     wget \
     xz-devel \
+    yum-utils \
     zlib-devel \
     zsh
 
