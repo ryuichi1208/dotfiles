@@ -40,9 +40,11 @@ curl -fsSL https://rpm.nodesource.com/setup_16.x | bash -
 yum install -y nodejs
 
 #### rbenv ####
-zsh
 git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
 git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+.rbenv/bin/rbenv install 2.6.8
+.rbenv/bin/rbenv global 2.6.8
+.rbenv/bin/rbenv rehash
 
 systemctl stop firewalld
 setenforce 0
