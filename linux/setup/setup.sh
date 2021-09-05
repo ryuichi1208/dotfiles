@@ -3,6 +3,7 @@
 yum update -y
 yum install -y \
     automake \
+    bind-utils \
     bzip2 \
     ctags \
     curl \
