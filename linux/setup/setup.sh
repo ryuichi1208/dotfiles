@@ -53,5 +53,10 @@ git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-bu
 .rbenv/bin/rbenv global 2.6.8
 .rbenv/bin/rbenv rehash
 
+#### lltsv ####
+wget https://github.com/sonots/lltsv/releases/download/v0.7.0/lltsv_linux_amd64 -O lltsv
+chmod +x lltsv
+mv lltsv /usr/local/bin
+
 systemctl stop firewalld
 setenforce 0
