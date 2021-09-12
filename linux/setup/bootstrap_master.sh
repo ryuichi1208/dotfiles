@@ -1,5 +1,9 @@
 #!/bin/bash
 
+setenforce 0
+systemctl stop firewalld
+systemctl start containerd.service
+
 cat <<EOF > /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-ip6tables = 1
 net.bridge.bridge-nf-call-iptables = 1
@@ -18,10 +22,12 @@ EOF
 
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
-systemctl enable --now kubelet
-
 kubeadm init \
     --apiserver-advertise-address 172.16.64.48 \
-    --pod-network-cidr 10.244.0.0/16 \
-    --service-cidr 172.16.130.0/24
-systemctl start kubelet
+    --pod-network-cidr 10.244.0.0/16
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+systemctl enable --now kubelet
