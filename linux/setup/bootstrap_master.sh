@@ -32,3 +32,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 systemctl enable --now kubelet
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
