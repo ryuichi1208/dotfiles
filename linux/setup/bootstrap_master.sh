@@ -23,8 +23,8 @@ EOF
 yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 
 kubeadm init \
-    --apiserver-advertise-address 172.16.64.48 \
-    --pod-network-cidr 10.244.0.0/16
+    --pod-network-cidr 10.244.0.0/16 \
+    --cri-socket=/run/containerd/containerd.sock
 
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
