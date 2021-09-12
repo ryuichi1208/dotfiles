@@ -60,9 +60,11 @@ mv lltsv /usr/local/bin
 
 #### firewalld ####
 systemctl stop firewalld
+systemctl disable firewalld
 
 #### selinux ####
 setenforce 0
+sed -i 's/^SELINUX=enforcing$/SELINUX=permissive/' /etc/selinux/config
 
 #### swap ####
 swapoff -a
