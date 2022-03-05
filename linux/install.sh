@@ -11,6 +11,7 @@ yum update -y
 yum install -y \
   gcc \
   gcc-c++ \
+  gdb \
   git \
   ncurses-devel \
   make \
