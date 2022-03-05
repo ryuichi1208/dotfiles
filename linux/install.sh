@@ -11,4 +11,7 @@ yum install -y \
   gcc-c++ \
   git \
   ncurses-devel \
-  make
+  make \
+  pcre-devel \
+  zlib-devel \
+  openssl-devel
