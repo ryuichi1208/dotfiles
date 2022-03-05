@@ -19,7 +19,6 @@ call dein#add('Shougo/neosnippet-snippets')
 call dein#add('cocopon/iceberg.vim')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('vim-airline/vim-airline')
-call dein#add('fatih/vim-go')
 call dein#add('jiangmiao/auto-pairs')
 
 " Required:
