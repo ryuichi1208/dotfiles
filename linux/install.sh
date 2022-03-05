@@ -84,3 +84,9 @@ if [[ ! $(which vim) ]]; then
 --disable-xsmp && make && make install
 fi
 
+if [[ ! (which go) ]]; then
+  cd ~/src
+  wget https://go.dev/dl/go1.17.8.linux-amd64.tar.gz
+  tar -xvf go1.17.8.linux-amd64.tar.gz
+  mv go/bin /usr/local/go
+fi
