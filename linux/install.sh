@@ -24,7 +24,13 @@ yum install -y \
   dstat \
   perf \
   autoconf \
-  python3
+  python3-devel \
+  perl-devel \
+  perl-ExtUtils-Embed \
+  perl-core \
+  perl-local-lib \
+  ruby-devel \
+  lua-devel
 
 cd ~/src
 
@@ -58,4 +64,17 @@ if [[ ! $(which vim) ]]; then
   wget https://github.com/vim/vim/archive/refs/tags/v8.2.4510.tar.gz
   tar -xvf v8.2.4510.tar.gz
   cd vim-8.2.4510
+  ./configure \
+--enable-multibyte \
+--enable-nls \
+--enable-python3interp \
+--enable-rubyinterp \
+--enable-luainterp \
+--enable-cscope \
+--enable-fail-if-missing=yes \
+--with-features=huge \
+--without-x \
+--disable-xim \
+--disable-gui \
+--disable-xsmp && make && make install
 fi
