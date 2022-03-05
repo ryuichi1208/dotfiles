@@ -12,6 +12,7 @@ yum install -y \
   git \
   ncurses-devel \
   make \
+  cmake \
   pcre-devel \
   zlib-devel \
   openssl-devel
