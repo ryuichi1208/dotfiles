@@ -91,3 +91,10 @@ if [[ ! (which go) ]]; then
   tar -xvf go1.17.8.linux-amd64.tar.gz
   mv go/bin /usr/local/go
 fi
+
+if [[ ! -e "~/.cache/dein" ]]; then
+  mkdir -p ~/.cache/dein
+  cd ~/.cache/dein
+  curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+  sh ./installer.sh ~/.cache/dein
+fi
