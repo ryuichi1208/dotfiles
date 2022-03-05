@@ -40,6 +40,7 @@ if [[ ! $(which zsh) ]]; then
   tar -xvf zsh-5.8.1.tar.gz
   cd zsh-zsh-5.8.1
   ./Util/preconfig && ./configure --enable-multibyte && make && make install
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 fi
 
 if [[ ! -e "~/dotfiles" ]]; then 
