@@ -9,6 +9,7 @@ setenforce 0
 
 yum update -y
 yum install -y \
+  kernel-devel \
   gcc \
   gcc-c++ \
   gdb \
