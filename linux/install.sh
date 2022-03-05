@@ -4,3 +4,11 @@
 
 systemctl stop firewalld
 setenforce 0
+
+yum update -y
+yum install -y \
+  gcc \
+  gcc-c++ \
+  git \
+  ncurses-devel \
+  make
