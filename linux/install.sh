@@ -43,7 +43,8 @@ if [[ ! $(which zsh) ]]; then
   git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
 fi
 
-if [[ ! -e "~/dotfiles" ]]; then 
+if [[ ! -e "~/dotfiles" ]]; then
+  cd ~
   git clone https://github.com/ryuichi1208/dotfiles.git
   ln -s ~/dotfiles/linux/zshrc ~/.zshrc
   ln -s ~/dotfiles/linux/vimrc ~/.vimrc
