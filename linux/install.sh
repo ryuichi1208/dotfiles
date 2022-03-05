@@ -19,14 +19,24 @@ yum install -y \
   pcre-devel \
   zlib-devel \
   openssl-devel \
-  wget
+  wget \
+  dstat \
+  perf
 
 cd ~/src
 
 if [[ ! $(which strace) ]]; then
+  cd ~/src
   wget https://github.com/strace/strace/releases/download/v5.16/strace-5.16.tar.xz
   tar -xvf strace-5.16.tar.xz
   cd strace-5.16
   ./configure && make && make install
-  cd ..
+fi
+
+if [[ ! $(which zsh) ]]; then
+  cd ~/src
+  wget https://github.com/zsh-users/zsh/archive/refs/tags/zsh-5.8.1.tar.gz
+  tar -xvf zsh-5.8.1.tar.gz
+  cd zsh-5.8.1
+  #./configure && make && make install
 fi
