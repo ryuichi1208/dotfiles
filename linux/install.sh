@@ -41,6 +41,7 @@ if [[ ! $(which zsh) ]]; then
   cd zsh-zsh-5.8.1
   ./Util/preconfig && ./configure --enable-multibyte && make && make install
   git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+  chsh -s /usr/local/bin/zsh
 fi
 
 if [[ ! -e "~/dotfiles" ]]; then
