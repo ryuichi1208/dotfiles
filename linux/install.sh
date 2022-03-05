@@ -23,7 +23,8 @@ yum install -y \
   wget \
   dstat \
   perf \
-  autoconf
+  autoconf \
+  python3
 
 cd ~/src
 
@@ -56,5 +57,5 @@ if [[ ! $(which vim) ]]; then
   cd ~/src
   wget https://github.com/vim/vim/archive/refs/tags/v8.2.4510.tar.gz
   tar -xvf v8.2.4510.tar.gz
-  cd v8.2.4510
+  cd vim-8.2.4510
 fi
