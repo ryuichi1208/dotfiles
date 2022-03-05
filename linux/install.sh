@@ -15,7 +15,6 @@ yum install -y \
   gcc \
   gcc-c++ \
   gdb \
-  gdb-debuginfo \
   git \
   ncurses-devel \
   make \
