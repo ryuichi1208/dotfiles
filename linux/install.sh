@@ -6,6 +6,7 @@ mkdir -p ~/src
 
 systemctl stop firewalld
 setenforce 0
+timedatectl set-timezone Asia/Tokyo
 
 yum update -y
 yum install -y \
