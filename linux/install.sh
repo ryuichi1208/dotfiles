@@ -12,6 +12,7 @@ yum install -y \
   gcc \
   gcc-c++ \
   gdb \
+  gdb-debuginfo \
   git \
   ncurses-devel \
   make \
@@ -49,4 +50,11 @@ if [[ ! -e "~/dotfiles" ]]; then
   git clone https://github.com/ryuichi1208/dotfiles.git
   ln -s ~/dotfiles/linux/zshrc ~/.zshrc
   ln -s ~/dotfiles/linux/vimrc ~/.vimrc
+fi
+
+if [[ ! $(which vim) ]]; then
+  cd ~/src
+  wget https://github.com/vim/vim/archive/refs/tags/v8.2.4510.tar.gz
+  tar -xvf v8.2.4510.tar.gz
+  cd v8.2.4510
 fi
