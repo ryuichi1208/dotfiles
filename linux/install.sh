@@ -9,6 +9,7 @@ setenforce 0
 
 yum update -y
 yum install -y \
+  yum-utils \
   kernel-devel \
   gcc \
   gcc-c++ \
@@ -32,6 +33,9 @@ yum install -y \
   perl-local-lib \
   ruby-devel \
   lua-devel
+
+yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
+yum -y install ripgrep
 
 cd ~/src
 
@@ -79,3 +83,4 @@ if [[ ! $(which vim) ]]; then
 --disable-gui \
 --disable-xsmp && make && make install
 fi
+
