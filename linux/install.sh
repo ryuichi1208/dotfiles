@@ -21,7 +21,11 @@ yum install -y \
   wget
 
 cd ~/src
+
 if [[ ! $(which strace) ]]; then
   wget https://github.com/strace/strace/releases/download/v5.16/strace-5.16.tar.xz
   tar -xvf strace-5.16.tar.xz
+  cd strace-5.16
+  ./configure && make && make install
+  cd ..
 fi
