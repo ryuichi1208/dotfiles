@@ -41,3 +41,9 @@ if [[ ! $(which zsh) ]]; then
   cd zsh-zsh-5.8.1
   ./Util/preconfig && ./configure --enable-multibyte && make && make install
 fi
+
+if [[ ! -e "~/dotfiles" ]]; then 
+  git clone https://github.com/ryuichi1208/dotfiles.git
+  ln -s ~/dotfiles/linux/zshrc ~/.zshrc
+  ln -s ~/dotfiles/linux/vimrc ~/.vimrc
+fi
