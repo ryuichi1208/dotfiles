@@ -1,6 +1,45 @@
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
+endif
+
+" Required:
+set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
+
+" Required:
+call dein#begin('$HOME/.cache/dein')
+
+" Let dein manage dein
+" Required:
+call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
+
+" Add or remove your plugins here like this:
+call dein#add('Shougo/neosnippet.vim')
+call dein#add('Shougo/neosnippet-snippets')
+call dein#add('cocopon/iceberg.vim')
+call dein#add('airblade/vim-gitgutter')
+call dein#add('vim-airline/vim-airline')
+call dein#add('fatih/vim-go')
+call dein#add('jiangmiao/auto-pairs')
+
+" Required:
+call dein#end()
+
+" Required:
+filetype plugin indent on
+syntax enable
+
+" If you want to install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
+endif
+
+"End dein Scripts-------------------------
+
 "########################
 "####     basic     #####
 "########################
+colorscheme iceberg
 syntax on
 syntax enable
 set fenc=utf-8
@@ -54,3 +93,11 @@ inoremap ６ 6
 inoremap ７ 7
 inoremap ８ 8
 inoremap ９ 9
+
+" 開いた位置を記憶
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
+let g:goimports_simplify = 1
