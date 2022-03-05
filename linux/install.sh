@@ -21,7 +21,8 @@ yum install -y \
   openssl-devel \
   wget \
   dstat \
-  perf
+  perf \
+  autoconf
 
 cd ~/src
 
@@ -37,6 +38,6 @@ if [[ ! $(which zsh) ]]; then
   cd ~/src
   wget https://github.com/zsh-users/zsh/archive/refs/tags/zsh-5.8.1.tar.gz
   tar -xvf zsh-5.8.1.tar.gz
-  cd zsh-5.8.1
-  #./configure && make && make install
+  cd zsh-zsh-5.8.1
+  ./Util/preconfig && ./configure --enable-multibyte && make && make install
 fi
