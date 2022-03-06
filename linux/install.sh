@@ -87,8 +87,7 @@ fi
 if [[ ! $(which go) ]]; then
   cd ~/src
   wget https://go.dev/dl/go1.17.8.linux-amd64.tar.gz
-  tar -xvf go1.17.8.linux-amd64.tar.gz
-  mv go/bin /usr/local/go
+  sudo tar -C /usr/local -xvzf go1.17.8.linux-amd64.tar.gz
 fi
 
 if [[ ! -e "~/.cache/dein" ]]; then
