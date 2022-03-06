@@ -14,7 +14,70 @@ export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin:/usr/local/go/bin"
 
-alias ls='ls --color=auto'
+
+# -----------------------------
+# Alias
+# -----------------------------
+### Base
+alias c='clear'
+alias h='history | grep'
+alias mv='mv -i'
+alias cp='cp -i'
+alias sshk='ssh-keygen -t rsa'
+alias cdr='cd-gitroot'
+alias nvp='navi --print'
+alias cdg='cd-gitroot'
+alias bash='/usr/local/bin/bash'
+alias pwdc='pwd | tr -d "\n" | pbcopy'
+alias t='tmux'
+### ls
+alias l='ls -CF'
+alias ls='ls -G'
+alias ll='ls -lG'
+alias la='ls -laG'
+alias lt='ls -lartG'
+### diff
+alias='difff = diff --name-only'
+alias='diffs = diff --cached'
+alias='dp = diff --no-prefix'
+alias='dsp = diff --cached --no-prefix'
+### Git
+alias g='hub'
+alias ga='g add'
+alias gd='g diff'
+alias gs='g status'
+alias gp='g push'
+alias gpu='g pull'
+alias gb='g branch'
+alias gst='g status'
+alias gco='g checkout'
+alias gf='g fetch'
+alias gc='g commit'
+### Docker
+alias d='docker'
+alias dc='docker container'
+alias db='docker build'
+alias de='docker exec'
+alias dh='docker history'
+alias dn='docekr network'
+alias dv='docker volume'
+alias di='docker image'
+alias drm='docker rm $(docker ps -aq)'
+alias drmimg='docker rmi `docker images -aq`'
+alias drmimgf='docker rmi -f `docker images -aq`'
+alias dcr='docker container run -it --rm'
+alias dib='docker image build --rm'
+### Kubernetes
+alias k='kubectl'
+alias ka='kubectl apply -f'
+alias kl='kubectl logs -f'
+alias kp='kubectl proxy'
+alias kg='kubectl get'
+alias krm='kubectl delete'
+alias kgsvcoyaml='kubectl get service -o=yaml'
+alias kgsvcwn='watch kubectl get service --namespace'
+alias kgsvcslwn='watch kubectl get service --show-labels --namespace'
+
 
 # -----------------------------
 # General
