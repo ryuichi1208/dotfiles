@@ -39,7 +39,7 @@ yum install -y \
   gd-devel \
   GeoIP-devel \
   gperftools-devel \
-  libatomic_ops \
+  libatomic_ops-devel \
   tcpdump \
   telnet \
   net-tools
