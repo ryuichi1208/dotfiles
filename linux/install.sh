@@ -42,7 +42,8 @@ yum install -y \
   libatomic_ops-devel \
   tcpdump \
   telnet \
-  net-tools
+  net-tools \
+  bind-utils
 
 yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
 yum -y install ripgrep
