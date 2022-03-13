@@ -1,4 +1,6 @@
-"dein Scripts-----------------------------
+" ========================================
+" Plugin Conifg
+" ========================================
 if &compatible
   set nocompatible               " Be iMproved
 endif
@@ -27,6 +29,9 @@ call dein#add('prabirshrestha/asyncomplete.vim')
 call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
 call dein#add('junegunn/fzf.vim')
+call dein#add('romainl/Apprentice')
+call dein#add('AlessandroYorba/Alduin')
+call dein#add('Haron-Prime/Antares')
 
 " Required:
 call dein#end()
@@ -40,12 +45,11 @@ if dein#check_install()
   call dein#install()
 endif
 
-"End dein Scripts-------------------------
 
-"########################
-"####     basic     #####
-"########################
-"colorscheme iceberg
+" ========================================
+" Basic Config
+" ========================================
+colorscheme antares
 syntax on
 syntax enable
 set fenc=utf-8
@@ -71,9 +75,9 @@ set shellslash
 set title
 
 
-"#######################
-"####    key map    ####
-"#######################
+" ========================================
+" Key Map
+" ========================================
 nnoremap j gj
 nnoremap k gk
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
@@ -99,12 +103,19 @@ inoremap ６ 6
 inoremap ７ 7
 inoremap ８ 8
 inoremap ９ 9
+" 折り返し時に表示行単位での移動できるようにする
+nnoremap j gj
+nnoremap k gk            =
 
-" 開いた位置を記憶
-augroup vimrcEx
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-  \ exe "normal g`\"" | endif
-augroup END
+" #############
+" # leader config
+" #############
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>t gT
+nnoremap <Leader>h ^
+nnoremap <Leader>l $
 
 " #############
 " # tab関連
@@ -121,9 +132,20 @@ map <silent> [Tag]n :tabnext<CR>
 map <silent> [Tag]p :tabprevious<CR>
 au FileType qf nnoremap <silent><buffer>q :quit<CR>
 
-" #############
-" # go
-" #############
+
+" ========================================
+" Functions
+" ========================================
+" 開いた位置を記憶
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
+
+" ========================================
+" Go lsp Config
+" ========================================
 let g:goimports_simplify = 1
 autocmd BufWritePre *.go call execute(['LspCodeActionSync source.organizeImports', 'LspDocumentFormatSync'])
 function! s:on_lsp_buffer_enabled() abort
