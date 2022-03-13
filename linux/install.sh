@@ -69,7 +69,7 @@ if [[ ! $(which zsh) ]]; then
   chsh -s /usr/local/bin/zsh
 fi
 
-if [[ ! -e "~/dotfiles" ]]; then
+if [[ ! -d ~/dotfiles ]];
   cd ~
   git clone https://github.com/ryuichi1208/dotfiles.git
   ln -s ~/dotfiles/linux/zshrc ~/.zshrc
@@ -102,7 +102,7 @@ if [[ ! $(which go) ]]; then
   sudo tar -C /usr/local -xvzf go1.17.8.linux-amd64.tar.gz
 fi
 
-if [[ ! -e "~/.cache/dein" ]]; then
+if [[ ! -d ~/.cache/dein ]]; then
   mkdir -p ~/.cache/dein
   cd ~/.cache/dein
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
