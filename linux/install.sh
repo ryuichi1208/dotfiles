@@ -50,6 +50,7 @@ yum install -y --enablerepo=epel \
 
 yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
 yum -y install ripgrep
+yum -y install https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_amd64.rpm
 
 if [[ ! $(which strace) ]]; then
   cd ~/src
