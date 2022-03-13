@@ -107,3 +107,4 @@ setopt magic_equal_subst
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -e ~/z ] && source ~/z/z.sh
