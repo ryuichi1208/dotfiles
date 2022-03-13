@@ -45,7 +45,7 @@ yum install -y \
   net-tools \
   bind-utils
 
-yum install -y \
+yum install -y --enablerepo=epel \
   jq
 
 yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
