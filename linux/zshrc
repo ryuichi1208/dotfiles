@@ -18,65 +18,23 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/
 # -----------------------------
 # Alias
 # -----------------------------
-### Base
-alias c='clear'
-alias h='history | grep'
+alias ls='ls --color=auto'
+alias la='ls -A'
+alias l='ls -CF'
 alias mv='mv -i'
 alias cp='cp -i'
+alias rm='rm -i'
+alias grep='grep --color=auto'
+alias g='git'
+alias gb='git branch'
+alias gd='git diff'
+alias gs='git status'
+alias gp='git pull'
+alias df='duf'
+alias c='clear'
 alias sshk='ssh-keygen -t rsa'
-alias cdr='cd-gitroot'
-alias nvp='navi --print'
-alias cdg='cd-gitroot'
-alias bash='/usr/local/bin/bash'
-alias pwdc='pwd | tr -d "\n" | pbcopy'
-alias t='tmux'
-### ls
-alias l='ls -CF'
-alias ls='ls -G'
-alias ll='ls -lG'
-alias la='ls -laG'
-alias lt='ls -lartG'
-### diff
-alias='difff = diff --name-only'
-alias='diffs = diff --cached'
-alias='dp = diff --no-prefix'
-alias='dsp = diff --cached --no-prefix'
-### Git
-alias g='hub'
-alias ga='g add'
-alias gd='g diff'
-alias gs='g status'
-alias gp='g push'
-alias gpu='g pull'
-alias gb='g branch'
-alias gst='g status'
-alias gco='g checkout'
-alias gf='g fetch'
-alias gc='g commit'
-### Docker
-alias d='docker'
-alias dc='docker container'
-alias db='docker build'
-alias de='docker exec'
-alias dh='docker history'
-alias dn='docekr network'
-alias dv='docker volume'
-alias di='docker image'
-alias drm='docker rm $(docker ps -aq)'
-alias drmimg='docker rmi `docker images -aq`'
-alias drmimgf='docker rmi -f `docker images -aq`'
-alias dcr='docker container run -it --rm'
-alias dib='docker image build --rm'
-### Kubernetes
-alias k='kubectl'
-alias ka='kubectl apply -f'
-alias kl='kubectl logs -f'
-alias kp='kubectl proxy'
-alias kg='kubectl get'
-alias krm='kubectl delete'
-alias kgsvcoyaml='kubectl get service -o=yaml'
-alias kgsvcwn='watch kubectl get service --namespace'
-alias kgsvcslwn='watch kubectl get service --show-labels --namespace'
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias free='free -h'
 
 
 # -----------------------------
@@ -108,3 +66,33 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -e ~/z ] && source ~/z/z.sh
+
+
+# -----------------------------
+# Function
+# -----------------------------
+fbr() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+}
+
+fshow() {
+  git log --graph --color=always \
+      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+      --bind "ctrl-m:execute:
+                (grep -o '[a-f0-9]\{7\}' | head -1 |
+                xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
+                {}
+FZF-EOF"
+}
+
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
