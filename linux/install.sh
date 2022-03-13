@@ -116,3 +116,7 @@ if [[ ! $(which bat) ]]; then
   tar -xvf bat.zip
   mv bat-v0.20.0-x86_64-unknown-linux-musl/bat /usr/local/bin/
 fi
+
+if [[ ! -d ~/z ]]; then
+  git clone https://github.com/rupa/z.git ~/z
+fi
