@@ -69,7 +69,7 @@ if [[ ! $(which zsh) ]]; then
   chsh -s /usr/local/bin/zsh
 fi
 
-if [[ ! -d ~/dotfiles ]];
+if [[ ! -d ~/dotfiles ]]; then
   cd ~
   git clone https://github.com/ryuichi1208/dotfiles.git
   ln -s ~/dotfiles/linux/zshrc ~/.zshrc
