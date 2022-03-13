@@ -43,7 +43,9 @@ yum install -y \
   tcpdump \
   telnet \
   net-tools \
-  bind-utils \
+  bind-utils
+
+yum install -y \
   jq
 
 yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
