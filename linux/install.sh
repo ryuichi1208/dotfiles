@@ -108,3 +108,10 @@ if [[ ! -d ~/.cache/dein ]]; then
   curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
   sh ./installer.sh ~/.cache/dein
 fi
+
+if [[ ! $(which bat) ]]; then
+  cd ~/src
+  wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-v0.20.0-x86_64-unknown-linux-musl.tar.gz
+  tar -xvf bat.zip
+  mv bat-v0.20.0-x86_64-unknown-linux-musl/bat /usr/local/bin/
+fi
