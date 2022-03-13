@@ -105,7 +105,7 @@ inoremap ８ 8
 inoremap ９ 9
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
-nnoremap k gk            =
+nnoremap k gk
 
 " #############
 " # leader config
@@ -141,6 +141,10 @@ augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
 augroup END
+
+let g:fzf_layout = { 'down': '50%' }
+nnoremap <C-P> :Files<CR>
+" }}}
 
 
 " ========================================
