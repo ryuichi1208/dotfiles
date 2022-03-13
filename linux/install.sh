@@ -120,3 +120,8 @@ fi
 if [[ ! -d ~/z ]]; then
   git clone https://github.com/rupa/z.git ~/z
 fi
+
+if [[ ! -d ~/.fzf ]]; then
+  git clone https://github.com/junegunn/fzf.git ~/.fzf
+  yes | ~/.fzf/install
+fi
