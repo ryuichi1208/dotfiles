@@ -25,6 +25,7 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('prabirshrestha/vim-lsp')
 call dein#add('mattn/vim-lsp-settings')
 call dein#add('mattn/vim-goimports')
+call dein#add('prabirshrestha/async.vim')
 call dein#add('prabirshrestha/asyncomplete.vim')
 call dein#add('prabirshrestha/asyncomplete-lsp.vim')
 call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
@@ -32,6 +33,8 @@ call dein#add('junegunn/fzf.vim')
 call dein#add('romainl/Apprentice')
 call dein#add('AlessandroYorba/Alduin')
 call dein#add('Haron-Prime/Antares')
+call dein#add('tpope/vim-commentary')
+call dein#add('machakann/vim-swap')
 
 " Required:
 call dein#end()
@@ -82,30 +85,16 @@ nnoremap j gj
 nnoremap k gk
 nmap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap 　 <Space>
-inoremap ｜ \|
-inoremap ＜ <
-inoremap ＞ >
-inoremap ＊ *
-inoremap ＠ @
-inoremap ％ %
-inoremap ＃ #
-inoremap ” "
-inoremap ’ '
-inoremap ＋ +
-inoremap ～ ~
-inoremap ０ 0
-inoremap １ 1
-inoremap ２ 2
-inoremap ３ 3
-inoremap ４ 4
-inoremap ５ 5
-inoremap ６ 6
-inoremap ７ 7
-inoremap ８ 8
-inoremap ９ 9
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
 nnoremap k gk
+" インサートモードでも移動
+inoremap <C-d> <Del>
+inoremap <c-k> <up>
+inoremap <c-j> <down>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
+
 
 " #############
 " # leader config
@@ -116,6 +105,7 @@ nnoremap <Leader>q :q<CR>
 nnoremap <Leader>t gT
 nnoremap <Leader>h ^
 nnoremap <Leader>l $
+nnoremap <Leader>o <Plug>(swap-interactive)
 
 " #############
 " # tab関連
@@ -126,7 +116,7 @@ for n in range(1, 9)
   execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
 endfor
 
-map <silent> [Tag]y :tablast <bar> tabnew<CR>
+map <silent> [Tag]c :tablast <bar> tabnew<CR>
 map <silent> [Tag]x :tabclose<CR>
 map <silent> [Tag]n :tabnext<CR>
 map <silent> [Tag]p :tabprevious<CR>
@@ -148,9 +138,14 @@ nnoremap <C-P> :Files<CR>
 
 
 " ========================================
-" Go lsp Config
+" LSP Config
 " ========================================
+let g:asyncomplete_popup_delay = 200
 let g:goimports_simplify = 1
+let g:go_doc_popup_window = 1
+let g:lsp_diagnostics_enabled = 1
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_text_edit_enabled = 0
 autocmd BufWritePre *.go call execute(['LspCodeActionSync source.organizeImports', 'LspDocumentFormatSync'])
 function! s:on_lsp_buffer_enabled() abort
     setlocal omnifunc=lsp#complete
@@ -158,6 +153,7 @@ function! s:on_lsp_buffer_enabled() abort
     if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
     nmap <buffer> gd <plug>(lsp-definition)
     nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gs <plug>(lsp-document-symbol-search)
     nmap <buffer> gi <plug>(lsp-implementation)
     nmap <buffer> gt <plug>(lsp-type-definition)
     nmap <buffer> <leader>rn <plug>(lsp-rename)
@@ -170,3 +166,8 @@ augroup lsp_install
     au!
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
+
+
+" ========================================
+"
+" ========================================
