@@ -76,6 +76,8 @@ set hlsearch
 set backspace=indent,eol,start
 set shellslash
 set title
+set listchars=tab:^\ ,trail:~
+set history=10000
 
 
 " ========================================
@@ -132,9 +134,17 @@ augroup vimrcEx
   \ exe "normal g`\"" | endif
 augroup END
 
+" fzfの設定
 let g:fzf_layout = { 'down': '50%' }
 nnoremap <C-P> :Files<CR>
 " }}}
+
+" vimrcをオートリロードする
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
 
 
 " ========================================
