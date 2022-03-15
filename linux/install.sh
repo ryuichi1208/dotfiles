@@ -44,6 +44,7 @@ yum install -y \
   telnet \
   net-tools \
   tree \
+  iperf3 \
   bind-utils
 
 yum install -y --enablerepo=epel \
