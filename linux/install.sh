@@ -50,7 +50,8 @@ function init() {
 
   yum install -y --enablerepo=epel \
     jq \
-    cargo
+    cargo \
+    sipcalc
 
   yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
   yum -y install ripgrep
