@@ -12,7 +12,7 @@ export SAVEHIST=1000000
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
-export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin:/usr/local/go/bin"
+export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin:/usr/local/go/bin:/root/go/bin/"
 
 
 # -----------------------------
@@ -95,4 +95,17 @@ fd() {
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
+}
+
+gaa() {
+  MSG=$1
+
+  if [ -z ${MSG} ]; then
+    echo "please commit message input!!"
+    exit 1
+  fi
+
+  git add .
+  git commit -m ${MSG}
+  git push
 }
