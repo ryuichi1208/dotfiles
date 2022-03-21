@@ -61,7 +61,7 @@ function init() {
   yum -y install ripgrep
   yum -y install https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_amd64.rpm
 
-  if [[ ! $(which strace) ]]; then
+  if [[ ! $(type strace) ]]; then
     cd ~/src
     wget https://github.com/strace/strace/releases/download/v5.16/strace-5.16.tar.xz
     tar -xvf strace-5.16.tar.xz
@@ -69,7 +69,7 @@ function init() {
     ./configure && make && make install
   fi
 
-  if [[ ! $(which zsh) ]]; then
+  if [[ ! $(type zsh) ]]; then
     cd ~/src
     wget https://github.com/zsh-users/zsh/archive/refs/tags/zsh-5.8.1.tar.gz
     tar -xvf zsh-5.8.1.tar.gz
@@ -86,7 +86,7 @@ function init() {
     ln -s ~/dotfiles/linux/vimrc ~/.vimrc
   fi
 
-  if [[ ! $(which vim) ]]; then
+  if [[ ! $(type vim) ]]; then
     cd ~/src
     wget https://github.com/vim/vim/archive/refs/tags/v8.2.4510.tar.gz
     tar -xvf v8.2.4510.tar.gz
@@ -119,7 +119,7 @@ function init() {
     sh ./installer.sh ~/.cache/dein
   fi
 
-  if [[ ! $(which bat) ]]; then
+  if [[ ! $(type bat) ]]; then
     cd ~/src
     wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-v0.20.0-x86_64-unknown-linux-musl.tar.gz
     tar -xvf bat.zip
