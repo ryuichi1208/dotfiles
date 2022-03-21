@@ -13,6 +13,7 @@ function init() {
   yum install -y \
     GeoIP-devel \
     autoconf \
+    automake \
     bind-utils \
     cmake \
     ctags \
@@ -27,6 +28,7 @@ function init() {
     iperf3 \
     kernel-devel \
     libatomic_ops-devel \
+    libevent-devel \
     libxml2-devel \
     libxslt-devel \
     lua-devel \
@@ -34,6 +36,7 @@ function init() {
     ncurses-devel \
     net-tools \
     openssl-devel \
+    patch \
     pcre-devel \
     perf \
     perl-ExtUtils-Embed \
@@ -60,6 +63,7 @@ function init() {
   yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
   yum -y install ripgrep
   yum -y install https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_amd64.rpm
+  yum -y install https://github.com/dalance/procs/releases/download/v0.12.1/procs-0.12.1-1.x86_64.rpm
 
   if [[ ! $(type strace) ]]; then
     cd ~/src
