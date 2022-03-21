@@ -3,12 +3,14 @@
 # curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/install.sh | bash
 
 function init() {
-  mkdir -p ~/src
+  mkdir -p ~/src ~/work ~/tmp
 
   systemctl stop firewalld
   setenforce 0
   timedatectl set-timezone Asia/Tokyo
+}
 
+function yum_install() {
   yum update -y
   yum install -y \
     GeoIP-devel \
@@ -64,7 +66,10 @@ function init() {
   yum -y install ripgrep
   yum -y install https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_amd64.rpm
   yum -y install https://github.com/dalance/procs/releases/download/v0.12.1/procs-0.12.1-1.x86_64.rpm
+  yum -y install https://www.percona.com/downloads/percona-toolkit/3.3.1/binary/redhat/7/x86_64/percona-toolkit-3.3.1-1.el7.x86_64.rpm
+}
 
+function install_ext_command() {
   if [[ ! $(type strace) ]]; then
     cd ~/src
     wget https://github.com/strace/strace/releases/download/v5.16/strace-5.16.tar.xz
@@ -140,4 +145,10 @@ function init() {
   fi
 }
 
-time init
+function main() {
+  init
+  yum_install
+  install_ext_command
+}
+
+time main
