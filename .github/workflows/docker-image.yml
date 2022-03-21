@@ -1,0 +1,13 @@
+name: Container
+on: push
+
+jobs:
+  node-docker:
+    runs-on: ubuntu-latest
+    container:
+      image: centos:7
+    steps:
+      - name: Run install.sh
+        run: |
+          curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/install.sh \
+            | bash
