@@ -18,6 +18,7 @@ function yum_install() {
     automake \
     bind-utils \
     cmake \
+    crash \
     ctags \
     dstat \
     epel-release \
