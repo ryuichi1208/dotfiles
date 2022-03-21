@@ -19,6 +19,7 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/
 # Alias
 # -----------------------------
 alias ls='ls --color=auto'
+alias ll='ls -l --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
 alias mv='mv -i'
