@@ -11,47 +11,51 @@ function init() {
 
   yum update -y
   yum install -y \
-    yum-utils \
-    kernel-devel \
+    GeoIP-devel \
+    autoconf \
+    bind-utils \
+    cmake \
+    ctags \
+    dstat \
+    epel-release \
     gcc \
     gcc-c++ \
+    gd-devel \
     gdb \
     git \
-    ncurses-devel \
-    make \
-    cmake \
-    pcre-devel \
-    zlib-devel \
-    openssl-devel \
-    wget \
-    dstat \
-    perf \
-    autoconf \
-    python3-devel \
-    perl-devel \
-    perl-ExtUtils-Embed \
-    perl-core \
-    perl-local-lib \
-    ruby-devel \
-    lua-devel \
-    ctags \
+    gperftools-devel \
+    iperf3 \
+    kernel-devel \
+    libatomic_ops-devel \
     libxml2-devel \
     libxslt-devel \
-    gd-devel \
-    GeoIP-devel \
-    gperftools-devel \
-    libatomic_ops-devel \
+    lua-devel \
+    make \
+    ncurses-devel \
+    net-tools \
+    openssl-devel \
+    pcre-devel \
+    perf \
+    perl-ExtUtils-Embed \
+    perl-core \
+    perl-devel \
+    perl-local-lib \
+    python3-devel \
+    ruby-devel \
     tcpdump \
     telnet \
-    net-tools \
     tree \
-    iperf3 \
-    bind-utils
+    unzip \
+    wget \
+    yum-utils \
+    zlib-devel
 
   yum install -y --enablerepo=epel \
     jq \
     cargo \
-    sipcalc
+    sipcalc \
+    htop \
+    ShellCheck
 
   yum-config-manager --add-repo=https://copr.fedorainfracloud.org/coprs/carlwgeorge/ripgrep/repo/epel-7/carlwgeorge-ripgrep-epel-7.repo
   yum -y install ripgrep
