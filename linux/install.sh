@@ -124,6 +124,9 @@ function install_ext_command() {
     sudo tar -C /usr/local -xvzf go1.17.8.linux-amd64.tar.gz
     export PATH=$PATH:/usr/local/go/bin/
     go install golang.org/x/tools/gopls@latest
+    go install github.com/x-motemen/gore/cmd/gore@latest
+    go install github.com/golang/mock/gomock@latest
+    go install github.com/golang/mock/mockgen@latest
   fi
 
   if [[ ! -d ~/.cache/dein ]]; then
