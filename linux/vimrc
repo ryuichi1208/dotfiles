@@ -35,6 +35,7 @@ call dein#add('AlessandroYorba/Alduin')
 call dein#add('Haron-Prime/Antares')
 call dein#add('tpope/vim-commentary')
 call dein#add('machakann/vim-swap')
+call dein#add('buoto/gotests-vim')
 
 " Required:
 call dein#end()
