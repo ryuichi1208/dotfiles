@@ -122,6 +122,7 @@ function install_ext_command() {
     cd ~/src
     wget https://go.dev/dl/go1.17.8.linux-amd64.tar.gz
     sudo tar -C /usr/local -xvzf go1.17.8.linux-amd64.tar.gz
+    go install golang.org/x/tools/gopls@latest
   fi
 
   if [[ ! -d ~/.cache/dein ]]; then
