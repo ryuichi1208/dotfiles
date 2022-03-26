@@ -52,7 +52,6 @@ setopt share_history
 setopt hist_ignore_all_dups
 setopt inc_append_history
 setopt menu_complete
-PROMPT='%F{magenta}%B%n%b%f@%F{blue}%U%m%u%f %F{green}[%~]%f %# '
 autoload -Uz compinit ; compinit
 setopt correct
 zstyle ':completion:*' menu select
@@ -63,6 +62,17 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:manuals' separate-sections true
 setopt magic_equal_subst
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+autoload -Uz vcs_info
+setopt prompt_subst
+zstyle ':vcs_info:git:*' check-for-changes true
+zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
+zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
+zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
+zstyle ':vcs_info:*' actionformats '[%b|%a]'
+precmd () { vcs_info }
+PROMPT='
+[%F{magenta}%B%n%b%f@%F{blue}%U%m%u%f:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f
+%F{yellow}$%f '
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -e ~/z ] && source ~/z/z.sh
@@ -99,11 +109,9 @@ function fd() {
 
 function gaa() {
   MSG=$1
-
   if [ -z ${MSG} ]; then
     echo "please commit message input!!"
     exit 1
   fi
-
   git add . && git commit -m ${MSG} && git push
 }
