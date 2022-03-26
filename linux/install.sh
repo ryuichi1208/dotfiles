@@ -101,6 +101,7 @@ function install_ext_command() {
     git clone https://github.com/ryuichi1208/dotfiles.git
     ln -s ~/dotfiles/linux/zshrc ~/.zshrc
     ln -s ~/dotfiles/linux/vimrc ~/.vimrc
+    ln -s ~/dotfiles/linux/tmux.conf ~/.tmux.conf
   fi
 
   if [[ ! $(type vim) ]]; then
