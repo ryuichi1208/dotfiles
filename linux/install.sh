@@ -68,6 +68,8 @@ function yum_install() {
   yum -y install https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_amd64.rpm
   yum -y install https://github.com/dalance/procs/releases/download/v0.12.1/procs-0.12.1-1.x86_64.rpm
   yum -y install https://www.percona.com/downloads/percona-toolkit/3.3.1/binary/redhat/7/x86_64/percona-toolkit-3.3.1-1.el7.x86_64.rpm
+  curl -fsSL https://rpm.nodesource.com/setup_16.x | sudo bash -
+  yum install -y nodejs
 }
 
 function install_ext_command() {
