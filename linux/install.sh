@@ -2,6 +2,10 @@
 # usage:
 # curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/install.sh | bash
 
+VERSION_STRACE=5.16
+VERSION_ZSH=5.8.1
+VERSION_GO=1.18
+
 function init() {
   mkdir -p ~/src ~/work ~/tmp
 
@@ -75,17 +79,17 @@ function yum_install() {
 function install_ext_command() {
   if [[ ! $(type strace) ]]; then
     cd ~/src
-    wget https://github.com/strace/strace/releases/download/v5.16/strace-5.16.tar.xz
-    tar -xvf strace-5.16.tar.xz
-    cd strace-5.16
+    wget https://github.com/strace/strace/releases/download/v${VERSION_STRACE}/strace-${VERSION_STRACE}.tar.xz
+    tar -xvf strace-${VERSION_STRACE}.tar.xz
+    cd strace-${VERSION_STRACE}
     ./configure && make && make install
   fi
 
   if [[ ! $(type zsh) ]]; then
     cd ~/src
-    wget https://github.com/zsh-users/zsh/archive/refs/tags/zsh-5.8.1.tar.gz
-    tar -xvf zsh-5.8.1.tar.gz
-    cd zsh-zsh-5.8.1
+    wget https://github.com/zsh-users/zsh/archive/refs/tags/zsh-${VERSION_ZSH}.tar.gz
+    tar -xvf zsh-${VERSION_ZSH}.tar.gz
+    cd zsh-zsh-${VERSION_ZSH}
     ./Util/preconfig && ./configure --enable-multibyte && make && make install
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
     chsh -s /usr/local/bin/zsh
@@ -120,8 +124,8 @@ function install_ext_command() {
 
   if [[ ! $(which go) ]]; then
     cd ~/src
-    wget https://go.dev/dl/go1.18.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xvzf go1.18.linux-amd64.tar.gz
+    wget https://go.dev/dl/go${VERSION_GO}.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xvzf go${VERSION_GO}.linux-amd64.tar.gz
     export PATH=$PATH:/usr/local/go/bin/
     go install golang.org/x/tools/gopls@latest
     go install github.com/x-motemen/gore/cmd/gore@latest
