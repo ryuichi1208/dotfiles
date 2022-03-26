@@ -5,6 +5,7 @@
 VERSION_STRACE=5.16
 VERSION_ZSH=5.8.1
 VERSION_GO=1.18
+VERSION_VIM=8.2.4631
 
 function init() {
   mkdir -p ~/src ~/work ~/tmp
@@ -104,9 +105,9 @@ function install_ext_command() {
 
   if [[ ! $(type vim) ]]; then
     cd ~/src
-    wget https://github.com/vim/vim/archive/refs/tags/v8.2.4510.tar.gz
-    tar -xvf v8.2.4510.tar.gz
-    cd vim-8.2.4510
+    wget https://github.com/vim/vim/archive/refs/tags/v${VERSION_VIM}.tar.gz
+    tar -xvf v${VERSION_VIM}.tar.gz
+    cd vim-${VERSION_VIM}
     ./configure \
   --enable-multibyte \
   --enable-nls \
@@ -127,10 +128,14 @@ function install_ext_command() {
     wget https://go.dev/dl/go${VERSION_GO}.linux-amd64.tar.gz
     sudo tar -C /usr/local -xvzf go${VERSION_GO}.linux-amd64.tar.gz
     export PATH=$PATH:/usr/local/go/bin/
+    go install golang.org/x/tools/cmd/...@latest
     go install golang.org/x/tools/gopls@latest
+    go install golang.org/x/lint/golint@latest
     go install github.com/x-motemen/gore/cmd/gore@latest
     go install github.com/golang/mock/gomock@latest
     go install github.com/golang/mock/mockgen@latest
+    go install github.com/mdempsky/gocode@latest
+    go install github.com/k0kubun/pp@latest
   fi
 
   if [[ ! -d ~/.cache/dein ]]; then
