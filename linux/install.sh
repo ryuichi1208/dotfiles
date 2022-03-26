@@ -146,14 +146,6 @@ function install_ext_command() {
     git clone https://github.com/junegunn/fzf.git ~/.fzf
     yes | ~/.fzf/install
   fi
-  
-  if [[ ! $(type golangci-lint) ]]; then
-    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.45.2
-  fi
-  
-  if [[ ! $(type gotests) ]]; then
-    go get -u github.com/cweill/gotests/...
-  fi
 }
 
 function main() {
