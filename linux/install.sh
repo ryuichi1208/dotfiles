@@ -120,8 +120,8 @@ function install_ext_command() {
 
   if [[ ! $(which go) ]]; then
     cd ~/src
-    wget https://go.dev/dl/go1.17.8.linux-amd64.tar.gz
-    sudo tar -C /usr/local -xvzf go1.17.8.linux-amd64.tar.gz
+    wget https://go.dev/dl/go1.18.linux-amd64.tar.gz
+    sudo tar -C /usr/local -xvzf go1.18.linux-amd64.tar.gz
     export PATH=$PATH:/usr/local/go/bin/
     go install golang.org/x/tools/gopls@latest
     go install github.com/x-motemen/gore/cmd/gore@latest
