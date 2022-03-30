@@ -6,7 +6,7 @@ VERSION_STRACE="5.16"
 VERSION_ZSH="5.8.1"
 VERSION_GO="1.18"
 VERSION_VIM="8.2.4631"
-VERSION_BAT="v20.0.0"
+VERSION_BAT="v0.20.0"
 
 function init() {
   mkdir -p ~/src ~/work ~/tmp ~/.vim/UltiSnips/
