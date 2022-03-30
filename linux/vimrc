@@ -16,6 +16,8 @@ call dein#begin('$HOME/.cache/dein')
 call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
 
 " Add or remove your plugins here like this:
+call dein#add('honza/vim-snippets')
+call dein#add('SirVer/ultisnips')
 call dein#add('Shougo/neosnippet.vim')
 call dein#add('Shougo/neosnippet-snippets')
 call dein#add('cocopon/iceberg.vim')
@@ -187,5 +189,8 @@ augroup END
 
 
 " ========================================
-"
+" snipet
 " ========================================
+let g:UltiSnipsExpandTrigger="<c-s>"
+let g:UltiSnipsJumpForwardTrigger="<c-f>"
+let g:UltiSnipsJumpBackwardTrigger="<c-b>"
