@@ -2,10 +2,11 @@
 # usage:
 # curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/install.sh | bash
 
-VERSION_STRACE=5.16
-VERSION_ZSH=5.8.1
-VERSION_GO=1.18
-VERSION_VIM=8.2.4631
+VERSION_STRACE="5.16"
+VERSION_ZSH="5.8.1"
+VERSION_GO="1.18"
+VERSION_VIM="8.2.4631"
+VERSION_BAT="v20.0.0"
 
 function init() {
   mkdir -p ~/src ~/work ~/tmp ~/.vim/UltiSnips/
@@ -97,15 +98,6 @@ function install_ext_command() {
     chsh -s /usr/local/bin/zsh
   fi
 
-  if [[ ! -d ~/dotfiles ]]; then
-    cd ~
-    git clone https://github.com/ryuichi1208/dotfiles.git
-    ln -s ~/dotfiles/linux/zshrc ~/.zshrc
-    ln -s ~/dotfiles/linux/vimrc ~/.vimrc
-    ln -s ~/dotfiles/linux/tmux.conf ~/.tmux.conf
-    ln -s ~/dotfiles/linux/.vim/go.snippets ~/.vim/UltiSnips/
-  fi
-
   if [[ ! $(type vim) ]]; then
     cd ~/src
     wget https://github.com/vim/vim/archive/refs/tags/v${VERSION_VIM}.tar.gz
@@ -159,16 +151,29 @@ function install_ext_command() {
 
   if [[ ! $(type bat) ]]; then
     cd ~/src
-    wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-v0.20.0-x86_64-unknown-linux-musl.tar.gz
+    wget -O bat.zip https://github.com/sharkdp/bat/releases/download/${VERSION_BAT}/bat-${VERSION_BAT}-x86_64-unknown-linux-musl.tar.gz
     tar -xvf bat.zip
-    mv bat-v0.20.0-x86_64-unknown-linux-musl/bat /usr/local/bin/
+    mv bat-${VERSION_BAT}-x86_64-unknown-linux-musl/bat /usr/local/bin/
   fi
 
   if [[ ! $(type tmux) ]]; then
     cd ~/src
     wget https://github.com/tmux/tmux/releases/download/3.2a/tmux-3.2a.tar.gz
     tar -xvf tmux-3.2a.tar.gz
+    cd tmux-3.2a
     ./configure && make && make install
+  fi
+}
+
+function setup_dotfiles() {
+  if [[ ! -d ~/dotfiles ]]; then
+    cd ~
+    git clone https://github.com/ryuichi1208/dotfiles.git
+    ln -s ~/dotfiles/linux/zshrc ~/.zshrc
+    ln -s ~/dotfiles/linux/vimrc ~/.vimrc
+    ln -s ~/dotfiles/linux/tmux.conf ~/.tmux.conf
+    ln -s ~/dotfiles/linux/.vim/go.snippets ~/.vim/UltiSnips/
+    ln -s ~/dotfiles/linux/gdbinit ~/.gdbinit
   fi
 }
 
@@ -176,6 +181,7 @@ function main() {
   init
   yum_install
   install_ext_command
+  setup_dotfiles
 }
 
 time main
