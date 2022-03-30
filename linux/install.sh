@@ -8,9 +8,10 @@ VERSION_GO=1.18
 VERSION_VIM=8.2.4631
 
 function init() {
-  mkdir -p ~/src ~/work ~/tmp
+  mkdir -p ~/src ~/work ~/tmp ~/.vim/UltiSnips/
 
-  systemctl stop firewalld
+  systemctl stop firewalld.service
+  systemctl restart chronyd.service
   setenforce 0
   timedatectl set-timezone Asia/Tokyo
 }
@@ -102,6 +103,7 @@ function install_ext_command() {
     ln -s ~/dotfiles/linux/zshrc ~/.zshrc
     ln -s ~/dotfiles/linux/vimrc ~/.vimrc
     ln -s ~/dotfiles/linux/tmux.conf ~/.tmux.conf
+    ln -s ~/dotfiles/linux/.vim/go.snippets ~/.vim/UltiSnips/
   fi
 
   if [[ ! $(type vim) ]]; then
@@ -146,13 +148,6 @@ function install_ext_command() {
     sh ./installer.sh ~/.cache/dein
   fi
 
-  if [[ ! $(type bat) ]]; then
-    cd ~/src
-    wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-v0.20.0-x86_64-unknown-linux-musl.tar.gz
-    tar -xvf bat.zip
-    mv bat-v0.20.0-x86_64-unknown-linux-musl/bat /usr/local/bin/
-  fi
-
   if [[ ! -d ~/z ]]; then
     git clone https://github.com/rupa/z.git ~/z
   fi
@@ -160,6 +155,20 @@ function install_ext_command() {
   if [[ ! -d ~/.fzf ]]; then
     git clone https://github.com/junegunn/fzf.git ~/.fzf
     yes | ~/.fzf/install
+  fi
+
+  if [[ ! $(type bat) ]]; then
+    cd ~/src
+    wget -O bat.zip https://github.com/sharkdp/bat/releases/download/v0.20.0/bat-v0.20.0-x86_64-unknown-linux-musl.tar.gz
+    tar -xvf bat.zip
+    mv bat-v0.20.0-x86_64-unknown-linux-musl/bat /usr/local/bin/
+  fi
+
+  if [[ ! $(type tmux) ]]; then
+    cd ~/src
+    wget https://github.com/tmux/tmux/releases/download/3.2a/tmux-3.2a.tar.gz
+    tar -xvf tmux-3.2a.tar.gz
+    ./configure && make && make install
   fi
 }
 
