@@ -169,7 +169,7 @@ function setup_dotfiles() {
   if [[ ! -d ~/dotfiles ]]; then
     cd ~
     git clone https://github.com/ryuichi1208/dotfiles.git
-    ln -s ~/dotfiles/linux/zshrc ~/.zshrc
+    rm -f ~/.zshrc && ln -s ~/dotfiles/linux/zshrc ~/.zshrc
     ln -s ~/dotfiles/linux/vimrc ~/.vimrc
     ln -s ~/dotfiles/linux/tmux.conf ~/.tmux.conf
     ln -s ~/dotfiles/linux/.vim/go.snippets ~/.vim/UltiSnips/
