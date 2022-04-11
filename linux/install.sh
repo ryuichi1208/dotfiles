@@ -9,7 +9,7 @@ VERSION_VIM="8.2.4631"
 VERSION_BAT="v0.20.0"
 
 function init() {
-  mkdir -p ~/src ~/work ~/tmp ~/.vim/UltiSnips/
+  mkdir -p ~/src ~/work ~/tmp ~/.vim/UltiSnips/ ~/.vim/undo
 
   systemctl stop firewalld.service
   systemctl restart chronyd.service
