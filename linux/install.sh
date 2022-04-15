@@ -4,7 +4,7 @@
 
 VERSION_STRACE="5.16"
 VERSION_ZSH="5.8.1"
-VERSION_GO="1.18"
+VERSION_GO="1.18.1"
 VERSION_VIM="8.2.4631"
 VERSION_BAT="v0.20.0"
 
@@ -131,6 +131,10 @@ function install_ext_command() {
     go install github.com/golang/mock/mockgen@latest
     go install github.com/mdempsky/gocode@latest
     go install github.com/k0kubun/pp@latest
+    go install https://github.com/spf13/cobra@latest
+    go install github.com/go-delve/delve/cmd/dlv@latest
+    
+    curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.45.2
   fi
 
   if [[ ! -d ~/.cache/dein ]]; then
