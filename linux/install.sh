@@ -96,6 +96,8 @@ function install_ext_command() {
     ./Util/preconfig && ./configure --enable-multibyte && make && make install
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
     chsh -s /usr/local/bin/zsh
+    
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
   fi
 
   if [[ ! $(type vim) ]]; then
