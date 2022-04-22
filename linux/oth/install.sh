@@ -1,6 +1,7 @@
 #!/bin/bash
 
-function apt_update() {
+function init() {
+  mkdir -p ~/src ~/work ~/tmp ~/.vim/UltiSnips/ ~/.vim/undo
   apt update && apt upgrade
 }
 
@@ -43,6 +44,7 @@ function package_install() {
     nodejs \
     peco \
     python3-dev \
+    ripgrep \
     ruby-dev \
     shellcheck \
     zlib1g-dev \
@@ -50,8 +52,8 @@ function package_install() {
 }
 
 function main() {
-  apt_update
+  init
   package_install
 }
 
-main
+date; time main
