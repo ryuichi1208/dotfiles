@@ -2,6 +2,7 @@
 
 function init() {
   mkdir -p ~/src ~/work ~/tmp ~/.vim/UltiSnips/ ~/.vim/undo
+  timedatectl set-timezone Asia/Tokyo
   apt update && apt upgrade
 }
 
@@ -43,12 +44,20 @@ function package_install() {
     net-tools \
     nodejs \
     peco \
+    percona-toolkit \
     python3-dev \
     ripgrep \
     ruby-dev \
     shellcheck \
     zlib1g-dev \
     zsh
+}
+
+function setup_dotfiles() {
+  if [[ ! -d ~/dotfiles ]]; then
+    cd ~
+    git clone https://github.com/ryuichi1208/dotfiles.git
+  fi
 }
 
 function main() {
