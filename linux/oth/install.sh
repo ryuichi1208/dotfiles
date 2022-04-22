@@ -68,12 +68,18 @@ function setup_dotfiles() {
   if [[ ! -d ~/dotfiles ]]; then
     cd ~
     git clone https://github.com/ryuichi1208/dotfiles.git
+    rm -f ~/.zshrc && ln -s ~/dotfiles/linux/zshrc ~/.zshrc
+    ln -s ~/dotfiles/linux/vimrc ~/.vimrc
+    ln -s ~/dotfiles/linux/tmux.conf ~/.tmux.conf
+    ln -s ~/dotfiles/linux/.vim/go.snippets ~/.vim/UltiSnips/
+    ln -s ~/dotfiles/linux/gdbinit ~/.gdbinit
   fi
 }
 
 function main() {
   init
   package_install
+  setup_cmd_tools
   setup_dotfiles
 }
 
