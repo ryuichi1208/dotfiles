@@ -63,6 +63,7 @@ function setup_dotfiles() {
 function main() {
   init
   package_install
+  setup_dotfiles
 }
 
 date; time main
