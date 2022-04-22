@@ -53,6 +53,17 @@ function package_install() {
     zsh
 }
 
+function setup_cmd_tools() {
+  mkdir -p ~/.zsh
+  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+  chsh -s /usr/local/bin/zsh
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  
+  if [[ ! -d ~/z ]]; then
+    git clone https://github.com/rupa/z.git ~/z
+  fi
+}
+
 function setup_dotfiles() {
   if [[ ! -d ~/dotfiles ]]; then
     cd ~
