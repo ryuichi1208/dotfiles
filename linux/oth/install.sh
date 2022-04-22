@@ -8,4 +8,4 @@ function main() {
   apt_update
 }
 
-sudo main
+main
