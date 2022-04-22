@@ -6,11 +6,15 @@ function apt_update() {
 
 function package_install() {
   apt install -y \
+    linux-headers-$(uname -r)
+
+  apt install -y \
     apache2-utils \
     autoconf \
     automake \
     bat \
     build-essential \
+    cargo \
     cproto \
     dstat \
     duf \
@@ -21,6 +25,7 @@ function package_install() {
     golang \
     hexyl \
     iperf3 \
+    jq \
     libacl1-dev \
     libgpm-dev \
     libgtk-3-dev \
