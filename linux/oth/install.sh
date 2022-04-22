@@ -39,6 +39,7 @@ function package_install() {
     libxmu-dev \
     libxpm-dev \
     linux-tools-common \
+    locales-all \
     lua5.2 \
     luajit \
     net-tools \
