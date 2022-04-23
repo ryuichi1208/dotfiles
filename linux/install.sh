@@ -58,13 +58,22 @@ function package_install() {
 }
 
 function setup_cmd_tools() {
-  mkdir -p ~/.zsh
-  git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
-  chsh -s /usr/local/bin/zsh
-  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  if [[ ! -d ~/.zsh ]]; then
+    mkdir -p ~/.zsh
+    git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+    chsh -s /usr/local/bin/zsh
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+  fi
   
   if [[ ! -d ~/z ]]; then
     git clone https://github.com/rupa/z.git ~/z
+  fi
+  
+  if [[ ! -d ~/.cache/dein ]]; then
+    mkdir -p ~/.cache/dein
+    cd ~/.cache/dein
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+    sh ./installer.sh ~/.cache/dein
   fi
 }
 
