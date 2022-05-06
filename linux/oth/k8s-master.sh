@@ -1,19 +1,21 @@
 #!/bin/bash
 # curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/oth/k8s-master.sh | bash
 
-modprobe overlay
-modprobe br_netfilter
+function init() {
+  modprobe overlay
+  modprobe br_netfilter
 
-cat > /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
+  cat > /etc/sysctl.d/99-kubernetes-cri.conf <<EOF
 net.bridge.bridge-nf-call-iptables  = 1
 net.ipv4.ip_forward                 = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 EOF
-sudo sysctl --system
+  sudo sysctl --system
 
-apt-get update
-apt-get install -y apt-transport-https ca-certificates curl
-sudo swapoff -a
+  apt-get update
+  apt-get install -y apt-transport-https ca-certificates curl
+  sudo swapoff -a
+}
 
 function install_containerd() {
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
@@ -41,7 +43,10 @@ function install_k8s() {
   kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
 }
 
-# curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/install.sh | bash
-
-install_containerd
-install_k8s
+function main() {
+  init
+  install_containerd
+  install_k8s
+  
+  curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/install.sh | bash
+}
