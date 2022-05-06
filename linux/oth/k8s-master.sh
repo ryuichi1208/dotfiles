@@ -52,6 +52,10 @@ function setup_master() {
   kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
 }
 
+function setup_worker() {
+  :
+}
+
 function main() {
   init
   install_dockerd
