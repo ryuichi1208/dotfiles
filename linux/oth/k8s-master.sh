@@ -17,6 +17,10 @@ EOF
   sudo swapoff -a
 }
 
+function install_dockerd() {
+  apt-get install -y docker.io
+}
+
 function install_containerd() {
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   add-apt-repository \
@@ -45,7 +49,8 @@ function install_k8s() {
 
 function main() {
   init
-  install_containerd
+  install_dockerd
+  # install_containerd
   install_k8s
   
   curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/install.sh | bash
