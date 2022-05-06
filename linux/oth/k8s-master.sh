@@ -19,7 +19,7 @@ apt-get update
 apt-get install -y kubelet=1.23.6-00 kubeadm=1.23.6-00 kubectl=1.23.6-00 && apt-mark hold kubelet kubeadm kubectl
 
 sudo swapoff -a
-kubeadm init
+kubeadm init --pod-network-cidr=10.244.0.0/16
 mkdir -p $HOME/.kube
 cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 chown $(id -u):$(id -g) $HOME/.kube/config
