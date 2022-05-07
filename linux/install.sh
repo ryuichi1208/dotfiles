@@ -89,11 +89,55 @@ function setup_dotfiles() {
   fi
 }
 
+function install_k8s_tools() {
+  cd ~/tmp
+
+  type stern || \
+    {
+      wget https://github.com/wercker/stern/releases/download/1.11.0/stern_linux_amd64 && \
+      chmod 755 stern_linux_amd64 && \
+      mv stern_linux_amd64 /usr/local/bin/stern
+    }
+
+  type kubectx || \
+    {
+      wget https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubectx_v0.9.4_linux_x86_64.tar.gz && \
+      tar -xvf kubectx_v0.9.4_linux_x86_64.tar.gz && \
+      mv kubectx /usr/local/bin/
+    }
+
+  type kubens || \
+    {
+      wget https://github.com/ahmetb/kubectx/releases/download/v0.9.4/kubens_v0.9.4_linux_x86_64.tar.gz && \
+      tar -xvf kubens_v0.9.4_linux_x86_64.tar.gz && \
+      mv kubens /usr/local/bin/
+    }
+    
+  type k9s || \
+    {
+      wget https://github.com/derailed/k9s/releases/download/v0.25.18/k9s_Linux_x86_64.tar.gz && \
+      tar -xvf k9s_Linux_x86_64.tar.gz
+      mv k9s /usr/local/bin/
+    }
+    
+  type etcdctl || \
+    {
+      wget https://github.com/etcd-io/etcd/releases/download/v3.5.4/etcd-v3.5.4-linux-amd64.tar.gz && \
+      tar -xvf etcd-v3.5.4-linux-amd64.tar.gz && \
+      mv etcd-v3.5.4-linux-amd64/etcdctl /usr/local/bin/ && \
+      mv etcd-v3.5.4-linux-amd64/etcdutl /usr/local/bin/
+    }
+}
+
 function main() {
   init
   package_install
   setup_cmd_tools
   setup_dotfiles
+  
+  if [[ $(hostname) =~ master ]]; then
+    install_k8s_tools
+  fi
 }
 
 date; time main
