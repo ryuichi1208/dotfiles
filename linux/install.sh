@@ -27,6 +27,7 @@ function package_install() {
     exuberant-ctags \
     fzf \
     gettext \
+    git \
     golang \
     hexyl \
     iperf3 \
