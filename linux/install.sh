@@ -5,7 +5,7 @@
 
 function init() {
   mkdir -p ~/src ~/work ~/tmp ~/.vim/UltiSnips/ ~/.vim/undo
-  timedatectl set-timezone Asia/Tokyo
+  timedatectl set-timezone Asia/Tokyo || :
   apt update && apt upgrade
 }
 
