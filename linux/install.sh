@@ -92,6 +92,8 @@ function setup_dotfiles() {
 function main() {
   init
   package_install
+  setup_cmd_tools
+  setup_dotfiles
 }
 
 date; time main
