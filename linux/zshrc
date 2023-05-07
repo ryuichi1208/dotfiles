@@ -79,6 +79,12 @@ PROMPT='
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -e ~/z ] && source ~/z/z.sh
 
+# -----------------------------
+# asdf
+# -----------------------------
+. "$HOME/.asdf/asdf.sh"
+fpath=(${ASDF_DIR}/completions $fpath)
+
 
 # -----------------------------
 # zplug
@@ -139,7 +145,6 @@ function gaa() {
 }
 
 setopt prompt_subst
-fpath=(${ASDF_DIR}/completions $fpath)
 autoload -U add-zsh-hook
 
 function() {
