@@ -12,6 +12,8 @@ function init() {
 function package_install() {
   apt install -y \
     linux-headers-$(uname -r)
+    linux-tools-$(uname -r)
+    linux-cloud-tools-generic
 
   apt install -y \
     apache2-utils \
