@@ -45,6 +45,7 @@ function package_install() {
     libxmu-dev \
     libxpm-dev \
     linux-tools-common \
+    ltrace \
     locales-all \
     lua5.2 \
     luajit \
@@ -56,6 +57,7 @@ function package_install() {
     ripgrep \
     ruby-dev \
     shellcheck \
+    strace \
     zlib1g-dev \
     zsh
 }
