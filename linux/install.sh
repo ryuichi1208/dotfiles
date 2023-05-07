@@ -63,7 +63,7 @@ function setup_cmd_tools() {
     mkdir -p ~/.zsh
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
     chsh -s /usr/local/bin/zsh
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/2.2/installer.zsh | zsh
   fi
   
   if [[ ! -d ~/z ]]; then
