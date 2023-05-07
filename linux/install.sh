@@ -65,7 +65,7 @@ function setup_cmd_tools() {
     mkdir -p ~/.zsh
     git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
     chsh -s /usr/local/bin/zsh
-    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/2.2/installer.zsh | zsh
+    curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
   fi
 
   if [[ ! -d ~/z ]]; then
@@ -80,6 +80,7 @@ function setup_cmd_tools() {
   
   if [[ ! -f ~/.asdf/bin/asdf ]]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
+    source "$HOME/.asdf/asdf.sh"
   fi
 }
 
