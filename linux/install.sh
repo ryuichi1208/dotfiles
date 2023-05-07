@@ -77,6 +77,10 @@ function setup_cmd_tools() {
       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim -c "PlugInstall" -c "q" -c "q"
   fi
+  
+  if [[ ! -f ~/.asdf/bin/asdf ]]; then
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
+  fi
 }
 
 function setup_dotfiles() {
