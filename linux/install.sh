@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # my setup script
 # usage:
 #   curl -s https://raw.githubusercontent.com/ryuichi1208/dotfiles/master/linux/install.sh | bash
@@ -105,3 +105,4 @@ function main() {
 }
 
 date; time main
+echo "SetUp Finish!!!!!!!!!!!!!!"
