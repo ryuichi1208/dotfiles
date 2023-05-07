@@ -43,7 +43,6 @@ alias bat='batcat'
 # General
 # -----------------------------
 autoload -Uz colors ; colors
-bindkey -e
 setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
@@ -71,6 +70,9 @@ zstyle ':vcs_info:git:*' stagedstr "%F{magenta}!"
 zstyle ':vcs_info:git:*' unstagedstr "%F{yellow}+"
 zstyle ':vcs_info:*' formats "%F{cyan}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
+setopt prompt_subst
+autoload -U add-zsh-hook
+zle -N peco-history-selection
 precmd () { vcs_info }
 PROMPT='
 [%F{magenta}%B%n%b%f@%F{blue}%U%m%u%f:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f %{$fg[white]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}
@@ -78,6 +80,13 @@ PROMPT='
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -e ~/z ] && source ~/z/z.sh
+
+
+# -----------------------------
+# bind
+# -----------------------------
+bindkey '^R' peco-history-selection
+bindkey -e
 
 # -----------------------------
 # asdf
@@ -110,18 +119,18 @@ zplug load --verbose
 # Function
 # -----------------------------
 function fbr() {
-  local branches branch
-  branches=$(git branch --all | grep -v HEAD) &&
-  branch=$(echo "$branches" |
-           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    local branches branch
+    branches=$(git branch --all | grep -v HEAD) &&
+    branch=$(echo "$branches" |
+             fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
 function fshow() {
-  git log --graph --color=always \
-      --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
-  fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
-      --bind "ctrl-m:execute:
+    git log --graph --color=always \
+            --format="%C(auto)%h%d %s %C(black)%C(bold)%cr" "$@" |
+    fzf --ansi --no-sort --reverse --tiebreak=index --bind=ctrl-s:toggle-sort \
+        --bind "ctrl-m:execute:
                 (grep -o '[a-f0-9]\{7\}' | head -1 |
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
@@ -129,23 +138,19 @@ FZF-EOF"
 }
 
 function fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m --reverse) &&
-  cd "$dir"
+    local dir
+    dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m --reverse) \
+	    && cd "$dir"
 }
 
 function gaa() {
-  MSG=$1
-  if [ -z ${MSG} ]; then
-    echo "please commit message input!!"
-    exit 1
-  fi
-  git add . && git commit -m ${MSG} && git push
+    MSG=$1
+    if [ -z ${MSG} ]; then
+      echo "please commit message input!!"
+      exit 1
+    fi
+    git add . && git commit -m ${MSG} && git push
 }
-
-setopt prompt_subst
-autoload -U add-zsh-hook
 
 function() {
     local namespace separator binary
@@ -238,4 +243,10 @@ function _zsh_kubectl_prompt_precmd() {
     ZSH_KUBECTL_PROMPT="${preprompt}${context}${separator}${ns}${postprompt}"
 
     return 0
+}
+
+function peco-history-selection() {
+    BUFFER=`history -n 1 | tac  | awk '!a[$0]++' | peco`
+    CURSOR=$#BUFFER
+    zle reset-prompt
 }
