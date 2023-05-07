@@ -139,6 +139,7 @@ function gaa() {
 }
 
 setopt prompt_subst
+fpath=(${ASDF_DIR}/completions $fpath)
 autoload -U add-zsh-hook
 
 function() {
