@@ -62,7 +62,6 @@ autoload -U colors ; colors ; zstyle ':completion:*' list-colors "${LS_COLORS}"
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*:manuals' separate-sections true
 setopt magic_equal_subst
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 autoload -Uz vcs_info
 setopt prompt_subst
 zstyle ':vcs_info:git:*' check-for-changes true
@@ -78,6 +77,11 @@ PROMPT='
 [%F{magenta}%B%n%b%f@%F{blue}%U%m%u%f:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f %{$fg[white]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}
 %F{yellow}$%f '
 
+
+# -----------------------------
+# source
+# -----------------------------
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -e ~/z ] && source ~/z/z.sh
 
@@ -85,8 +89,8 @@ PROMPT='
 # -----------------------------
 # bind
 # -----------------------------
-bindkey '^R' peco-history-selection
 bindkey -e
+bindkey '^R' peco-history-selection
 
 # -----------------------------
 # asdf
