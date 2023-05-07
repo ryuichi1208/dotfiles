@@ -86,8 +86,10 @@ function setup_cmd_tools() {
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
     source "$HOME/.asdf/asdf.sh"
     asdf plugin add kubectl https://github.com/Banno/asdf-kubectl.git
-    asdf install kubectl 1.27.1
+    asdf plugin-add ghq https://github.com/kajisha/asdf-ghq
   fi
+    asdf install kubectl 1.27.1
+    asdf install ghq 1.4.2
 }
 
 function setup_dotfiles() {
