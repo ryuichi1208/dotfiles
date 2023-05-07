@@ -123,7 +123,7 @@ FZF-EOF"
 function fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
+                  -o -type d -print 2> /dev/null | fzf +m --reverse) &&
   cd "$dir"
 }
 
@@ -135,7 +135,6 @@ function gaa() {
   fi
   git add . && git commit -m ${MSG} && git push
 }
-source <(kubectl completion zsh)
 
 setopt prompt_subst
 autoload -U add-zsh-hook
