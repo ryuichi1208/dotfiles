@@ -81,7 +81,8 @@ function setup_cmd_tools() {
   if [[ ! -f ~/.asdf/bin/asdf ]]; then
     git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.11.3
     source "$HOME/.asdf/asdf.sh"
-    asdf plugin-add golang https://github.com/kennyp/asdf-golang.git
+    asdf plugin add kubectl https://github.com/Banno/asdf-kubectl.git
+    asdf install kubectl 1.27.1
   fi
 }
 
