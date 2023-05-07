@@ -36,6 +36,7 @@ alias sshk='ssh-keygen -t rsa'
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias free='free -h'
 alias k='kubectl'
+alias bat='batcat'
 
 
 # -----------------------------
