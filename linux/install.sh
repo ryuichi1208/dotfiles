@@ -92,9 +92,10 @@ function setup_cmd_tools() {
   asdf install ghq 1.4.2
   
   cargo install --git https://github.com/XAMPPRocky/tokei.git tokei
-  cargo install git-delta
-  cargo install hyperfine
-  cargo install xsv
+  cargo install \
+    git-delta \
+    hyperfine \
+    xsv
 }
 
 function setup_dotfiles() {
