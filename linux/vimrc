@@ -1,56 +1,29 @@
 " ========================================
-" Plugin Conifg
+" Plugin
 " ========================================
-if &compatible
-  set nocompatible               " Be iMproved
-endif
-
-" Required:
-set runtimepath+=$HOME/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-call dein#begin('$HOME/.cache/dein')
-
-" Let dein manage dein
-" Required:
-call dein#add('$HOME/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-" Add or remove your plugins here like this:
-call dein#add('honza/vim-snippets')
-call dein#add('SirVer/ultisnips')
-call dein#add('Shougo/neosnippet.vim')
-call dein#add('Shougo/neosnippet-snippets')
-call dein#add('cocopon/iceberg.vim')
-call dein#add('airblade/vim-gitgutter')
-call dein#add('vim-airline/vim-airline')
-call dein#add('jiangmiao/auto-pairs')
-call dein#add('prabirshrestha/vim-lsp')
-call dein#add('mattn/vim-lsp-settings')
-call dein#add('mattn/vim-goimports')
-call dein#add('prabirshrestha/async.vim')
-call dein#add('prabirshrestha/asyncomplete.vim')
-call dein#add('prabirshrestha/asyncomplete-lsp.vim')
-call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
-call dein#add('junegunn/fzf.vim')
-call dein#add('romainl/Apprentice')
-call dein#add('AlessandroYorba/Alduin')
-call dein#add('Haron-Prime/Antares')
-call dein#add('tpope/vim-commentary')
-call dein#add('machakann/vim-swap')
-call dein#add('buoto/gotests-vim')
-
-" Required:
-call dein#end()
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+"    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+call plug#begin()
+Plug 'tpope/vim-sensible'
+Plug 'Haron-Prime/Antares'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+Plug 'lambdalisue/fern.vim'
+Plug 'yuki-yano/fern-preview.vim'
+Plug 'hashivim/vim-terraform'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'markonm/traces.vim'
+Plug 'machakann/vim-sandwich'
+Plug 'tpope/vim-fugitive'
+call plug#end()
 
 " ========================================
 " Basic Config
@@ -81,7 +54,7 @@ set shellslash
 set title
 set listchars=tab:^\ ,trail:~
 set history=10000
-
+set modifiable
 
 " ========================================
 " Key Map
@@ -99,7 +72,16 @@ inoremap <c-k> <up>
 inoremap <c-j> <down>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
-
+" タブ関連
+map tn :tabnext<cr>
+map tb :tabprevious<cr>
+map tc :tabnew<cr>
+" 括弧補完
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
 
 " #############
 " # leader config
@@ -113,20 +95,40 @@ nnoremap <Leader>l $
 nnoremap <Leader>o <Plug>(swap-interactive)
 
 " #############
-" # tab関連
+" # git
 " #############
-nnoremap    [Tag]   <Nop>
-nmap    t [Tag]
-for n in range(1, 9)
-  execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
-endfor
+nnoremap gb :Git blame<CR>
+nnoremap gl :Git log<CR>
+" g]で前の変更箇所へ移動する
+nnoremap g[ :GitGutterPrevHunk<CR>
+" g[で次の変更箇所へ移動する
+nnoremap g] :GitGutterNextHunk<CR>
+" ghでdiffをハイライトする
+nnoremap gh :GitGutterLineHighlightsToggle<CR>
+" gpでカーソル行のdiffを表示する
+nnoremap gp :GitGutterPreviewHunk<CR>
 
-map <silent> [Tag]c :tablast <bar> tabnew<CR>
-map <silent> [Tag]x :tabclose<CR>
-map <silent> [Tag]n :tabnext<CR>
-map <silent> [Tag]p :tabprevious<CR>
-au FileType qf nnoremap <silent><buffer>q :quit<CR>
-
+" #############
+" # fzf
+" #############
+nnoremap <C-p> :call FzfOmniFiles()<CR>
+nnoremap <C-g> :Rg<CR>
+" frでカーソル位置の単語をファイル検索する
+nnoremap fr vawy:Rg <C-R>"<CR>
+" frで選択した単語をファイル検索する
+xnoremap fr y:Rg <C-R>"<CR>
+" fbでバッファ検索を開く
+nnoremap fb :Buffers<CR>
+" fpでバッファの中で1つ前に開いたファイルを開く
+nnoremap fp :Buffers<CR><CR>
+" flで開いているファイルの文字列検索を開く
+nnoremap fl :BLines<CR>
+" fmでマーク検索を開く
+nnoremap fm :Marks<CR>
+" fhでファイル閲覧履歴検索を開く
+nnoremap fh :History<CR>
+" fcでコミット履歴検索を開く
+nnoremap fc :Commits<CR>
 
 " ========================================
 " Functions
@@ -136,11 +138,6 @@ augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
   \ exe "normal g`\"" | endif
 augroup END
-
-" fzfの設定
-let g:fzf_layout = { 'down': '50%' }
-nnoremap <C-P> :Files<CR>
-" }}}
 
 " vimrcをオートリロードする
 augroup source-vimrc
@@ -155,7 +152,6 @@ if has('persistent_undo')
 	exe 'set undodir=' .. undo_path
 	set undofile
 endif
-
 
 " ========================================
 " LSP Config
@@ -187,10 +183,99 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
+" ========================================
+" Fern
+" ========================================
+nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
+let g:fern#renderer = 'nerdfont'
+let g:fern#default_hidden=1 " 隠しファイルを表示
+function! s:fern_settings() abort
+  nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
+  nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
+  nmap <silent> <buffer> <C-f> <Plug>(fern-action-preview:scroll:down:half)
+  nmap <silent> <buffer> <C-b> <Plug>(fern-action-preview:scroll:up:half)
+endfunction
+
+augroup fern-settings
+  autocmd!
+  autocmd FileType fern call s:fern_settings()
+augroup END
 
 " ========================================
-" snipet
+" git
 " ========================================
-let g:UltiSnipsExpandTrigger="<c-s>"
-let g:UltiSnipsJumpForwardTrigger="<c-f>"
-let g:UltiSnipsJumpBackwardTrigger="<c-b>"
+set updatetime=250 " 反映時間を短くする(デフォルトは4000ms)
+" 記号の色を変更する
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=blue
+highlight GitGutterDelete ctermfg=red
+
+" ========================================
+" fzf
+" ========================================
+" git管理されていれば:GFiles、そうでなければ:Filesを実行する
+fun! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
+  else
+    :GFiles
+  endif
+endfun
+
+" Ctrl+gで文字列検索を開く
+" <S-?>でプレビューを表示/非表示する
+command! -bang -nargs=* Rg
+\ call fzf#vim#grep(
+\ 'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+\ <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
+\ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'right:50%:hidden', '?'),
+\ <bang>0)
+
+" ========================================
+" charset
+" ========================================
+if &encoding !=# 'utf-8'
+  set encoding=japan
+  set fileencoding=japan
+endif
+if has('iconv')
+  let s:enc_euc = 'euc-jp'
+  let s:enc_jis = 'iso-2022-jp'
+  if iconv("\x87\x64\x87\x6a", 'cp932', 'eucjp-ms') ==# "\xad\xc5\xad\xcb"
+    let s:enc_euc = 'eucjp-ms'
+    let s:enc_jis = 'iso-2022-jp-3'
+  elseif iconv("\x87\x64\x87\x6a", 'cp932', 'euc-jisx0213') ==# "\xad\xc5\xad\xcb"
+    let s:enc_euc = 'euc-jisx0213'
+    let s:enc_jis = 'iso-2022-jp-3'
+  endif
+  if &encoding ==# 'utf-8'
+    let s:fileencodings_default = &fileencodings
+    let &fileencodings = s:enc_jis .','. s:enc_euc .',cp932'
+    let &fileencodings = &fileencodings .','. s:fileencodings_default
+    unlet s:fileencodings_default
+  else
+    let &fileencodings = &fileencodings .','. s:enc_jis
+    set fileencodings+=utf-8,ucs-2le,ucs-2
+    if &encoding =~# '^\(euc-jp\|euc-jisx0213\|eucjp-ms\)$'
+      set fileencodings+=cp932
+      set fileencodings-=euc-jp
+      set fileencodings-=euc-jisx0213
+      set fileencodings-=eucjp-ms
+      let &encoding = s:enc_euc
+      let &fileencoding = s:enc_euc
+    else
+      let &fileencodings = &fileencodings .','. s:enc_euc
+    endif
+  endif
+  unlet s:enc_euc
+  unlet s:enc_jis
+endif
+if has('autocmd')
+  function! AU_ReCheck_FENC()
+    if &fileencoding =~# 'iso-2022-jp' && search("[^\x01-\x7e]", 'n') == 0
+      let &fileencoding=&encoding
+    endif
+  endfunction
+  autocmd BufReadPost * call AU_ReCheck_FENC()
+endif
