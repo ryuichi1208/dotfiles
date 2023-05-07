@@ -111,4 +111,4 @@ function main() {
 }
 
 date; time main
-echo "SetUp Finish!!!!!!!!!!!!!!"
+echo "echo 'SetUp Finish!!!!!!!!!!!!!!'"
