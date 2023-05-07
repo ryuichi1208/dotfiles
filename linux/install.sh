@@ -88,8 +88,13 @@ function setup_cmd_tools() {
     asdf plugin add kubectl https://github.com/Banno/asdf-kubectl.git
     asdf plugin-add ghq https://github.com/kajisha/asdf-ghq
   fi
-    asdf install kubectl 1.27.1
-    asdf install ghq 1.4.2
+  asdf install kubectl 1.27.1
+  asdf install ghq 1.4.2
+  
+  cargo install --git https://github.com/XAMPPRocky/tokei.git tokei
+  cargo install git-delta
+  cargo install hyperfine
+  cargo install xsv
 }
 
 function setup_dotfiles() {
