@@ -23,6 +23,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'markonm/traces.vim'
 Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-fugitive'
+Plug 'tomtom/tcomment_vim'
 call plug#end()
 
 " ========================================
