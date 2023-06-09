@@ -25,6 +25,8 @@ Plug 'machakann/vim-sandwich'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'voldikss/vim-floaterm'
+Plug 'github/copilot.vim'
+Plug 'lambdalisue/glyph-palette.vim'
 call plug#end()
 
 " ========================================
@@ -57,6 +59,10 @@ set title
 set listchars=tab:^\ ,trail:~
 set history=10000
 set modifiable
+set noerrorbells
+set shellslash
+set display=lastline
+set listchars=tab:^\ ,trail:~
 
 " ========================================
 " Key Map
@@ -188,9 +194,6 @@ augroup END
 " ========================================
 " Fern
 " ========================================
-nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=40<CR>
-let g:fern#renderer = 'nerdfont'
-let g:fern#default_hidden=1 " 隠しファイルを表示
 function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
   nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
@@ -202,6 +205,28 @@ augroup fern-settings
   autocmd!
   autocmd FileType fern call s:fern_settings()
 augroup END
+
+let g:fern#default_hidden=1 " 隠しファイルを表示
+let g:fern#disable_default_mappings=1
+nnoremap <silent><C-n> :Fern . -drawer -reveal=% -toggle -stay<CR>
+ function! s:init_fern() abort
+   nmap <buffer><nowait> l <Plug>(fern-action-expand)
+   nmap <buffer><nowait> h <Plug>(fern-action-collapse)
+   nmap <buffer><nowait> D <Plug>(fern-action-remove)
+   nmap <buffer><nowait> c <Plug>(fern-action-copy)
+   nmap <buffer><nowait> m <Plug>(fern-action-move)
+   nmap <buffer><nowait> N <Plug>(fern-action-new-file)
+   nmap <buffer><nowait> M <Plug>(fern-action-mark)j
+   nmap <buffer><nowait> q :<C-u>quit<CR>
+   nmap <buffer><nowait> t <Plug>(fern-action-open:tabedit)
+   nmap <buffer><nowait> i <Plug>(fern-action-open:split)
+   nmap <buffer><nowait> s <Plug>(fern-action-open:vsplit)
+   nmap <buffer><nowait> <Return> <Plug>(fern-action-open)
+ endfunction
+ augroup fern-custom
+   autocmd! *
+   autocmd FileType fern call s:init_fern()
+ augroup END
 
 " ========================================
 " git
@@ -292,3 +317,13 @@ let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
 let g:floaterm_keymap_new = '<Leader>f'
+
+" ========================================
+" github/copilot.vim
+" ========================================
+let g:copilot_filetypes = {
+      \ '*': v:false,
+      \ 'python': v:true,
+      \ 'go': v:true,
+      \ 'vim': v:true,
+      \ }
