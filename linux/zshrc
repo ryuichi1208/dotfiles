@@ -4,7 +4,6 @@
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export EDITOR=vim
-export PATH="$HOME/bin:$PATH"
 export RSYNC_RSH=ssh
 export HISTFILE=$HOME/.zsh-history
 export HISTSIZE=100000
@@ -12,8 +11,9 @@ export SAVEHIST=1000000
 export WORDCHARS='*?_.[]~-=&;!#$%^(){}<>'
 export LSCOLORS=Exfxcxdxbxegedabagacad
 export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
+export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin:/usr/local/go/bin:/root/go/bin/"
-
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 
 # -----------------------------
 # Alias
@@ -21,6 +21,7 @@ export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/
 alias ls='ls --color=auto'
 alias la='ls -A'
 alias l='ls -CF'
+alias ll='ls -l'
 alias mv='mv -i'
 alias cp='cp -i'
 alias rm='rm -i'
@@ -36,8 +37,6 @@ alias sshk='ssh-keygen -t rsa'
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias free='free -h'
 alias k='kubectl'
-alias bat='batcat'
-
 
 # -----------------------------
 # General
@@ -77,14 +76,14 @@ PROMPT='
 [%F{magenta}%B%n%b%f@%F{blue}%U%m%u%f:%F{green}%~%f]%F{cyan}$vcs_info_msg_0_%f %{$fg[white]%}($ZSH_KUBECTL_PROMPT)%{$reset_color%}
 %F{yellow}$%f '
 
-
 # -----------------------------
 # source
 # -----------------------------
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+[ -e /opt/homebrew/opt/asdf/libexec/asdf.sh ] && source /opt/homebrew/opt/asdf/libexec/asdf.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -e ~/z ] && source ~/z/z.sh
-
 
 # -----------------------------
 # bind
@@ -95,9 +94,7 @@ bindkey '^R' peco-history-selection
 # -----------------------------
 # asdf
 # -----------------------------
-. "$HOME/.asdf/asdf.sh"
 fpath=(${ASDF_DIR}/completions $fpath)
-
 
 # -----------------------------
 # zplug
@@ -105,6 +102,7 @@ fpath=(${ASDF_DIR}/completions $fpath)
 source ~/.zplug/init.zsh
 
 zplug "zsh-users/zsh-completions"
+zplug "zsh-users/zsh-autosuggestions"
 zplug "mollifier/cd-gitroot"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "b4b4r07/enhancd", use:init.sh
@@ -117,7 +115,6 @@ if ! zplug check --verbose; then
 fi
 
 zplug load --verbose
-
 
 # -----------------------------
 # Function
@@ -145,6 +142,11 @@ function fd() {
     local dir
     dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf +m --reverse) \
 	    && cd "$dir"
+}
+
+function cdq() {
+    declare -r REPO_NAME="$(ghq list >/dev/null | fzf-tmux --reverse +m)"
+    [[ -n "${REPO_NAME}" ]] && cd "$(ghq root)/${REPO_NAME}"
 }
 
 function gaa() {
@@ -254,3 +256,4 @@ function peco-history-selection() {
     CURSOR=$#BUFFER
     zle reset-prompt
 }
+
