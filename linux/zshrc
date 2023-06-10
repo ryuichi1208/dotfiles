@@ -14,6 +14,8 @@ export LS_COLORS='di=01;34:ln=01;35:so=01;32:ex=01;31:bd=46;34:cd=43;34:su=41;30
 export PATH="$HOME/bin:$PATH"
 export PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/root/bin:/root/bin:/usr/local/go/bin:/root/go/bin/"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+export FZF_DEFAULT_COMMAND='rg --files --hidden --glob "!.git"'
+export FZF_DEFAULT_OPTS="--height 80% --reverse --border --preview 'bat --color=always {}'"
 
 # -----------------------------
 # Alias
@@ -84,6 +86,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 [ -e /opt/homebrew/opt/asdf/libexec/asdf.sh ] && source /opt/homebrew/opt/asdf/libexec/asdf.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -e ~/z ] && source ~/z/z.sh
+[ -e ~/.zshrc_local ] && source ~/.zshrc_local
 
 # -----------------------------
 # bind
@@ -257,3 +260,7 @@ function peco-history-selection() {
     zle reset-prompt
 }
 
+# -----------------------------
+# Kubernetes
+# -----------------------------
+source <(kubectl completion zsh)
