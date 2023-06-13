@@ -27,6 +27,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'voldikss/vim-floaterm'
 Plug 'github/copilot.vim'
 Plug 'lambdalisue/glyph-palette.vim'
+Plug 'machakann/vim-swap'
 call plug#end()
 
 " ========================================
@@ -326,4 +327,5 @@ let g:copilot_filetypes = {
       \ 'python': v:true,
       \ 'go': v:true,
       \ 'vim': v:true,
+      \ 'f90': v:true,
       \ }

@@ -97,7 +97,7 @@ bindkey '^R' peco-history-selection
 # -----------------------------
 # asdf
 # -----------------------------
-fpath=(${ASDF_DIR}/completions $fpath)
+export fpath=(${ASDF_DIR}/completions ~/.zsh/site-functions $fpath)
 
 # -----------------------------
 # zplug
@@ -124,10 +124,12 @@ zplug load --verbose
 # -----------------------------
 function fbr() {
     local branches branch
-    branches=$(git branch --all | grep -v HEAD) &&
+    export FZF_DEFAULT_OPTS="--height 80% --border --reverse"
+    branches=$(git branch --all -v | grep -v HEAD) &&
     branch=$(echo "$branches" |
              fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-    git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //" | sed "s#remotes/[^/]*/##")
+    export FZF_DEFAULT_OPTS="--height 80% --reverse --border --preview 'bat --color=always {}'"
 }
 
 function fshow() {
