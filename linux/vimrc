@@ -28,7 +28,30 @@ Plug 'voldikss/vim-floaterm'
 Plug 'github/copilot.vim'
 Plug 'lambdalisue/glyph-palette.vim'
 Plug 'machakann/vim-swap'
+Plug 'easymotion/vim-easymotion'
 call plug#end()
+
+" ========================================
+" global
+" ========================================
+if v:vim_did_enter
+  command! -nargs=+ -bar Set setglobal <args>
+else
+  command! -nargs=+ -bar Set set <args>
+endif
+
+" runtimepath.
+if $VIM_USERDIR ==# ''
+  let $VIM_USERDIR =
+  \ substitute(
+  \   get(
+  \     filter(
+  \       map(['~/vimfiles', '~/.vim'], 'expand(v:val)'),
+  \       'isdirectory(v:val)'
+  \     ),
+  \   0, ''),
+  \ '\\\+', '/', 'g')
+endif
 
 " ========================================
 " Basic Config
@@ -91,6 +114,13 @@ inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
+" ウィンドウ分割
+nnorema ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sl <C-w>>
+nnoremap sr <<C-w><
 
 " #############
 " # leader config
@@ -102,6 +132,20 @@ nnoremap <Leader>t gT
 nnoremap <Leader>h ^
 nnoremap <Leader>l $
 nnoremap <Leader>o <Plug>(swap-interactive)
+
+" #############
+" # easymotion
+" #############
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_use_smartsign_us = 1
+let g:EasyMotion_startofline = 0
+
+map <Leader> <Plug>(easymotion-prefix)
+nmap s <Plug>(easymotion-overwin-f2)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
 
 " #############
 " # git
