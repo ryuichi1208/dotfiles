@@ -58,6 +58,43 @@ if $VIM_USERDIR ==# ''
   \ '\\\+', '/', 'g')
 endif
 
+" 開いた位置を記憶
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
+" vimrcをオートリロードする
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
+
+" undoの永続化
+if has('persistent_undo')
+	let undo_path = expand('~/.vim/undo')
+	exe 'set undodir=' .. undo_path
+	set undofile
+endif
+
+" Filetypeの設定
+autocmd FileType vue syntax sync fromstart
+autocmd FileType eruby syntax sync fromstart
+autocmd BufNewFile,BufRead *.{html,htm} set filetype=html
+autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
+autocmd BufNewFile,BufRead *.{pug*} set filetype=pug
+autocmd BufNewFile,BufRead *.{jade*} set filetype=pug
+autocmd BufRead,BufNewFile *.scss set filetype=sass
+autocmd BufRead,BufNewFile *.json set filetype=json
+autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.rb set filetype=ruby
+autocmd BufRead,BufNewFile *.slim set filetype=slim
+autocmd BufRead,BufNewFile *.js set filetype=javascript
+autocmd BufRead,BufNewFile jquery.*.js set filetype=javascript syntax=jquery
+autocmd BufRead,BufNewFile *.vue setlocal filetype=vue.pug.javascript.css
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\""
+
 " =========================================================================
 " Basic Config
 " =========================================================================
@@ -93,6 +130,10 @@ set shellslash
 set display=lastline
 set listchars=tab:^\ ,trail:~
 set updatetime=250 " 反映時間を短くする(デフォルトは4000ms)
+set belloff=all " ビープ音を消す
+set clipboard=unnamedplus " クリップボードを使えるようにする
+set completeopt=menuone,noinsert,noselect " 補完メニューを出す
+set norelativenumber " 相対行番号を使わない
 
 " =========================================================================
 " Key Map
@@ -112,6 +153,7 @@ inoremap <c-h> <left>
 inoremap <c-l> <right>
 " タブ関連
 noremap tn :tabnext<cr>
+noremap <tab> :tabnext<cr>
 noremap tb :tabprevious<cr>
 noremap tc :tabnew<cr>
 " 括弧補完
@@ -126,7 +168,7 @@ nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
 nnoremap sl <C-w>>
-nnoremap sr <<C-w><
+nnoremap sh <C-w><
 
 " #############
 " # leader config
@@ -144,6 +186,8 @@ nnoremap <Leader>o <Plug>(swap-interactive)
 " #############
 nnoremap gb :Git blame<CR>
 nnoremap gl :Git log<CR>
+nnoremap gs :Git status<CR>
+nnoremap gd :Git diff<CR>
 " g]で前の変更箇所へ移動する
 nnoremap g[ :GitGutterPrevHunk<CR>
 " g[で次の変更箇所へ移動する
@@ -176,43 +220,20 @@ nnoremap fh :History<CR>
 nnoremap fc :Commits<CR>
 
 " =========================================================================
-" Functions
-" =========================================================================
-" 開いた位置を記憶
-augroup vimrcEx
-  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
-  \ exe "normal g`\"" | endif
-augroup END
-
-" vimrcをオートリロードする
-augroup source-vimrc
-  autocmd!
-  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
-  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
-augroup END
-
-" undoの永続化
-if has('persistent_undo')
-	let undo_path = expand('~/.vim/undo')
-	exe 'set undodir=' .. undo_path
-	set undofile
-endif
-
-" =========================================================================
 " Plugin Settings
 " =========================================================================
-" #######################
+" ############################
 " # airblade/vim-gitgutter
-" #######################
+" ############################
 let g:gitgutter_override_sign_column_highlight = 0
 " 記号の色を変更する
 highlight GitGutterAdd ctermfg=green
 highlight GitGutterChange ctermfg=blue
 highlight GitGutterDelete ctermfg=red
 
-" #######################
-" #easymotion/vim-easymotion
-" #######################
+" ############################
+" # easymotion/vim-easymotion
+" ############################
 let g:EasyMotion_smartcase = 1
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_use_smartsign_us = 1
@@ -237,9 +258,9 @@ function! s:incsearch_config(...) abort
   \ }), get(a:, 1, {}))
 endfunction
 
-" #######################
+" ############################
 " #github/copilot.vim
-" #######################
+" ############################
 let g:copilot_filetypes = {
       \ '*': v:false,
       \ 'python': v:true,
@@ -266,9 +287,21 @@ let g:copilot_filetypes = {
       \ 'zsh': v:true,
       \ }
 
-" #######################
+" ############################
+" # hashivim/vim-terraform
+" ############################
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
+let g:terraform_fmt_command="terraform fmt -"
+
+" ############################
+" # haya14busa/incsearch.vim
+" ############################
+let g:incsearch#auto_nohlsearch = 1
+
+" ############################
 " # junegunn/fzf
-" #######################
+" ############################
 let g:asyncomplete_popup_delay = 200
 let g:goimports_simplify = 1
 let g:go_doc_popup_window = 1
@@ -296,9 +329,32 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" #######################
-" lambdalisue/fern.vim
-" #######################
+" git管理されていれば:GFiles、そうでなければ:Filesを実行する
+fun! FzfOmniFiles()
+  let is_git = system('git status')
+  if v:shell_error
+    :Files
+  else
+    :GFiles
+  endif
+endfun
+
+" Ctrl+gで文字列検索を開く
+" <S-?>でプレビューを表示/非表示する
+command! -bang -nargs=* Rg
+\ call fzf#vim#grep(
+\ 'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
+\ <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
+\ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'right:50%:hidden', '?'),
+\ <bang>0)
+
+" ############################
+" # lambdalisue/fern.vim
+" ############################
+let g:fern#default_hidden=1 " 隠しファイルを表示
+let g:fern#disable_default_mappings=1
+let g:fern#renderer = 'nerdfont'
+
 function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
   nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
@@ -311,8 +367,6 @@ augroup fern-settings
   autocmd FileType fern call s:fern_settings()
 augroup END
 
-let g:fern#default_hidden=1 " 隠しファイルを表示
-let g:fern#disable_default_mappings=1
 nnoremap <silent><C-n> :Fern . -drawer -reveal=% -toggle -stay<CR>
  function! s:init_fern() abort
    nmap <buffer><nowait> l <Plug>(fern-action-expand)
@@ -333,35 +387,12 @@ nnoremap <silent><C-n> :Fern . -drawer -reveal=% -toggle -stay<CR>
    autocmd FileType fern call s:init_fern()
  augroup END
 
- let g:fern#renderer = 'nerdfont'
 " アイコンに色をつける
 augroup my-glyph-palette
   autocmd! *
   autocmd FileType fern call glyph_palette#apply()
   autocmd FileType nerdtree,startify call glyph_palette#apply()
 augroup END
-
-" #######################
-" fzf
-" #######################
-" git管理されていれば:GFiles、そうでなければ:Filesを実行する
-fun! FzfOmniFiles()
-  let is_git = system('git status')
-  if v:shell_error
-    :Files
-  else
-    :GFiles
-  endif
-endfun
-
-" Ctrl+gで文字列検索を開く
-" <S-?>でプレビューを表示/非表示する
-command! -bang -nargs=* Rg
-\ call fzf#vim#grep(
-\ 'rg --column --line-number --hidden --ignore-case --no-heading --color=always '.shellescape(<q-args>), 1,
-\ <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 3..'}, 'up:60%')
-\ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'right:50%:hidden', '?'),
-\ <bang>0)
 
 " #######################
 " charset
@@ -413,10 +444,17 @@ if has('autocmd')
   autocmd BufReadPost * call AU_ReCheck_FENC()
 endif
 
-" #######################
-" voldikss/vim-floaterm
-" #######################
+" ############################
+" # vim-airline/vim-airline
+" ############################
+let g:airline_theme = 'deus'
+let g:airline_deus_bg = 'dark'
+let g:airline_powerline_fonts = 1
+
+" ############################
+" # voldikss/vim-floaterm
+" ############################
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<F12>'
-let g:floaterm_keymap_new = '<Leader>f'
+let g:floaterm_keymap_toggle = '<Leader>t'
+let g:floaterm_keymap_new = '<Leader>s'
