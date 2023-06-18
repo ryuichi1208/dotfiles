@@ -1,45 +1,44 @@
-" ========================================
+" =========================================================================
 " Plugin
-" ========================================
+" =========================================================================
 " curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 "    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin()
-Plug 'tpope/vim-sensible'
-Plug 'Haron-Prime/Antares'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'mattn/vim-goimports'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-Plug 'lambdalisue/fern.vim'
-Plug 'yuki-yano/fern-preview.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
+Plug 'github/copilot.vim'
 Plug 'hashivim/vim-terraform'
-Plug 'lambdalisue/nerdfont.vim'
+Plug 'Haron-Prime/Antares'
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-easymotion.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'lambdalisue/glyph-palette.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'markonm/traces.vim'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'tpope/vim-sensible'
 Plug 'machakann/vim-sandwich'
+Plug 'machakann/vim-swap'
+Plug 'markonm/traces.vim'
+Plug 'MattesGroeger/vim-bookmarks'
+Plug 'mattn/vim-lsp-settings'
+Plug 'mattn/vim-goimports'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
+Plug 'yuki-yano/fern-preview.vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'voldikss/vim-floaterm'
-Plug 'github/copilot.vim'
-Plug 'lambdalisue/glyph-palette.vim'
-Plug 'machakann/vim-swap'
-Plug 'easymotion/vim-easymotion'
-Plug 'MattesGroeger/vim-bookmarks'
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
 call plug#end()
 
-" ========================================
-" global
-" ========================================
+" =========================================================================
+" Global Settings
+" =========================================================================
 if v:vim_did_enter
   command! -nargs=+ -bar Set setglobal <args>
 else
@@ -59,9 +58,9 @@ if $VIM_USERDIR ==# ''
   \ '\\\+', '/', 'g')
 endif
 
-" ========================================
+" =========================================================================
 " Basic Config
-" ========================================
+" =========================================================================
 colorscheme antares
 syntax on
 syntax enable
@@ -93,13 +92,14 @@ set noerrorbells
 set shellslash
 set display=lastline
 set listchars=tab:^\ ,trail:~
+set updatetime=250 " 反映時間を短くする(デフォルトは4000ms)
 
-" ========================================
+" =========================================================================
 " Key Map
-" ========================================
+" =========================================================================
 nnoremap j gj
 nnoremap k gk
-nmap <Esc><Esc> :nohlsearch<CR><Esc>
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap 　 <Space>
 " 折り返し時に表示行単位での移動できるようにする
 nnoremap j gj
@@ -111,9 +111,9 @@ inoremap <c-j> <down>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
 " タブ関連
-map tn :tabnext<cr>
-map tb :tabprevious<cr>
-map tc :tabnew<cr>
+noremap tn :tabnext<cr>
+noremap tb :tabprevious<cr>
+noremap tc :tabnew<cr>
 " 括弧補完
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
@@ -138,33 +138,6 @@ nnoremap <Leader>t gT
 nnoremap <Leader>h ^
 nnoremap <Leader>l $
 nnoremap <Leader>o <Plug>(swap-interactive)
-
-" #############
-" # easymotion
-" #############
-let g:EasyMotion_smartcase = 1
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_use_smartsign_us = 1
-let g:EasyMotion_startofline = 0
-
-map <Leader> <Plug>(easymotion-prefix)
-nmap s <Plug>(easymotion-overwin-f2)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-
-noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
-noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
-noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
-
-function! s:incsearch_config(...) abort
-  return incsearch#util#deepextend(deepcopy({
-  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
-  \   'keymap': {
-  \     "\<CR>": '<Over>(easymotion)'
-  \   },
-  \   'is_expr': 0
-  \ }), get(a:, 1, {}))
-endfunction
 
 " #############
 " # git
@@ -202,9 +175,9 @@ nnoremap fh :History<CR>
 " fcでコミット履歴検索を開く
 nnoremap fc :Commits<CR>
 
-" ========================================
+" =========================================================================
 " Functions
-" ========================================
+" =========================================================================
 " 開いた位置を記憶
 augroup vimrcEx
   au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -225,9 +198,77 @@ if has('persistent_undo')
 	set undofile
 endif
 
-" ========================================
-" LSP Config
-" ========================================
+" =========================================================================
+" Plugin Settings
+" =========================================================================
+" #######################
+" # airblade/vim-gitgutter
+" #######################
+let g:gitgutter_override_sign_column_highlight = 0
+" 記号の色を変更する
+highlight GitGutterAdd ctermfg=green
+highlight GitGutterChange ctermfg=blue
+highlight GitGutterDelete ctermfg=red
+
+" #######################
+" #easymotion/vim-easymotion
+" #######################
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_use_smartsign_us = 1
+let g:EasyMotion_startofline = 0
+
+map <Leader> <Plug>(easymotion-prefix)
+nmap s <Plug>(easymotion-overwin-f2)
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+noremap <silent><expr> /  incsearch#go(<SID>incsearch_config())
+noremap <silent><expr> ?  incsearch#go(<SID>incsearch_config({'command': '?'}))
+noremap <silent><expr> g/ incsearch#go(<SID>incsearch_config({'is_stay': 1}))
+
+function! s:incsearch_config(...) abort
+  return incsearch#util#deepextend(deepcopy({
+  \   'modules': [incsearch#config#easymotion#module({'overwin': 1})],
+  \   'keymap': {
+  \     "\<CR>": '<Over>(easymotion)'
+  \   },
+  \   'is_expr': 0
+  \ }), get(a:, 1, {}))
+endfunction
+
+" #######################
+" #github/copilot.vim
+" #######################
+let g:copilot_filetypes = {
+      \ '*': v:false,
+      \ 'python': v:true,
+      \ 'go': v:true,
+      \ 'vim': v:true,
+      \ 'f90': v:true,
+      \ 'c': v:true,
+      \ 'cpp': v:true,
+      \ 'rust': v:true,
+      \ 'javascript': v:true,
+      \ 'typescript': v:true,
+      \ 'html': v:true,
+      \ 'css': v:true,
+      \ 'markdown': v:true,
+      \ 'ruby': v:true,
+      \ 'php': v:true,
+      \ 'java': v:true,
+      \ 'scala': v:true,
+      \ 'haskell': v:true,
+      \ 'lua': v:true,
+      \ 'bash': v:true,
+      \ 'shell': v:true,
+      \ 'sh': v:true,
+      \ 'zsh': v:true,
+      \ }
+
+" #######################
+" # junegunn/fzf
+" #######################
 let g:asyncomplete_popup_delay = 200
 let g:goimports_simplify = 1
 let g:go_doc_popup_window = 1
@@ -255,9 +296,9 @@ augroup lsp_install
     autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
 augroup END
 
-" ========================================
-" Fern
-" ========================================
+" #######################
+" lambdalisue/fern.vim
+" #######################
 function! s:fern_settings() abort
   nmap <silent> <buffer> p     <Plug>(fern-action-preview:toggle)
   nmap <silent> <buffer> <C-p> <Plug>(fern-action-preview:auto:toggle)
@@ -300,18 +341,9 @@ augroup my-glyph-palette
   autocmd FileType nerdtree,startify call glyph_palette#apply()
 augroup END
 
-" ========================================
-" git
-" ========================================
-set updatetime=250 " 反映時間を短くする(デフォルトは4000ms)
-" 記号の色を変更する
-highlight GitGutterAdd ctermfg=green
-highlight GitGutterChange ctermfg=blue
-highlight GitGutterDelete ctermfg=red
-
-" ========================================
+" #######################
 " fzf
-" ========================================
+" #######################
 " git管理されていれば:GFiles、そうでなければ:Filesを実行する
 fun! FzfOmniFiles()
   let is_git = system('git status')
@@ -331,9 +363,9 @@ command! -bang -nargs=* Rg
 \ : fzf#vim#with_preview({'options': '--exact --delimiter : --nth 3..'}, 'right:50%:hidden', '?'),
 \ <bang>0)
 
-" ========================================
+" #######################
 " charset
-" ========================================
+" #######################
 if &encoding !=# 'utf-8'
   set encoding=japan
   set fileencoding=japan
@@ -381,39 +413,10 @@ if has('autocmd')
   autocmd BufReadPost * call AU_ReCheck_FENC()
 endif
 
-" ========================================
+" #######################
 " voldikss/vim-floaterm
-" ========================================
+" #######################
 let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
 let g:floaterm_keymap_new = '<Leader>f'
-
-" ========================================
-" github/copilot.vim
-" ========================================
-let g:copilot_filetypes = {
-      \ '*': v:false,
-      \ 'python': v:true,
-      \ 'go': v:true,
-      \ 'vim': v:true,
-      \ 'f90': v:true,
-      \ 'c': v:true,
-      \ 'cpp': v:true,
-      \ 'rust': v:true,
-      \ 'javascript': v:true,
-      \ 'typescript': v:true,
-      \ 'html': v:true,
-      \ 'css': v:true,
-      \ 'markdown': v:true,
-      \ 'ruby': v:true,
-      \ 'php': v:true,
-      \ 'java': v:true,
-      \ 'scala': v:true,
-      \ 'haskell': v:true,
-      \ 'lua': v:true,
-      \ 'bash': v:true,
-      \ 'shell': v:true,
-      \ 'sh': v:true,
-      \ 'zsh': v:true,
-      \ }
