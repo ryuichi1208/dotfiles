@@ -127,51 +127,72 @@ set history=10000
 set modifiable
 set noerrorbells
 set shellslash
+set shellslash
 set display=lastline
-set listchars=tab:^\ ,trail:~
 set updatetime=250 " 反映時間を短くする(デフォルトは4000ms)
 set belloff=all " ビープ音を消す
-set clipboard=unnamedplus " クリップボードを使えるようにする
 set completeopt=menuone,noinsert,noselect " 補完メニューを出す
 set norelativenumber " 相対行番号を使わない
 
 " =========================================================================
 " Key Map
 " =========================================================================
+" #############
+" ターミナル
+" #############
 nnoremap j gj
 nnoremap k gk
 nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
 inoremap 　 <Space>
+" #############
 " 折り返し時に表示行単位での移動できるようにする
+" #############
 nnoremap j gj
 nnoremap k gk
+" #############
 " インサートモードでも移動
+" #############
 inoremap <C-d> <Del>
 inoremap <c-k> <up>
 inoremap <c-j> <down>
 inoremap <c-h> <left>
 inoremap <c-l> <right>
+" #############
+" コマンドラインモードでも移動
+" #############
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
+" #############
 " タブ関連
+" #############
 noremap tn :tabnext<cr>
 noremap <tab> :tabnext<cr>
 noremap tb :tabprevious<cr>
 noremap tc :tabnew<cr>
+" #############
 " 括弧補完
+" #############
 inoremap { {}<LEFT>
 inoremap [ []<LEFT>
 inoremap ( ()<LEFT>
 inoremap " ""<LEFT>
 inoremap ' ''<LEFT>
+" #############
 " ウィンドウ分割
+" #############
 nnorema ss :<C-u>sp<CR>
 nnoremap sv :<C-u>vs<CR>
 nnoremap sq :<C-u>q<CR>
 nnoremap sQ :<C-u>bd<CR>
 nnoremap sl <C-w>>
 nnoremap sh <C-w><
-
 " #############
-" # leader config
+" leader config
 " #############
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
@@ -180,9 +201,8 @@ nnoremap <Leader>t gT
 nnoremap <Leader>h ^
 nnoremap <Leader>l $
 nnoremap <Leader>o <Plug>(swap-interactive)
-
 " #############
-" # git
+" git
 " #############
 nnoremap gb :Git blame<CR>
 nnoremap gl :Git log<CR>
@@ -198,7 +218,7 @@ nnoremap gh :GitGutterLineHighlightsToggle<CR>
 nnoremap gp :GitGutterPreviewHunk<CR>
 
 " #############
-" # fzf
+" fzf
 " #############
 nnoremap <C-p> :call FzfOmniFiles()<CR>
 nnoremap <C-g> :Rg<CR>
@@ -454,7 +474,8 @@ let g:airline_powerline_fonts = 1
 " ############################
 " # voldikss/vim-floaterm
 " ############################
-let g:floaterm_keymap_prev   = '<F8>'
+""let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<Leader>t'
-let g:floaterm_keymap_new = '<Leader>s'
+let g:floaterm_keymap_toggle = '<C-t>'
+let g:floaterm_keymap_new = '<C-s>'
+nnoremap tt :FloatermNew --autoclose=0 go test ./... -v<CR>
