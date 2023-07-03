@@ -201,6 +201,7 @@ nnoremap <Leader>t gT
 nnoremap <Leader>h ^
 nnoremap <Leader>l $
 nnoremap <Leader>o <Plug>(swap-interactive)
+nnoremap <Leader>r :%s///g<Left><Left><Left>
 " #############
 " git
 " #############
@@ -305,6 +306,8 @@ let g:copilot_filetypes = {
       \ 'shell': v:true,
       \ 'sh': v:true,
       \ 'zsh': v:true,
+      \ 'terraform': v:true,
+      \ 'puppet': v:true,
       \ }
 
 " ############################
@@ -474,8 +477,8 @@ let g:airline_powerline_fonts = 1
 " ############################
 " # voldikss/vim-floaterm
 " ############################
-""let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_prev   = '<F8>'
 let g:floaterm_keymap_next   = '<F9>'
-let g:floaterm_keymap_toggle = '<C-t>'
-let g:floaterm_keymap_new = '<C-s>'
+let g:floaterm_keymap_toggle = '<c-s>'
+let g:floaterm_keymap_new = '<F10>'
 nnoremap tt :FloatermNew --autoclose=0 go test ./... -v<CR>
