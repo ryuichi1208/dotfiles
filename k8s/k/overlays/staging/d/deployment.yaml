@@ -1,0 +1,51 @@
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-proxy-fluent-conf-d
+data:
+    nginx.conf: |
+      <source>
+        @type tail
+        path /var/log/nginx/access.log
+        pos_file /tmp/nginx_access_log.pos
+        tag colorme_production.app_proxy_nginx_access
+        <parse>
+          @type ltsv
+        </parse>
+        @label @nginx_access_raw
+      </source>
+      <label @nginx_access_raw>
+        <filter **>
+          @type record_transformer
+          <record>
+            _source_host ${hostname}
+          </record>
+        </filter>
+        <match>
+          @type relabel
+          @label @nginx_access
+        </match>
+      </label>
+      <label @nginx_access>
+        <filter **>
+          @type stdout
+        </filter>
+        <match>
+          @type bigquery_insert
+          auth_method json_key
+          json_key /fluentd/etc/bigquery.json
+          project colorme-production
+          dataset logs
+          table app_proxy_nginx_access
+          schema_path /fluentd/etc/conf.d/nginx_access.json
+          <inject>
+            time_key time
+            time_type unixtime
+          </inject>
+          time_partitioning_type day
+          time_partitioning_field time
+          ignore_unknown_values true
+          auto_create_table true
+        </match>
+      </label>
