@@ -309,6 +309,16 @@ let g:copilot_filetypes = {
       \ 'zsh': v:true,
       \ 'terraform': v:true,
       \ 'puppet': v:true,
+      \ 'kubernetes': v:true,
+      \ 'dockerfile': v:true, 
+      \ 'docker': v:true,
+      \ 'yaml': v:true,
+      \ 'json': v:true,
+      \ 'xml': v:true,
+      \ 'sql': v:true,
+      \ 'perl': v:true,
+      \ 'clojure': v:true,
+      \ 'elixir': v:true,
       \ }
 
 " ############################
@@ -426,6 +436,30 @@ if has('autocmd')
   endfunction
   autocmd BufReadPost * call AU_ReCheck_FENC()
 endif
+
+function! s:fern_preview_init() abort
+  nmap <buffer><expr>
+        \ <Plug>(fern-my-preview-or-nop)
+        \ fern#smart#leaf(
+        \   "\<Plug>(fern-action-open:edit)\<C-w>p",
+        \   "",
+        \ )
+  nmap <buffer><expr> j
+        \ fern#smart#drawer(
+        \   "j\<Plug>(fern-my-preview-or-nop)",
+        \   "j",
+        \ )
+  nmap <buffer><expr> k
+        \ fern#smart#drawer(
+        \   "k\<Plug>(fern-my-preview-or-nop)",
+        \   "k",
+        \ )
+endfunction
+
+augroup my-fern-preview
+  autocmd! *
+  autocmd FileType fern call s:fern_preview_init()
+augroup END
 
 " ############################
 " # vim-airline/vim-airline
