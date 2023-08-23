@@ -38,8 +38,12 @@ alias c='clear'
 alias sshk='ssh-keygen -t rsa'
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias free='free -h'
-alias k='kubectl'
 alias cdg='cd-gitroot'
+alias k='kubectl'
+alias kg='kubectl get'
+alias kd='kubectl describe'
+alias d='docker'
+alias dcm='docker-compose'
 
 # -----------------------------
 # General
