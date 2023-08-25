@@ -267,7 +267,3 @@ function peco-history-selection() {
     zle reset-prompt
 }
 
-# -----------------------------
-# Kubernetes
-# -----------------------------
-source <(kubectl completion zsh)
