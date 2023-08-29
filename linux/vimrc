@@ -209,7 +209,7 @@ nnoremap <Leader>r :%s///g<Left><Left><Left>
 nnoremap gb :Git blame<CR>
 nnoremap gl :Git log<CR>
 nnoremap gs :Git status<CR>
-nnoremap gd :Git diff<CR>
+nnoremap gdi :Git diff<CR>
 " g]で前の変更箇所へ移動する
 nnoremap g[ :GitGutterPrevHunk<CR>
 " g[で次の変更箇所へ移動する
