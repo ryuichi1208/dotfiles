@@ -266,4 +266,3 @@ function peco-history-selection() {
     CURSOR=$#BUFFER
     zle reset-prompt
 }
-
