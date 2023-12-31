@@ -319,6 +319,7 @@ let g:copilot_filetypes = {
       \ 'perl': v:true,
       \ 'clojure': v:true,
       \ 'elixir': v:true,
+      \ 'gitcommit': v:true,
       \ }
 
 inoremap <c-n> <Plug>(copilot-previous)
