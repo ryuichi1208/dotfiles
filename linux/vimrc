@@ -321,6 +321,9 @@ let g:copilot_filetypes = {
       \ 'elixir': v:true,
       \ }
 
+inoremap <c-n> <Plug>(copilot-previous)
+
+
 " ############################
 " # hashivim/vim-terraform
 " ############################
@@ -456,10 +459,10 @@ function! s:fern_preview_init() abort
         \ )
 endfunction
 
-augroup my-fern-preview
-  autocmd! *
-  autocmd FileType fern call s:fern_preview_init()
-augroup END
+"augroup my-fern-preview
+"  autocmd! *
+"  autocmd FileType fern call s:fern_preview_init()
+"augroup END
 
 " ############################
 " # vim-airline/vim-airline
