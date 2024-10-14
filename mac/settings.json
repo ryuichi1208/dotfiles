@@ -1,0 +1,32 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.renderControlCharacters": true,
+    "breadcrumbs.enabled": true,
+    "files.insertFinalNewline": true,
+    "editor.fontLigatures": true,
+    "editor.fontSize": 13,
+    "editor.renderLineHighlight": "all",
+    "editor.cursorBlinking": "smooth",
+    "editor.cursorStyle": "block",
+    "files.autoGuessEncoding": true,
+    "editor.bracketPairColorization.enabled": true,
+    "vim.hlsearch": true,
+    "vim.ignorecase": true,
+    "vim.incsearch": true,
+    "vim.whichwrap": "h,l,<,>,[,]",
+    "vim.normalModeKeyBindingsNonRecursive": [
+        { "before": ["J"], "after": ["1", "0", "j"] },
+        { "before": ["K"], "after": ["1", "0", "k"] },
+        { "before": ["H"], "after": ["0"] },
+        { "before": ["L"], "after": ["$"] },
+        {
+            "before": ["<C-[>"],
+            "after": ["g", "t"]
+          },
+          {
+            "before": ["<C-]>"],
+            "after": ["g", "T"]
+          },
+    ],
+    "vim.leader": "<space>",
+}

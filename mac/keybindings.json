@@ -1,0 +1,92 @@
+[
+    {
+        "key": "s s",
+        "command": "workbench.action.splitEditorDown",
+        "when": "editorTextFocus && (neovim.mode == normal || vim.mode == 'Normal')"
+    },
+    {
+        "key": "s v",
+        "command": "workbench.action.splitEditorRight",
+        "when": "editorTextFocus && (neovim.mode == normal || vim.mode == 'Normal')"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.navigateDown",
+        "when": "neovim.mode == normal || vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "workbench.action.navigateUp",
+        "when": "neovim.mode == normal || vim.mode == 'Normal'"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.debug.action.focusVariablesView",
+        "when": "!inputFocus && inDebugMode"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft",
+        "when": "webviewFindWidgetEnabled && !editorFocus && activeEditor == 'WebviewEditor' || neovim.mode == normal && editorTextFocus"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.navigateLeft",
+        "when": "webviewFindWidgetEnabled && !editorFocus && activeEditor == 'WebviewEditor' || vim.mode == 'Normal' && editorTextFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.navigateRight",
+        "when": "explorerViewletFocus && explorerViewletVisible || (neovim.mode == normal || vim.mode == 'Normal')"
+    },
+    // サイドバーへの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
+    {
+        "key": "ctrl+w h",
+        "command": "workbench.action.focusSideBar",
+        "when": "editorFocus"
+    },
+    // サイドバーからの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
+
+    {
+        "key": "ctrl+w l",
+        "command": "workbench.action.focusFirstEditorGroup",
+        "when": "!editorFocus"
+    },
+    // grep検索に入る
+    {
+        "key": "ctrl+u ctrl+g",
+        "command": "workbench.action.findInFiles",
+        "when": "!searchInputBoxFocus"
+    },
+    // 検索実行後の候補への移動
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.interactivePlayground.arrowDown",
+        "when": "interactivePlaygroundFocus && !editorTextFocus"
+    },
+    // ファイルの検索に入る
+    {
+        "key": "ctrl+u ctrl+u",
+        "command": "workbench.action.quickOpen"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+n",
+        "command": "workbench.action.terminal.toggleTerminal",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "workbench.view.explorer",
+        "when": "editorFocus && vim.mode == 'Normal'"
+      },
+      {
+        "key": "ctrl+e",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+      },
+]
