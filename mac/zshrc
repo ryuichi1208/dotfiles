@@ -1,7 +1,120 @@
+###############
+### brew
+###############
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
-PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH};
+PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}";
 export PATH;
 [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+
+###############
+### basic
+###############
+HISTFILE=~/.zsh_history
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt share_history
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
+setopt hist_reduce_blanks
+setopt hist_save_no_dups
+setopt inc_append_history
+setopt no_beep
+setopt nolistbeep
+
+###############
+### alias
+###############
+alias ll="ls -l"
+alias la="ls -la"
+alias python="python3"
+alias gb="git branch"
+alias gd="git diff"
+alias gs="git status"
+
+###############
+### zsh-completions
+###############
+if [ -e /usr/local/share/zsh-completions ]; then
+  fpath=(/usr/local/share/zsh-completions $fpath)
+fi
+
+autoload -Uz compinit
+compinit -u
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+zstyle ':completion:*' ignore-parents parent pwd ..
+zstyle ':completion:*:default' menu select=1
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+zstyle ":completion:*:commands" rehash 1
+
+###############
+### plugin
+###############
+source ~/ghq/github.com/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/opt/zsh-git-prompt/zshrc.sh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+###############
+### mise
+###############
+eval "$(~/.local/bin/mise activate zsh)"
+
+###############
+### fzf
+###############
+export FZF_DEFAULT_OPTS="
+    --height 90% --reverse --border
+    --prompt='➜  ' --margin=0,1 --inline-info
+    --tiebreak=index --no-mouse --filepath-word
+    --color fg:-1,bg:-1,hl:33,fg+:250,bg+:235,hl+:33
+    --color info:37,prompt:37,pointer:230,marker:230,spinner:37
+    --bind='ctrl-w:backward-kill-word,ctrl-x:jump,down:preview-page-down'
+    --bind='ctrl-z:ignore,ctrl-]:replace-query,up:preview-page-up'
+    --bind='ctrl-a:toggle-all,?:toggle-preview'
+"
+
+###############
+### function
+###############
+git_prompt() {
+  if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = true ]; then
+    PROMPT="%F{green}%n%f %F{cyan}($(arch))%f:%F{blue}%~%f $(git_super_status)"$'\n'"%# "
+  else
+    PROMPT="%F{green}%n%f %F{cyan}($(arch))%f:%F{blue}%~%f"$'\n'"%# "
+  fi
+}
+
+precmd() {
+  git_prompt
+}
+
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+fbr() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+fzf-ghq() {
+  local repo=$(ghq list \
+	| fzf --color --preview "ghq list --full-path --exact {} \
+	| xargs eza -h --long --classify --git --no-permissions --no-user --no-filesize --git-ignore --sort modified --reverse --tree --level 2"
+  )
+  if [ -n "$repo" ]; then
+    repo=$(ghq list --full-path --exact $repo)
+    BUFFER="cd ${repo}"
+    zle accept-line
+  fi
+  zle clear-screen
+}
+zle -N fzf-ghq
+bindkey '^[' fzf-ghq
