@@ -1,0 +1,6 @@
+scriptencoding utf-8
+syntax enable
+set encoding=utf-8
+set number
+set nowritebackup
+set nobackup
