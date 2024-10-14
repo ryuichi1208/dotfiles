@@ -23,6 +23,10 @@ setopt hist_save_no_dups
 setopt inc_append_history
 setopt no_beep
 setopt nolistbeep
+autoload -Uz select-word-style
+select-word-style default 
+zstyle ':zle:*' word-chars ' /=;@:{}[]()<>,|.'
+zstyle ':zle:*' word-style unspecified
 
 ###############
 ### alias
@@ -78,7 +82,7 @@ export FZF_DEFAULT_OPTS="
 ###############
 ### function
 ###############
-git_prompt() {
+function git_prompt() {
   if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = true ]; then
     PROMPT="%F{green}%n%f %F{cyan}($(arch))%f:%F{blue}%~%f $(git_super_status)"$'\n'"%# "
   else
@@ -86,25 +90,25 @@ git_prompt() {
   fi
 }
 
-precmd() {
+function precmd() {
   git_prompt
 }
 
-fd() {
+function fd() {
   local dir
   dir=$(find ${1:-.} -path '*/\.*' -prune \
                   -o -type d -print 2> /dev/null | fzf +m) &&
   cd "$dir"
 }
 
-fbr() {
+function fbr() {
   local branches branch
   branches=$(git branch -vv) &&
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
 
-fzf-ghq() {
+function fzf-ghq() {
   local repo=$(ghq list \
 	| fzf --color --preview "ghq list --full-path --exact {} \
 	| xargs eza -h --long --classify --git --no-permissions --no-user --no-filesize --git-ignore --sort modified --reverse --tree --level 2"
@@ -119,7 +123,7 @@ fzf-ghq() {
 zle -N fzf-ghq
 bindkey '^[' fzf-ghq
 
-gaa() {
+function gaa() {
   MSG=$1
   if [ -z ${MSG} ]; then
     echo "please commit message input!!"
