@@ -83,10 +83,30 @@
         "key": "ctrl+e",
         "command": "workbench.view.explorer",
         "when": "editorFocus && vim.mode == 'Normal'"
-      },
-      {
+    },
+    {
         "key": "ctrl+e",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
-      },
+    },
+    {
+        "key": "ctrl+l",
+        "command": "cursorRight",
+        "when": "editorTextFocus && vim.mode === 'Insert'"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "cursorLeft",
+        "when": "editorTextFocus && vim.mode === 'Insert'"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "cursorDown",
+        "when": "editorTextFocus && vim.mode === 'Insert'"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "cursorUp",
+        "when": "editorTextFocus && vim.mode === 'Insert'"
+    },
 ]
