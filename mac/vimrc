@@ -1,6 +1,9 @@
 scriptencoding utf-8
 syntax enable
+filetype on
 set encoding=utf-8
 set number
 set nowritebackup
 set nobackup
+set backspace=indent,eol,start
+set clipboard=unnamed,autoselect
