@@ -109,4 +109,14 @@
         "command": "cursorUp",
         "when": "editorTextFocus && vim.mode === 'Insert'"
     },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.terminal.focus",
+        "when": "!terminalFocus"
+    },
+    {
+        "key": "ctrl+t",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "terminalFocus"
+    },
 ]

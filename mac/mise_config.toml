@@ -1,0 +1,6 @@
+[tools]
+jq = "latest"
+fzf = "latest"
+eza = "latest"
+go = "latest"
+ruby = "latest"
