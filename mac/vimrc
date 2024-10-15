@@ -1,9 +1,138 @@
-scriptencoding utf-8
+call plug#begin()
+Plug 'Haron-Prime/Antares'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
+
+" =========================================================================
+" functions
+" =========================================================================
+" 開いた位置を記憶
+augroup vimrcEx
+  au BufRead * if line("'\"") > 0 && line("'\"") <= line("$") |
+  \ exe "normal g`\"" | endif
+augroup END
+
+" vimrcをオートリロードする
+augroup source-vimrc
+  autocmd!
+  autocmd BufWritePost *vimrc source $MYVIMRC | set foldmethod=marker
+  autocmd BufWritePost *gvimrc if has('gui_running') source $MYGVIMRC
+augroup END
+
+" undoの永続化
+if has('persistent_undo')
+	let undo_path = expand('~/.vim/undo')
+	exe 'set undodir=' .. undo_path
+	set undofile
+endif
+
+" =========================================================================
+" Basic Config
+" =========================================================================
+colorscheme antares
+syntax on
 syntax enable
-filetype on
-set encoding=utf-8
-set number
-set nowritebackup
+set fenc=utf-8
 set nobackup
+set noswapfile
+set autoread
+set hidden
+set showcmd
+set number
+set cursorline
+set cursorcolumn
+set smartindent
+set showmatch
+set laststatus=2
+set wildmode=list:longest
+set ignorecase
+set smartcase
+set incsearch
+set wrapscan
+set hlsearch
 set backspace=indent,eol,start
-set clipboard=unnamed,autoselect
+set shellslash
+set title
+set listchars=tab:^\ ,trail:~
+set history=10000
+set modifiable
+set noerrorbells
+set shellslash
+set shellslash
+set display=lastline
+set updatetime=250 " 反映時間を短くする(デフォルトは4000ms)
+set belloff=all " ビープ音を消す
+set completeopt=menuone,noinsert,noselect " 補完メニューを出す
+set norelativenumber " 相対行番号を使わない
+set encoding=utf-8
+
+" =========================================================================
+" Key Map
+" =========================================================================
+" #############
+" ターミナル
+" #############
+nnoremap j gj
+nnoremap k gk
+nnoremap <Esc><Esc> :nohlsearch<CR><Esc>
+inoremap 　 <Space>
+" #############
+" 折り返し時に表示行単位での移動できるようにする
+" #############
+nnoremap j gj
+nnoremap k gk
+" #############
+" インサートモードでも移動
+" #############
+inoremap <C-d> <Del>
+inoremap <c-k> <up>
+inoremap <c-j> <down>
+inoremap <c-h> <left>
+inoremap <c-l> <right>
+" #############
+" コマンドラインモードでも移動
+" #############
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+cnoremap <C-d> <Del>
+" #############
+" タブ関連
+" #############
+noremap tn :tabnext<cr>
+"noremap <tab> :tabnext<cr>
+noremap tb :tabprevious<cr>
+noremap tc :tabnew<cr>
+" #############
+" 括弧補完
+" #############
+inoremap { {}<LEFT>
+inoremap [ []<LEFT>
+inoremap ( ()<LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+" #############
+" ウィンドウ分割
+" #############
+nnorema ss :<C-u>sp<CR>
+nnoremap sv :<C-u>vs<CR>
+nnoremap sq :<C-u>q<CR>
+nnoremap sQ :<C-u>bd<CR>
+nnoremap sl <C-w>>
+nnoremap sh <C-w><
+" #############
+" leader config
+" #############
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
+nnoremap <Leader>t gT
+nnoremap <Leader>h ^
+nnoremap <Leader>l $
+nnoremap <Leader>o <Plug>(swap-interactive)
+nnoremap <Leader>r :%s///g<Left><Left><Left>
+
