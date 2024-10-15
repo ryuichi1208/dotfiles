@@ -1,3 +1,4 @@
+" vimrc
 call plug#begin()
 Plug 'Haron-Prime/Antares'
 Plug 'vim-airline/vim-airline'
