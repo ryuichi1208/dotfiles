@@ -34,6 +34,7 @@ zstyle ':zle:*' word-style unspecified
 alias ll="ls -l"
 alias la="ls -la"
 alias python="python3"
+alias g="git"
 alias gb="git branch"
 alias gd="git diff"
 alias gs="git status"
@@ -131,3 +132,12 @@ function gaa() {
   fi
   git add . && git commit -m ${MSG} && git push
 }
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+function fzf-select-history() {
+    BUFFER=$(history -n -r 1 | fzf --query "$LBUFFER" --reverse)
+    CURSOR=$#BUFFER
+    zle reset-prompt
+}
+zle -N fzf-select-history
+bindkey '^r' fzf-select-history
