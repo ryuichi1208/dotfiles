@@ -1,6 +1,9 @@
 " vimrc
 call plug#begin()
+Plug 'tpope/vim-fugitive'
+Plug 'github/copilot.vim'
 Plug 'Haron-Prime/Antares'
+Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 call plug#end()
@@ -137,3 +140,13 @@ nnoremap <Leader>l $
 nnoremap <Leader>o <Plug>(swap-interactive)
 nnoremap <Leader>r :%s///g<Left><Left><Left>
 
+" =========================================================================
+" Plugin Config
+" =========================================================================
+" NERDTree
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" Copilot
+let g:copilot_filetypes = {
+    \ '*': v:true,
+    \ }
