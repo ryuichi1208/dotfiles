@@ -28,6 +28,11 @@ select-word-style default
 zstyle ':zle:*' word-chars ' /=;@:{}[]()<>,|.'
 zstyle ':zle:*' word-style unspecified
 
+# ファイルがあればsourceする
+if [ -f ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi
+
 ###############
 ### alias
 ###############
@@ -141,3 +146,30 @@ function fzf-select-history() {
 }
 zle -N fzf-select-history
 bindkey '^r' fzf-select-history
+
+function awsp() {
+   PROFILES=$(aws configure list-profiles)
+   SELECTED_PROFILE=$(echo "$PROFILES" | fzf)
+
+   if [[ -n "$SELECTED_PROFILE" ]]; then
+      export AWS_PROFILE="$SELECTED_PROFILE"
+      echo "Updated profile to $AWS_PROFILE"
+   else
+      echo "No profile selected"
+   fi
+}
+zle -N awsp
+bindkey '^p' awsp
+
+alias cdg=git_root
+
+function git_root() {
+    # Check if the current directory is inside a git repository
+    if git rev-parse --show-toplevel > /dev/null 2>&1; then
+        # Move to the git repository root directory
+        cd "$(git rev-parse --show-toplevel)"
+        echo "Moved to git root: $(pwd)"
+    else
+        echo "Not inside a git repository"
+    fi
+}
