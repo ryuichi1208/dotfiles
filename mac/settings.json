@@ -82,5 +82,6 @@
   // 最大文字数などのオプション引数を指定する場合
   "black-formatter.args": [
     "--line-length=120"
-  ]
+  ],
+  "workbench.editor.enablePreview": false
 }
