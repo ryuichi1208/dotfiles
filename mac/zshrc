@@ -111,7 +111,7 @@ function fd() {
 
 function fbr() {
   local branches branch
-  branches=$(git branch -vv) &&
+  branches=$(git branch -vv --all) &&
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
