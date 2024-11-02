@@ -116,6 +116,8 @@ function fbr() {
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
+zle -N fbr
+bindkey '^f' fbr
 
 function fzf-ghq() {
   local repo=$(ghq list \
@@ -130,7 +132,7 @@ function fzf-ghq() {
   zle clear-screen
 }
 zle -N fzf-ghq
-bindkey '^[' fzf-ghq
+bindkey '^g' fzf-ghq
 
 function gaa() {
   MSG=$1
@@ -204,11 +206,10 @@ function powered_cd() {
   fi
   pwd; ls
 }
-
 _powered_cd() {
   _files -/
 }
-
 compdef _powered_cd powered_cd
-
 [ -e ~/.powered_cd.log ] || touch ~/.powered_cd.log
+zle -N powered_cd
+bindkey '^u' powered_cd
