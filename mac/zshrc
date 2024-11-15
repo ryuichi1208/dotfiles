@@ -213,3 +213,7 @@ compdef _powered_cd powered_cd
 [ -e ~/.powered_cd.log ] || touch ~/.powered_cd.log
 zle -N powered_cd
 bindkey '^u' powered_cd
+
+autoload bashcompinit && bashcompinit
+autoload -Uz compinit && compinit
+complete -C '/usr/local/bin/aws_completer' aws
