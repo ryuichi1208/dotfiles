@@ -45,6 +45,10 @@ alias gb="git branch"
 alias gd="git diff"
 alias gs="git status"
 alias c="powered_cd"
+alias d="docker"
+alias di="docker image"
+alias dc="docker container"
+alias dm="docker-compose"
 
 ###############
 ### zsh-completions
