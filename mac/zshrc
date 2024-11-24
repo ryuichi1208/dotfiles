@@ -36,6 +36,8 @@ fi
 ###############
 ### alias
 ###############
+alias ..="cd .."
+alias l="ls"
 alias ls="eza"
 alias ll="ls -l"
 alias la="ls -la"
@@ -49,6 +51,7 @@ alias d="docker"
 alias di="docker image"
 alias dc="docker container"
 alias dm="docker-compose"
+alias tf="terraform"
 
 ###############
 ### zsh-completions
@@ -56,6 +59,7 @@ alias dm="docker-compose"
 if [ -e /usr/local/share/zsh-completions ]; then
   fpath=(/usr/local/share/zsh-completions $fpath)
 fi
+fpath=($fpath ~/.zsh/completion)
 
 autoload -Uz compinit
 compinit -u

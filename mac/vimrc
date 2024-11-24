@@ -7,6 +7,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'fatih/vim-go'
+Plug 'hashivim/vim-terraform'
 call plug#end()
 
 " =========================================================================
