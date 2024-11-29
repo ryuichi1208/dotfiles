@@ -152,3 +152,5 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 let g:copilot_filetypes = {
     \ '*': v:true,
     \ }
+
+let g:terraform_fmt_on_save=1
