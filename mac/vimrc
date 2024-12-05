@@ -153,4 +153,5 @@ let g:copilot_filetypes = {
     \ '*': v:true,
     \ }
 
+" vim terraform
 let g:terraform_fmt_on_save=1
