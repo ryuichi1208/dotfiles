@@ -1,0 +1,1 @@
+echo "\"$USER\" has logged in to host from \"$SSH_CLIENT\" at `date +"%F %H:%M:%S"`" | mail -s "sshd login notification" root
