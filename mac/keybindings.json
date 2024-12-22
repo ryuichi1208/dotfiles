@@ -46,7 +46,6 @@
         "when": "editorFocus"
     },
     // サイドバーからの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
-
     {
         "key": "ctrl+w l",
         "command": "workbench.action.focusFirstEditorGroup",
@@ -119,12 +118,22 @@
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "terminalFocus"
     },
-      {
-    "key": "ctrl+shift+o",
-    "command": "workbench.action.decreaseViewSize"
+    {
+        "key": "ctrl+shift+o",
+        "command": "workbench.action.decreaseViewSize"
     },
     {
-      "key": "ctrl+shift+i",
-      "command": "workbench.action.increaseViewSize"
+        "key": "ctrl+shift+i",
+        "command": "workbench.action.increaseViewSize"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.panel.chat.view.copilot.focus",
+        "when": "!view.workbench.panel.chat.view.copilot.visible || editorFocus"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "view.workbench.panel.chat.view.copilot.visible && !editorFocus"
     }
 ]
