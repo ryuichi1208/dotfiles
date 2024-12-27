@@ -37,6 +37,7 @@ fi
 ### alias
 ###############
 alias ..="cd .."
+alias v="vim"
 alias l="ls"
 alias ls="eza"
 alias ll="ls -l"
