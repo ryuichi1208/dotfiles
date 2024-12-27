@@ -7,4 +7,4 @@ window-padding-balance = true
 window-padding-x = 10
 window-padding-y = 0,10
 macos-titlebar-style = hidden
-
+copy-on-select = false
