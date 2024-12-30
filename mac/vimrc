@@ -8,6 +8,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'fatih/vim-go'
 Plug 'hashivim/vim-terraform'
+Plug 'moll/vim-node'
 call plug#end()
 
 " =========================================================================
