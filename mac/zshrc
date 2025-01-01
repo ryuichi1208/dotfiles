@@ -227,3 +227,23 @@ bindkey '^u' powered_cd
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
+#compdef cdktf
+###-begin-cdktf-completions-###
+#
+# yargs command completion script
+#
+# Installation: /Users/ryuichi/.local/share/mise/installs/node/latest/bin/cdktf completion >> ~/.zshrc
+#    or /Users/ryuichi/.local/share/mise/installs/node/latest/bin/cdktf completion >> ~/.zprofile on OSX.
+#
+_cdktf_yargs_completions()
+{
+  local reply
+  local si=$IFS
+  IFS=$'
+' reply=($(COMP_CWORD="$((CURRENT-1))" COMP_LINE="$BUFFER" COMP_POINT="$CURSOR" /Users/ryuichi/.local/share/mise/installs/node/latest/bin/cdktf --get-yargs-completions "${words[@]}"))
+  IFS=$si
+  _describe 'values' reply
+}
+compdef _cdktf_yargs_completions cdktf
+###-end-cdktf-completions-###
+
