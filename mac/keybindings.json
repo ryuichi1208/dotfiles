@@ -127,12 +127,12 @@
         "command": "workbench.action.increaseViewSize"
     },
     {
-        "key": "ctrl+j",
+        "key": "ctrl+shift+j",
         "command": "workbench.panel.chat.view.copilot.focus",
         "when": "!view.workbench.panel.chat.view.copilot.visible || editorFocus"
     },
     {
-        "key": "ctrl+j",
+        "key": "ctrl+shift+j",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "view.workbench.panel.chat.view.copilot.visible && !editorFocus"
     }
