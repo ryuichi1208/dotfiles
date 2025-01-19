@@ -4,8 +4,7 @@
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
-PATH="/opt/homebrew/bin:/opt/homebrew/sbin:${HOME}/.local/share/mise/shims/:${HOME}/.pyenv/shims/:${PATH}";
-export PATH;
+export PATH="${HOME}/.local/share/mise/shims:${HOME}/.pyenv/shims:/opt/homebrew/sbin:/System/Volumes/Data/opt/homebrew/bin:${PATH}"
 [ -z "${MANPATH-}" ] || export MANPATH=":${MANPATH#:}";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
