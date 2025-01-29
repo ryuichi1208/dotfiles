@@ -9,6 +9,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'fatih/vim-go'
 Plug 'hashivim/vim-terraform'
 Plug 'moll/vim-node'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
 call plug#end()
 
 " =========================================================================
