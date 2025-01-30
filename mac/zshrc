@@ -1,3 +1,25 @@
+if [ $(tput cols) -gt 180 ]; then
+  echo "\e[1;32m"
+  cat << 'EOF'
+       (gQQQf~`+1<<111<<~
+     .JmgggK` ,>?>>?><!
+   .Jmgmgm@` ,>>?>><!   ....,  .....          .....  ...........
+ .Jmggggg@` ,>>>?<!    .MMMMF  UMMMMp        .MMMMF  JMMMMMMMMMMMNJ
+Jmgggmgg@` ,>>><!      .MMMMF   WMMMMx      .MMMM#   JMMMMMMMMMMMMMN.
+                       .MMMMF    MMMMN,    .MMMMM`   JMMMM_    ?MMMMb  MMMMM,       (MMMMD
+                       .MMMMF    .MMMMN.  .MMMMM'    JMMMM_    .MMMMF  .MMMMN,     .MMMMF.
+                       .MMMMF     ,MMMMN  dMMMM%     JMMMMMMMMMMMMMM!   ,MMMMN.   .MMMM@
+                       .MMMMF      JMMMMb(MMMMF      JMMMMMMMMMMMMF      (MMMMN  .MMMM#`
+                       .MMMMF       TMMMMMMMMF       JMMMM=???MMMMN.      ?MMMMb.MMMMM!
+                       .MMMMF        WMMMMMM@        JMMMM~   (MMMMN       UMMMMMMMMM^
+                       .MMMMF         MMMMM#`        JMMMM~    ?MMMMb       WMMMMMMM$
+                                                                             MMMMMMF
+                                                                             .MMMMF
+                                                                            .MMMM#
+                                                                           MMMMM
+EOF
+fi
+
 ###############
 ### brew
 ###############
