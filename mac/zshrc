@@ -85,7 +85,6 @@ bindkey '^g' fzf-ghq
 bindkey '^p' awsp
 bindkey '^r' fzf-select-history
 bindkey '^t' powered_cd
-bindkey '^u' powered_cd
 
 ###############
 ### zsh-completions
