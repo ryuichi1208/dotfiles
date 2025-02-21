@@ -116,4 +116,12 @@
         "command": "-aipopup.action.modal.generate",
         "when": "editorFocus && !composerBarIsVisible"
     },
+    {
+        "key": "ctrl+[",
+        "command": "workbench.action.focusNextGroup"
+    },
+    {
+        "key": "ctrl+w ]",
+        "command": "workbench.action.focusPreviousGroup"
+    },
 ]
