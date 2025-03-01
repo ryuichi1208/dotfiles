@@ -121,7 +121,7 @@
         "command": "workbench.action.focusNextGroup"
     },
     {
-        "key": "ctrl+w ]",
+        "key": "ctrl+]",
         "command": "workbench.action.focusPreviousGroup"
     },
 ]
