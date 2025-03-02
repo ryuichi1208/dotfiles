@@ -1,3 +1,0 @@
-[cloud]
-name = AzureCloud
-tenant_id = env.AZURE_TENANT_ID
