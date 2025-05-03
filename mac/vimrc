@@ -158,3 +158,5 @@ let g:copilot_filetypes = {
 
 " vim terraform
 let g:terraform_fmt_on_save=1
+
+let g:lsp_diagnostics_echo_cursor = 1
