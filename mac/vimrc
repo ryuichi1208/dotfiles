@@ -1,6 +1,7 @@
 " vimrc
 call plug#begin()
 Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 Plug 'github/copilot.vim'
 Plug 'Haron-Prime/Antares'
 Plug 'scrooloose/nerdtree'
