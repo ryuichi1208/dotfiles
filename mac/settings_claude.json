@@ -8,7 +8,7 @@
       "Bash(cat:*)",
       "Bash(rg:*)",
       "Bash(uv sync), Bash(uv pip list)",
-      "Bash(go version), Bash(go env), Bash(go mod tidy)",
+      "Bash(go version), Bash(go env), Bash(go mod tidy), Bash(go mod download)",
       "Bash(perl --version)",
       "Bash(actionlint:*)",
       "Bash(mkdir -p ./:*)"
