@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(~/.zshrc)",
+      "List(*)",
+      "Bash(ls:*)",
+      "Bash(grep:*)",
+      "Bash(cat:*)",
+      "Bash(rg:*)",
+      "Bash(uv sync), Bash(uv pip list)",
+      "Bash(go version), Bash(go env), Bash(go mod tidy)",
+      "Bash(perl --version)",
+      "Bash(actionlint:*)",
+      "Bash(mkdir -p ./:*)"
+    ],
+    "deny": [
+      "Write(~/.zshrc)"
+    ],
+    "defaultMode": "plan"
+  },
+  "env": {
+    "BASH_DEFAULT_TIMEOUT_MS": 120000,
+    "DISABLE_TELEMETRY": "false"
+  }
+}

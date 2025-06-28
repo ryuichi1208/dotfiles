@@ -43,3 +43,5 @@
 *.su
 *.idb
 *.pdb
+
+**/.claude/settings.local.json
