@@ -5,6 +5,8 @@
       "List(*)",
       "Bash(ls:*)",
       "Bash(grep:*)",
+      "Bash(awk:*)",
+      "Bash(bat:*)",
       "Bash(cat:*)",
       "Bash(rg:*)",
       "Bash(uv sync), Bash(uv pip list)",
