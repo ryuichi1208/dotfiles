@@ -9,9 +9,18 @@
       "Bash(bat:*)",
       "Bash(cat:*)",
       "Bash(rg:*)",
-      "Bash(uv sync), Bash(uv pip list)",
-      "Bash(go version), Bash(go env), Bash(go mod tidy), Bash(go mod download)",
+      "Bash(find:*)",
+      "Bash(sed:*)",
+      "Bash(sort:*)",
+      "Bash(uniq:*)",
+      "Bash(uv sync)",
+      "Bash(uv pip list)",
+      "Bash(go version)",
+      "Bash(go env)",
+      "Bash(go mod tidy)",
       "Bash(perl --version)",
+      "Bash(npm run lint)",
+      "Bash(npm run test:*)",
       "Bash(actionlint:*)",
       "Bash(mkdir -p ./:*)"
     ],
@@ -23,7 +32,12 @@
     "defaultMode": "plan"
   },
   "env": {
+    "ANTHROPIC_CUSTOM_HEADERS":
+    {
+      "X-Anthropic-Client": "claude"
+    },
     "BASH_DEFAULT_TIMEOUT_MS": 120000,
     "DISABLE_TELEMETRY": "false"
-  }
+  },
+  "cleanupPeriodDays": 30
 }
