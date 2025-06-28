@@ -14,7 +14,9 @@
       "Bash(mkdir -p ./:*)"
     ],
     "deny": [
-      "Write(~/.zshrc)"
+      "Write(~/.zshrc)",
+      "Write(~/.vimrc)",
+      "Write(~/.claude/settings.json)"
     ],
     "defaultMode": "plan"
   },
