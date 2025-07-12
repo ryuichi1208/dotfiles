@@ -1,4 +1,10 @@
 {
+  "cleanupPeriodDays": 30,
+  "env": {
+    "ANTHROPIC_CUSTOM_HEADERS": "[object Object]",
+    "BASH_DEFAULT_TIMEOUT_MS": "120000",
+    "DISABLE_TELEMETRY": "false"
+  },
   "permissions": {
     "allow": [
       "Read(~/.zshrc)",
@@ -22,7 +28,15 @@
       "Bash(npm run lint)",
       "Bash(npm run test:*)",
       "Bash(actionlint:*)",
-      "Bash(mkdir -p ./:*)"
+      "Bash(mkdir -p ./:*)",
+      "WebFetch(domain:github.com)",
+      "WebFetch(domain:vercel.com)",
+      "WebFetch(domain:docs.anthropic.com)",
+      "WebFetch(domain:stackoverflow.com)",
+      "WebFetch(domain:developer.mozilla.org)",
+      "WebFetch(domain:npmjs.com)",
+      "WebFetch(domain:nextjs.org)",
+      "WebFetch(domain:docs.aws.amazon.com)"
     ],
     "deny": [
       "Write(~/.zshrc)",
@@ -31,13 +45,5 @@
     ],
     "defaultMode": "plan"
   },
-  "env": {
-    "ANTHROPIC_CUSTOM_HEADERS":
-    {
-      "X-Anthropic-Client": "claude"
-    },
-    "BASH_DEFAULT_TIMEOUT_MS": 120000,
-    "DISABLE_TELEMETRY": "false"
-  },
-  "cleanupPeriodDays": 30
+  "model": "opus"
 }
