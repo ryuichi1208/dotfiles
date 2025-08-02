@@ -29,6 +29,7 @@
       "Bash(npm run test:*)",
       "Bash(actionlint:*)",
       "Bash(mkdir -p ./:*)",
+      "Bash(rm hello.py)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:vercel.com)",
       "WebFetch(domain:docs.anthropic.com)",
@@ -45,5 +46,9 @@
     ],
     "defaultMode": "plan"
   },
-  "model": "opus"
+  "model": "opus",
+  "feedbackSurveyState": {
+    "lastShownTime": 1754053425310
+  },
+  "$schema": "https://json.schemastore.org/claude-code-settings.json"
 }
