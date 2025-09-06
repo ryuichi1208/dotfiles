@@ -53,6 +53,7 @@ alias di="docker image"
 alias dc="docker container"
 alias dm="docker-compose"
 alias tf="terraform"
+alias tg="terragrunt"
 alias cl="claude"
 
 ###############

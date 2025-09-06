@@ -1,131 +1,135 @@
 [
-    {
-        "key": "s s",
-        "command": "workbench.action.splitEditorDown",
-        "when": "editorTextFocus && (neovim.mode == normal || vim.mode == 'Normal')"
-    },
-    {
-        "key": "s v",
-        "command": "workbench.action.splitEditorRight",
-        "when": "editorTextFocus && (neovim.mode == normal || vim.mode == 'Normal')"
-    },
-    // サイドバーへの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
-    {
-        "key": "ctrl+w h",
-        "command": "workbench.action.focusSideBar",
-        "when": "editorFocus"
-    },
-    // サイドバーからの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
-    {
-        "key": "ctrl+w l",
-        "command": "workbench.action.focusFirstEditorGroup",
-        "when": "!editorFocus"
-    },
-    // grep検索に入る
-    {
-        "key": "ctrl+u ctrl+g",
-        "command": "workbench.action.findInFiles",
-        "when": "!searchInputBoxFocus"
-    },
-    // 検索実行後の候補への移動
-    {
-        "key": "ctrl+n",
-        "command": "workbench.action.interactivePlayground.arrowDown",
-        "when": "interactivePlaygroundFocus && !editorTextFocus"
-    },
-    // ファイルの検索に入る
-    {
-        "key": "ctrl+u ctrl+u",
-        "command": "workbench.action.quickOpen"
-    },
-    {
-        "key": "ctrl+n",
-        "command": "workbench.action.terminal.toggleTerminal",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+n",
-        "command": "workbench.action.terminal.toggleTerminal",
-        "when": "!terminalFocus"
-    },
-    {
-        "key": "ctrl+e",
-        "command": "workbench.view.explorer",
-        "when": "editorFocus && vim.mode == 'Normal'"
-    },
-    {
-        "key": "ctrl+e",
-        "command": "workbench.action.focusActiveEditorGroup",
-        "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "cursorRight",
-        "when": "editorTextFocus && vim.mode === 'Insert'"
-    },
-    {
-        "key": "ctrl+h",
-        "command": "cursorLeft",
-        "when": "editorTextFocus && vim.mode === 'Insert'"
-    },
-    {
-        "key": "ctrl+j",
-        "command": "cursorDown",
-        "when": "editorTextFocus && vim.mode === 'Insert'"
-    },
-    {
-        "key": "ctrl+k",
-        "command": "cursorUp",
-        "when": "editorTextFocus && vim.mode === 'Insert'"
-    },
-    {
-        "key": "ctrl+t",
-        "command": "workbench.action.terminal.focus",
-        "when": "!terminalFocus"
-    },
-    {
-        "key": "ctrl+t",
-        "command": "workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus"
-    },
-    {
-        "key": "ctrl+shift+o",
-        "command": "workbench.action.decreaseViewSize"
-    },
-    {
-        "key": "ctrl+shift+i",
-        "command": "workbench.action.increaseViewSize"
-    },
-    {
-        "key": "ctrl+shift+j",
-        "command": "workbench.panel.chat.view.copilot.focus",
-        "when": "!view.workbench.panel.chat.view.copilot.visible || editorFocus"
-    },
-    {
-        "key": "ctrl+shift+j",
-        "command": "workbench.action.focusActiveEditorGroup",
-        "when": "view.workbench.panel.chat.view.copilot.visible && !editorFocus"
-    },
-    {
-        "key": "shift+cmd+n",
-        "command": "aipopup.action.modal.generate",
-        "when": "editorFocus && !composerBarIsVisible"
-    },
-    {
-        "key": "shift+cmd+k",
-        "command": "-aipopup.action.modal.generate",
-        "when": "editorFocus && !composerBarIsVisible"
-    },
-    {
-        "key": "ctrl+[",
-        "command": "workbench.action.focusNextGroup"
-    },
-    {
-        "key": "ctrl+]",
-        "command": "workbench.action.focusPreviousGroup"
-    },
-    {
-        "key": "cmd+i",
-        "command": "composerMode.agent"
-    },
+  {
+    "key": "s s",
+    "command": "workbench.action.splitEditorDown",
+    "when": "editorTextFocus && (neovim.mode == normal || vim.mode == 'Normal')"
+  },
+  {
+    "key": "s v",
+    "command": "workbench.action.splitEditorRight",
+    "when": "editorTextFocus && (neovim.mode == normal || vim.mode == 'Normal')"
+  },
+  // サイドバーへの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
+  {
+    "key": "ctrl+w h",
+    "command": "workbench.action.focusSideBar",
+    "when": "editorFocus"
+  },
+  // サイドバーからの移動 (ctrl+hをhにしてctrlを話すだけで切り替わる)
+  {
+    "key": "ctrl+w l",
+    "command": "workbench.action.focusFirstEditorGroup",
+    "when": "!editorFocus"
+  },
+  // grep検索に入る
+  {
+    "key": "ctrl+u ctrl+g",
+    "command": "workbench.action.findInFiles",
+    "when": "!searchInputBoxFocus"
+  },
+  // 検索実行後の候補への移動
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.interactivePlayground.arrowDown",
+    "when": "interactivePlaygroundFocus && !editorTextFocus"
+  },
+  // ファイルの検索に入る
+  {
+    "key": "ctrl+u ctrl+u",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+n",
+    "command": "workbench.action.terminal.toggleTerminal",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.view.explorer",
+    "when": "editorFocus && vim.mode == 'Normal'"
+  },
+  {
+    "key": "ctrl+e",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "explorerViewletFocus && explorerViewletVisible && !inputFocus"
+  },
+  {
+    "key": "ctrl+l",
+    "command": "cursorRight",
+    "when": "editorTextFocus && vim.mode === 'Insert'"
+  },
+  {
+    "key": "ctrl+h",
+    "command": "cursorLeft",
+    "when": "editorTextFocus && vim.mode === 'Insert'"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "cursorDown",
+    "when": "editorTextFocus && vim.mode === 'Insert'"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "cursorUp",
+    "when": "editorTextFocus && vim.mode === 'Insert'"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "workbench.action.terminal.focus",
+    "when": "!terminalFocus"
+  },
+  {
+    "key": "ctrl+t",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "terminalFocus"
+  },
+  {
+    "key": "ctrl+shift+o",
+    "command": "workbench.action.decreaseViewSize"
+  },
+  {
+    "key": "ctrl+shift+i",
+    "command": "workbench.action.increaseViewSize"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.panel.chat.view.copilot.focus",
+    "when": "!view.workbench.panel.chat.view.copilot.visible || editorFocus"
+  },
+  {
+    "key": "ctrl+shift+j",
+    "command": "workbench.action.focusActiveEditorGroup",
+    "when": "view.workbench.panel.chat.view.copilot.visible && !editorFocus"
+  },
+  {
+    "key": "shift+cmd+n",
+    "command": "aipopup.action.modal.generate",
+    "when": "editorFocus && !composerBarIsVisible"
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "-aipopup.action.modal.generate",
+    "when": "editorFocus && !composerBarIsVisible"
+  },
+  {
+    "key": "ctrl+[",
+    "command": "workbench.action.focusNextGroup"
+  },
+  {
+    "key": "ctrl+]",
+    "command": "workbench.action.focusPreviousGroup"
+  },
+  {
+    "key": "cmd+i",
+    "command": "composerMode.agent"
+  },
+  {
+    "key": "cmd+e",
+    "command": "composerMode.background"
+  }
 ]
