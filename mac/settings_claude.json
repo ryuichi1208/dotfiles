@@ -22,7 +22,6 @@
       "Bash(uniq:*)",
       "Bash(uv sync)",
       "Bash(uv pip list)",
-      "Bash(uv run * --help)",
       "Bash(go version)",
       "Bash(go env)",
       "Bash(go mod tidy)",
@@ -44,8 +43,7 @@
     ],
     "deny": [
       "Write(~/.zshrc)",
-      "Write(~/.vimrc)",
-      "Write(~/.claude/settings.json)"
+      "Write(~/.vimrc)"
     ],
     "defaultMode": "plan"
   },
@@ -53,5 +51,10 @@
   "feedbackSurveyState": {
     "lastShownTime": 1754103918075
   },
-  "alwaysThinkingEnabled": false
+  "alwaysThinkingEnabled": false,
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  }
 }
