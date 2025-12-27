@@ -48,13 +48,16 @@
     "defaultMode": "plan"
   },
   "model": "opus",
-  "feedbackSurveyState": {
-    "lastShownTime": 1754103918075
-  },
-  "alwaysThinkingEnabled": false,
   "statusLine": {
     "type": "command",
     "command": "~/.claude/statusline.sh",
     "padding": 0
+  },
+  "alwaysThinkingEnabled": false,
+  "feedbackSurveyState": {
+    "lastShownTime": 1754103918075
+  },
+  "enabledPlugins": {
+    "commit-commands@claude-plugins-official": true
   }
 }
