@@ -211,6 +211,7 @@ function gw() {
     local dir_name=$(basename "$(git rev-parse --show-toplevel)")_"$branch_name"
     echo "Creating worktree in ../$dir_name from $start_point"
 
+    pwd
     git worktree add -b "$branch_name" "../$dir_name" "$start_point"
     if [ $? -eq 0 ]; then
 	echo "Created and switched to new worktree for branch '$branch_name'"
