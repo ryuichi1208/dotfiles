@@ -196,6 +196,30 @@ function git_root() {
     fi
 }
 
+function gw() {
+    if [ -z "$1" ]; then
+	echo "Usage: git_worktree_create <new-branch-name> [<start-point>]"
+	return 1
+    fi
+
+    cd $(git_root)
+
+    local branch_name=$1
+    local start_point=${2:-main}  # Default to 'main' if no start point is provided
+
+    # repository name from current directory + branch name
+    local dir_name=$(basename "$(git rev-parse --show-toplevel)")_"$branch_name"
+    echo "Creating worktree in ../$dir_name from $start_point"
+
+    git worktree add -b "$branch_name" "../$dir_name" "$start_point"
+    if [ $? -eq 0 ]; then
+	echo "Created and switched to new worktree for branch '$branch_name'"
+	cd "../$dir_name" || return 1
+    else
+	echo "Failed to create worktree for branch '$branch_name'"
+    fi
+}
+
 function chpwd() {
   powered_cd_add_log
 }
@@ -261,3 +285,12 @@ function fzf-repo() {
 }
 zle -N fzf-repo
 
+fzf-git-worktree () {
+    local tree=$(git worktree list | fzf --query "$LBUFFER")
+    if [ -n "$tree" ]; then
+        BUFFER="cd `echo $tree | awk '{ print $1 }'`"
+        zle accept-line
+    fi
+}
+zle -N fzf-git-worktree
+bindkey '^]' fzf-git-worktree
