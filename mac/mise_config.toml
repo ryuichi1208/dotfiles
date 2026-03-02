@@ -2,7 +2,6 @@
 jq = "latest"
 fzf = "latest"
 eza = "latest"
-awscli = "latest"
 conftest = "latest"
 golangci-lint = "latest"
 go = "1.23.2"
@@ -35,6 +34,7 @@ actionlint = "latest"
 trivy = "latest"
 python = "3.12.9"
 node = "23.6.0"
-ruby = "3.1.6"
+ruby = "3.1.7"
+aws-cli = { version = "latest", symlink_bins = "true" }
 
 [env]

@@ -33,7 +33,23 @@
       "Bash(mkdir -p ./:*)",
       "Bash(rm hello.py)",
       "Bash(find ./:*)",
+      "Bash(make lint:*)",
+      "Bash(uv run ruff:*)",
+      "Bash(uv run mypy:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(git status)",
+      "Bash(git -C:*)",
       "Bash(gh pr list:*)",
+      "Bash(gh issue list:*)",
+      "Bash(gh repo view --json name,owner:*)",
+      "Bash(gh repo view --json description,readme:*)",
+      "Bash(gh api -X GET /repos/:owner/:repo/commits:*)",
+      "Bash(gh api -X GET /repos/:owner/:repo/pulls:*)",
+      "Bash(gh api -X GET /repos/:owner/:repo/issues:*)",
+      "Bash(gh api -X GET /repos/:owner/:repo:*)",
+      "Bash(gh api -X GET /users/:username:*)",
+      "Bash(gh api -X GET /search/code?q=:query:*)",
+      "Bash(gh api -X GET /search/issues?q=:query:*)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:vercel.com)",
       "WebFetch(domain:docs.anthropic.com)",
@@ -51,20 +67,6 @@
     "defaultMode": "plan"
   },
   "model": "opus",
-  "statusLine": {
-    "type": "command",
-    "command": "~/.claude/statusline.sh",
-    "padding": 0
-  },
-  "enabledPlugins": {
-    "commit-commands@claude-plugins-official": true,
-    "gopls-lsp@claude-plugins-official": true
-  },
-  "alwaysThinkingEnabled": false,
-  "feedbackSurveyState": {
-    "lastShownTime": 1754103918075
-  },
-  "autoUpdates": true,
   "hooks": {
     "Notification": [
       {
@@ -86,5 +88,20 @@
         ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "~/.claude/statusline.sh",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "commit-commands@claude-plugins-official": true,
+    "gopls-lsp@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": false,
+  "feedbackSurveyState": {
+    "lastShownTime": 1754103918075
+  },
+  "autoUpdates": true
 }
