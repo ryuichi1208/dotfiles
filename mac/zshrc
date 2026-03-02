@@ -138,10 +138,7 @@ function fbr() {
 zle -N fbr
 
 function fzf-ghq() {
-  local repo=$(ghq list \
-	| fzf --color --preview "ghq list --full-path --exact {} \
-	| xargs eza -h --long --classify --git --no-permissions --no-user --no-filesize --git-ignore --sort modified --reverse --tree --level 2"
-  )
+  local repo=$(ghq list | fzf --color)
   if [ -n "$repo" ]; then
     repo=$(ghq list --full-path --exact $repo)
     BUFFER="cd ${repo}"
@@ -269,10 +266,7 @@ _cdktf_yargs_completions()
 compdef _cdktf_yargs_completions cdktf
 
 function fzf-repo() {
-  local repo=$(ghq list \
-        | fzf --color --preview "ghq list --full-path --exact {} \
-        | xargs eza -h --long --classify --git --no-permissions --no-user --no-filesize --git-ignore --sort modified --reverse --tree --level 2"
-  )
+  local repo=$(ghq list | fzf --color)
   (
     if [ -n "$repo" ]; then
       repo=$(ghq list --full-path --exact $repo)
