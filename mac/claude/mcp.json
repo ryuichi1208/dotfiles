@@ -3,6 +3,17 @@
     "terraform": {
       "command": "docker",
       "args": ["run", "-i", "--rm", "hashicorp/terraform-mcp-server"]
+    },
+    "Sentry": {
+      "url": "https://mcp.sentry.dev/mcp"
+    },
+    "datadog": {
+      "type": "http",
+      "url": "https://mcp.datadoghq.com/api/unstable/mcp-server/mcp?toolsets=all",
+      "headers": {
+        "DD_API_KEY": "03c4dc7b329499bff2cc7f22e4566049",
+        "DD_APPLICATION_KEY": "020a9dd6e1e85b4e500f486949c54cdbfc390381"
+      }
     }
   }
 }

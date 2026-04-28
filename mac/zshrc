@@ -52,7 +52,8 @@ alias dc="docker container"
 alias dm="docker-compose"
 alias tf="terraform"
 alias tg="terragrunt"
-alias cl="claude"
+alias cl="/Users/ryuichi/.local/bin/claude"
+alias clc="/Users/ryuichi/.local/bin/claude -c"
 
 ###############
 ### bindkey
@@ -287,3 +288,8 @@ fzf-git-worktree () {
 }
 zle -N fzf-git-worktree
 bindkey '^]' fzf-git-worktree
+
+function git-branch-clean()
+{
+  git fetch -p && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs git branch -D
+}

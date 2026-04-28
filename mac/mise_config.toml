@@ -36,5 +36,6 @@ python = "3.12.9"
 node = "23.6.0"
 ruby = "3.1.7"
 aws-cli = { version = "latest", symlink_bins = "true" }
+"aqua:suzuki-shunsuke/pinact" = "3.1.2"
 
 [env]
